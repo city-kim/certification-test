@@ -1,5 +1,7 @@
 # 네트워크관리사 2급 모바일 모의고사
 
+### 🔗 바로 풀기 → <a href="https://city-kim.github.io/certification-test/" target="_blank" rel="noopener noreferrer">city-kim.github.io/certification-test</a>
+
 기출 PDF 5개 회차(250문항)에서 **과목별 정원에 맞춰 매번 랜덤 출제**하는 모바일 웹 모의고사입니다.
 React + Vite로 만든 정적 사이트라 GitHub Pages에서 서버 없이 동작합니다.
 
@@ -37,4 +39,4 @@ npm run build        # 타입체크 + 프로덕션 빌드(dist/)
    - 워크플로가 레포명을 읽어 `base` 경로(`/<repo>/`)를 자동 주입하므로 별도 설정이 필요 없습니다.
    - 사용자/조직 페이지(`<id>.github.io`)로 배포하려면 워크플로의 `BASE_PATH` 를 `/` 로 두세요.
 
-배포 후 주소: `https://<사용자>.github.io/<repo>/`
+배포 후 주소: <a href="https://city-kim.github.io/certification-test/" target="_blank" rel="noopener noreferrer">https://city-kim.github.io/certification-test/</a>
