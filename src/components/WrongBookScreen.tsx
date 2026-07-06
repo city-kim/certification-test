@@ -1,24 +1,22 @@
 import { useState } from "react";
 import { clearWrongBook, getWrongBook } from "../lib/storage";
-import { SUBJECTS } from "../lib/types";
+import type { CertConfig } from "../lib/certs";
+import { subjectLabel } from "../lib/certs";
 import ReviewItem from "./ReviewItem";
 import type { ReviewData } from "./ReviewItem";
 
-const subjectLabel = (key: string) =>
-  SUBJECTS.find((s) => s.key === key)?.label ?? key;
-
-export default function WrongBookScreen({ onBack }: { onBack: () => void }) {
-  const [book, setBook] = useState(() => getWrongBook());
+export default function WrongBookScreen({ cert, onBack }: { cert: CertConfig; onBack: () => void }) {
+  const [book, setBook] = useState(() => getWrongBook(cert.id));
 
   function handleClear() {
     if (window.confirm("오답노트를 모두 비울까요?")) {
-      clearWrongBook();
+      clearWrongBook(cert.id);
       setBook([]);
     }
   }
 
   const reviews: ReviewData[] = book.map((w) => ({
-    subjectLabel: subjectLabel(w.subject),
+    subjectLabel: subjectLabel(cert, w.subject),
     question: w.question,
     figure: w.figure,
     options: w.options,

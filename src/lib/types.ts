@@ -1,4 +1,5 @@
-export type Subject = "tcpip" | "general" | "nos" | "device";
+/** 과목 key 는 자격증마다 다르므로 문자열로 둔다(정의는 certs.config.json). */
+export type Subject = string;
 
 export interface Question {
   id: string;
@@ -22,12 +23,3 @@ export interface ExamItem {
   /** 사용자가 선택한 보기 위치 (미응답이면 null) */
   selected: number | null;
 }
-
-export const SUBJECTS: { key: Subject; label: string; count: number }[] = [
-  { key: "tcpip", label: "TCP/IP", count: 17 },
-  { key: "general", label: "네트워크 일반", count: 10 },
-  { key: "nos", label: "NOS", count: 18 },
-  { key: "device", label: "네트워크 운용기기", count: 5 },
-];
-
-export const TOTAL_QUESTIONS = SUBJECTS.reduce((s, x) => s + x.count, 0); // 50

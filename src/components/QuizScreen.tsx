@@ -1,18 +1,17 @@
 import { useState } from "react";
 import type { ExamItem } from "../lib/types";
 import { figureUrl } from "../data/questions";
-import { SUBJECTS } from "../lib/types";
+import type { CertConfig } from "../lib/certs";
+import { subjectLabel } from "../lib/certs";
 
 interface Props {
+  cert: CertConfig;
   items: ExamItem[];
   onSubmit: (items: ExamItem[]) => void;
   onQuit: () => void;
 }
 
-const subjectLabel = (key: string) =>
-  SUBJECTS.find((s) => s.key === key)?.label ?? key;
-
-export default function QuizScreen({ items, onSubmit, onQuit }: Props) {
+export default function QuizScreen({ cert, items, onSubmit, onQuit }: Props) {
   const [list, setList] = useState<ExamItem[]>(items);
   const [idx, setIdx] = useState(0);
 
@@ -63,7 +62,7 @@ export default function QuizScreen({ items, onSubmit, onQuit }: Props) {
       </header>
 
       <div className="q-meta">
-        <span className="subject-tag">{subjectLabel(current.question.subject)}</span>
+        <span className="subject-tag">{subjectLabel(cert, current.question.subject)}</span>
         <span className="answered-text">응답 {answeredCount}/{total}</span>
       </div>
 

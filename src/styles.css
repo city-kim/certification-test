@@ -409,6 +409,60 @@ body {
   white-space: pre-wrap;
 }
 
+/* ---------- 자격증 선택 ---------- */
+.cert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.cert-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  color: var(--text);
+  border: 1.5px solid transparent;
+}
+.cert-card:active {
+  border-color: var(--primary);
+  background: #eaf2ff;
+}
+.cert-card.disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.cert-card-main {
+  flex: 1;
+  min-width: 0;
+}
+.cert-card-main h2 {
+  margin: 0 0 4px;
+  font-size: 17px;
+}
+.cert-badge {
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 99px;
+}
+.cert-badge.ready {
+  background: var(--ok-bg);
+  color: var(--ok);
+}
+.cert-badge.soon {
+  background: #eef1f6;
+  color: var(--muted);
+}
+.link.back {
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
 .page-head {
   display: flex;
   align-items: center;

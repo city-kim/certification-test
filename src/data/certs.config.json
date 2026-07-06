@@ -1,0 +1,29 @@
+{
+  "certs": [
+    {
+      "id": "network_2",
+      "label": "네트워크관리사 2급",
+      "sub": "모바일 모의고사 · 매회 랜덤 출제",
+      "passScore": 60,
+      "subjectPassRatio": 0,
+      "subjects": [
+        { "key": "tcpip", "label": "TCP/IP", "count": 17 },
+        { "key": "general", "label": "네트워크 일반", "count": 10 },
+        { "key": "nos", "label": "NOS", "count": 18 },
+        { "key": "device", "label": "네트워크 운용기기", "count": 5 }
+      ]
+    },
+    {
+      "id": "adsp",
+      "label": "데이터분석 준전문가(ADsP)",
+      "sub": "모바일 모의고사 · 매회 랜덤 출제",
+      "passScore": 60,
+      "subjectPassRatio": 0.4,
+      "subjects": [
+        { "key": "understanding", "label": "데이터 이해", "count": 10 },
+        { "key": "planning", "label": "데이터 분석 기획", "count": 10 },
+        { "key": "analysis", "label": "데이터 분석", "count": 30 }
+      ]
+    }
+  ]
+}

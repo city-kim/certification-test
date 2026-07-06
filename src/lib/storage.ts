@@ -1,8 +1,9 @@
 import type { ExamResult } from "./quiz";
 
-const HISTORY_KEY = "ncq.history.v1";
-const WRONG_KEY = "ncq.wrongbook.v1";
 const MAX_HISTORY = 30;
+
+const historyKey = (certId: string) => `ncq.${certId}.history.v1`;
+const wrongKey = (certId: string) => `ncq.${certId}.wrongbook.v1`;
 
 export interface HistoryEntry {
   date: number; // epoch ms
@@ -43,21 +44,45 @@ function write(key: string, value: unknown): void {
   }
 }
 
-export function getHistory(): HistoryEntry[] {
-  return read<HistoryEntry[]>(HISTORY_KEY, []);
+/**
+ * 자격증 분기 이전(단일 자격증 시절) 전역 키를 network_2 네임스페이스로 1회 이관.
+ * 기존 사용자의 기록/오답노트를 보존한다.
+ */
+function migrateLegacy(certId: string): void {
+  if (certId !== "network_2") return;
+  try {
+    const oldH = localStorage.getItem("ncq.history.v1");
+    if (oldH && !localStorage.getItem(historyKey(certId))) {
+      localStorage.setItem(historyKey(certId), oldH);
+      localStorage.removeItem("ncq.history.v1");
+    }
+    const oldW = localStorage.getItem("ncq.wrongbook.v1");
+    if (oldW && !localStorage.getItem(wrongKey(certId))) {
+      localStorage.setItem(wrongKey(certId), oldW);
+      localStorage.removeItem("ncq.wrongbook.v1");
+    }
+  } catch {
+    /* 무시 */
+  }
 }
 
-export function getWrongBook(): WrongEntry[] {
-  return read<WrongEntry[]>(WRONG_KEY, []);
+export function getHistory(certId: string): HistoryEntry[] {
+  migrateLegacy(certId);
+  return read<HistoryEntry[]>(historyKey(certId), []);
 }
 
-export function clearWrongBook(): void {
-  write(WRONG_KEY, []);
+export function getWrongBook(certId: string): WrongEntry[] {
+  migrateLegacy(certId);
+  return read<WrongEntry[]>(wrongKey(certId), []);
 }
 
-/** 시험 결과를 기록과 오답노트에 누적 저장한다. */
-export function saveResult(result: ExamResult, date: number): void {
-  const history = getHistory();
+export function clearWrongBook(certId: string): void {
+  write(wrongKey(certId), []);
+}
+
+/** 시험 결과를 해당 자격증의 기록과 오답노트에 누적 저장한다. */
+export function saveResult(certId: string, result: ExamResult, date: number): void {
+  const history = getHistory(certId);
   history.unshift({
     date,
     score: result.score,
@@ -65,9 +90,9 @@ export function saveResult(result: ExamResult, date: number): void {
     total: result.total,
     passed: result.passed,
   });
-  write(HISTORY_KEY, history.slice(0, MAX_HISTORY));
+  write(historyKey(certId), history.slice(0, MAX_HISTORY));
 
-  const book = getWrongBook();
+  const book = getWrongBook(certId);
   const existing = new Set(book.map((w) => w.id));
   for (const it of result.wrong) {
     if (existing.has(it.question.id)) continue; // 같은 문항 중복 저장 방지
@@ -85,5 +110,5 @@ export function saveResult(result: ExamResult, date: number): void {
       explanation: it.question.explanation,
     });
   }
-  write(WRONG_KEY, book);
+  write(wrongKey(certId), book);
 }

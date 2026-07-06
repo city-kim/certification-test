@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 """PDF에서 회차별 텍스트 / 정답키 / 삽입 이미지를 추출한다.
 
-산출물:
-  scripts/raw/<exam>.txt            전체 텍스트(페이지 구분 포함)
-  scripts/raw/<exam>.answers.json   [정답인덱스 50개]  (① -> 0 ... ④ -> 3)
-  scripts/raw/<exam>.images.json    [{file, page, idx}]
-  public/figures/<exam>/imgNN.png   삽입 이미지(페이지 읽기 순서)
+자격증별로 디렉토리가 분기되어 있다. 대상 자격증은 인자로 지정한다(기본 network_2).
+  사용: python3 scripts/extract.py [certId]
+
+산출물(<cert> = 자격증 id):
+  scripts/raw/<cert>/<exam>.txt            전체 텍스트(페이지 구분 포함)
+  scripts/raw/<cert>/<exam>.answers.json   [정답인덱스 50개]  (① -> 0 ... ④ -> 3)
+  scripts/raw/<cert>/<exam>.images.json    [{file, page, idx}]
+  public/figures/<cert>/<exam>/imgNN.png   삽입 이미지(페이지 읽기 순서)
 
 요구: pypdf[image] (pillow 포함). 격리 venv에서 실행.
 """
@@ -13,13 +16,15 @@ import glob
 import json
 import os
 import re
+import sys
 
 import pypdf
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PDF_DIR = os.path.join(ROOT, "pdf", "network")
-RAW_DIR = os.path.join(ROOT, "scripts", "raw")
-FIG_DIR = os.path.join(ROOT, "public", "figures")
+CERT = sys.argv[1] if len(sys.argv) > 1 else "network_2"
+PDF_DIR = os.path.join(ROOT, "pdf", CERT)
+RAW_DIR = os.path.join(ROOT, "scripts", "raw", CERT)
+FIG_DIR = os.path.join(ROOT, "public", "figures", CERT)
 
 CIRCLED = {"①": 0, "②": 1, "③": 2, "④": 3}
 
@@ -66,7 +71,7 @@ def main():
                 idx += 1
                 fname = f"img{idx:02d}.png"
                 im.image.save(os.path.join(out_dir, fname))
-                images.append({"file": f"figures/{exam}/{fname}", "page": pi, "idx": idx})
+                images.append({"file": f"figures/{CERT}/{exam}/{fname}", "page": pi, "idx": idx})
         with open(os.path.join(RAW_DIR, f"{exam}.images.json"), "w") as f:
             json.dump(images, f, ensure_ascii=False, indent=2)
 

@@ -6,8 +6,9 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
-const EXAMS = join(ROOT, "src", "data", "exams");
-const RAW = join(ROOT, "scripts", "raw");
+// 네트워크관리사(network_2) 전용 정밀 검증 도구.
+const EXAMS = join(ROOT, "src", "data", "exams", "network_2");
+const RAW = join(ROOT, "scripts", "raw", "network_2");
 
 const MARKERS = "①②③④";
 const norm = (s) => s.replace(/[\s'"`′ʼ‘’“”·]/g, "").toLowerCase();

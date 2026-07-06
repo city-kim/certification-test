@@ -1,20 +1,26 @@
 import type { ExamResult } from "../lib/quiz";
-import { SUBJECTS } from "../lib/types";
+import type { CertConfig } from "../lib/certs";
+import { subjectLabel } from "../lib/certs";
 import ReviewItem from "./ReviewItem";
 import type { ReviewData } from "./ReviewItem";
 
 interface Props {
+  cert: CertConfig;
   result: ExamResult;
   onRetry: () => void;
   onHome: () => void;
 }
 
-const subjectLabel = (key: string) =>
-  SUBJECTS.find((s) => s.key === key)?.label ?? key;
+export default function ResultScreen({ cert, result, onRetry, onHome }: Props) {
+  const hasFail = cert.subjectPassRatio > 0;
+  const criteria = hasFail
+    ? `합격 기준: 총점 ${cert.passScore}점 이상 · 과목별 ${Math.round(
+        cert.subjectPassRatio * 100,
+      )}% 이상(과락)`
+    : `합격 기준: 총점 ${cert.passScore}점 이상 (과락 없음)`;
 
-export default function ResultScreen({ result, onRetry, onHome }: Props) {
   const reviews: ReviewData[] = result.wrong.map((it) => ({
-    subjectLabel: subjectLabel(it.question.subject),
+    subjectLabel: subjectLabel(cert, it.question.subject),
     question: it.question.question,
     figure: it.question.figure,
     options: it.options,
@@ -41,6 +47,7 @@ export default function ResultScreen({ result, onRetry, onHome }: Props) {
               <th>과목</th>
               <th>정답</th>
               <th>정답률</th>
+              {hasFail && <th>과락</th>}
             </tr>
           </thead>
           <tbody>
@@ -53,12 +60,17 @@ export default function ResultScreen({ result, onRetry, onHome }: Props) {
                     {s.correct}/{s.total}
                   </td>
                   <td>{ratio}%</td>
+                  {hasFail && (
+                    <td className={s.passed ? "pass" : "fail"}>
+                      {s.passed ? "통과" : "과락"}
+                    </td>
+                  )}
                 </tr>
               );
             })}
           </tbody>
         </table>
-        <p className="muted small">합격 기준: 총점 60점 이상 (과락 없음)</p>
+        <p className="muted small">{criteria}</p>
       </section>
 
       <section className="card">
