@@ -75,7 +75,6 @@ export default function QuizScreen({ cert, items, onSubmit, onQuit }: Props) {
             className="q-figure"
             src={figureUrl(current.question.figure)}
             alt="문제 그림"
-            loading="lazy"
           />
         )}
         <ul className="options">

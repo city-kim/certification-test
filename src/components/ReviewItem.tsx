@@ -21,7 +21,7 @@ export default function ReviewItem({ data }: { data: ReviewData }) {
       </div>
       <p className="q-text">{data.question}</p>
       {data.figure && (
-        <img className="q-figure" src={figureUrl(data.figure)} alt="문제 그림" loading="lazy" />
+        <img className="q-figure" src={figureUrl(data.figure)} alt="문제 그림" />
       )}
       <ul className="options review">
         {data.options.map((opt, i) => {
