@@ -9,6 +9,8 @@ export interface ReviewData {
   correctText: string;
   selectedText: string | null;
   explanation: string;
+  /** 풀이 중 힌트를 열어본 문항 (오답노트에는 기록되지 않음) */
+  hintUsed?: boolean;
 }
 
 /** 오답 한 건을 보여주는 카드: 내 답(빨강)·정답(초록)·해설 */
@@ -18,6 +20,7 @@ export default function ReviewItem({ data }: { data: ReviewData }) {
       <div className="review-head">
         <span className="subject-tag small">{data.subjectLabel}</span>
         {data.index != null && <span className="review-num">문제 {data.index}</span>}
+        {data.hintUsed && <span className="badge hint">힌트 사용</span>}
       </div>
       <p className="q-text">{data.question}</p>
       {data.figure && (

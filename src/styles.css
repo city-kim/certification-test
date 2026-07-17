@@ -92,6 +92,16 @@ body {
 }
 .btn:disabled {
   opacity: 0.45;
+  cursor: default;
+}
+.btn.hint {
+  background: #fff4d6;
+  color: #8a6100;
+  font-size: 14px;
+  padding: 10px 14px;
+}
+.btn.hint:active {
+  background: #ffe9ad;
 }
 
 .actions {
@@ -392,6 +402,11 @@ body {
   background: var(--no);
   color: #fff;
 }
+.badge.hint {
+  margin-left: 0;
+  background: #fff4d6;
+  color: #8a6100;
+}
 .explanation {
   margin-top: 12px;
   background: #f5f8ff;
@@ -407,6 +422,18 @@ body {
   margin: 4px 0 0;
   font-size: 14.5px;
   white-space: pre-wrap;
+}
+.hint-answer {
+  font-weight: 700;
+  color: var(--ok);
+}
+
+.hint-zone {
+  margin-top: 14px;
+}
+.hint-zone .muted.small {
+  margin: 6px 0 0;
+  text-align: center;
 }
 
 /* ---------- 자격증 선택 ---------- */

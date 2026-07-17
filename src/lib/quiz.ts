@@ -17,7 +17,7 @@ function toExamItem(q: Question): ExamItem {
   const order = shuffle(q.options.map((_, i) => i)); // 원래 인덱스의 셔플 순서
   const options = order.map((i) => q.options[i]);
   const answerIndex = order.indexOf(q.answerIndex);
-  return { question: q, options, answerIndex, selected: null };
+  return { question: q, options, answerIndex, selected: null, hintUsed: false };
 }
 
 /**

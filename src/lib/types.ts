@@ -22,4 +22,6 @@ export interface ExamItem {
   answerIndex: number;
   /** 사용자가 선택한 보기 위치 (미응답이면 null) */
   selected: number | null;
+  /** 풀이 중 힌트(해설)를 열어봤는지 */
+  hintUsed: boolean;
 }
