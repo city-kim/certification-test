@@ -27,7 +27,10 @@ export default function ResultScreen({ cert, result, onRetry, onHome }: Props) {
     correctText: it.options[it.answerIndex],
     selectedText: it.selected === null ? null : it.options[it.selected],
     explanation: it.question.explanation,
+    hintUsed: it.hintUsed,
   }));
+
+  const hintCount = result.items.filter((it) => it.hintUsed).length;
 
   return (
     <div className="screen result">
@@ -37,6 +40,9 @@ export default function ResultScreen({ cert, result, onRetry, onHome }: Props) {
         <div className="muted">
           {result.correctCount} / {result.total} 정답
         </div>
+        {hintCount > 0 && (
+          <div className="muted small">💡 힌트 사용 {hintCount}문항 (점수에는 반영되지 않음)</div>
+        )}
       </section>
 
       <section className="card">

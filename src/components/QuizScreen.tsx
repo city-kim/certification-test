@@ -26,6 +26,12 @@ export default function QuizScreen({ cert, items, onSubmit, onQuit }: Props) {
     );
   }
 
+  function showHint() {
+    setList((prev) =>
+      prev.map((it, i) => (i === idx ? { ...it, hintUsed: true } : it)),
+    );
+  }
+
   function go(delta: number) {
     setIdx((i) => Math.min(Math.max(i + delta, 0), total - 1));
     window.scrollTo(0, 0);
@@ -90,6 +96,31 @@ export default function QuizScreen({ cert, items, onSubmit, onQuit }: Props) {
             </li>
           ))}
         </ul>
+
+        <div className="hint-zone">
+          {current.hintUsed ? (
+            <div className="explanation">
+              <strong>해설</strong>
+              <p className="hint-answer">
+                정답: {"①②③④"[current.answerIndex]} {current.options[current.answerIndex]}
+              </p>
+              <p>{current.question.explanation}</p>
+            </div>
+          ) : (
+            <>
+              <button
+                className="btn hint"
+                onClick={showHint}
+                disabled={current.selected === null}
+              >
+                💡 힌트 보기
+              </button>
+              {current.selected === null && (
+                <p className="muted small">보기를 먼저 선택하면 해설을 볼 수 있습니다.</p>
+              )}
+            </>
+          )}
+        </div>
       </div>
 
       <div className="actions sticky two">
