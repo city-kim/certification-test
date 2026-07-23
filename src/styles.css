@@ -93,6 +93,13 @@ body {
 .btn:disabled {
   opacity: 0.45;
 }
+.secret-entry {
+  display: block;
+  box-sizing: border-box;
+  margin-top: 16px;
+  text-align: center;
+  text-decoration: none;
+}
 
 .actions {
   display: flex;

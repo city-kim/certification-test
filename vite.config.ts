@@ -8,4 +8,14 @@ const base = process.env.BASE_PATH ?? "/";
 export default defineConfig({
   base,
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      input: {
+        // 기존 모바일 앱
+        main: "index.html",
+        // 시크릿(뉴스 게시판 위장) 모드 — dev: /certification-test-secret/
+        secret: "certification-test-secret/index.html",
+      },
+    },
+  },
 });

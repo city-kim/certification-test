@@ -3,6 +3,10 @@ import { CERTS, totalQuestions } from "../lib/certs";
 import { getBank } from "../data/questions";
 
 export default function CertSelectScreen() {
+  // 시크릿 모드는 별도 진입점이라 라우터가 아닌 실제 URL 이동으로 넘어간다.
+  // BASE_URL 은 dev "/", 배포 "/certification-test/" 를 자동 반영.
+  const secretUrl = `${import.meta.env.BASE_URL}certification-test-secret/`;
+
   return (
     <div className="screen start">
       <header className="hero">
@@ -39,6 +43,10 @@ export default function CertSelectScreen() {
           );
         })}
       </section>
+
+      <a href={secretUrl} className="btn ghost secret-entry">
+        🕶️ 시크릿 모드 (뉴스 게시판)
+      </a>
     </div>
   );
 }
