@@ -11,8 +11,9 @@ import StartScreen from "./components/StartScreen";
 import QuizScreen from "./components/QuizScreen";
 import ResultScreen from "./components/ResultScreen";
 import WrongBookScreen from "./components/WrongBookScreen";
+import RefsScreen from "./components/RefsScreen";
 
-type Screen = "start" | "quiz" | "result" | "wrongbook";
+type Screen = "start" | "quiz" | "result" | "wrongbook" | "refs";
 
 /**
  * 라우트 진입점. certId 를 key 로 넘겨 자격증이 바뀌면 CertScreen 이 리마운트되어
@@ -55,6 +56,7 @@ function CertScreen({ cert }: { cert: CertConfig }) {
           bankSize={bank.length}
           onStart={startExam}
           onOpenWrongBook={() => setScreen("wrongbook")}
+          onOpenRefs={() => setScreen("refs")}
         />
       )}
       {screen === "quiz" && (
@@ -75,6 +77,9 @@ function CertScreen({ cert }: { cert: CertConfig }) {
       )}
       {screen === "wrongbook" && (
         <WrongBookScreen cert={cert} onBack={() => setScreen("start")} />
+      )}
+      {screen === "refs" && (
+        <RefsScreen cert={cert} onBack={() => setScreen("start")} />
       )}
     </>
   );
