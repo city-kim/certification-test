@@ -1,0 +1,229 @@
+[
+  {
+    "id": "blog03-01",
+    "exam": "blog03",
+    "subject": "term",
+    "number": 1,
+    "type": "short",
+    "question": "모든 장치가 수동으로 IP를 설정할 필요 없이 자동으로 IP 주소를 할당받도록 하는 프로토콜을 쓰시오.",
+    "answers": ["DHCP", "Dynamic Host Configuration Protocol"],
+    "placeholder": "프로토콜 이름",
+    "explanation": "DHCP(Dynamic Host Configuration Protocol)는 IP 주소·서브넷마스크·게이트웨이 등을 자동으로 할당한다. 지문의 핵심 단어는 '자동으로 IP 주소를 할당' 이다."
+  },
+  {
+    "id": "blog03-02",
+    "exam": "blog03",
+    "subject": "term",
+    "number": 2,
+    "question": "ping 명령어는 ICMP의 어떤 메시지를 송수신하는가?",
+    "options": [
+      "Redirect",
+      "Time Exceeded",
+      "Echo Request / Echo Reply",
+      "Source Quench"
+    ],
+    "answerIndex": 2,
+    "explanation": "ping은 Echo Request를 보내고 Echo Reply를 받아 상대 호스트의 동작 여부를 확인한다. Time Exceeded는 홉 한계 초과, Redirect는 경로 재지정, Source Quench는 혼잡 통보(현재 표준에서 제외)다."
+  },
+  {
+    "id": "blog03-03",
+    "exam": "blog03",
+    "subject": "term",
+    "number": 3,
+    "type": "short",
+    "question": "HTTP의 보안이 강화된 버전으로 TCP 443 포트를 사용하는 프로토콜을 쓰시오.",
+    "answers": ["HTTPS"],
+    "placeholder": "프로토콜 이름",
+    "explanation": "HTTPS(HyperText Transfer Protocol Secure)는 SSL/TLS로 암호화된 HTTP로 TCP 443번을 사용한다. HTTP(TCP 80)라고 적으면 오답이다."
+  },
+  {
+    "id": "blog03-04",
+    "exam": "blog03",
+    "subject": "term",
+    "number": 4,
+    "type": "short",
+    "question": "디스크 미러링 방식이라 안정성이 가장 높지만 실제 사용 가능한 용량은 전체의 1/2인 RAID 구성을 쓰시오.",
+    "answers": ["RAID 1", "RAID1", "레이드 1", "레이드1"],
+    "placeholder": "예: RAID 0",
+    "explanation": "문제의 핵심 단어는 '미러(mirror)'와 '1/2' 이다. RAID 1은 두 디스크에 동일한 데이터를 기록해 한쪽이 고장나도 데이터가 살아있지만 용량은 절반만 쓸 수 있다."
+  },
+  {
+    "id": "blog03-05",
+    "exam": "blog03",
+    "subject": "term",
+    "number": 5,
+    "type": "short",
+    "question": "최소 3개 이상의 디스크가 필요하며 패리티를 이용해 디스크 1개 고장 시 복구가 가능한 RAID 구성을 쓰시오.",
+    "answers": ["RAID 5", "RAID5", "레이드 5", "레이드5"],
+    "placeholder": "예: RAID 0",
+    "explanation": "RAID 5는 패리티를 분산 저장해 디스크 1개가 고장나도 복구할 수 있고 RAID 1보다 용량 낭비가 적다. 다만 최소 3개 이상의 디스크가 필요하다."
+  },
+  {
+    "id": "blog03-06",
+    "exam": "blog03",
+    "subject": "term",
+    "number": 6,
+    "type": "short",
+    "question": "Windows 명령 프롬프트에서 ARP 캐시 항목을 삭제하는 명령어를 쓰시오.",
+    "answers": ["arp -d", "arp-d", "netsh interface ip delete arpcache"],
+    "placeholder": "예: arp -a",
+    "explanation": "arp -d 는 ARP 캐시를 삭제한다. netsh interface ip delete arpcache 로도 삭제할 수 있다. arp -a 는 조회, arp -s 는 정적 등록이다."
+  },
+  {
+    "id": "blog03-07",
+    "exam": "blog03",
+    "subject": "term",
+    "number": 7,
+    "type": "short",
+    "question": "최초의 원격 로그인 프로토콜로, 접속 시 모든 데이터를 평문으로 전송하기 때문에 보안에 취약한 것을 쓰시오.",
+    "answers": ["Telnet", "텔넷"],
+    "placeholder": "프로토콜 이름",
+    "explanation": "Telnet(TCP 23)은 최초의 원격 로그인 프로토콜이지만 평문 전송이라 보안에 취약하다. 지문이 '암호문으로 전송해 보안이 뛰어나다' 로 바뀌면 SSH가 정답이 된다."
+  },
+  {
+    "id": "blog03-08",
+    "exam": "blog03",
+    "subject": "term",
+    "number": 8,
+    "type": "short",
+    "question": "클라이언트가 서버에 접속할 때 인증 정보를 담아 서로 주고받으며 로그인 상태를 유지하는 데이터를 쓰시오.",
+    "answers": ["쿠키", "Cookie"],
+    "placeholder": "용어",
+    "explanation": "쿠키(Cookie)는 클라이언트에 저장되어 서버와 주고받으며 인증 상태를 유지한다. 쿠키를 가로채 사용자를 가장하는 공격이 세션 하이재킹이라 로그아웃이 중요하다."
+  },
+  {
+    "id": "blog03-09",
+    "exam": "blog03",
+    "subject": "term",
+    "number": 9,
+    "type": "short",
+    "question": "라우터 내부 구조 중 실행 중인 config가 올라가 있는 주기억장치를 쓰시오.",
+    "answers": ["RAM"],
+    "placeholder": "장치 이름",
+    "explanation": "RAM에는 running-config와 라우팅 테이블 등 실행 중인 정보가 올라간다. NVRAM은 startup-config 저장, Flash는 IOS 이미지 저장, ROM은 부팅·자체 진단을 담당한다."
+  },
+  {
+    "id": "blog03-10",
+    "exam": "blog03",
+    "subject": "term",
+    "number": 10,
+    "type": "short",
+    "question": "라우터 내부 구조 중 config 설정이 저장되는 보조기억장치를 쓰시오.",
+    "answers": ["NVRAM"],
+    "placeholder": "장치 이름",
+    "explanation": "startup-config는 NVRAM에 저장되어 전원을 껐다 켜도 유지된다. copy running-config startup-config 가 RAM의 설정을 NVRAM에 저장하는 동작이다."
+  },
+  {
+    "id": "blog03-11",
+    "exam": "blog03",
+    "subject": "ip",
+    "number": 11,
+    "type": "short",
+    "question": "프리픽스 /26 에 해당하는 서브넷마스크를 쓰시오.",
+    "answers": ["255.255.255.192"],
+    "placeholder": "예: 255.255.255.0",
+    "explanation": "/26은 마지막 옥텟이 11000000 이므로 128+64=192, 즉 255.255.255.192 다. 블록 크기는 256-192=64 다."
+  },
+  {
+    "id": "blog03-12",
+    "exam": "blog03",
+    "subject": "ip",
+    "number": 12,
+    "type": "short",
+    "question": "프리픽스 /29 에 해당하는 서브넷마스크를 쓰시오.",
+    "answers": ["255.255.255.248"],
+    "placeholder": "예: 255.255.255.0",
+    "explanation": "/29는 마지막 옥텟이 11111000 이므로 128+64+32+16+8=248, 즉 255.255.255.248 이다. 블록 크기는 256-248=8 이다."
+  },
+  {
+    "id": "blog03-13",
+    "exam": "blog03",
+    "subject": "ip",
+    "number": 13,
+    "type": "short",
+    "question": "/28 서브넷 하나에서 호스트에 실제로 할당할 수 있는 IP 주소는 몇 개인가? (숫자만 입력)",
+    "answers": ["14", "14개"],
+    "placeholder": "예: 30",
+    "explanation": "/28은 블록 크기가 16개이고 네트워크 ID와 브로드캐스트 주소는 호스트에 줄 수 없으므로 16-2=14개다."
+  },
+  {
+    "id": "blog03-14",
+    "exam": "blog03",
+    "subject": "linux",
+    "number": 14,
+    "type": "short",
+    "question": "리눅스에서 특정 PID의 프로세스를 종료하는 명령어를 쓰시오. (옵션·PID 제외, 대소문자 주의)",
+    "answers": ["kill"],
+    "caseSensitive": true,
+    "placeholder": "명령어만 입력",
+    "explanation": "kill -옵션 PID 형식으로 프로세스를 종료하며 -9는 강제 종료 시그널이다. 종료할 PID는 ps 명령으로 확인한다."
+  },
+  {
+    "id": "blog03-15",
+    "exam": "blog03",
+    "subject": "linux",
+    "number": 15,
+    "type": "short",
+    "question": "리눅스에서 현재 실행 중인 프로세스와 PID를 확인하는 명령어를 쓰시오. (대소문자 주의)",
+    "answers": ["ps"],
+    "caseSensitive": true,
+    "placeholder": "명령어만 입력",
+    "explanation": "ps(process status)는 현재 실행 중인 프로세스를 PID와 함께 보여준다. 종료는 kill -9 PID 로 한다."
+  },
+  {
+    "id": "blog03-16",
+    "exam": "blog03",
+    "subject": "linux",
+    "number": 16,
+    "type": "short",
+    "question": "리눅스에서 halt, shutdown -h now 와 같이 시스템을 종료하려 한다. init (A) 에서 (A)에 들어갈 숫자를 쓰시오.",
+    "answers": ["0", "init 0"],
+    "placeholder": "숫자만 입력",
+    "explanation": "init 0 은 시스템을 종료한다. init 6 은 재부팅, init 1 은 단일 사용자 모드다."
+  },
+  {
+    "id": "blog03-17",
+    "exam": "blog03",
+    "subject": "linux",
+    "number": 17,
+    "type": "short",
+    "question": "리눅스에서 sleep 100 처럼 명령을 백그라운드 방식으로 실행하려 할 때 명령 뒤에 붙이는 기호를 쓰시오.",
+    "answers": ["&"],
+    "placeholder": "기호 하나",
+    "explanation": "명령 뒤에 & 를 붙이면 백그라운드로 실행된다(예: sleep 100 &). | 는 파이프, > 는 리다이렉션 기호다."
+  },
+  {
+    "id": "blog03-18",
+    "exam": "blog03",
+    "subject": "router",
+    "number": 18,
+    "type": "short",
+    "question": "라우터의 기본 게이트웨이를 192.168.0.1 로 지정하는 전역설정모드 명령을 쓰시오.",
+    "answers": ["ip default-gateway 192.168.0.1"],
+    "placeholder": "예: ip ... 192.168.0.1",
+    "explanation": "Router(config)#ip default-gateway 192.168.0.1 로 기본 게이트웨이를 지정한다. ip default-network 는 기본 경로로 쓸 네트워크를 지정하는 다른 명령이다."
+  },
+  {
+    "id": "blog03-19",
+    "exam": "blog03",
+    "subject": "router",
+    "number": 19,
+    "type": "short",
+    "question": "목적지 192.188.20.0/24 로 가는 트래픽을 Next-Hop 176.18.1.2 로 보내는 정적 라우팅 명령을 쓰시오.",
+    "answers": ["ip route 192.188.20.0 255.255.255.0 176.18.1.2"],
+    "placeholder": "ip route [목적지] [마스크] [Next-Hop]",
+    "explanation": "정적 라우팅은 ip route [목적지 네트워크] [서브넷마스크] [Next-Hop IP] 순서로 입력한다. ip route 0.0.0.0 0.0.0.0 [Next-Hop] 은 기본 경로(default route) 설정이다."
+  },
+  {
+    "id": "blog03-20",
+    "exam": "blog03",
+    "subject": "router",
+    "number": 20,
+    "type": "short",
+    "question": "라우터에 이름이 ICQA 인 DHCP 주소 풀을 생성하는 전역설정모드 명령을 쓰시오. (대소문자 주의)",
+    "answers": ["ip dhcp pool ICQA"],
+    "caseSensitive": true,
+    "placeholder": "예: ip dhcp pool ...",
+    "explanation": "Router(config)#ip dhcp pool ICQA 로 풀을 만든 뒤 Router(dhcp-config)#network 192.168.100.0 255.255.255.0 으로 대역을 지정한다. 풀 이름은 문제에 제시된 대소문자 그대로 입력해야 한다."
+  }
+]

@@ -1,0 +1,238 @@
+[
+  {
+    "id": "blog02-01",
+    "exam": "blog02",
+    "subject": "term",
+    "number": 1,
+    "question": "B Class에 속하는 사설 IP 주소 대역은?",
+    "options": [
+      "10.0.0.0 ~ 10.255.255.255",
+      "172.16.0.0 ~ 172.31.255.255",
+      "192.168.0.0 ~ 192.168.255.255",
+      "172.32.0.0 ~ 172.63.255.255"
+    ],
+    "answerIndex": 1,
+    "explanation": "B Class 사설 대역은 172.16.0.0 ~ 172.31.255.255 이다. 같은 B Class 라도 172.32 이후는 공인 IP 이므로 숫자를 정확히 봐야 한다."
+  },
+  {
+    "id": "blog02-02",
+    "exam": "blog02",
+    "subject": "term",
+    "number": 2,
+    "question": "OSI 7계층 중 4계층(전송계층)에 속하지 않는 프로토콜은?",
+    "options": [
+      "TCP",
+      "UDP",
+      "SCTP",
+      "ARP"
+    ],
+    "answerIndex": 3,
+    "explanation": "TCP·UDP·SCTP는 전송계층(4계층) 프로토콜이다. ARP는 IP를 MAC으로 변환하는 3계층 관련 프로토콜이며 HTTP·FTP·SSH는 7계층이다."
+  },
+  {
+    "id": "blog02-03",
+    "exam": "blog02",
+    "subject": "term",
+    "number": 3,
+    "type": "short",
+    "question": "TCP와 UDP의 단점을 극복하도록 설계되어 VoIP 신호 전달과 다중 미디어 전송에 적합한 전송계층 프로토콜을 쓰시오.",
+    "answers": ["SCTP", "Stream Control Transmission Protocol"],
+    "placeholder": "프로토콜 이름",
+    "explanation": "SCTP(Stream Control Transmission Protocol)는 TCP와 UDP의 단점을 보완한 4계층 프로토콜로, 실시간 신뢰성이 필요한 응용 서비스의 하부 프로토콜로 쓰인다."
+  },
+  {
+    "id": "blog02-04",
+    "exam": "blog02",
+    "subject": "term",
+    "number": 4,
+    "type": "short",
+    "question": "SSH가 사용하는 기본 포트 번호를 쓰시오. (숫자만 입력)",
+    "answers": ["22", "TCP 22", "22번"],
+    "placeholder": "예: 80",
+    "explanation": "SSH는 TCP 22번을 사용한다. 21번은 FTP, 23번은 Telnet 이므로 함께 외워 둔다."
+  },
+  {
+    "id": "blog02-05",
+    "exam": "blog02",
+    "subject": "term",
+    "number": 5,
+    "type": "short",
+    "question": "TFTP가 사용하는 기본 포트 번호를 쓰시오. (숫자만 입력)",
+    "answers": ["69", "UDP 69", "69번"],
+    "placeholder": "예: 80",
+    "explanation": "TFTP는 UDP 69번을 사용하며 시스코 장비의 IOS 이미지 백업·업로드에 주로 쓰인다. FTP는 TCP 21번이다."
+  },
+  {
+    "id": "blog02-06",
+    "exam": "blog02",
+    "subject": "term",
+    "number": 6,
+    "type": "short",
+    "question": "IMAP이 사용하는 기본 포트 번호를 쓰시오. (숫자만 입력)",
+    "answers": ["143", "TCP 143", "143번"],
+    "placeholder": "예: 80",
+    "explanation": "IMAP은 TCP 143번을 사용한다. POP3는 110번, SMTP는 25번이다."
+  },
+  {
+    "id": "blog02-07",
+    "exam": "blog02",
+    "subject": "term",
+    "number": 7,
+    "type": "short",
+    "question": "IP 기반 네트워크의 각 호스트로부터 관리 정보를 수집하고 상태를 모니터링하는 서비스가 사용하는 포트 번호를 쓰시오. (숫자만 입력)",
+    "answers": ["161", "161번", "UDP 161"],
+    "placeholder": "예: 80",
+    "explanation": "SNMP는 161번 포트를 사용하며 NMS에서 장비 상태를 수집·모니터링할 때 쓰인다. 트랩 수신에는 162번을 사용한다."
+  },
+  {
+    "id": "blog02-08",
+    "exam": "blog02",
+    "subject": "term",
+    "number": 8,
+    "type": "short",
+    "question": "IPsec을 구성하는 프로토콜 중 인증(Authentication)과 무결성만 제공하고 데이터 암호화는 하지 않는 것을 쓰시오.",
+    "answers": ["AH", "Authentication Header"],
+    "placeholder": "약어 또는 원어",
+    "explanation": "AH(Authentication Header)는 인증과 무결성만 제공한다. 지문에 '인증', '헤더'가 보이면 AH, '캡슐화', '암호화'가 보이면 ESP로 판단하면 된다."
+  },
+  {
+    "id": "blog02-09",
+    "exam": "blog02",
+    "subject": "term",
+    "number": 9,
+    "type": "short",
+    "question": "IPsec을 구성하는 프로토콜 중 캡슐화와 데이터 암호화를 담당하는 것을 쓰시오.",
+    "answers": ["ESP", "Encapsulating Security Payload"],
+    "placeholder": "약어 또는 원어",
+    "explanation": "ESP(Encapsulating Security Payload)는 데이터를 캡슐화하고 암호화한다. 키 교환·협상은 IKE가 담당한다."
+  },
+  {
+    "id": "blog02-10",
+    "exam": "blog02",
+    "subject": "term",
+    "number": 10,
+    "question": "OSI 7계층 중 응용계층(Application Layer)에 속하지 않는 프로토콜은?",
+    "options": [
+      "HTTP",
+      "FTP",
+      "DNS",
+      "ICMP"
+    ],
+    "answerIndex": 3,
+    "explanation": "HTTP·FTP·DNS·SSH는 응용계층 프로토콜이다. ICMP는 네트워크계층(3계층), TCP·UDP는 전송계층(4계층)이다."
+  },
+  {
+    "id": "blog02-11",
+    "exam": "blog02",
+    "subject": "ip",
+    "number": 11,
+    "type": "short",
+    "question": "IP 172.16.50.0, 서브넷마스크 255.255.224.0 일 때 이 호스트가 속한 네트워크 ID를 쓰시오.",
+    "answers": ["172.16.32.0"],
+    "placeholder": "IP 주소 형식",
+    "explanation": "256-224=32 이므로 세 번째 옥텟이 32개 단위로 나뉜다. 50은 32~63 그룹에 속하므로 네트워크 ID는 172.16.32.0, 브로드캐스트는 172.16.63.255 다."
+  },
+  {
+    "id": "blog02-12",
+    "exam": "blog02",
+    "subject": "ip",
+    "number": 12,
+    "type": "short",
+    "question": "B Class 네트워크 172.16.0.0 을 서브넷마스크 255.255.224.0 으로 분할하면 몇 개의 서브넷으로 나뉘는가? (숫자만 입력)",
+    "answers": ["8", "8개"],
+    "placeholder": "예: 4",
+    "explanation": "256-224=32 이고 256÷32=8 이므로 8개의 서브넷으로 나뉜다(0~31, 32~63, … 224~255)."
+  },
+  {
+    "id": "blog02-13",
+    "exam": "blog02",
+    "subject": "ip",
+    "number": 13,
+    "type": "short",
+    "question": "블록의 시작 주소가 190.87.140.200/29 일 때, 이 블록의 브로드캐스트 주소를 쓰시오.",
+    "answers": ["190.87.140.207", "190.87.140.207/29"],
+    "placeholder": "IP 주소 형식",
+    "explanation": "/29는 서브넷마스크 255.255.255.248 이고 256-248=8 이므로 8개 단위다. 200부터 8개면 200~207 이므로 네트워크 ID는 .200, 브로드캐스트는 190.87.140.207 이다."
+  },
+  {
+    "id": "blog02-14",
+    "exam": "blog02",
+    "subject": "linux",
+    "number": 14,
+    "type": "short",
+    "question": "리눅스에서 현재 작업 중인 디렉터리의 위치를 알려주는 명령어를 쓰시오. (대소문자 주의)",
+    "answers": ["pwd"],
+    "caseSensitive": true,
+    "placeholder": "명령어만 입력",
+    "explanation": "pwd(print working directory)는 현재 디렉터리의 절대 경로를 출력한다. 대문자로 입력하면 오답이다."
+  },
+  {
+    "id": "blog02-15",
+    "exam": "blog02",
+    "subject": "linux",
+    "number": 15,
+    "type": "short",
+    "question": "리눅스에서 CPU 점유율과 메모리 정보를 확인하는 명령어를 쓰시오. (대소문자 주의)",
+    "answers": ["top"],
+    "caseSensitive": true,
+    "placeholder": "명령어만 입력",
+    "explanation": "top은 CPU 점유율·메모리 사용량을 실시간으로 보여준다. 리눅스는 대소문자를 구분하므로 TOP으로 쓰면 명령어를 인식하지 못해 오답이다."
+  },
+  {
+    "id": "blog02-16",
+    "exam": "blog02",
+    "subject": "linux",
+    "number": 16,
+    "type": "short",
+    "question": "리눅스에서 IP address 정보를 확인하는 명령어를 쓰시오. (대소문자 주의)",
+    "answers": ["ifconfig"],
+    "caseSensitive": true,
+    "placeholder": "명령어만 입력",
+    "explanation": "Windows 계열은 ipconfig, 리눅스 계열은 ifconfig 다. 리눅스에서 ipconfig 를 입력하면 command not found 가 나온다."
+  },
+  {
+    "id": "blog02-17",
+    "exam": "blog02",
+    "subject": "linux",
+    "number": 17,
+    "type": "short",
+    "question": "리눅스에서 조건에 맞는 파일을 찾을 때 사용하는 명령어를 쓰시오. (대소문자 주의)",
+    "answers": ["find"],
+    "caseSensitive": true,
+    "placeholder": "명령어만 입력",
+    "explanation": "find는 경로와 조건을 주어 파일을 검색한다. search 라는 명령어는 리눅스에 없다."
+  },
+  {
+    "id": "blog02-18",
+    "exam": "blog02",
+    "subject": "router",
+    "number": 18,
+    "type": "short",
+    "question": "라우터에서 Telnet 원격 접속(0~4번 포트)을 설정하기 위해 진입하는 명령을 쓰시오.",
+    "answers": ["line vty 0 4"],
+    "placeholder": "예: line ...",
+    "explanation": "Router(config)#line vty 0 4 로 진입한다. 0과 4는 반드시 한 칸 띄워야 하며, line vty 04 로 쓰면 4번 포트 하나만 설정되어 오답이다."
+  },
+  {
+    "id": "blog02-19",
+    "exam": "blog02",
+    "subject": "router",
+    "number": 19,
+    "type": "short",
+    "question": "라우터의 콘솔 포트에 패스워드를 설정하기 위해 진입하는 명령을 쓰시오.",
+    "answers": ["line console 0", "line con 0"],
+    "placeholder": "예: line ...",
+    "explanation": "콘솔 포트 설정은 Router(config)#line console 0 으로 진입한 뒤 password 와 login 을 입력한다. Telnet이면 line vty 0 4 가 된다."
+  },
+  {
+    "id": "blog02-20",
+    "exam": "blog02",
+    "subject": "router",
+    "number": 20,
+    "type": "short",
+    "question": "라우터의 vty 라인에서 SSH 접속만 허용하도록 지정하는 명령을 쓰시오.",
+    "answers": ["transport input ssh"],
+    "placeholder": "예: transport ...",
+    "explanation": "Router(config-line)#transport input ssh 를 입력하면 해당 라인에서 SSH 접속만 허용된다. SSH 설정 문제의 핵심 명령이다."
+  }
+]

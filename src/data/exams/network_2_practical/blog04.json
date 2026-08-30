@@ -1,0 +1,234 @@
+[
+  {
+    "id": "blog04-01",
+    "exam": "blog04",
+    "subject": "term",
+    "number": 1,
+    "type": "short",
+    "question": "각 포트에 연결된 컴퓨터의 MAC 주소를 알지 못해 신호를 연결된 모두에게 전송하는 OSI 1계층 허브를 쓰시오.",
+    "answers": ["더미 허브", "더미허브", "더미", "Dummy Hub"],
+    "placeholder": "장비 이름",
+    "explanation": "더미 허브는 MAC 주소 테이블이 없어 모든 포트로 신호를 전달하며 사용자 수만큼 대역폭이 나뉜다(1계층). 반대로 MAC 주소를 Table에 기록해 해당 포트로만 전달하는 것이 스위치 허브(2계층)다."
+  },
+  {
+    "id": "blog04-02",
+    "exam": "blog04",
+    "subject": "term",
+    "number": 2,
+    "type": "short",
+    "question": "OSI 7계층 중 데이터의 압축과 암호화를 담당하는 계층을 쓰시오.",
+    "answers": ["표현계층", "표현 계층", "6계층", "프리젠테이션 레이어", "Presentation Layer"],
+    "placeholder": "계층 이름",
+    "explanation": "표현 계층(Presentation Layer, 6계층)의 핵심 기능은 데이터 표현 형식 변환, 압축, 암호화다. '압축'과 '암호화' 두 단어만 보면 바로 6계층이다."
+  },
+  {
+    "id": "blog04-03",
+    "exam": "blog04",
+    "subject": "term",
+    "number": 3,
+    "type": "short",
+    "question": "Windows에서 제어판과 ipconfig /all 을 쓸 수 없는 상황에 MAC 주소만 확인하는 명령어를 쓰시오. (대소문자 주의)",
+    "answers": ["getmac", "getmac -v"],
+    "caseSensitive": true,
+    "placeholder": "명령어만 입력",
+    "explanation": "getmac 또는 getmac -v 는 시스템의 MAC 주소를 바로 출력한다. NAC 등록처럼 MAC 주소만 필요할 때 쓴다."
+  },
+  {
+    "id": "blog04-04",
+    "exam": "blog04",
+    "subject": "term",
+    "number": 4,
+    "type": "short",
+    "question": "Windows에서 목적지까지 거쳐가는 경로를 보여주는 명령어를 쓰시오. (대소문자 주의)",
+    "answers": ["tracert"],
+    "caseSensitive": true,
+    "placeholder": "명령어만 입력",
+    "explanation": "Windows는 tracert, 리눅스는 traceroute 를 사용한다. 화면의 운영체제를 확인하지 않고 traceroute 라고 쓰면 오답이 된다."
+  },
+  {
+    "id": "blog04-05",
+    "exam": "blog04",
+    "subject": "term",
+    "number": 5,
+    "type": "short",
+    "question": "홉 카운트를 기준으로 경로를 정하며 최대 15홉까지만 지원해 대규모 네트워크에 적합하지 않은 라우팅 프로토콜을 쓰시오.",
+    "answers": ["RIP", "Routing Information Protocol"],
+    "placeholder": "프로토콜 이름",
+    "explanation": "RIP은 거리 벡터 방식으로 홉 카운트를 메트릭으로 사용하며 최대 15홉까지만 유효해 소규모 네트워크에 쓰인다."
+  },
+  {
+    "id": "blog04-06",
+    "exam": "blog04",
+    "subject": "term",
+    "number": 6,
+    "type": "short",
+    "question": "Cost 기반의 최단 경로 우선 Link-state 라우팅 프로토콜로, 네트워크를 Area로 나누어 대규모 망을 구성하는 것을 쓰시오.",
+    "answers": ["OSPF", "Open Shortest Path First"],
+    "placeholder": "프로토콜 이름",
+    "explanation": "'최단 경로 우선', 'Link-state', 'Area' 세 단어가 나오면 OSPF다. Stub 축약 기능이 있고 표준 프로토콜이라 타사 장비와도 연동된다."
+  },
+  {
+    "id": "blog04-07",
+    "exam": "blog04",
+    "subject": "term",
+    "number": 7,
+    "type": "short",
+    "question": "하나의 시스템(호스트 또는 라우터)에서 IPv4와 IPv6를 동시에 처리하는 IPv6 전환 기술을 쓰시오.",
+    "answers": ["Dual Stack", "DualStack", "듀얼스택", "듀얼 스택"],
+    "placeholder": "기술 이름",
+    "explanation": "듀얼 스택은 하나의 장비가 IPv4와 IPv6를 동시에 처리하는 기술이다. 나머지 전환 기술은 터널링(IPv4망으로 IPv6망 연결)과 주소 변환(두 망 연동)이다."
+  },
+  {
+    "id": "blog04-08",
+    "exam": "blog04",
+    "subject": "term",
+    "number": 8,
+    "type": "short",
+    "question": "스위치에서 잘못된 결선으로 프레임이 무한 순환하는 현상을 감지해 해당 포트를 차단하는 알고리즘을 쓰시오.",
+    "answers": ["STP", "Spanning Tree Protocol", "스패닝 트리"],
+    "placeholder": "약어 또는 원어",
+    "explanation": "루핑(Looping)이 발생하면 브로드캐스트 스톰으로 망 전체가 마비된다. STP는 루프를 감지해 포트를 error-disable 로 차단한다."
+  },
+  {
+    "id": "blog04-09",
+    "exam": "blog04",
+    "subject": "term",
+    "number": 9,
+    "type": "short",
+    "question": "침입을 탐지할 뿐 아니라 정책에 따라 유해 트래픽을 자동으로 차단까지 하는 보안 장비를 쓰시오.",
+    "answers": ["IPS", "Intrusion Prevention System"],
+    "placeholder": "약어 또는 원어",
+    "explanation": "IDS는 탐지만 하고 관리자가 수동으로 조치해야 하지만, IPS는 탐지와 차단을 함께 수행한다. 자동 차단이 언급되면 IPS다."
+  },
+  {
+    "id": "blog04-10",
+    "exam": "blog04",
+    "subject": "term",
+    "number": 10,
+    "type": "short",
+    "question": "일반 방화벽으로는 막기 어려운 HTTP(80)·HTTPS(443) 구간의 웹 공격을 검사·차단하는 보안 장비를 쓰시오.",
+    "answers": ["웹방화벽", "웹 방화벽", "WAF", "Web Application Firewall"],
+    "placeholder": "장비 이름",
+    "explanation": "80·443 포트는 인터넷 서비스를 위해 열어둘 수밖에 없어 일반 방화벽으로 차단이 어렵다. 이 구간을 담당하는 것이 웹방화벽(WAF)이며 그냥 '방화벽' 이라고 쓰면 오답이다."
+  },
+  {
+    "id": "blog04-11",
+    "exam": "blog04",
+    "subject": "ip",
+    "number": 11,
+    "question": "하나의 서브넷에서 일반 호스트에게 할당하지 않는 주소를 옳게 묶은 것은?",
+    "options": [
+      "네트워크 ID, 게이트웨이 주소, 브로드캐스트 주소",
+      "네트워크 ID, 서브넷마스크, 브로드캐스트 주소",
+      "첫 번째 호스트, 마지막 호스트, 브로드캐스트 주소",
+      "네트워크 ID, DNS 주소, 브로드캐스트 주소"
+    ],
+    "answerIndex": 0,
+    "explanation": "서브넷의 첫 주소는 네트워크 ID, 마지막 주소는 브로드캐스트라 호스트에 줄 수 없고, 실무에서는 게이트웨이가 쓰는 주소도 제외한다. 서브넷마스크는 주소가 아니다."
+  },
+  {
+    "id": "blog04-12",
+    "exam": "blog04",
+    "subject": "ip",
+    "number": 12,
+    "type": "short",
+    "question": "서브넷마스크가 255.255.255.240 일 때 네트워크가 나뉘는 블록의 크기는? (숫자만 입력)",
+    "answers": ["16", "16개"],
+    "placeholder": "예: 8",
+    "explanation": "256-240=16 이므로 16개 단위(0~15, 16~31, …)로 나뉜다. 이 계산이 네트워크 ID·브로드캐스트 문제의 출발점이다."
+  },
+  {
+    "id": "blog04-13",
+    "exam": "blog04",
+    "subject": "ip",
+    "number": 13,
+    "question": "C Class IP 주소의 첫 번째 옥텟 범위로 옳은 것은?",
+    "options": [
+      "1 ~ 126",
+      "128 ~ 191",
+      "192 ~ 223",
+      "224 ~ 239"
+    ],
+    "answerIndex": 2,
+    "explanation": "A Class는 1~126, B Class는 128~191, C Class는 192~223, D Class(멀티캐스트)는 224~239 다."
+  },
+  {
+    "id": "blog04-14",
+    "exam": "blog04",
+    "subject": "linux",
+    "number": 14,
+    "type": "short",
+    "question": "index.html 의 권한을 rwxr-xr-x 로 바꾸려 한다. chmod 명령에 사용할 8진수 값을 쓰시오. (숫자만 입력)",
+    "answers": ["755"],
+    "placeholder": "예: 644",
+    "explanation": "r=4, w=2, x=1 이므로 rwx=7, r-x=5, r-x=5 가 되어 755 다. 권한 변경 명령은 chmod, 소유자 변경은 chown 이다."
+  },
+  {
+    "id": "blog04-15",
+    "exam": "blog04",
+    "subject": "linux",
+    "number": 15,
+    "type": "short",
+    "question": "리눅스 netstat 결과에서 TCP 22번 포트가 LISTEN 상태다. 이 포트를 사용하는 서비스를 쓰시오. (대소문자 주의)",
+    "answers": ["ssh"],
+    "caseSensitive": true,
+    "placeholder": "서비스 이름",
+    "explanation": "TCP 22번은 SSH가 사용한다. telnet은 23번, ftp는 21번, smtp는 25번이며 /etc/services 에서 매핑을 확인할 수 있다."
+  },
+  {
+    "id": "blog04-16",
+    "exam": "blog04",
+    "subject": "linux",
+    "number": 16,
+    "type": "short",
+    "question": "리눅스에서 서비스 이름과 포트 번호의 매핑 정보가 기록되어 있는 파일의 경로를 쓰시오.",
+    "answers": ["/etc/services", "etc/services"],
+    "placeholder": "예: /etc/...",
+    "explanation": "/etc/services 에는 서비스 이름과 할당된 포트 번호, 프로토콜 타입의 매핑이 기록되어 있다. /etc/fstab 은 부팅 시 마운트 정보를 읽는 파일이다."
+  },
+  {
+    "id": "blog04-17",
+    "exam": "blog04",
+    "subject": "linux",
+    "number": 17,
+    "type": "short",
+    "question": "리눅스 네트워크 설정에서 eth0 에 고정 IP를 사용하도록 지정할 때 BOOTPROTO 값에 넣을 단어를 쓰시오. (대소문자 주의)",
+    "answers": ["static"],
+    "caseSensitive": true,
+    "placeholder": "단어만 입력",
+    "explanation": "고정 IP는 BOOTPROTO=static, 자동 할당은 BOOTPROTO=dhcp 다. 리눅스에 fix 라는 옵션 값은 없다."
+  },
+  {
+    "id": "blog04-18",
+    "exam": "blog04",
+    "subject": "router",
+    "number": 18,
+    "type": "short",
+    "question": "라우터 인터페이스에 IP를 하나 더 추가할 때 ip address 명령 끝에 붙이는 키워드를 쓰시오.",
+    "answers": ["secondary"],
+    "placeholder": "키워드 하나",
+    "explanation": "ip address 192.168.0.102 255.255.255.0 secondary 처럼 secondary 키워드를 붙여 보조 IP를 추가한다."
+  },
+  {
+    "id": "blog04-19",
+    "exam": "blog04",
+    "subject": "router",
+    "number": 19,
+    "type": "short",
+    "question": "라우터 인터페이스의 클럭 속도를 72K로 설정하려 한다. clock rate 뒤에 입력할 값을 쓰시오. (숫자만 입력)",
+    "answers": ["72000", "clock rate 72000"],
+    "placeholder": "예: 64000",
+    "explanation": "clock rate 의 단위는 bps 이므로 72K는 72000 으로 입력한다. 72 라고 쓰면 오답이다. 반면 bandwidth 명령은 기본 단위가 kbps 라서 2048 이 곧 2048K를 뜻한다."
+  },
+  {
+    "id": "blog04-20",
+    "exam": "blog04",
+    "subject": "router",
+    "number": 20,
+    "type": "short",
+    "question": "라우터 설정을 마친 뒤 running-config를 NVRAM에 저장하는 명령을 쓰시오.",
+    "answers": ["copy running-config startup-config", "copy run start", "copy r s"],
+    "placeholder": "예: copy ...",
+    "explanation": "copy running-config startup-config(약어 copy run start, copy r s)로 RAM의 설정을 NVRAM에 저장한다. 저장하지 않으면 재부팅 시 설정이 사라져 감점된다."
+  }
+]
