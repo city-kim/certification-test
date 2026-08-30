@@ -103,6 +103,13 @@ body {
 .btn.hint:active {
   background: #ffe9ad;
 }
+.secret-entry {
+  display: block;
+  box-sizing: border-box;
+  margin-top: 16px;
+  text-align: center;
+  text-decoration: none;
+}
 
 .actions {
   display: flex;
