@@ -1,4 +1,6 @@
 import type { ExamResult } from "./quiz";
+import { answerText, correctText } from "./quiz";
+import { isShort } from "./types";
 
 const MAX_HISTORY = 30;
 
@@ -13,7 +15,7 @@ export interface HistoryEntry {
   passed: boolean;
 }
 
-/** 오답노트 항목: 문항 + 사용자가 골랐던(섞인 기준) 보기 텍스트 */
+/** 오답노트 항목: 문항 + 사용자가 낸 답. 주관식이면 options 가 빈 배열이다. */
 export interface WrongEntry {
   date: number;
   id: string;
@@ -25,6 +27,8 @@ export interface WrongEntry {
   correctText: string;
   selectedText: string | null;
   explanation: string;
+  /** 주관식에서 정답으로 인정되는 다른 표기 */
+  altAnswers?: string[];
 }
 
 function read<T>(key: string, fallback: T): T {
@@ -105,9 +109,10 @@ export function saveResult(certId: string, result: ExamResult, date: number): vo
       question: it.question.question,
       figure: it.question.figure,
       options: it.options,
-      correctText: it.options[it.answerIndex],
-      selectedText: it.selected === null ? null : it.options[it.selected],
+      correctText: correctText(it),
+      selectedText: answerText(it),
       explanation: it.question.explanation,
+      altAnswers: isShort(it.question) ? it.question.answers.slice(1) : undefined,
     });
   }
   write(wrongKey(certId), book);

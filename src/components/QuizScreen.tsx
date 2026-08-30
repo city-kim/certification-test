@@ -1,5 +1,7 @@
 import { useState } from "react";
 import type { ExamItem } from "../lib/types";
+import { isShort } from "../lib/types";
+import { isAnswered } from "../lib/quiz";
 import { figureUrl } from "../data/questions";
 import type { CertConfig } from "../lib/certs";
 import { subjectLabel } from "../lib/certs";
@@ -17,19 +19,14 @@ export default function QuizScreen({ cert, items, onSubmit, onQuit }: Props) {
 
   const current = list[idx];
   const total = list.length;
-  const answeredCount = list.filter((it) => it.selected !== null).length;
+  const answeredCount = list.filter(isAnswered).length;
   const isLast = idx === total - 1;
+  // 주관식이면 좁혀진 문항, 아니면 null (TS 내로잉을 렌더 트리 전체에서 유지하기 위함)
+  const shortQ = isShort(current.question) ? current.question : null;
+  const answered = isAnswered(current);
 
-  function select(optionIdx: number) {
-    setList((prev) =>
-      prev.map((it, i) => (i === idx ? { ...it, selected: optionIdx } : it)),
-    );
-  }
-
-  function showHint() {
-    setList((prev) =>
-      prev.map((it, i) => (i === idx ? { ...it, hintUsed: true } : it)),
-    );
+  function patch(changes: Partial<ExamItem>) {
+    setList((prev) => prev.map((it, i) => (i === idx ? { ...it, ...changes } : it)));
   }
 
   function go(delta: number) {
@@ -69,6 +66,9 @@ export default function QuizScreen({ cert, items, onSubmit, onQuit }: Props) {
 
       <div className="q-meta">
         <span className="subject-tag">{subjectLabel(cert, current.question.subject)}</span>
+        <span className={`type-tag ${shortQ ? "short" : "mcq"}`}>
+          {shortQ ? "단답형" : "선택형"}
+        </span>
         <span className="answered-text">응답 {answeredCount}/{total}</span>
       </div>
 
@@ -83,40 +83,78 @@ export default function QuizScreen({ cert, items, onSubmit, onQuit }: Props) {
             alt="문제 그림"
           />
         )}
-        <ul className="options">
-          {current.options.map((opt, i) => (
-            <li key={i}>
-              <button
-                className={`option ${current.selected === i ? "selected" : ""}`}
-                onClick={() => select(i)}
-              >
-                <span className="opt-marker">{"①②③④"[i]}</span>
-                <span className="opt-text">{opt}</span>
-              </button>
-            </li>
-          ))}
-        </ul>
+
+        {shortQ ? (
+          <div className="short-zone">
+            <input
+              key={current.question.id}
+              className="short-input"
+              type="text"
+              value={current.input}
+              onChange={(e) => patch({ input: e.target.value })}
+              placeholder={shortQ.placeholder ?? "답을 입력하세요"}
+              autoComplete="off"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
+              enterKeyHint={isLast ? "done" : "next"}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !isLast) go(1);
+              }}
+            />
+            <p className="muted small">
+              {shortQ.caseSensitive
+                ? "대소문자를 구분합니다. 실제 시험처럼 정확히 입력하세요."
+                : "대소문자는 구분하지 않습니다."}
+            </p>
+          </div>
+        ) : (
+          <ul className="options">
+            {current.options.map((opt, i) => (
+              <li key={i}>
+                <button
+                  className={`option ${current.selected === i ? "selected" : ""}`}
+                  onClick={() => patch({ selected: i })}
+                >
+                  <span className="opt-marker">{"①②③④"[i]}</span>
+                  <span className="opt-text">{opt}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
 
         <div className="hint-zone">
           {current.hintUsed ? (
             <div className="explanation">
               <strong>해설</strong>
-              <p className="hint-answer">
-                정답: {"①②③④"[current.answerIndex]} {current.options[current.answerIndex]}
-              </p>
+              {shortQ ? (
+                <>
+                  <p className="hint-answer">정답: {shortQ.answers[0]}</p>
+                  {shortQ.answers.length > 1 && (
+                    <p className="muted small">
+                      허용 표기: {shortQ.answers.join(" · ")}
+                    </p>
+                  )}
+                </>
+              ) : (
+                <p className="hint-answer">
+                  정답: {"①②③④"[current.answerIndex]} {current.options[current.answerIndex]}
+                </p>
+              )}
               <p>{current.question.explanation}</p>
             </div>
           ) : (
             <>
-              <button
-                className="btn hint"
-                onClick={showHint}
-                disabled={current.selected === null}
-              >
+              <button className="btn hint" onClick={() => patch({ hintUsed: true })} disabled={!answered}>
                 💡 힌트 보기
               </button>
-              {current.selected === null && (
-                <p className="muted small">보기를 먼저 선택하면 해설을 볼 수 있습니다.</p>
+              {!answered && (
+                <p className="muted small">
+                  {shortQ
+                    ? "답을 먼저 입력하면 해설을 볼 수 있습니다."
+                    : "보기를 먼저 선택하면 해설을 볼 수 있습니다."}
+                </p>
               )}
             </>
           )}

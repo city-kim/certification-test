@@ -47,10 +47,26 @@ for (const cert of CFG.certs) {
     for (const q of arr) {
       if (!validSubjects.has(q.subject)) errors.push(`${q.id}: subject 무효 (${q.subject})`);
       else perSubject[q.subject]++;
-      if (!Array.isArray(q.options) || q.options.length !== 4)
-        errors.push(`${q.id}: 보기 개수 ${q.options?.length}`);
-      if (typeof q.answerIndex !== "number" || q.answerIndex < 0 || q.answerIndex > 3)
-        errors.push(`${q.id}: answerIndex 무효 (${q.answerIndex})`);
+
+      if (q.type === "short") {
+        // 주관식: 허용 정답 목록이 있어야 하고 보기/정답인덱스는 없어야 한다.
+        if (!Array.isArray(q.answers) || q.answers.length === 0)
+          errors.push(`${q.id}: answers 비어있음`);
+        else if (q.answers.some((a) => typeof a !== "string" || !a.trim()))
+          errors.push(`${q.id}: answers 에 빈 값이 있음`);
+        else if (new Set(q.answers.map((a) => a.trim().toLowerCase())).size !== q.answers.length)
+          errors.push(`${q.id}: answers 에 중복 표기가 있음`);
+        if (q.options != null || q.answerIndex != null)
+          errors.push(`${q.id}: 주관식에는 options/answerIndex 를 쓰지 않는다`);
+      } else {
+        if (q.type != null && q.type !== "mcq") errors.push(`${q.id}: type 무효 (${q.type})`);
+        if (!Array.isArray(q.options) || q.options.length !== 4)
+          errors.push(`${q.id}: 보기 개수 ${q.options?.length}`);
+        else if (new Set(q.options).size !== 4) errors.push(`${q.id}: 보기 중복`);
+        if (typeof q.answerIndex !== "number" || q.answerIndex < 0 || q.answerIndex > 3)
+          errors.push(`${q.id}: answerIndex 무효 (${q.answerIndex})`);
+      }
+
       if (!q.question?.trim()) errors.push(`${q.id}: question 비어있음`);
       if (!q.explanation?.trim()) errors.push(`${q.id}: explanation 비어있음`);
       if (q.figure && !existsSync(join(PUBLIC, q.figure)))
@@ -64,7 +80,9 @@ for (const cert of CFG.certs) {
 
   const pool = Object.fromEntries(cert.subjects.map((s) => [s.key, 0]));
   for (const q of all) if (pool[q.subject] != null) pool[q.subject]++;
+  const shortCount = all.filter((q) => q.type === "short").length;
   console.log(`  총 문항: ${all.length}, 과목별 풀:`, pool);
+  console.log(`  유형: 주관식 ${shortCount} · 4지선다 ${all.length - shortCount}`);
   console.log(`  이미지 문항: ${all.filter((q) => q.figure).length}`);
 
   if (errors.length) {
