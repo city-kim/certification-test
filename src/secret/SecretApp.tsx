@@ -52,6 +52,12 @@ function Feed({
     );
   }
 
+  function input(index: number, value: string) {
+    setItems((prev) =>
+      prev.map((it, i) => (i === index ? { ...it, input: value } : it)),
+    );
+  }
+
   function refresh() {
     setItems(buildExam(bank, cert));
     setResult(null);
@@ -101,6 +107,7 @@ function Feed({
             cert={cert}
             items={items}
             onSelect={select}
+            onInput={input}
             onSubmit={submit}
             onRefresh={refresh}
           />
@@ -127,6 +134,7 @@ function Feed({
 function navLabel(c: CertConfig): string {
   const map: Record<string, string> = {
     network_2: "Network",
+    network_2_practical: "Ops",
     adsp: "Data",
   };
   return map[c.id] ?? c.label;

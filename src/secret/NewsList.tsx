@@ -2,6 +2,8 @@ import { useState } from "react";
 import type { CertConfig } from "../lib/certs";
 import { subjectLabel } from "../lib/certs";
 import type { ExamItem } from "../lib/types";
+import { isShort } from "../lib/types";
+import { isAnswered } from "../lib/quiz";
 import { figureUrl } from "../data/questions";
 import { fakeMeta } from "./meta";
 
@@ -9,6 +11,7 @@ interface Props {
   cert: CertConfig;
   items: ExamItem[];
   onSelect: (index: number, optionIdx: number) => void;
+  onInput: (index: number, value: string) => void;
   onSubmit: () => void;
   onRefresh: () => void;
 }
@@ -18,9 +21,16 @@ interface Props {
  * 행을 클릭하면 그 자리에서 인라인 아코디언으로 펼쳐져(별도 상세 화면 없이)
  * 보기 투표와 해설 확인까지 목록 안에서 끝낸다.
  */
-export default function NewsList({ cert, items, onSelect, onSubmit, onRefresh }: Props) {
+export default function NewsList({
+  cert,
+  items,
+  onSelect,
+  onInput,
+  onSubmit,
+  onRefresh,
+}: Props) {
   const [openId, setOpenId] = useState<string | null>(null);
-  const answered = items.filter((it) => it.selected !== null).length;
+  const answered = items.filter(isAnswered).length;
 
   return (
     <section className="gn-list-wrap">
@@ -38,7 +48,8 @@ export default function NewsList({ cert, items, onSelect, onSubmit, onRefresh }:
       <ol className="gn-list">
         {items.map((it, i) => {
           const m = fakeMeta(it.question.id);
-          const read = it.selected !== null;
+          const read = isAnswered(it);
+          const short = isShort(it.question);
           const open = openId === it.question.id;
           return (
             <li key={it.question.id} className={`gn-item ${open ? "open" : ""}`}>
@@ -66,27 +77,47 @@ export default function NewsList({ cert, items, onSelect, onSubmit, onRefresh }:
               {open && (
                 <div className="gn-row-detail">
                   <p className="gn-lead">
-                    아래 코멘트 중 이 주제를 가장 정확히 설명한 항목에 투표하세요.
+                    {short
+                      ? "이 주제에 대한 의견을 댓글로 남겨주세요."
+                      : "아래 코멘트 중 이 주제를 가장 정확히 설명한 항목에 투표하세요."}
                   </p>
                   {it.question.figure && (
                     <img className="gn-figure" src={figureUrl(it.question.figure)} alt="" />
                   )}
-                  <ul className="gn-poll">
-                    {it.options.map((opt, oi) => (
-                      <li key={oi}>
-                        <button
-                          className={`gn-choice ${it.selected === oi ? "voted" : ""}`}
-                          onClick={() => onSelect(i, oi)}
-                        >
-                          <span className="gn-choice-mark">{"①②③④⑤"[oi]}</span>
-                          <span className="gn-choice-text">{opt}</span>
-                          {it.selected === oi && (
-                            <span className="gn-voted-badge">▲ voted</span>
-                          )}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
+                  {short ? (
+                    <div className="gn-replybox">
+                      <input
+                        className="gn-replyinput"
+                        value={it.input}
+                        placeholder={
+                          isShort(it.question) && it.question.placeholder
+                            ? it.question.placeholder
+                            : "댓글을 입력하세요"
+                        }
+                        onChange={(e) => onInput(i, e.target.value)}
+                      />
+                      <span className="gn-replyhint">
+                        {read ? "작성됨 · 저장하려면 Archive" : "add comment"}
+                      </span>
+                    </div>
+                  ) : (
+                    <ul className="gn-poll">
+                      {it.options.map((opt, oi) => (
+                        <li key={oi}>
+                          <button
+                            className={`gn-choice ${it.selected === oi ? "voted" : ""}`}
+                            onClick={() => onSelect(i, oi)}
+                          >
+                            <span className="gn-choice-mark">{"①②③④⑤"[oi]}</span>
+                            <span className="gn-choice-text">{opt}</span>
+                            {it.selected === oi && (
+                              <span className="gn-voted-badge">▲ voted</span>
+                            )}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   <details className="gn-accordion">
                     <summary>💬 정리 코멘트 펼치기 (spoiler)</summary>
                     <div className="gn-accordion-body">{it.question.explanation}</div>

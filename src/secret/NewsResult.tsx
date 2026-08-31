@@ -1,5 +1,6 @@
 import type { CertConfig } from "../lib/certs";
 import type { ExamResult } from "../lib/quiz";
+import { answerText, correctText } from "../lib/quiz";
 
 interface Props {
   cert: CertConfig;
@@ -56,11 +57,9 @@ export default function NewsResult({ cert, result, onRetry, onReview }: Props) {
             {result.wrong.map((it) => (
               <li key={it.question.id}>
                 <p className="gn-wrong-q">{it.question.question}</p>
-                <p className="gn-wrong-line ok">
-                  정답 · {it.options[it.answerIndex]}
-                </p>
+                <p className="gn-wrong-line ok">정답 · {correctText(it)}</p>
                 <p className="gn-wrong-line no">
-                  내 선택 · {it.selected === null ? "미투표" : it.options[it.selected]}
+                  내 선택 · {answerText(it) ?? "미투표"}
                 </p>
                 <details className="gn-accordion small">
                   <summary>해설</summary>
