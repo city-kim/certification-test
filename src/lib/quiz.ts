@@ -47,6 +47,11 @@ export function correctText(item: ExamItem): string {
   return isShort(item.question) ? item.question.answers[0] : item.options[item.answerIndex];
 }
 
+/** 출제 전 원본 문항의 대표 정답 텍스트 (학습 화면처럼 ExamItem 이 없을 때 쓴다) */
+export function questionAnswer(q: Question): string {
+  return isShort(q) ? q.answers[0] : q.options[q.answerIndex];
+}
+
 /** 사용자가 낸 답 (미응답이면 null) */
 export function answerText(item: ExamItem): string | null {
   if (isShort(item.question)) {

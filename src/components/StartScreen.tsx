@@ -7,21 +7,18 @@ import { countRefItems, getRefs } from "../data/refs";
 interface Props {
   cert: CertConfig;
   bankSize: number;
-  /** 실기 학습 문항 수 (0이면 버튼 미노출) */
-  practicalCount: number;
   onStart: () => void;
   onOpenWrongBook: () => void;
-  onOpenPractical: () => void;
+  onOpenStudy: () => void;
   onOpenRefs: () => void;
 }
 
 export default function StartScreen({
   cert,
   bankSize,
-  practicalCount,
   onStart,
   onOpenWrongBook,
-  onOpenPractical,
+  onOpenStudy,
   onOpenRefs,
 }: Props) {
   const history = getHistory(cert.id);
@@ -86,9 +83,9 @@ export default function StartScreen({
         <button className="btn ghost" onClick={onOpenWrongBook}>
           오답노트 {wrongCount > 0 ? `(${wrongCount})` : ""}
         </button>
-        {practicalCount > 0 && (
-          <button className="btn ghost" onClick={onOpenPractical}>
-            실기 학습 ({practicalCount}문항)
+        {ready && (
+          <button className="btn ghost" onClick={onOpenStudy}>
+            정답·해설 ({bankSize}문항)
           </button>
         )}
       </div>

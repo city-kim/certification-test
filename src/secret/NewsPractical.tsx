@@ -1,28 +1,27 @@
 import { useMemo, useState } from "react";
 import type { CertConfig } from "../lib/certs";
-import {
-  getPracticalBank,
-  PRACTICAL_CATEGORIES,
-  practicalCategoryLabel,
-} from "../data/practical";
+import { subjectLabel } from "../lib/certs";
+import { questionAnswer } from "../lib/quiz";
+import { getBank } from "../data/questions";
 import { fakeMeta } from "./meta";
 
 /**
- * 실기 학습(정답·해설 리스트)을 "Ask" 채널의 질문 스레드처럼 위장해 보여준다.
+ * 문제은행 전체를 정답·해설과 함께 "Ask" 채널의 질문 스레드처럼 위장해 보여준다.
  * 행을 펼치면 정답이 베스트 댓글로, 해설이 그에 달린 답글로 나타난다.
- * 상단 "모두 펼치기"로 전체를 한 번에 훑어보고, 접은 상태에서는 셀프 테스트로 쓴다.
+ * 상단 "댓글 모두 펼치기"로 전체를 훑고, 접은 상태에서는 셀프 테스트로 쓴다.
  */
 export default function NewsPractical({ cert }: { cert: CertConfig }) {
-  const bank = getPracticalBank(cert.id);
-  const categories = PRACTICAL_CATEGORIES[cert.id] ?? [];
+  const bank = getBank(cert.id);
 
-  const [category, setCategory] = useState<string | null>(null);
+  const [subject, setSubject] = useState<string | null>(null);
   const [openIds, setOpenIds] = useState<Set<string>>(new Set());
 
-  const items = useMemo(
-    () => (category ? bank.filter((it) => it.category === category) : bank),
-    [bank, category],
-  );
+  const items = useMemo(() => {
+    const list = subject ? bank.filter((q) => q.subject === subject) : bank;
+    return [...list].sort(
+      (a, b) => a.exam.localeCompare(b.exam) || a.number - b.number,
+    );
+  }, [bank, subject]);
 
   const allOpen = items.length > 0 && items.every((it) => openIds.has(it.id));
 
@@ -63,40 +62,38 @@ export default function NewsPractical({ cert }: { cert: CertConfig }) {
         <>
           <div className="gn-channels">
             <a
-              className={`gn-channel ${category === null ? "on" : ""}`}
-              onClick={() => setCategory(null)}
+              className={`gn-channel ${subject === null ? "on" : ""}`}
+              onClick={() => setSubject(null)}
             >
               all ({bank.length})
             </a>
-            {categories.map((c) => (
+            {cert.subjects.map((s) => (
               <a
-                key={c.key}
-                className={`gn-channel ${category === c.key ? "on" : ""}`}
-                onClick={() => setCategory(c.key)}
+                key={s.key}
+                className={`gn-channel ${subject === s.key ? "on" : ""}`}
+                onClick={() => setSubject(s.key)}
               >
-                {c.label} ({bank.filter((it) => it.category === c.key).length})
+                {s.label} ({bank.filter((q) => q.subject === s.key).length})
               </a>
             ))}
           </div>
 
           <ol className="gn-list">
-            {items.map((it, i) => {
-              const m = fakeMeta(it.id);
-              const open = openIds.has(it.id);
+            {items.map((q, i) => {
+              const m = fakeMeta(q.id);
+              const open = openIds.has(q.id);
               return (
-                <li key={it.id} className={`gn-item ${open ? "open" : ""}`}>
-                  <div className="gn-row" onClick={() => toggleOne(it.id)}>
+                <li key={q.id} className={`gn-item ${open ? "open" : ""}`}>
+                  <div className="gn-row" onClick={() => toggleOne(q.id)}>
                     <span className="gn-rank">{i + 1}.</span>
                     <div className="gn-row-body">
                       <div className="gn-row-title-line">
-                        <span className="gn-title">{it.question}</span>
+                        <span className="gn-title">{q.question}</span>
                         <span className="gn-domain">(ask.geeknews)</span>
                       </div>
                       <div className="gn-meta">
                         <span className="gn-points">{m.points} points</span>
-                        <span className="gn-tag">
-                          {practicalCategoryLabel(cert.id, it.category)}
-                        </span>
+                        <span className="gn-tag">{subjectLabel(cert, q.subject)}</span>
                         <span>{m.ago}</span>
                         <span className="gn-comments">
                           {open ? "댓글 접기" : "답변 2개"}
@@ -112,13 +109,13 @@ export default function NewsPractical({ cert }: { cert: CertConfig }) {
                           {m.user} · {m.points} points · {m.ago}
                           <span className="gn-best">best</span>
                         </div>
-                        <p className="gn-comment-body answer">{it.answer}</p>
+                        <p className="gn-comment-body answer">{questionAnswer(q)}</p>
                       </div>
                       <div className="gn-comment reply">
                         <div className="gn-comment-byline">
                           {m.user}_bot · {m.ago}
                         </div>
-                        <p className="gn-comment-body">{it.explanation}</p>
+                        <p className="gn-comment-body">{q.explanation}</p>
                       </div>
                     </div>
                   )}
