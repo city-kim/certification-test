@@ -13,8 +13,9 @@ import QuizScreen from "./components/QuizScreen";
 import ResultScreen from "./components/ResultScreen";
 import WrongBookScreen from "./components/WrongBookScreen";
 import PracticalStudyScreen from "./components/PracticalStudyScreen";
+import RefsScreen from "./components/RefsScreen";
 
-type Screen = "start" | "quiz" | "result" | "wrongbook" | "practical";
+type Screen = "start" | "quiz" | "result" | "wrongbook" | "practical" | "refs";
 
 /**
  * 라우트 진입점. certId 를 key 로 넘겨 자격증이 바뀌면 CertScreen 이 리마운트되어
@@ -62,6 +63,7 @@ function CertScreen({ cert }: { cert: CertConfig }) {
             setScreen("practical");
             window.scrollTo(0, 0);
           }}
+          onOpenRefs={() => setScreen("refs")}
         />
       )}
       {screen === "quiz" && (
@@ -85,6 +87,9 @@ function CertScreen({ cert }: { cert: CertConfig }) {
       )}
       {screen === "practical" && (
         <PracticalStudyScreen cert={cert} onBack={() => setScreen("start")} />
+      )}
+      {screen === "refs" && (
+        <RefsScreen cert={cert} onBack={() => setScreen("start")} />
       )}
     </>
   );

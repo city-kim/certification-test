@@ -23,6 +23,7 @@ export default function WrongBookScreen({ cert, onBack }: { cert: CertConfig; on
     correctText: w.correctText,
     selectedText: w.selectedText,
     explanation: w.explanation,
+    altAnswers: w.altAnswers,
   }));
 
   return (

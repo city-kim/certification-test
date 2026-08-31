@@ -14,6 +14,19 @@
       ]
     },
     {
+      "id": "network_2_practical",
+      "label": "네트워크관리사 2급 실기",
+      "sub": "단답형·선택형 복원 문제 · 매번 랜덤 출제",
+      "passScore": 60,
+      "subjectPassRatio": 0,
+      "subjects": [
+        { "key": "term", "label": "단답형·용어", "count": 10 },
+        { "key": "ip", "label": "IP·서브넷", "count": 3 },
+        { "key": "linux", "label": "리눅스", "count": 4 },
+        { "key": "router", "label": "라우터", "count": 3 }
+      ]
+    },
+    {
       "id": "adsp",
       "label": "데이터분석 준전문가(ADsP)",
       "sub": "모바일 모의고사 · 매회 랜덤 출제",

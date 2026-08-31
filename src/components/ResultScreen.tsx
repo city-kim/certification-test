@@ -1,4 +1,6 @@
 import type { ExamResult } from "../lib/quiz";
+import { answerText, correctText } from "../lib/quiz";
+import { isShort } from "../lib/types";
 import type { CertConfig } from "../lib/certs";
 import { subjectLabel } from "../lib/certs";
 import ReviewItem from "./ReviewItem";
@@ -24,9 +26,10 @@ export default function ResultScreen({ cert, result, onRetry, onHome }: Props) {
     question: it.question.question,
     figure: it.question.figure,
     options: it.options,
-    correctText: it.options[it.answerIndex],
-    selectedText: it.selected === null ? null : it.options[it.selected],
+    correctText: correctText(it),
+    selectedText: answerText(it),
     explanation: it.question.explanation,
+    altAnswers: isShort(it.question) ? it.question.answers.slice(1) : undefined,
     hintUsed: it.hintUsed,
   }));
 

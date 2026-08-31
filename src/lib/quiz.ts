@@ -1,4 +1,5 @@
-import type { ExamItem, Question } from "./types";
+import type { ExamItem, Question, ShortQuestion } from "./types";
+import { isShort } from "./types";
 import type { CertConfig } from "./certs";
 import { totalQuestions } from "./certs";
 
@@ -12,12 +13,58 @@ export function shuffle<T>(arr: readonly T[]): T[] {
   return a;
 }
 
-/** 한 문항의 보기 순서를 섞어 ExamItem 으로 변환 (정답 위치 재계산) */
+/** 주관식 채점용 정규화: 앞뒤 공백 제거 + 내부 공백 1칸으로 축약 */
+function normalize(text: string, caseSensitive: boolean): string {
+  const t = text.trim().replace(/\s+/g, " ");
+  return caseSensitive ? t : t.toLowerCase();
+}
+
+/**
+ * 주관식 정답 판정. answers 중 하나와 일치하면 정답.
+ * caseSensitive 문항(리눅스 명령어 등)은 대소문자까지 맞아야 한다.
+ */
+export function checkShortAnswer(q: ShortQuestion, input: string): boolean {
+  const cs = q.caseSensitive === true;
+  const value = normalize(input, cs);
+  if (!value) return false;
+  return q.answers.some((a) => normalize(a, cs) === value);
+}
+
+/** 문항 유형과 무관하게 응답했는지 여부 */
+export function isAnswered(item: ExamItem): boolean {
+  return isShort(item.question) ? item.input.trim() !== "" : item.selected !== null;
+}
+
+/** 문항 유형과 무관하게 정답인지 여부 */
+export function isCorrect(item: ExamItem): boolean {
+  return isShort(item.question)
+    ? checkShortAnswer(item.question, item.input)
+    : item.selected === item.answerIndex;
+}
+
+/** 채점·복습 화면에 표시할 대표 정답 텍스트 */
+export function correctText(item: ExamItem): string {
+  return isShort(item.question) ? item.question.answers[0] : item.options[item.answerIndex];
+}
+
+/** 사용자가 낸 답 (미응답이면 null) */
+export function answerText(item: ExamItem): string | null {
+  if (isShort(item.question)) {
+    const v = item.input.trim();
+    return v === "" ? null : v;
+  }
+  return item.selected === null ? null : item.options[item.selected];
+}
+
+/** 한 문항을 ExamItem 으로 변환. 4지선다는 보기 순서를 섞는다(정답 위치 재계산). */
 function toExamItem(q: Question): ExamItem {
+  if (isShort(q)) {
+    return { question: q, options: [], answerIndex: -1, selected: null, input: "", hintUsed: false };
+  }
   const order = shuffle(q.options.map((_, i) => i)); // 원래 인덱스의 셔플 순서
   const options = order.map((i) => q.options[i]);
   const answerIndex = order.indexOf(q.answerIndex);
-  return { question: q, options, answerIndex, selected: null, hintUsed: false };
+  return { question: q, options, answerIndex, selected: null, input: "", hintUsed: false };
 }
 
 /**
@@ -56,7 +103,6 @@ export interface ExamResult {
 }
 
 export function grade(items: ExamItem[], cert: CertConfig): ExamResult {
-  const isCorrect = (it: ExamItem) => it.selected === it.answerIndex;
   const ratio = cert.subjectPassRatio;
 
   const subjects: SubjectResult[] = cert.subjects.map(({ key, label }) => {

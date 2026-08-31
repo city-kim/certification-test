@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import type { CertConfig } from "../lib/certs";
 import { totalQuestions } from "../lib/certs";
 import { getHistory, getWrongBook } from "../lib/storage";
+import { countRefItems, getRefs } from "../data/refs";
 
 interface Props {
   cert: CertConfig;
@@ -11,6 +12,7 @@ interface Props {
   onStart: () => void;
   onOpenWrongBook: () => void;
   onOpenPractical: () => void;
+  onOpenRefs: () => void;
 }
 
 export default function StartScreen({
@@ -20,11 +22,13 @@ export default function StartScreen({
   onStart,
   onOpenWrongBook,
   onOpenPractical,
+  onOpenRefs,
 }: Props) {
   const history = getHistory(cert.id);
   const last = history[0];
   const wrongCount = getWrongBook(cert.id).length;
   const ready = bankSize > 0;
+  const refs = getRefs(cert.id);
 
   return (
     <div className="screen start">
@@ -60,6 +64,18 @@ export default function StartScreen({
             </strong>
             <span className="muted"> · {last.correctCount}/{last.total} 정답</span>
           </p>
+        </section>
+      )}
+
+      {refs && (
+        <section className="card refs-entry">
+          <h2>기출 자료 ({countRefItems(refs)}편)</h2>
+          <p className="muted small">
+            케이블 제작·NOS 서버 설정·라우터 실습처럼 문제로 내지 않은 유형을 분야별 링크로 정리했습니다.
+          </p>
+          <button className="btn ghost" onClick={onOpenRefs}>
+            📚 분야별로 보기
+          </button>
         </section>
       )}
 

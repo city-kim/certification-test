@@ -1,0 +1,242 @@
+[
+  {
+    "id": "blog01-01",
+    "exam": "blog01",
+    "subject": "term",
+    "number": 1,
+    "type": "short",
+    "question": "IP 주소를 MAC 주소로 변환할 때 사용하는 프로토콜을 쓰시오.",
+    "answers": ["ARP"],
+    "placeholder": "프로토콜 이름",
+    "explanation": "ARP(Address Resolution Protocol)는 IP 주소를 MAC 주소로 변환한다. 반대로 MAC 주소를 IP로 바꾸는 것은 RARP, ICMP는 ping 등 상태·오류 통보용, RSVP는 QoS 자원 예약 프로토콜이다."
+  },
+  {
+    "id": "blog01-02",
+    "exam": "blog01",
+    "subject": "term",
+    "number": 2,
+    "type": "short",
+    "question": "MAC 주소를 IP 주소로 변환할 때 사용하는 프로토콜을 쓰시오.",
+    "answers": ["RARP"],
+    "placeholder": "프로토콜 이름",
+    "explanation": "RARP(Reverse ARP)는 MAC 주소를 IP 주소로 변환한다. ARP와 반대 방향이라는 점만 기억하면 된다."
+  },
+  {
+    "id": "blog01-03",
+    "exam": "blog01",
+    "subject": "term",
+    "number": 3,
+    "question": "IPv6의 특징으로 옳지 않은 것은?",
+    "options": [
+      "체크섬 필드가 없다.",
+      "128비트 주소 체계를 사용한다.",
+      "브로드캐스트를 사용한다.",
+      "IPsec을 기본적으로 지원한다."
+    ],
+    "answerIndex": 2,
+    "explanation": "브로드캐스트는 IPv4의 특징이다. IPv6는 유니캐스트·멀티캐스트·애니캐스트를 사용하며, 체크섬 필드가 없고 128비트 주소 체계에 IPsec을 기본 지원한다."
+  },
+  {
+    "id": "blog01-04",
+    "exam": "blog01",
+    "subject": "term",
+    "number": 4,
+    "type": "short",
+    "question": "IPv4는 유니캐스트·멀티캐스트·브로드캐스트를 사용한다. IPv6에서 브로드캐스트를 대신하는 전송 방식을 쓰시오.",
+    "answers": ["애니캐스트", "Anycast"],
+    "placeholder": "전송 방식 이름",
+    "explanation": "IPv6는 유니캐스트·멀티캐스트·애니캐스트를 사용하며 브로드캐스트가 없다. IPv4의 브로드캐스트 자리를 대신하는 것이 애니캐스트다."
+  },
+  {
+    "id": "blog01-05",
+    "exam": "blog01",
+    "subject": "term",
+    "number": 5,
+    "type": "short",
+    "question": "IPv6 주소는 몇 비트 체계인가? (숫자만 입력)",
+    "answers": ["128", "128비트", "128 비트", "128bit", "128 bit"],
+    "placeholder": "예: 32",
+    "explanation": "IPv6는 128비트 주소 체계다. IPv4는 32비트, MAC 주소는 48비트이므로 세 가지를 함께 외워 두면 헷갈리지 않는다."
+  },
+  {
+    "id": "blog01-06",
+    "exam": "blog01",
+    "subject": "term",
+    "number": 6,
+    "type": "short",
+    "question": "MAC Address는 몇 비트인가? (숫자만 입력)",
+    "answers": ["48", "48비트", "48 비트", "48bit", "48 bit"],
+    "placeholder": "예: 32",
+    "explanation": "MAC 주소는 48비트(6바이트)다. IPv4 주소가 32비트, IPv6 주소가 128비트다."
+  },
+  {
+    "id": "blog01-07",
+    "exam": "blog01",
+    "subject": "term",
+    "number": 7,
+    "question": "UDP에 대한 설명으로 옳은 것은?",
+    "options": [
+      "3-Way Handshaking으로 연결을 수립한 뒤 데이터를 전송한다.",
+      "흐름 제어와 재전송으로 데이터의 신뢰성을 보장한다.",
+      "비연결형이며 신뢰성을 보장하지 않아 실시간 서비스에 적합하다.",
+      "패킷의 도착 순서를 항상 보장한다."
+    ],
+    "answerIndex": 2,
+    "explanation": "UDP는 연결 절차가 없는 비연결형 프로토콜로 재전송·흐름 제어가 없어 손실·중복·순서 역전이 발생할 수 있다. 대신 빠르기 때문에 게임·VoIP·스트리밍 같은 실시간 서비스에 적합하다. 나머지는 모두 TCP의 특징이다."
+  },
+  {
+    "id": "blog01-08",
+    "exam": "blog01",
+    "subject": "term",
+    "number": 8,
+    "type": "short",
+    "question": "공격자가 공격하도록 유인하는 가짜 시스템을 두어 공격자의 IP와 공격 기법을 수집하는 보안 기법을 쓰시오.",
+    "answers": ["Honey Pot", "HoneyPot", "허니팟"],
+    "placeholder": "보안 기법 이름",
+    "explanation": "Honey Pot은 공격자가 진짜 서버 대신 공격하도록 만든 미끼 시스템으로, 공격자의 IP와 공격 패턴을 수집한다. 최근 적극적인 IPS 기법 중 하나로 활용된다."
+  },
+  {
+    "id": "blog01-09",
+    "exam": "blog01",
+    "subject": "term",
+    "number": 9,
+    "question": "SSL의 Alert Protocol에 대한 설명으로 옳은 것은?",
+    "options": [
+      "전송할 데이터를 압축한다.",
+      "사용할 암호 방식을 협상한다.",
+      "통신 중 발생한 오류나 경고를 상대에게 통보한다.",
+      "데이터를 분할하고 암호화하여 전송한다."
+    ],
+    "answerIndex": 2,
+    "explanation": "Alert Protocol은 SSL 통신 중 발생한 오류·경고 신호를 상대에게 알리는 역할을 한다. 압축·암호화 후 전송은 Record Protocol, 암호 방식 협상은 Handshake Protocol의 역할이다."
+  },
+  {
+    "id": "blog01-10",
+    "exam": "blog01",
+    "subject": "term",
+    "number": 10,
+    "question": "A Class에 속하는 사설 IP 주소 대역은?",
+    "options": [
+      "10.0.0.0 ~ 10.255.255.255",
+      "172.16.0.0 ~ 172.31.255.255",
+      "192.168.0.0 ~ 192.168.255.255",
+      "169.254.0.0 ~ 169.254.255.255"
+    ],
+    "answerIndex": 0,
+    "explanation": "A Class 사설 대역은 10.0.0.0/8이다. B Class는 172.16.0.0 ~ 172.31.255.255, C Class는 192.168.0.0/16이며 169.254.x.x는 APIPA(자동 사설) 주소다."
+  },
+  {
+    "id": "blog01-11",
+    "exam": "blog01",
+    "subject": "ip",
+    "number": 11,
+    "type": "short",
+    "question": "192.168.10.3/28 이 속한 서브넷의 네트워크 ID를 쓰시오.",
+    "answers": ["192.168.10.0"],
+    "placeholder": "IP 주소 형식",
+    "explanation": "/28은 서브넷마스크 255.255.255.240이고 256-240=16 이므로 16개 단위로 나뉜다. 3은 0~15 그룹에 속하므로 그룹의 첫 주소인 192.168.10.0 이 네트워크 ID다."
+  },
+  {
+    "id": "blog01-12",
+    "exam": "blog01",
+    "subject": "ip",
+    "number": 12,
+    "type": "short",
+    "question": "192.168.10.3/28 이 속한 서브넷의 브로드캐스트 주소를 쓰시오.",
+    "answers": ["192.168.10.15", "192.168.10.15/28"],
+    "placeholder": "IP 주소 형식",
+    "explanation": "/28은 16개 단위로 나뉘고 3은 0~15 그룹에 속한다. 그룹의 마지막 주소가 브로드캐스트이므로 192.168.10.15 다."
+  },
+  {
+    "id": "blog01-13",
+    "exam": "blog01",
+    "subject": "ip",
+    "number": 13,
+    "type": "short",
+    "question": "192.168.64.0/24 를 서브넷마스크 255.255.255.192로 분할했을 때, 두 번째로 할당되는 서브넷의 브로드캐스트 주소를 쓰시오.",
+    "answers": ["192.168.64.127", "192.168.64.127/26"],
+    "placeholder": "IP 주소 형식",
+    "explanation": "256-192=64 이므로 64개 단위로 나뉜다. 두 번째 그룹은 192.168.64.64 ~ 192.168.64.127 이고, 브로드캐스트는 그 그룹의 마지막 주소인 192.168.64.127 이다. 비트 표기(/26)를 붙여 적어도 정답이다."
+  },
+  {
+    "id": "blog01-14",
+    "exam": "blog01",
+    "subject": "linux",
+    "number": 14,
+    "type": "short",
+    "question": "리눅스에서 서버에 설치된 디스크의 마운트 정보와 남은 공간을 확인하는 명령어를 쓰시오. (대소문자 주의)",
+    "answers": ["df"],
+    "caseSensitive": true,
+    "placeholder": "명령어만 입력",
+    "explanation": "df(disk free)는 파일 시스템별 마운트 지점과 사용량·잔여 공간을 보여준다. 리눅스 명령어는 소문자가 원칙이라 DF로 쓰면 오답 처리된다."
+  },
+  {
+    "id": "blog01-15",
+    "exam": "blog01",
+    "subject": "linux",
+    "number": 15,
+    "type": "short",
+    "question": "리눅스에서 useradd로 만든 계정의 비밀번호를 설정하는 명령어를 쓰시오. (대소문자 주의)",
+    "answers": ["passwd"],
+    "caseSensitive": true,
+    "placeholder": "명령어만 입력",
+    "explanation": "passwd 계정명 형태로 비밀번호를 설정한다. 익숙한 단어인 password 라고 쓰면 틀리므로 주의해야 한다."
+  },
+  {
+    "id": "blog01-16",
+    "exam": "blog01",
+    "subject": "linux",
+    "number": 16,
+    "type": "short",
+    "question": "리눅스에서 -t 옵션과 함께 사용하여 각종 연결 상태와 포트를 확인하는 명령어를 쓰시오. (대소문자 주의)",
+    "answers": ["netstat"],
+    "caseSensitive": true,
+    "placeholder": "명령어만 입력",
+    "explanation": "netstat -t 는 TCP 연결 상태와 포트를 보여준다. 대문자로 입력하면 오답이다."
+  },
+  {
+    "id": "blog01-17",
+    "exam": "blog01",
+    "subject": "linux",
+    "number": 17,
+    "type": "short",
+    "question": "리눅스에서 명령어의 사용법(매뉴얼)을 펼쳐 보는 명령어를 쓰시오. (대소문자 주의)",
+    "answers": ["man"],
+    "caseSensitive": true,
+    "placeholder": "명령어만 입력",
+    "explanation": "리눅스는 man 명령어로 매뉴얼 페이지를 본다. help는 Windows 계열에서 쓰는 표현이라 오답이다."
+  },
+  {
+    "id": "blog01-18",
+    "exam": "blog01",
+    "subject": "router",
+    "number": 18,
+    "type": "short",
+    "question": "라우터에 현재 접속한 사용자를 확인하는 명령어를 쓰시오.",
+    "answers": ["show users", "show user", "sh users", "sh user"],
+    "placeholder": "예: show ...",
+    "explanation": "Router#show users 로 현재 접속한 사용자를 확인한다. 약어 sh user 로 입력해도 동작한다."
+  },
+  {
+    "id": "blog01-19",
+    "exam": "blog01",
+    "subject": "router",
+    "number": 19,
+    "type": "short",
+    "question": "라우터의 라우팅 테이블(Routing Table)을 확인하는 명령어를 쓰시오.",
+    "answers": ["show ip route", "sh ip route"],
+    "placeholder": "예: show ...",
+    "explanation": "Router#show ip route(약어 sh ip route)로 라우팅 테이블을 확인한다. show ip protocol 은 설정된 라우팅 프로토콜 정보를 보여주는 다른 명령이다."
+  },
+  {
+    "id": "blog01-20",
+    "exam": "blog01",
+    "subject": "router",
+    "number": 20,
+    "type": "short",
+    "question": "라우터의 모든 인터페이스를 보여주는 명령어를 쓰시오.",
+    "answers": ["show interface", "show interfaces", "sh interface", "sh int", "show int"],
+    "placeholder": "예: show ...",
+    "explanation": "Router#show interface(약어 sh int)는 모든 인터페이스의 상태와 통계를 보여준다."
+  }
+]
