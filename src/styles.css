@@ -509,3 +509,46 @@ body {
   flex: 1;
   text-align: center;
 }
+
+/* ---- 실기 학습 ---- */
+.chip-row {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+  -webkit-overflow-scrolling: touch;
+}
+.chip {
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.chip.on {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+.study-item {
+  margin-bottom: 12px;
+}
+.study-item .q-text {
+  margin: 8px 0 0;
+}
+.study-answer {
+  font-weight: 700;
+  color: var(--ok);
+  margin-bottom: 8px !important;
+}
+.small-btn {
+  margin-top: 12px;
+  padding: 8px 14px;
+  font-size: 14px;
+  width: auto;
+}

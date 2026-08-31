@@ -7,12 +7,14 @@ import { buildExam, grade } from "./lib/quiz";
 import type { ExamResult } from "./lib/quiz";
 import type { ExamItem } from "./lib/types";
 import { saveResult } from "./lib/storage";
+import { getPracticalBank } from "./data/practical";
 import StartScreen from "./components/StartScreen";
 import QuizScreen from "./components/QuizScreen";
 import ResultScreen from "./components/ResultScreen";
 import WrongBookScreen from "./components/WrongBookScreen";
+import PracticalStudyScreen from "./components/PracticalStudyScreen";
 
-type Screen = "start" | "quiz" | "result" | "wrongbook";
+type Screen = "start" | "quiz" | "result" | "wrongbook" | "practical";
 
 /**
  * 라우트 진입점. certId 를 key 로 넘겨 자격증이 바뀌면 CertScreen 이 리마운트되어
@@ -53,8 +55,13 @@ function CertScreen({ cert }: { cert: CertConfig }) {
         <StartScreen
           cert={cert}
           bankSize={bank.length}
+          practicalCount={getPracticalBank(cert.id).length}
           onStart={startExam}
           onOpenWrongBook={() => setScreen("wrongbook")}
+          onOpenPractical={() => {
+            setScreen("practical");
+            window.scrollTo(0, 0);
+          }}
         />
       )}
       {screen === "quiz" && (
@@ -75,6 +82,9 @@ function CertScreen({ cert }: { cert: CertConfig }) {
       )}
       {screen === "wrongbook" && (
         <WrongBookScreen cert={cert} onBack={() => setScreen("start")} />
+      )}
+      {screen === "practical" && (
+        <PracticalStudyScreen cert={cert} onBack={() => setScreen("start")} />
       )}
     </>
   );

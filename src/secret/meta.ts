@@ -24,11 +24,27 @@ const DOMAINS = [
   "redhat.com",
 ];
 
+const USERS = [
+  "netops_kim",
+  "packet_drop",
+  "subnet_master",
+  "rj45guy",
+  "ciscojoe",
+  "tcpdump",
+  "rootless",
+  "vlan_tag",
+  "icqa_pass",
+  "cablecutter",
+  "gw_default",
+  "loopback127",
+];
+
 export interface FakeMeta {
   points: number;
   comments: number;
   ago: string;
   domain: string;
+  user: string;
 }
 
 export function fakeMeta(id: string): FakeMeta {
@@ -38,5 +54,6 @@ export function fakeMeta(id: string): FakeMeta {
   const hours = 1 + ((h >>> 9) % 30);
   const ago = hours < 24 ? `${hours}시간 전` : `${Math.round(hours / 24)}일 전`;
   const domain = DOMAINS[(h >>> 3) % DOMAINS.length];
-  return { points, comments, ago, domain };
+  const user = USERS[(h >>> 11) % USERS.length];
+  return { points, comments, ago, domain, user };
 }

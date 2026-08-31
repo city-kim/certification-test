@@ -8,6 +8,10 @@ const base = process.env.BASE_PATH ?? "/";
 export default defineConfig({
   base,
   plugins: [react()],
+  // 5173 이 다른 프로젝트에 점유된 경우를 위해 PORT 환경변수로 포트 지정 가능
+  server: {
+    port: Number(process.env.PORT) || 5173,
+  },
   build: {
     rollupOptions: {
       input: {

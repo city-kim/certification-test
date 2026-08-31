@@ -6,11 +6,21 @@ import { getHistory, getWrongBook } from "../lib/storage";
 interface Props {
   cert: CertConfig;
   bankSize: number;
+  /** 실기 학습 문항 수 (0이면 버튼 미노출) */
+  practicalCount: number;
   onStart: () => void;
   onOpenWrongBook: () => void;
+  onOpenPractical: () => void;
 }
 
-export default function StartScreen({ cert, bankSize, onStart, onOpenWrongBook }: Props) {
+export default function StartScreen({
+  cert,
+  bankSize,
+  practicalCount,
+  onStart,
+  onOpenWrongBook,
+  onOpenPractical,
+}: Props) {
   const history = getHistory(cert.id);
   const last = history[0];
   const wrongCount = getWrongBook(cert.id).length;
@@ -60,6 +70,11 @@ export default function StartScreen({ cert, bankSize, onStart, onOpenWrongBook }
         <button className="btn ghost" onClick={onOpenWrongBook}>
           오답노트 {wrongCount > 0 ? `(${wrongCount})` : ""}
         </button>
+        {practicalCount > 0 && (
+          <button className="btn ghost" onClick={onOpenPractical}>
+            실기 학습 ({practicalCount}문항)
+          </button>
+        )}
       </div>
     </div>
   );

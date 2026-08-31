@@ -8,8 +8,9 @@ import type { ExamItem } from "../lib/types";
 import { saveResult } from "../lib/storage";
 import NewsList from "./NewsList";
 import NewsResult from "./NewsResult";
+import NewsPractical from "./NewsPractical";
 
-type View = "list" | "result";
+type View = "list" | "result" | "practical";
 
 /**
  * 시크릿(뉴스 게시판 위장) 모드. 겉모습만 IT 뉴스 애그리게이터일 뿐,
@@ -37,6 +38,11 @@ function Feed({
 
   function backToList() {
     setView("list");
+    window.scrollTo(0, 0);
+  }
+
+  function openPractical() {
+    setView("practical");
     window.scrollTo(0, 0);
   }
 
@@ -72,13 +78,18 @@ function Feed({
             {CERTS.map((c) => (
               <a
                 key={c.id}
-                className={c.id === cert.id ? "active" : ""}
+                className={c.id === cert.id && view !== "practical" ? "active" : ""}
                 onClick={() => onSwitchCert(c.id)}
               >
                 {navLabel(c)}
               </a>
             ))}
-            <a className="gn-nav-extra">Ask</a>
+            <a
+              className={view === "practical" ? "active" : "gn-nav-extra"}
+              onClick={openPractical}
+            >
+              Ask
+            </a>
             <a className="gn-nav-extra">Show</a>
           </nav>
         </div>
@@ -102,6 +113,7 @@ function Feed({
             onReview={backToList}
           />
         )}
+        {view === "practical" && <NewsPractical cert={cert} />}
       </main>
 
       <footer className="gn-foot">
