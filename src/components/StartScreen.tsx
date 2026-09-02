@@ -13,6 +13,7 @@ interface Props {
   onOpenStudy: () => void;
   onOpenRefs: () => void;
   onOpenFlashcards: () => void;
+  onOpenGuide: () => void;
 }
 
 export default function StartScreen({
@@ -23,6 +24,7 @@ export default function StartScreen({
   onOpenStudy,
   onOpenRefs,
   onOpenFlashcards,
+  onOpenGuide,
 }: Props) {
   const history = getHistory(cert.id);
   const last = history[0];
@@ -76,6 +78,18 @@ export default function StartScreen({
           </p>
           <button className="btn ghost" onClick={onOpenRefs}>
             📚 분야별로 보기
+          </button>
+        </section>
+      )}
+
+      {flashcards.length > 0 && (
+        <section className="card guide-entry">
+          <h2>실기 핵심 요약</h2>
+          <p className="muted small">
+            필수 프로토콜·포트·OSI 계층·리눅스 명령어를 표로 한 번에 훑어봅니다.
+          </p>
+          <button className="btn ghost" onClick={onOpenGuide}>
+            📋 핵심 요약 보기
           </button>
         </section>
       )}

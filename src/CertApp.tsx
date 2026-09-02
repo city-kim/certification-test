@@ -14,8 +14,9 @@ import WrongBookScreen from "./components/WrongBookScreen";
 import StudyScreen from "./components/StudyScreen";
 import RefsScreen from "./components/RefsScreen";
 import FlashcardScreen from "./components/FlashcardScreen";
+import PracticalGuideScreen from "./components/PracticalGuideScreen";
 
-type Screen = "start" | "quiz" | "result" | "wrongbook" | "study" | "refs" | "flashcards";
+type Screen = "start" | "quiz" | "result" | "wrongbook" | "study" | "refs" | "flashcards" | "guide";
 
 /**
  * 라우트 진입점. certId 를 key 로 넘겨 자격증이 바뀌면 CertScreen 이 리마운트되어
@@ -67,6 +68,10 @@ function CertScreen({ cert }: { cert: CertConfig }) {
             setScreen("flashcards");
             window.scrollTo(0, 0);
           }}
+          onOpenGuide={() => {
+            setScreen("guide");
+            window.scrollTo(0, 0);
+          }}
         />
       )}
       {screen === "quiz" && (
@@ -96,6 +101,16 @@ function CertScreen({ cert }: { cert: CertConfig }) {
       )}
       {screen === "flashcards" && (
         <FlashcardScreen cert={cert} onBack={() => setScreen("start")} />
+      )}
+      {screen === "guide" && (
+        <PracticalGuideScreen
+          cert={cert}
+          onBack={() => setScreen("start")}
+          onOpenFlashcards={() => {
+            setScreen("flashcards");
+            window.scrollTo(0, 0);
+          }}
+        />
       )}
     </>
   );
