@@ -968,6 +968,26 @@ body {
   font-size: 9.5px;
   line-height: 1.4;
 }
+.router-original {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3px;
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 9px;
+}
+.router-original b {
+  margin-right: 1px;
+  color: var(--primary-d);
+}
+.router-original code {
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: #edf2f9;
+  color: #465164;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
 .router-caution {
   margin: 5px 0 0;
   padding: 4px 5px;

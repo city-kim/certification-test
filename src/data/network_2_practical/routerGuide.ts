@@ -17,11 +17,11 @@ export const ROUTER_GUIDE_SOURCE =
   "https://tech-network.tistory.com/category/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%20%EA%B4%80%EB%A6%AC%EC%82%AC%202%EA%B8%89%20%28%ED%95%84%EA%B8%B0%2C%EC%8B%A4%EA%B8%B0%29/Router%20%EC%84%A4%EC%A0%95?page=1";
 
 export const ROUTER_COMMON_FLOW = [
-  "Router> enable",
-  "Router# configure terminal",
+  "Router> en",
+  "Router# conf t",
   "Router(config)# [문제에서 요구한 설정]",
   "Router(config)# exit",
-  "Router# copy running-config startup-config",
+  "Router# copy run start",
 ];
 
 /** 카테고리 1~9페이지의 복원 문제 중 반복 출제되는 명령 유형을 통합했다. */
