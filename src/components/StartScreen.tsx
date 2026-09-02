@@ -14,6 +14,7 @@ interface Props {
   onOpenRefs: () => void;
   onOpenFlashcards: () => void;
   onOpenGuide: () => void;
+  onOpenRouterGuide: () => void;
 }
 
 export default function StartScreen({
@@ -25,6 +26,7 @@ export default function StartScreen({
   onOpenRefs,
   onOpenFlashcards,
   onOpenGuide,
+  onOpenRouterGuide,
 }: Props) {
   const history = getHistory(cert.id);
   const last = history[0];
@@ -102,6 +104,18 @@ export default function StartScreen({
           </p>
           <button className="btn ghost" onClick={onOpenFlashcards}>
             🗂️ 암기카드 시작
+          </button>
+        </section>
+      )}
+
+      {flashcards.length > 0 && (
+        <section className="card router-entry">
+          <h2>라우터 기출</h2>
+          <p className="muted small">
+            반복 출제된 라우터 문제와 실제 입력 명령어를 유형별로 훑어봅니다.
+          </p>
+          <button className="btn ghost" onClick={onOpenRouterGuide}>
+            ⌨️ 라우터 기출 보기
           </button>
         </section>
       )}
