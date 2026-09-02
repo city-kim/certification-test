@@ -17,6 +17,7 @@ React + Vite + React Router로 만든 정적 사이트라 GitHub Pages에서 서
 - 결과: 총점/100·합격 판정, **과목별 점수·과락 표시**
 - **기출 자료 화면** — 문제로 내지 않은 유형을 분야별 링크로 정리, 제목 검색 지원
 - **주관식(단답형) 입력 채점** — 실기처럼 답을 직접 타이핑, 허용 표기 여러 개 인정, 리눅스 명령어는 대소문자까지 채점
+- **실기 암기카드** — 과목 구분 없이 전체 카드를 랜덤 출제하고, 아는 카드와 다시 볼 카드를 나눠 반복 학습
 - **틀린 문제 해설**(이미지 지문 포함) + **오답노트 localStorage 저장**(자격증별 분리)
 
 > 실기(`network_2_practical`)는 [우진아빠의 네트워크 실무](https://tech-network.tistory.com/) 블로그의 실기 복원 포스팅을
@@ -71,6 +72,21 @@ npm run build        # 타입체크 + 프로덕션 빌드(dist/)
 
 채점은 앞뒤 공백을 없애고 내부 공백을 한 칸으로 줄인 뒤 `answers` 중 하나와 일치하면 정답입니다
 (`caseSensitive` 가 아니면 대소문자 무시).
+
+### 암기카드 JSON 형식
+
+실기 암기카드는 `src/data/flashcards/network_2_practical.json` 배열에 추가합니다. `subject`는
+`certs.config.json`의 과목 key를 사용하지만, 출제할 때는 과목별 정원이나 필터 없이 전체 카드를 섞습니다.
+
+```jsonc
+{
+  "id": "practical-card-001", // 덱 안에서 중복되지 않는 고유값
+  "subject": "term",          // term | ip | linux | router
+  "prompt": "앞면에 표시할 질문",
+  "answers": ["대표 정답", "다른 표기"], // 첫 항목을 크게 표시
+  "explanation": "정답과 함께 볼 설명"
+}
+```
 
 새 자격증(예: adsp) 추가 절차: `src/data/certs.config.json` 에 정의 추가 → `pdf/<cert>/` 에 PDF 넣고
 `extract.py <cert>` → `src/data/exams/<cert>/*.json` 작성 → `build-bank` 로 검증.

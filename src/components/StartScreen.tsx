@@ -3,6 +3,7 @@ import type { CertConfig } from "../lib/certs";
 import { totalQuestions } from "../lib/certs";
 import { getHistory, getWrongBook } from "../lib/storage";
 import { countRefItems, getRefs } from "../data/refs";
+import { getFlashcards } from "../data/flashcards";
 
 interface Props {
   cert: CertConfig;
@@ -11,6 +12,7 @@ interface Props {
   onOpenWrongBook: () => void;
   onOpenStudy: () => void;
   onOpenRefs: () => void;
+  onOpenFlashcards: () => void;
 }
 
 export default function StartScreen({
@@ -20,12 +22,14 @@ export default function StartScreen({
   onOpenWrongBook,
   onOpenStudy,
   onOpenRefs,
+  onOpenFlashcards,
 }: Props) {
   const history = getHistory(cert.id);
   const last = history[0];
   const wrongCount = getWrongBook(cert.id).length;
   const ready = bankSize > 0;
   const refs = getRefs(cert.id);
+  const flashcards = getFlashcards(cert.id);
 
   return (
     <div className="screen start">
@@ -72,6 +76,18 @@ export default function StartScreen({
           </p>
           <button className="btn ghost" onClick={onOpenRefs}>
             📚 분야별로 보기
+          </button>
+        </section>
+      )}
+
+      {flashcards.length > 0 && (
+        <section className="card flashcard-entry">
+          <h2>암기카드 ({flashcards.length}장)</h2>
+          <p className="muted small">
+            과목 구분 없이 전체 카드를 무작위로 섞어 핵심 개념을 빠르게 복습합니다.
+          </p>
+          <button className="btn ghost" onClick={onOpenFlashcards}>
+            🗂️ 암기카드 시작
           </button>
         </section>
       )}

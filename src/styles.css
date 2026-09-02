@@ -554,6 +554,92 @@ body {
   width: auto;
 }
 
+/* ---------- 암기카드 ---------- */
+.flashcard-entry .btn {
+  margin-top: 4px;
+}
+.page-head-spacer {
+  width: 51px;
+}
+.flashcard-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 4px 14px;
+}
+.flashcard {
+  min-height: 360px;
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 20px;
+  padding: 22px 20px;
+  box-shadow: 0 8px 24px rgba(20, 30, 50, 0.09);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+.flashcard.revealed {
+  border-color: #b8d1f7;
+  cursor: default;
+}
+.flashcard-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flashcard-prompt {
+  margin: 46px 0 28px;
+  font-size: 21px;
+  line-height: 1.55;
+  font-weight: 750;
+  text-align: center;
+  white-space: pre-wrap;
+}
+.flashcard-tap {
+  margin: auto 0 4px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+.flashcard-answer {
+  text-align: center;
+}
+.flashcard-answer > strong {
+  display: block;
+  color: var(--ok);
+  font-size: 22px;
+  white-space: pre-wrap;
+}
+.flashcard-answer .explanation {
+  text-align: left;
+  margin-top: 22px;
+}
+.flashcard-answer .explanation > span {
+  color: var(--primary-d);
+  font-size: 13px;
+  font-weight: 700;
+}
+.flashcard-actions {
+  margin-top: 16px;
+}
+.flashcard-finish {
+  margin-top: 24px;
+  padding: 32px 18px;
+}
+.flashcard-finish h2 {
+  font-size: 21px;
+}
+.finish-icon {
+  display: block;
+  font-size: 42px;
+  margin-bottom: 8px;
+}
+.flashcard-finish-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 /* ---------- 주관식(단답형) ---------- */
 .type-tag {
   font-size: 11px;

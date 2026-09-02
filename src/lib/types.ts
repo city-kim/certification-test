@@ -36,6 +36,18 @@ export function isShort(q: Question): q is ShortQuestion {
   return q.type === "short";
 }
 
+/** 암기카드 한 장. answers[0]을 대표 정답으로 표시한다. */
+export interface Flashcard {
+  id: string;
+  subject: Subject;
+  /** 카드 앞면에 표시할 질문 또는 암기 주제 */
+  prompt: string;
+  /** 대표 정답과 함께 인정할 수 있는 다른 표현 */
+  answers: string[];
+  /** 정답을 공개한 뒤 보여줄 설명 */
+  explanation: string;
+}
+
 /** 출제 화면에서 다루는 문항: 보기 순서를 섞은 뒤의 상태를 담는다. */
 export interface ExamItem {
   question: Question;

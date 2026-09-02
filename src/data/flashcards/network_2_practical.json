@@ -1,0 +1,352 @@
+[
+  {
+    "id": "practical-card-001",
+    "subject": "term",
+    "prompt": "IP 주소를 MAC 주소로 변환하는 프로토콜은?",
+    "answers": ["ARP", "Address Resolution Protocol"],
+    "explanation": "ARP는 동일 네트워크에서 목적지 IP에 해당하는 MAC 주소를 알아낸다."
+  },
+  {
+    "id": "practical-card-002",
+    "subject": "term",
+    "prompt": "MAC 주소를 이용해 IP 주소를 알아내는 프로토콜은?",
+    "answers": ["RARP", "Reverse Address Resolution Protocol"],
+    "explanation": "RARP는 ARP의 반대 방향으로 주소를 변환하며 현재는 주로 DHCP가 대신한다."
+  },
+  {
+    "id": "practical-card-003",
+    "subject": "term",
+    "prompt": "IP 통신의 오류 보고와 네트워크 상태 진단에 사용하는 프로토콜은?",
+    "answers": ["ICMP", "Internet Control Message Protocol"],
+    "explanation": "ping의 Echo Request와 Echo Reply, 목적지 도달 불가, 시간 초과 등에 사용된다."
+  },
+  {
+    "id": "practical-card-004",
+    "subject": "term",
+    "prompt": "IPv4 멀티캐스트 그룹의 가입과 탈퇴를 관리하는 프로토콜은?",
+    "answers": ["IGMP", "Internet Group Management Protocol"],
+    "explanation": "호스트와 라우터 사이에서 멀티캐스트 그룹 구성원을 관리한다."
+  },
+  {
+    "id": "practical-card-005",
+    "subject": "term",
+    "prompt": "연결형이며 신뢰성, 순서 보장, 흐름 제어를 제공하는 전송 계층 프로토콜은?",
+    "answers": ["TCP", "Transmission Control Protocol"],
+    "explanation": "TCP는 연결 전에 3-Way Handshake를 수행하고 손실된 데이터를 재전송한다."
+  },
+  {
+    "id": "practical-card-006",
+    "subject": "term",
+    "prompt": "비연결형이며 속도가 빠르지만 신뢰성과 순서를 보장하지 않는 프로토콜은?",
+    "answers": ["UDP", "User Datagram Protocol"],
+    "explanation": "UDP는 DHCP, TFTP, SNMP, NTP 등에 사용되며 데이터 단위는 데이터그램이다."
+  },
+  {
+    "id": "practical-card-007",
+    "subject": "term",
+    "prompt": "DHCP가 IP 주소를 할당하는 4단계 순서는?",
+    "answers": ["Discover, Offer, Request, ACK", "DORA"],
+    "explanation": "클라이언트 Discover, 서버 Offer, 클라이언트 Request, 서버 ACK 순서이다."
+  },
+  {
+    "id": "practical-card-008",
+    "subject": "term",
+    "prompt": "도메인 이름과 IP 주소를 변환하는 프로토콜은?",
+    "answers": ["DNS", "Domain Name System"],
+    "explanation": "DNS는 일반 질의에는 UDP 53, 영역 전송이나 큰 응답에는 TCP 53도 사용한다."
+  },
+  {
+    "id": "practical-card-009",
+    "subject": "term",
+    "prompt": "파일 전송에 TCP 20번과 21번을 사용하는 프로토콜은?",
+    "answers": ["FTP", "File Transfer Protocol"],
+    "explanation": "FTP는 일반적으로 20번을 데이터 전송, 21번을 명령과 연결 제어에 사용한다."
+  },
+  {
+    "id": "practical-card-010",
+    "subject": "term",
+    "prompt": "인증과 복잡한 기능을 줄인 단순 파일 전송 프로토콜은?",
+    "answers": ["TFTP", "Trivial File Transfer Protocol"],
+    "explanation": "TFTP는 UDP 69번을 사용하며 FTP보다 단순하지만 신뢰성과 보안 기능이 부족하다."
+  },
+  {
+    "id": "practical-card-011",
+    "subject": "term",
+    "prompt": "이메일을 발송하거나 메일 서버 사이에서 전달하는 프로토콜은?",
+    "answers": ["SMTP", "Simple Mail Transfer Protocol"],
+    "explanation": "SMTP의 기본 포트는 TCP 25번이다."
+  },
+  {
+    "id": "practical-card-012",
+    "subject": "term",
+    "prompt": "네트워크 장비를 감시하고 관리하는 프로토콜은?",
+    "answers": ["SNMP", "Simple Network Management Protocol"],
+    "explanation": "관리 요청은 UDP 161번, 장비가 보내는 Trap 알림은 UDP 162번을 사용한다."
+  },
+  {
+    "id": "practical-card-013",
+    "subject": "term",
+    "prompt": "최대 홉 수가 15인 거리 벡터 라우팅 프로토콜은?",
+    "answers": ["RIP", "Routing Information Protocol"],
+    "explanation": "RIP는 UDP 520번을 사용하며 16홉은 도달할 수 없는 네트워크를 의미한다."
+  },
+  {
+    "id": "practical-card-014",
+    "subject": "term",
+    "prompt": "링크 상태 방식과 다익스트라 알고리즘을 사용하는 라우팅 프로토콜은?",
+    "answers": ["OSPF", "Open Shortest Path First"],
+    "explanation": "OSPF는 동일 AS 내부에서 사용하며 IP 프로토콜 번호 89를 사용한다."
+  },
+  {
+    "id": "practical-card-015",
+    "subject": "term",
+    "prompt": "서로 다른 자치 시스템인 AS 사이에서 경로 정보를 교환하는 프로토콜은?",
+    "answers": ["BGP", "Border Gateway Protocol"],
+    "explanation": "BGP는 경로 벡터 방식의 외부 라우팅 프로토콜이며 TCP 179번을 사용한다."
+  },
+  {
+    "id": "practical-card-016",
+    "subject": "term",
+    "prompt": "FTP 데이터 전송의 기본 포트 번호는?",
+    "answers": ["20", "TCP 20"],
+    "explanation": "시험에서는 FTP 데이터 20번, 명령과 연결 제어 21번으로 구분한다."
+  },
+  {
+    "id": "practical-card-017",
+    "subject": "term",
+    "prompt": "FTP 명령과 연결 제어의 기본 포트 번호는?",
+    "answers": ["21", "TCP 21"],
+    "explanation": "FTP 제어 연결에는 TCP 21번을 사용한다."
+  },
+  {
+    "id": "practical-card-018",
+    "subject": "term",
+    "prompt": "SSH의 기본 포트 번호는?",
+    "answers": ["22", "TCP 22"],
+    "explanation": "SSH는 암호화된 원격 접속을 제공한다."
+  },
+  {
+    "id": "practical-card-019",
+    "subject": "term",
+    "prompt": "Telnet의 기본 포트 번호는?",
+    "answers": ["23", "TCP 23"],
+    "explanation": "Telnet은 데이터를 평문으로 전송하므로 SSH보다 보안에 취약하다."
+  },
+  {
+    "id": "practical-card-020",
+    "subject": "term",
+    "prompt": "SMTP의 기본 포트 번호는?",
+    "answers": ["25", "TCP 25"],
+    "explanation": "SMTP는 이메일 발송과 메일 서버 사이의 전달에 사용한다."
+  },
+  {
+    "id": "practical-card-021",
+    "subject": "term",
+    "prompt": "DNS의 기본 포트 번호는?",
+    "answers": ["53", "TCP/UDP 53", "UDP 53", "TCP 53"],
+    "explanation": "DNS는 UDP와 TCP 모두 53번을 사용할 수 있다."
+  },
+  {
+    "id": "practical-card-022",
+    "subject": "term",
+    "prompt": "DHCP 서버와 클라이언트의 포트 번호는?",
+    "answers": ["서버 67, 클라이언트 68", "UDP 67/68", "67/68"],
+    "explanation": "DHCP 서버는 UDP 67번, 클라이언트는 UDP 68번을 사용한다."
+  },
+  {
+    "id": "practical-card-023",
+    "subject": "term",
+    "prompt": "TFTP의 기본 포트 번호는?",
+    "answers": ["69", "UDP 69"],
+    "explanation": "TFTP는 UDP 69번을 사용하는 단순 파일 전송 프로토콜이다."
+  },
+  {
+    "id": "practical-card-024",
+    "subject": "term",
+    "prompt": "HTTP의 기본 포트 번호는?",
+    "answers": ["80", "TCP 80"],
+    "explanation": "HTTP는 암호화되지 않은 일반 웹 통신에 사용한다."
+  },
+  {
+    "id": "practical-card-025",
+    "subject": "term",
+    "prompt": "POP3의 기본 포트 번호는?",
+    "answers": ["110", "TCP 110"],
+    "explanation": "POP3는 이메일을 클라이언트로 내려받는 방식에 주로 사용한다."
+  },
+  {
+    "id": "practical-card-026",
+    "subject": "term",
+    "prompt": "NTP의 기본 포트 번호는?",
+    "answers": ["123", "UDP 123"],
+    "explanation": "NTP는 네트워크 장비와 컴퓨터의 시간을 동기화한다."
+  },
+  {
+    "id": "practical-card-027",
+    "subject": "term",
+    "prompt": "IMAP의 기본 포트 번호는?",
+    "answers": ["143", "TCP 143"],
+    "explanation": "IMAP은 이메일을 서버에 보관하면서 여러 장치와 동기화한다."
+  },
+  {
+    "id": "practical-card-028",
+    "subject": "term",
+    "prompt": "SNMP 관리 요청과 조회에 사용하는 포트 번호는?",
+    "answers": ["161", "UDP 161"],
+    "explanation": "관리자가 에이전트의 정보를 조회하거나 설정할 때 UDP 161번을 사용한다."
+  },
+  {
+    "id": "practical-card-029",
+    "subject": "term",
+    "prompt": "SNMP Trap의 포트 번호는?",
+    "answers": ["162", "UDP 162"],
+    "explanation": "장비가 장애나 이벤트를 관리자에게 자발적으로 알릴 때 UDP 162번을 사용한다."
+  },
+  {
+    "id": "practical-card-030",
+    "subject": "term",
+    "prompt": "HTTPS의 기본 포트 번호는?",
+    "answers": ["443", "TCP 443"],
+    "explanation": "HTTPS는 TLS를 이용해 HTTP 통신을 암호화한다."
+  },
+  {
+    "id": "practical-card-031",
+    "subject": "term",
+    "prompt": "Windows 원격 데스크톱인 RDP의 기본 포트 번호는?",
+    "answers": ["3389", "TCP 3389"],
+    "explanation": "RDP는 Windows 컴퓨터의 원격 화면과 입력을 제어하는 데 사용한다."
+  },
+  {
+    "id": "practical-card-032",
+    "subject": "term",
+    "prompt": "OSI 7계층을 높은 계층부터 순서대로 쓰시오.",
+    "answers": ["응용, 표현, 세션, 전송, 네트워크, 데이터링크, 물리", "응표세전네데물"],
+    "explanation": "7계층부터 1계층까지 응용-표현-세션-전송-네트워크-데이터링크-물리 순서이다."
+  },
+  {
+    "id": "practical-card-033",
+    "subject": "term",
+    "prompt": "OSI 응용 계층은 몇 계층이며 어떤 역할을 하는가?",
+    "answers": ["7계층, 사용자에게 네트워크 서비스 제공", "7계층"],
+    "explanation": "HTTP, FTP, DNS, SMTP 등 사용자가 이용하는 네트워크 서비스와 관련된다."
+  },
+  {
+    "id": "practical-card-034",
+    "subject": "term",
+    "prompt": "데이터 형식 변환, 압축, 암호화와 복호화를 담당하는 OSI 계층은?",
+    "answers": ["표현 계층", "6계층", "Presentation Layer"],
+    "explanation": "표현 계층은 서로 다른 데이터 표현 형식을 변환하고 압축과 암호화를 담당한다."
+  },
+  {
+    "id": "practical-card-035",
+    "subject": "term",
+    "prompt": "통신 세션의 설정, 유지, 동기화, 종료를 담당하는 OSI 계층은?",
+    "answers": ["세션 계층", "5계층", "Session Layer"],
+    "explanation": "세션 계층은 응용 프로그램 사이의 논리적인 연결 상태를 관리한다."
+  },
+  {
+    "id": "practical-card-036",
+    "subject": "term",
+    "prompt": "TCP와 UDP가 동작하며 포트 번호를 사용하는 OSI 계층은?",
+    "answers": ["전송 계층", "4계층", "Transport Layer"],
+    "explanation": "전송 계층은 프로세스 간 통신과 종단 간 데이터 전달을 담당한다."
+  },
+  {
+    "id": "practical-card-037",
+    "subject": "term",
+    "prompt": "IP 주소와 라우팅을 담당하는 OSI 계층은?",
+    "answers": ["네트워크 계층", "3계층", "Network Layer"],
+    "explanation": "네트워크 계층은 목적지 IP 주소를 기준으로 최적 경로를 선택한다."
+  },
+  {
+    "id": "practical-card-038",
+    "subject": "term",
+    "prompt": "MAC 주소를 사용하고 프레임을 전달하는 OSI 계층은?",
+    "answers": ["데이터링크 계층", "2계층", "Data Link Layer"],
+    "explanation": "스위치와 브리지가 데이터링크 계층에서 동작한다."
+  },
+  {
+    "id": "practical-card-039",
+    "subject": "term",
+    "prompt": "데이터를 전기, 빛, 무선 신호의 비트 형태로 전달하는 OSI 계층은?",
+    "answers": ["물리 계층", "1계층", "Physical Layer"],
+    "explanation": "허브, 리피터, 케이블 등이 물리 계층과 관련된다."
+  },
+  {
+    "id": "practical-card-040",
+    "subject": "term",
+    "prompt": "OSI 계층별 데이터 단위를 상위 계층부터 순서대로 쓰시오.",
+    "answers": ["데이터, 세그먼트, 패킷, 프레임, 비트", "Data, Segment, Packet, Frame, Bit"],
+    "explanation": "7~5계층은 데이터, 4계층은 세그먼트, 3계층은 패킷, 2계층은 프레임, 1계층은 비트이다."
+  },
+  {
+    "id": "practical-card-041",
+    "subject": "term",
+    "prompt": "TCP와 UDP의 데이터 단위는 각각 무엇인가?",
+    "answers": ["TCP는 세그먼트, UDP는 데이터그램", "세그먼트와 데이터그램"],
+    "explanation": "둘 다 전송 계층 프로토콜이지만 TCP PDU는 세그먼트, UDP PDU는 데이터그램이라고 부른다."
+  },
+  {
+    "id": "practical-card-042",
+    "subject": "term",
+    "prompt": "허브, 스위치, 라우터가 동작하는 OSI 계층은?",
+    "answers": ["허브 1계층, 스위치 2계층, 라우터 3계층", "1계층, 2계층, 3계층"],
+    "explanation": "허브는 비트, 스위치는 MAC 주소, 라우터는 IP 주소를 기준으로 동작한다."
+  },
+  {
+    "id": "practical-card-043",
+    "subject": "term",
+    "prompt": "MAC 주소, IP 주소, 포트 번호에 대응하는 OSI 계층은?",
+    "answers": ["MAC 2계층, IP 3계층, 포트 4계층", "2계층, 3계층, 4계층"],
+    "explanation": "스위치는 MAC, 라우터는 IP, TCP와 UDP는 포트 번호를 사용한다."
+  },
+  {
+    "id": "practical-card-044",
+    "subject": "term",
+    "prompt": "리눅스에서 현재 작업 중인 디렉터리의 절대경로를 출력하는 명령어는?",
+    "answers": ["pwd"],
+    "explanation": "pwd는 Print Working Directory의 약어이다."
+  },
+  {
+    "id": "practical-card-045",
+    "subject": "term",
+    "prompt": "리눅스에서 IP 주소와 네트워크 인터페이스 정보를 확인하는 명령어는?",
+    "answers": ["ifconfig", "ip addr", "ip a"],
+    "explanation": "시험에는 ifconfig가 자주 나오지만 현대 리눅스에서는 ip addr도 사용한다."
+  },
+  {
+    "id": "practical-card-046",
+    "subject": "term",
+    "prompt": "리눅스에서 라우팅 테이블을 확인하는 명령어는?",
+    "answers": ["route", "route -n", "ip route"],
+    "explanation": "route는 기존 명령이고 현대 리눅스에서는 ip route를 주로 사용한다."
+  },
+  {
+    "id": "practical-card-047",
+    "subject": "term",
+    "prompt": "목적지 호스트와 통신할 수 있는지 확인하는 명령어는?",
+    "answers": ["ping"],
+    "explanation": "ping은 ICMP Echo Request와 Echo Reply를 이용해 연결 상태를 검사한다."
+  },
+  {
+    "id": "practical-card-048",
+    "subject": "term",
+    "prompt": "목적지까지 거치는 라우터와 경로를 확인하는 명령어는?",
+    "answers": ["traceroute", "tracepath"],
+    "explanation": "Windows에서는 tracert, 리눅스에서는 일반적으로 traceroute를 사용한다."
+  },
+  {
+    "id": "practical-card-049",
+    "subject": "term",
+    "prompt": "DNS 서버에 질의하여 도메인 이름이나 IP 주소를 조회하는 명령어는?",
+    "answers": ["nslookup", "dig"],
+    "explanation": "nslookup은 시험에서 자주 출제되며 dig는 더욱 상세한 DNS 정보를 제공한다."
+  },
+  {
+    "id": "practical-card-050",
+    "subject": "term",
+    "prompt": "리눅스에서 네트워크 연결 상태와 사용 중인 포트를 확인하는 명령어는?",
+    "answers": ["netstat", "ss", "netstat -antp", "ss -tulnp"],
+    "explanation": "netstat는 기존 명령이고 현대 리눅스에서는 ss를 주로 사용한다."
+  }
+]
