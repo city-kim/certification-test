@@ -20,6 +20,7 @@ function shuffle<T>(items: T[]): T[] {
 
 export default function FlashcardScreen({ cert, onBack }: Props) {
   const allCards = getFlashcards(cert.id);
+  const [subject, setSubject] = useState<string | null>(null);
   const [deck, setDeck] = useState<Flashcard[]>(() => shuffle(allCards));
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
@@ -28,6 +29,7 @@ export default function FlashcardScreen({ cert, onBack }: Props) {
 
   const card = deck[index];
   const finished = deck.length > 0 && index >= deck.length;
+  const activeCards = subject ? allCards.filter((item) => item.subject === subject) : allCards;
 
   function restart(cards: Flashcard[]) {
     setDeck(shuffle(cards));
@@ -47,10 +49,16 @@ export default function FlashcardScreen({ cert, onBack }: Props) {
     window.scrollTo(0, 0);
   }
 
+  function selectSubject(nextSubject: string | null) {
+    const cards = nextSubject ? allCards.filter((item) => item.subject === nextSubject) : allCards;
+    setSubject(nextSubject);
+    restart(cards);
+  }
+
   if (allCards.length === 0) {
     return (
       <div className="screen flashcards">
-        <PageHeader onBack={onBack} />
+        <PageHeader onBack={onBack} title={cert.id === "adsp" ? "ADsP 암기카드" : "실기 암기카드"} />
         <section className="card center">
           <p>등록된 암기카드가 없습니다.</p>
         </section>
@@ -61,7 +69,8 @@ export default function FlashcardScreen({ cert, onBack }: Props) {
   if (finished) {
     return (
       <div className="screen flashcards">
-        <PageHeader onBack={onBack} />
+        <PageHeader onBack={onBack} title={cert.id === "adsp" ? "ADsP 암기카드" : "실기 암기카드"} />
+        {cert.id === "adsp" && <SubjectChips cert={cert} subject={subject} onSelect={selectSubject} cards={allCards} />}
         <section className="card flashcard-finish center">
           <span className="finish-icon">🎉</span>
           <h2>한 바퀴 완료!</h2>
@@ -75,8 +84,8 @@ export default function FlashcardScreen({ cert, onBack }: Props) {
               헷갈린 카드만 다시 보기
             </button>
           )}
-          <button className="btn ghost" onClick={() => restart(allCards)}>
-            전체 카드 다시 섞기
+          <button className="btn ghost" onClick={() => restart(activeCards)}>
+            {subject ? "이 과목 다시 섞기" : "전체 카드 다시 섞기"}
           </button>
         </div>
       </div>
@@ -85,7 +94,9 @@ export default function FlashcardScreen({ cert, onBack }: Props) {
 
   return (
     <div className="screen flashcards">
-      <PageHeader onBack={onBack} />
+      <PageHeader onBack={onBack} title={cert.id === "adsp" ? "ADsP 암기카드" : "실기 암기카드"} />
+
+      {cert.id === "adsp" && <SubjectChips cert={cert} subject={subject} onSelect={selectSubject} cards={allCards} />}
 
       <div className="flashcard-progress">
         <div className="progress-bar">
@@ -134,11 +145,34 @@ export default function FlashcardScreen({ cert, onBack }: Props) {
   );
 }
 
-function PageHeader({ onBack }: { onBack: () => void }) {
+function SubjectChips({
+  cert,
+  subject,
+  onSelect,
+  cards,
+}: {
+  cert: CertConfig;
+  subject: string | null;
+  onSelect: (subject: string | null) => void;
+  cards: Flashcard[];
+}) {
+  return (
+    <div className="chip-row flashcard-subjects">
+      <button className={`chip ${subject === null ? "on" : ""}`} onClick={() => onSelect(null)}>전체 {cards.length}</button>
+      {cert.subjects.map((item) => (
+        <button key={item.key} className={`chip ${subject === item.key ? "on" : ""}`} onClick={() => onSelect(item.key)}>
+          {item.label} {cards.filter((card) => card.subject === item.key).length}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function PageHeader({ onBack, title }: { onBack: () => void; title: string }) {
   return (
     <header className="page-head">
       <button className="link" onClick={onBack}>← 홈</button>
-      <h1>실기 암기카드</h1>
+      <h1>{title}</h1>
       <span className="page-head-spacer" />
     </header>
   );

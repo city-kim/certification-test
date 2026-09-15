@@ -44,7 +44,7 @@ export default function StartScreen({
       </header>
 
       <section className="card">
-        <h2>출제 구성 ({totalQuestions(cert)}문항)</h2>
+        <h2>{ready ? `출제 구성 (${totalQuestions(cert)}문항)` : cert.id === "adsp" ? "시험 과목 구성" : `출제 구성 (${totalQuestions(cert)}문항)`}</h2>
         <ul className="subject-list">
           {cert.subjects.map((s) => (
             <li key={s.key}>
@@ -56,7 +56,11 @@ export default function StartScreen({
         {ready ? (
           <p className="muted">문제은행 {bankSize}문항에서 무작위 출제 · 보기 순서도 매번 섞임</p>
         ) : (
-          <p className="muted">문제은행 준비중입니다.</p>
+          <p className="muted">
+            {cert.id === "adsp"
+              ? "기출문제는 아직 등록하지 않았습니다. 지금은 요약 학습과 암기카드로 개념을 먼저 익혀 보세요."
+              : "문제은행 준비중입니다."}
+          </p>
         )}
       </section>
 
@@ -86,12 +90,14 @@ export default function StartScreen({
 
       {flashcards.length > 0 && (
         <section className="card guide-entry">
-          <h2>실기 핵심 요약</h2>
+          <h2>{cert.id === "adsp" ? "ADsP 개념 학습" : "실기 핵심 요약"}</h2>
           <p className="muted small">
-            필수 프로토콜·포트·OSI 계층·리눅스 명령어를 표로 한 번에 훑어봅니다.
+            {cert.id === "adsp"
+              ? "기출문제를 풀기 전에 14일 순서로 핵심 개념을 이해하고 학습 진도를 체크합니다."
+              : "필수 프로토콜·포트·OSI 계층·리눅스 명령어를 표로 한 번에 훑어봅니다."}
           </p>
           <button className="btn ghost" onClick={onOpenGuide}>
-            📋 핵심 요약 보기
+            {cert.id === "adsp" ? "📘 개념 학습 시작" : "📋 핵심 요약 보기"}
           </button>
         </section>
       )}
@@ -100,7 +106,9 @@ export default function StartScreen({
         <section className="card flashcard-entry">
           <h2>암기카드 ({flashcards.length}장)</h2>
           <p className="muted small">
-            과목 구분 없이 전체 카드를 무작위로 섞어 핵심 개념을 빠르게 복습합니다.
+            {cert.id === "adsp"
+              ? "데이터 이해·분석 기획·데이터 분석 중 과목을 골라 핵심 개념을 회상합니다."
+              : "과목 구분 없이 전체 카드를 무작위로 섞어 핵심 개념을 빠르게 복습합니다."}
           </p>
           <button className="btn ghost" onClick={onOpenFlashcards}>
             🗂️ 암기카드 시작
@@ -108,7 +116,7 @@ export default function StartScreen({
         </section>
       )}
 
-      {flashcards.length > 0 && (
+      {cert.id === "network_2_practical" && flashcards.length > 0 && (
         <section className="card router-entry">
           <h2>라우터 기출</h2>
           <p className="muted small">
@@ -121,16 +129,21 @@ export default function StartScreen({
       )}
 
       <div className="actions sticky">
-        <button className="btn primary" onClick={onStart} disabled={!ready}>
-          {ready ? "시험 시작" : "준비중"}
-        </button>
-        <button className="btn ghost" onClick={onOpenWrongBook}>
-          오답노트 {wrongCount > 0 ? `(${wrongCount})` : ""}
-        </button>
-        {ready && (
-          <button className="btn ghost" onClick={onOpenStudy}>
-            정답·해설 ({bankSize}문항)
-          </button>
+        {ready ? (
+          <>
+            <button className="btn primary" onClick={onStart}>시험 시작</button>
+            <button className="btn ghost" onClick={onOpenWrongBook}>
+              오답노트 {wrongCount > 0 ? `(${wrongCount})` : ""}
+            </button>
+            <button className="btn ghost" onClick={onOpenStudy}>정답·해설 ({bankSize}문항)</button>
+          </>
+        ) : flashcards.length > 0 ? (
+          <>
+            <button className="btn primary" onClick={onOpenGuide}>개념 학습 시작</button>
+            <button className="btn ghost" onClick={onOpenFlashcards}>암기카드</button>
+          </>
+        ) : (
+          <button className="btn primary" disabled>준비중</button>
         )}
       </div>
     </div>

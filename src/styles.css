@@ -639,6 +639,283 @@ body {
   flex-direction: column;
   gap: 10px;
 }
+.flashcard-subjects {
+  margin-top: 14px;
+}
+
+/* ---------- ADsP 개념 학습 ---------- */
+.screen.adsp-guide {
+  max-width: 680px;
+  margin: 0 auto;
+  padding-bottom: 38px;
+}
+.adsp-study-hero {
+  margin-bottom: 14px;
+  padding: 24px 20px;
+  overflow: hidden;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 92% 12%, rgba(255, 255, 255, 0.24), transparent 27%),
+    linear-gradient(135deg, #163c73, #2378c9);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(24, 81, 145, 0.2);
+}
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--primary-d);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.adsp-study-hero .eyebrow {
+  color: #bfe0ff;
+}
+.adsp-study-hero h2 {
+  margin: 0 0 8px;
+  font-size: 23px;
+  line-height: 1.35;
+}
+.adsp-study-hero > p:not(.eyebrow) {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13.5px;
+}
+.study-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+.study-progress-row .progress-bar {
+  height: 9px;
+  background: rgba(255, 255, 255, 0.25);
+}
+.study-progress-row .progress-fill {
+  background: #8de2b4;
+}
+.study-progress-row strong {
+  flex: 0 0 auto;
+  font-size: 12px;
+}
+.adsp-routine h2,
+.adsp-plan h2,
+.adsp-pitfalls h2 {
+  margin-bottom: 10px;
+}
+.routine-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.routine-steps span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.routine-steps b {
+  display: grid;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+  border-radius: 7px;
+  background: #e8f0fe;
+  color: var(--primary-d);
+  font-size: 11px;
+}
+.routine-steps i {
+  color: #a9b3c1;
+  font-style: normal;
+}
+.section-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.section-title-row span {
+  color: var(--muted);
+  font-size: 10px;
+}
+.plan-strip {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 1px 7px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.plan-strip article {
+  flex: 0 0 144px;
+  min-height: 108px;
+  padding: 12px;
+  border: 1px solid #dce7f5;
+  border-radius: 12px;
+  background: #f7faff;
+  scroll-snap-align: start;
+}
+.plan-strip strong {
+  color: var(--primary);
+  font-size: 11px;
+}
+.plan-strip h3 {
+  margin: 5px 0 4px;
+  font-size: 13px;
+  line-height: 1.35;
+}
+.plan-strip p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 10.5px;
+  line-height: 1.4;
+}
+.adsp-filter {
+  position: sticky;
+  z-index: 5;
+  top: 0;
+  margin: 0 -16px 10px;
+  padding: 9px 16px;
+  background: rgba(244, 246, 250, 0.94);
+  backdrop-filter: blur(10px);
+}
+.adsp-module-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.adsp-module {
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  overflow: hidden;
+}
+.adsp-module.done {
+  border-color: #a7d9bb;
+}
+.adsp-module summary {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  cursor: pointer;
+  list-style: none;
+}
+.adsp-module summary::-webkit-details-marker {
+  display: none;
+}
+.module-number {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  background: #e8f0fe;
+  color: var(--primary-d);
+  font-size: 12px;
+  font-weight: 800;
+}
+.adsp-module.done .module-number {
+  background: var(--ok-bg);
+  color: var(--ok);
+}
+.adsp-module summary b {
+  display: block;
+  font-size: 14px;
+}
+.adsp-module summary small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-size: 10.5px;
+  line-height: 1.35;
+}
+.module-chevron {
+  color: var(--muted);
+  font-size: 18px;
+  transition: transform 0.18s ease;
+}
+.adsp-module[open] .module-chevron {
+  transform: rotate(180deg);
+}
+.module-body {
+  padding: 0 15px 15px;
+  border-top: 1px solid var(--line);
+}
+.concept-row {
+  padding: 12px 1px;
+  border-bottom: 1px solid var(--line);
+}
+.concept-row h3 {
+  margin: 0 0 4px;
+  color: var(--primary-d);
+  font-size: 13px;
+}
+.concept-row p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.concept-row em {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 3px 7px;
+  border-radius: 6px;
+  background: #fff4d6;
+  color: #775600;
+  font-size: 10.5px;
+  font-style: normal;
+  font-weight: 700;
+}
+.module-complete {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid #bad0ed;
+  border-radius: 10px;
+  background: #f4f8ff;
+  color: var(--primary-d);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.module-complete.checked {
+  border-color: #b4ddc3;
+  background: var(--ok-bg);
+  color: var(--ok);
+}
+.adsp-pitfalls {
+  margin-top: 16px;
+  border: 1px solid #f0d6a1;
+  background: #fffdf8;
+}
+.adsp-pitfalls ol {
+  margin: 0;
+  padding-left: 22px;
+}
+.adsp-pitfalls li {
+  padding: 7px 2px;
+  border-bottom: 1px solid #f2ead8;
+  font-size: 12.5px;
+}
+.adsp-pitfalls li:last-child {
+  border-bottom: 0;
+}
+.adsp-next {
+  padding: 23px 18px;
+}
+.adsp-next > span {
+  font-size: 34px;
+}
+.adsp-next h2 {
+  margin: 4px 0;
+}
+.adsp-next p {
+  margin: 4px 0 14px;
+}
 
 /* ---------- 실기 핵심 요약 ---------- */
 .screen.practical-guide {

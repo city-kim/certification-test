@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { CERTS, totalQuestions } from "../lib/certs";
 import { getBank } from "../data/questions";
+import { getFlashcards } from "../data/flashcards";
 
 export default function CertSelectScreen() {
   // 시크릿 모드는 별도 진입점이라 라우터가 아닌 실제 URL 이동으로 넘어간다.
@@ -17,17 +18,18 @@ export default function CertSelectScreen() {
       <section className="cert-list">
         {CERTS.map((cert) => {
           const bankSize = getBank(cert.id).length;
-          const ready = bankSize > 0;
+          const studySize = getFlashcards(cert.id).length;
+          const ready = bankSize > 0 || studySize > 0;
           const card = (
             <>
               <div className="cert-card-main">
                 <h2>{cert.label}</h2>
                 <p className="muted small">
-                  출제 {totalQuestions(cert)}문항 · {cert.subjects.map((s) => s.label).join(" · ")}
+                  {bankSize > 0 ? `출제 ${totalQuestions(cert)}문항` : "개념 학습"} · {cert.subjects.map((s) => s.label).join(" · ")}
                 </p>
               </div>
               <span className={`cert-badge ${ready ? "ready" : "soon"}`}>
-                {ready ? `문제은행 ${bankSize}` : "준비중"}
+                {bankSize > 0 ? `문제은행 ${bankSize}` : studySize > 0 ? `학습자료 ${studySize}` : "준비중"}
               </span>
             </>
           );

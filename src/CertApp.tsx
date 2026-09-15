@@ -16,6 +16,7 @@ import RefsScreen from "./components/RefsScreen";
 import FlashcardScreen from "./components/FlashcardScreen";
 import PracticalGuideScreen from "./components/PracticalGuideScreen";
 import RouterGuideScreen from "./components/RouterGuideScreen";
+import AdspGuideScreen from "./components/AdspGuideScreen";
 
 type Screen = "start" | "quiz" | "result" | "wrongbook" | "study" | "refs" | "flashcards" | "guide" | "router-guide";
 
@@ -108,14 +109,25 @@ function CertScreen({ cert }: { cert: CertConfig }) {
         <FlashcardScreen cert={cert} onBack={() => setScreen("start")} />
       )}
       {screen === "guide" && (
-        <PracticalGuideScreen
-          cert={cert}
-          onBack={() => setScreen("start")}
-          onOpenFlashcards={() => {
-            setScreen("flashcards");
-            window.scrollTo(0, 0);
-          }}
-        />
+        cert.id === "adsp" ? (
+          <AdspGuideScreen
+            cert={cert}
+            onBack={() => setScreen("start")}
+            onOpenFlashcards={() => {
+              setScreen("flashcards");
+              window.scrollTo(0, 0);
+            }}
+          />
+        ) : (
+          <PracticalGuideScreen
+            cert={cert}
+            onBack={() => setScreen("start")}
+            onOpenFlashcards={() => {
+              setScreen("flashcards");
+              window.scrollTo(0, 0);
+            }}
+          />
+        )
       )}
       {screen === "router-guide" && (
         <RouterGuideScreen onBack={() => setScreen("start")} />
