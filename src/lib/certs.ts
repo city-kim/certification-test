@@ -16,6 +16,8 @@ export interface CertConfig {
   passScore: number;
   /** 과목별 과락 기준 정답률(0~1). 0 이면 과락 없음. */
   subjectPassRatio: number;
+  /** 복원 자료처럼 일부 문항만 확인된 회차 파일을 문제 풀에 허용한다. */
+  allowPartialExams?: boolean;
   subjects: SubjectConfig[];
 }
 

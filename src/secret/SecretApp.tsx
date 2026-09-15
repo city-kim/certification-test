@@ -94,7 +94,7 @@ function Feed({
               className={view === "practical" ? "active" : "gn-nav-extra"}
               onClick={openPractical}
             >
-              Ask
+              {cert.id === "adsp" ? "adsp-test" : "Ask"}
             </a>
             <a className="gn-nav-extra">Show</a>
           </nav>
@@ -135,7 +135,7 @@ function navLabel(c: CertConfig): string {
   const map: Record<string, string> = {
     network_2: "Network",
     network_2_practical: "Ops",
-    adsp: "Data",
+    adsp: "adsp",
   };
   return map[c.id] ?? c.label;
 }

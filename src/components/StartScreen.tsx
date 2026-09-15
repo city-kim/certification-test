@@ -93,7 +93,7 @@ export default function StartScreen({
           <h2>{cert.id === "adsp" ? "ADsP 개념 학습" : "실기 핵심 요약"}</h2>
           <p className="muted small">
             {cert.id === "adsp"
-              ? "기출문제를 풀기 전에 14일 순서로 핵심 개념을 이해하고 학습 진도를 체크합니다."
+              ? "모의고사 전후에 14일 순서로 핵심 개념을 이해하고 학습 진도를 체크합니다."
               : "필수 프로토콜·포트·OSI 계층·리눅스 명령어를 표로 한 번에 훑어봅니다."}
           </p>
           <button className="btn ghost" onClick={onOpenGuide}>

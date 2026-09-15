@@ -37,14 +37,22 @@ for (const cert of CFG.certs) {
 
   let all = [];
   const errors = [];
+  const seenIds = new Set();
 
   for (const f of files) {
     const exam = f.replace(/\.json$/, "");
     const arr = JSON.parse(readFileSync(join(examsDir, f), "utf8"));
-    if (arr.length !== total) errors.push(`${f}: 문항 ${arr.length}개 (${total} 아님)`);
+    if (cert.allowPartialExams) {
+      if (arr.length === 0 || arr.length > total)
+        errors.push(`${f}: 부분 복원 문항 ${arr.length}개 (1~${total} 필요)`);
+    } else if (arr.length !== total) {
+      errors.push(`${f}: 문항 ${arr.length}개 (${total} 아님)`);
+    }
 
     const perSubject = Object.fromEntries(cert.subjects.map((s) => [s.key, 0]));
     for (const q of arr) {
+      if (seenIds.has(q.id)) errors.push(`${q.id}: id 중복`);
+      seenIds.add(q.id);
       if (!validSubjects.has(q.subject)) errors.push(`${q.id}: subject 무효 (${q.subject})`);
       else perSubject[q.subject]++;
 
@@ -73,7 +81,11 @@ for (const cert of CFG.certs) {
         errors.push(`${q.id}: figure 파일 없음 (${q.figure})`);
     }
     for (const [k, v] of Object.entries(counts)) {
-      if (perSubject[k] !== v) errors.push(`${exam}: ${k} ${perSubject[k]}개 (기대 ${v})`);
+      if (cert.allowPartialExams) {
+        if (perSubject[k] > v) errors.push(`${exam}: ${k} ${perSubject[k]}개 (최대 ${v})`);
+      } else if (perSubject[k] !== v) {
+        errors.push(`${exam}: ${k} ${perSubject[k]}개 (기대 ${v})`);
+      }
     }
     all = all.concat(arr);
   }

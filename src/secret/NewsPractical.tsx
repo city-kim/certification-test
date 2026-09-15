@@ -48,7 +48,13 @@ export default function NewsPractical({ cert }: { cert: CertConfig }) {
   return (
     <section className="gn-list-wrap">
       <div className="gn-list-head">
-        <h1 className="gn-page-title">Ask GN: 실무 Q&amp;A</h1>
+        <h1 className="gn-page-title">
+          {cert.id === "adsp"
+            ? "Ask GN: Data Q&A"
+            : cert.id === "network_2"
+              ? "Ask GN: Network Q&A"
+              : "Ask GN: 실무 Q&A"}
+        </h1>
         {items.length > 0 && (
           <a className="gn-progress gn-toggle-all" onClick={toggleAll}>
             {allOpen ? "댓글 모두 접기" : "댓글 모두 펼치기"}
