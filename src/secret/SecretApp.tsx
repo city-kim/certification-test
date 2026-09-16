@@ -9,8 +9,9 @@ import { saveResult } from "../lib/storage";
 import NewsList from "./NewsList";
 import NewsResult from "./NewsResult";
 import NewsPractical from "./NewsPractical";
+import NewsAdspStudy from "./NewsAdspStudy";
 
-type View = "list" | "result" | "practical";
+type View = "list" | "result" | "practical" | "adsp-study";
 
 /**
  * 시크릿(뉴스 게시판 위장) 모드. 겉모습만 IT 뉴스 애그리게이터일 뿐,
@@ -33,10 +34,20 @@ function Feed({
 }) {
   const bank = useMemo(() => getBank(cert.id), [cert.id]);
   const [items, setItems] = useState<ExamItem[]>(() => buildExam(bank, cert));
-  const [view, setView] = useState<View>("list");
+  const [view, setView] = useState<View>(cert.id === "adsp" ? "adsp-study" : "list");
   const [result, setResult] = useState<ExamResult | null>(null);
 
   function backToList() {
+    setView("list");
+    window.scrollTo(0, 0);
+  }
+
+  function openAdspStudy() {
+    setView("adsp-study");
+    window.scrollTo(0, 0);
+  }
+
+  function openExam() {
     setView("list");
     window.scrollTo(0, 0);
   }
@@ -77,22 +88,34 @@ function Feed({
     <div className="gn">
       <header className="gn-top">
         <div className="gn-top-inner">
-          <a className="gn-logo" onClick={backToList}>
+          <a className="gn-logo" onClick={cert.id === "adsp" ? openAdspStudy : backToList}>
             <span className="gn-mark">GN</span> GeekNews
           </a>
           <nav className="gn-nav">
             {CERTS.map((c) => (
               <a
                 key={c.id}
-                className={c.id === cert.id && view !== "practical" ? "active" : ""}
-                onClick={() => onSwitchCert(c.id)}
+                className={
+                  c.id === cert.id &&
+                  (c.id === "adsp" ? view === "adsp-study" : view !== "practical")
+                    ? "active"
+                    : ""
+                }
+                onClick={() => {
+                  if (c.id === cert.id && c.id === "adsp") openAdspStudy();
+                  else onSwitchCert(c.id);
+                }}
               >
                 {navLabel(c)}
               </a>
             ))}
             <a
-              className={view === "practical" ? "active" : "gn-nav-extra"}
-              onClick={openPractical}
+              className={
+                cert.id === "adsp"
+                  ? view === "list" || view === "result" ? "active" : "gn-nav-extra"
+                  : view === "practical" ? "active" : "gn-nav-extra"
+              }
+              onClick={cert.id === "adsp" ? openExam : openPractical}
             >
               {cert.id === "adsp" ? "adsp-test" : "Ask"}
             </a>
@@ -102,6 +125,7 @@ function Feed({
       </header>
 
       <main className="gn-main">
+        {view === "adsp-study" && <NewsAdspStudy />}
         {view === "list" && (
           <NewsList
             cert={cert}
@@ -117,7 +141,7 @@ function Feed({
             cert={cert}
             result={result}
             onRetry={refresh}
-            onReview={backToList}
+            onReview={openExam}
           />
         )}
         {view === "practical" && <NewsPractical cert={cert} />}
