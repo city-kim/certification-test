@@ -917,6 +917,66 @@ body {
   margin: 4px 0 14px;
 }
 
+/* ---------- ADsP 입문서 ---------- */
+.intro-entry {
+  border: 1px solid #cfe0f5;
+  background: linear-gradient(145deg, #f8fbff, #eef6ff);
+}
+.intro-entry .btn {
+  width: 100%;
+  margin-top: 5px;
+}
+.screen.adsp-intro {
+  padding-bottom: 38px;
+}
+.intro-hero {
+  margin-bottom: 14px;
+  padding: 24px 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #174b40, #26856f);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(23, 91, 76, 0.2);
+}
+.intro-hero .eyebrow { color: #b9f2dd; }
+.intro-hero h2 { margin: 0 0 8px; font-size: 23px; line-height: 1.35; }
+.intro-hero > p:not(.eyebrow) { margin: 0; color: rgba(255,255,255,.84); font-size: 13px; line-height: 1.55; }
+.intro-route { display: flex; align-items: center; gap: 8px; margin-top: 17px; font-size: 11px; }
+.intro-route b, .intro-route span { padding: 5px 8px; border-radius: 8px; background: rgba(255,255,255,.15); }
+.intro-route b { background: #fff; color: #17624f; }
+.intro-route i { opacity: .65; font-style: normal; }
+.intro-filter { top: 0; }
+.intro-lessons { display: flex; flex-direction: column; gap: 9px; }
+.intro-lesson { margin: 0; padding: 0; overflow: hidden; }
+.intro-lesson > summary {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  cursor: pointer;
+  list-style: none;
+}
+.intro-lesson > summary::-webkit-details-marker { display: none; }
+.intro-index { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; background: #e3f4ef; color: #17624f; font-size: 12px; font-weight: 800; }
+.intro-lesson summary b { display: block; font-size: 14px; }
+.intro-lesson summary small { display: block; margin-top: 3px; color: var(--muted); font-size: 10.5px; line-height: 1.35; }
+.intro-lesson[open] .module-chevron { transform: rotate(180deg); }
+.intro-body { padding: 2px 15px 16px; border-top: 1px solid var(--line); }
+.intro-story p { margin: 13px 1px; color: #2c3440; font-size: 13px; line-height: 1.75; }
+.intro-body > h3 { margin: 17px 0 8px; color: #17624f; font-size: 13px; }
+.intro-examples { display: grid; gap: 7px; }
+.intro-examples article { padding: 10px 11px; border-radius: 10px; background: #f1f8f6; }
+.intro-examples b { color: #17624f; font-size: 11.5px; }
+.intro-examples p { margin: 3px 0 0; font-size: 12px; line-height: 1.55; }
+.intro-exam-tip { margin-top: 12px; padding: 11px 12px; border-left: 3px solid #e6ad36; border-radius: 0 9px 9px 0; background: #fff9eb; }
+.intro-exam-tip strong { color: #795600; font-size: 12px; }
+.intro-exam-tip ul { margin: 6px 0 0; padding-left: 18px; }
+.intro-exam-tip li { margin: 4px 0; font-size: 11.5px; line-height: 1.45; }
+.intro-check { margin-top: 12px; border: 1px solid #cbdcec; border-radius: 9px; overflow: hidden; }
+.intro-check summary { padding: 9px 10px; color: var(--primary-d); background: #f5f9ff; cursor: pointer; font-size: 11.5px; font-weight: 700; line-height: 1.45; }
+.intro-check p { margin: 0; padding: 10px; border-top: 1px solid #dce7f2; font-size: 12px; line-height: 1.55; }
+.intro-next { margin-top: 16px; }
+
 /* ---------- 실기 핵심 요약 ---------- */
 .screen.practical-guide {
   padding: 8px 10px 28px;

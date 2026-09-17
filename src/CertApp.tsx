@@ -17,8 +17,9 @@ import FlashcardScreen from "./components/FlashcardScreen";
 import PracticalGuideScreen from "./components/PracticalGuideScreen";
 import RouterGuideScreen from "./components/RouterGuideScreen";
 import AdspGuideScreen from "./components/AdspGuideScreen";
+import AdspIntroScreen from "./components/AdspIntroScreen";
 
-type Screen = "start" | "quiz" | "result" | "wrongbook" | "study" | "refs" | "flashcards" | "guide" | "router-guide";
+type Screen = "start" | "quiz" | "result" | "wrongbook" | "study" | "refs" | "flashcards" | "guide" | "intro" | "router-guide";
 
 /**
  * 라우트 진입점. certId 를 key 로 넘겨 자격증이 바뀌면 CertScreen 이 리마운트되어
@@ -72,6 +73,10 @@ function CertScreen({ cert }: { cert: CertConfig }) {
           }}
           onOpenGuide={() => {
             setScreen("guide");
+            window.scrollTo(0, 0);
+          }}
+          onOpenIntro={() => {
+            setScreen("intro");
             window.scrollTo(0, 0);
           }}
           onOpenRouterGuide={() => {
@@ -128,6 +133,15 @@ function CertScreen({ cert }: { cert: CertConfig }) {
             }}
           />
         )
+      )}
+      {screen === "intro" && cert.id === "adsp" && (
+        <AdspIntroScreen
+          onBack={() => setScreen("start")}
+          onOpenGuide={() => {
+            setScreen("guide");
+            window.scrollTo(0, 0);
+          }}
+        />
       )}
       {screen === "router-guide" && (
         <RouterGuideScreen onBack={() => setScreen("start")} />

@@ -14,6 +14,7 @@ interface Props {
   onOpenRefs: () => void;
   onOpenFlashcards: () => void;
   onOpenGuide: () => void;
+  onOpenIntro: () => void;
   onOpenRouterGuide: () => void;
 }
 
@@ -26,6 +27,7 @@ export default function StartScreen({
   onOpenRefs,
   onOpenFlashcards,
   onOpenGuide,
+  onOpenIntro,
   onOpenRouterGuide,
 }: Props) {
   const history = getHistory(cert.id);
@@ -86,6 +88,19 @@ export default function StartScreen({
             📚 분야별로 보기
           </button>
         </section>
+      )}
+
+      {flashcards.length > 0 && (
+        cert.id === "adsp" && (
+          <section className="card intro-entry">
+            <p className="eyebrow">추천 시작점</p>
+            <h2>adsp-intro · 쉬운 개념서</h2>
+            <p className="muted small">
+              핵심 개념을 바로 외우기 어렵다면 생활 예시와 비유, 시험 포인트로 먼저 이해해 보세요.
+            </p>
+            <button className="btn ghost" onClick={onOpenIntro}>🌱 입문서 읽기</button>
+          </section>
+        )
       )}
 
       {flashcards.length > 0 && (

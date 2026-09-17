@@ -10,8 +10,9 @@ import NewsList from "./NewsList";
 import NewsResult from "./NewsResult";
 import NewsPractical from "./NewsPractical";
 import NewsAdspStudy from "./NewsAdspStudy";
+import NewsAdspIntro from "./NewsAdspIntro";
 
-type View = "list" | "result" | "practical" | "adsp-study";
+type View = "list" | "result" | "practical" | "adsp-study" | "adsp-intro";
 
 /**
  * 시크릿(뉴스 게시판 위장) 모드. 겉모습만 IT 뉴스 애그리게이터일 뿐,
@@ -44,6 +45,11 @@ function Feed({
 
   function openAdspStudy() {
     setView("adsp-study");
+    window.scrollTo(0, 0);
+  }
+
+  function openAdspIntro() {
+    setView("adsp-intro");
     window.scrollTo(0, 0);
   }
 
@@ -109,6 +115,11 @@ function Feed({
                 {navLabel(c)}
               </a>
             ))}
+            {cert.id === "adsp" && (
+              <a className={view === "adsp-intro" ? "active" : "gn-nav-extra"} onClick={openAdspIntro}>
+                adsp-intro
+              </a>
+            )}
             <a
               className={
                 cert.id === "adsp"
@@ -125,6 +136,7 @@ function Feed({
       </header>
 
       <main className="gn-main">
+        {view === "adsp-intro" && <NewsAdspIntro />}
         {view === "adsp-study" && <NewsAdspStudy />}
         {view === "list" && (
           <NewsList
