@@ -962,19 +962,22 @@ body {
 .intro-lesson summary small { display: block; margin-top: 3px; color: var(--muted); font-size: 10.5px; line-height: 1.35; }
 .intro-lesson[open] .module-chevron { transform: rotate(180deg); }
 .intro-body { padding: 2px 15px 16px; border-top: 1px solid var(--line); }
-.intro-story p { margin: 13px 1px; color: #2c3440; font-size: 13px; line-height: 1.75; }
+.intro-section { margin: 20px 0; }
+.intro-section h3 { margin: 0 0 10px; color: #17624f; font-size: 14px; line-height: 1.55; }
+.intro-section h3 span { color: #528476; }
+.intro-story p { margin: 10px 1px; color: #2c3440; font-size: 14px; line-height: 1.85; overflow-wrap: anywhere; }
 .intro-body > h3 { margin: 17px 0 8px; color: #17624f; font-size: 13px; }
 .intro-examples { display: grid; gap: 7px; }
 .intro-examples article { padding: 10px 11px; border-radius: 10px; background: #f1f8f6; }
 .intro-examples b { color: #17624f; font-size: 11.5px; }
-.intro-examples p { margin: 3px 0 0; font-size: 12px; line-height: 1.55; }
+.intro-examples p { margin: 5px 0 0; font-size: 13px; line-height: 1.75; overflow-wrap: anywhere; }
 .intro-exam-tip { margin-top: 12px; padding: 11px 12px; border-left: 3px solid #e6ad36; border-radius: 0 9px 9px 0; background: #fff9eb; }
 .intro-exam-tip strong { color: #795600; font-size: 12px; }
 .intro-exam-tip ul { margin: 6px 0 0; padding-left: 18px; }
-.intro-exam-tip li { margin: 4px 0; font-size: 11.5px; line-height: 1.45; }
+.intro-exam-tip li { margin: 7px 0; font-size: 12.5px; line-height: 1.65; }
 .intro-check { margin-top: 12px; border: 1px solid #cbdcec; border-radius: 9px; overflow: hidden; }
 .intro-check summary { padding: 9px 10px; color: var(--primary-d); background: #f5f9ff; cursor: pointer; font-size: 11.5px; font-weight: 700; line-height: 1.45; }
-.intro-check p { margin: 0; padding: 10px; border-top: 1px solid #dce7f2; font-size: 12px; line-height: 1.55; }
+.intro-check p { margin: 0; padding: 10px; border-top: 1px solid #dce7f2; font-size: 13px; line-height: 1.75; }
 .intro-next { margin-top: 16px; }
 
 /* ---------- 실기 핵심 요약 ---------- */

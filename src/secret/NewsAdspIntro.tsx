@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { ADSP_INTRO_LESSONS } from "../data/adsp/intro";
 import type { AdspSubject } from "../data/adsp/guide";
+import AdspIntroReading from "../components/AdspIntroReading";
 
 const SUBJECTS: Array<{ key: AdspSubject; label: string }> = [
   { key: "understanding", label: "데이터 이해" },
@@ -23,10 +24,10 @@ export default function NewsAdspIntro() {
         <h1 className="gn-page-title">ADsP Beginner's Guide</h1>
         <span className="gn-progress">{ADSP_INTRO_LESSONS.length} explainers · easy read</span>
       </div>
-      <p className="gn-intro-lead">핵심요약을 쉬운 설명, 예시, 시험 포인트로 풀어 쓴 입문서입니다.</p>
+      <p className="gn-intro-lead">핵심요약의 개념을 왜 필요한지부터 생활 예시와 계산 과정까지 풀어 쓴 입문서입니다. 소제목을 따라 한 장씩 읽고, 시험 포인트와 확인 질문으로 되짚어 보세요.</p>
 
       <div className="gn-channels">
-        <a className={`gn-channel ${subject === null ? "on" : ""}`} onClick={() => setSubject(null)}>all (12)</a>
+        <a className={`gn-channel ${subject === null ? "on" : ""}`} onClick={() => setSubject(null)}>all ({ADSP_INTRO_LESSONS.length})</a>
         {SUBJECTS.map((item) => (
           <a key={item.key} className={`gn-channel ${subject === item.key ? "on" : ""}`} onClick={() => setSubject(item.key)}>
             {item.label} ({ADSP_INTRO_LESSONS.filter((lesson) => lesson.subject === item.key).length})
@@ -49,12 +50,14 @@ export default function NewsAdspIntro() {
               </div>
               {open && (
                 <div className="gn-row-detail gn-intro-detail">
-                  {lesson.story.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                  <AdspIntroReading lesson={lesson} news />
                   <div className="gn-intro-examples">
                     {lesson.examples.map((example) => <p key={example.title}><b>{example.title}:</b> {example.body}</p>)}
                   </div>
                   <div className="gn-intro-tip"><b>시험 포인트</b><ul>{lesson.examTips.map((tip) => <li key={tip}>{tip}</li>)}</ul></div>
-                  <details className="gn-accordion gn-intro-check"><summary>확인 질문: {lesson.check}</summary><div className="gn-accordion-body">{lesson.answer}</div></details>
+                  {[{ check: lesson.check, answer: lesson.answer }, ...(lesson.extraChecks ?? [])].map((item) => (
+                    <details className="gn-accordion gn-intro-check" key={item.check}><summary>확인 질문: {item.check}</summary><div className="gn-accordion-body">{item.answer}</div></details>
+                  ))}
                 </div>
               )}
             </li>
@@ -64,4 +67,3 @@ export default function NewsAdspIntro() {
     </section>
   );
 }
-

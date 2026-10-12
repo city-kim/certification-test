@@ -1,0 +1,47 @@
+.intro-body { --intro-detail-accent: #17624f; --intro-detail-bg: #f5faf8; }
+.gn-intro-detail { --intro-detail-accent: #444; --intro-detail-bg: #f5f5f5; }
+.intro-section { scroll-margin-top: 68px; }
+.gn-intro-section { scroll-margin-top: 44px; }
+.intro-outline, .gn-intro-outline {
+  margin: 14px 0;
+  border: 1px solid #dce4e0;
+  border-radius: 6px;
+  background: var(--intro-detail-bg);
+  font-size: 12px;
+}
+.intro-outline > summary, .gn-intro-outline > summary { padding: 10px 12px; cursor: pointer; color: var(--intro-detail-accent); font-weight: 700; }
+.intro-outline ol, .gn-intro-outline ol { margin: 0; padding: 0 14px 10px 32px; }
+.intro-outline li, .gn-intro-outline li { margin: 4px 0; }
+.intro-outline button, .gn-intro-outline button {
+  border: 0;
+  padding: 3px 0;
+  background: transparent;
+  color: var(--intro-detail-accent);
+  font: inherit;
+  line-height: 1.6;
+  text-align: left;
+  cursor: pointer;
+}
+.intro-outline button:hover, .gn-intro-outline button:hover { text-decoration: underline; }
+.intro-table-scroll, .gn-intro-table-scroll { max-width: 100%; overflow-x: auto; margin: 14px 0; }
+.intro-table-scroll table, .gn-intro-table-scroll table { width: 100%; min-width: 380px; border-collapse: collapse; font-size: 12px; line-height: 1.65; }
+.intro-table-scroll caption, .gn-intro-table-scroll caption { padding: 0 0 8px; color: var(--intro-detail-accent); text-align: left; font-weight: 700; }
+.intro-table-scroll th, .intro-table-scroll td, .gn-intro-table-scroll th, .gn-intro-table-scroll td { padding: 9px 8px; border: 1px solid #dce4e0; text-align: left; vertical-align: top; }
+.intro-table-scroll th, .gn-intro-table-scroll th { background: var(--intro-detail-bg); color: var(--intro-detail-accent); }
+.adsp-intro-table-hint { display: none; margin-top: 4px; color: #6b756f; font-size: 11px; font-weight: 400; }
+@media (max-width: 600px) { .adsp-intro-table-hint { display: block; } }
+.intro-output, .gn-intro-output { margin: 14px 0; }
+.intro-output figcaption, .gn-intro-output figcaption { margin-bottom: 7px; font-size: 12px; font-weight: 700; color: var(--intro-detail-accent); }
+.intro-output pre, .gn-intro-output pre { max-width: 100%; overflow-x: auto; padding: 12px; border: 1px solid #dce4e0; border-radius: 6px; background: var(--intro-detail-bg); font-size: 11.5px; line-height: 1.7; }
+.adsp-intro-chart { margin: 16px 0; padding: 12px; border: 1px solid #dce4e0; border-radius: 6px; background: #fff; }
+.adsp-intro-chart figcaption { color: var(--intro-detail-accent); font-size: 12px; font-weight: 700; line-height: 1.6; }
+.adsp-intro-chart svg { display: block; width: 100%; max-width: 480px; margin: 8px auto 0; }
+.adsp-intro-chart text { font-family: inherit; font-size: 10px; fill: #555; }
+.adsp-intro-chart .chart-grid { stroke: #e8ece9; stroke-width: 1; }
+.adsp-intro-chart .chart-axis { fill: none; stroke: #777; stroke-width: 1; }
+.adsp-intro-chart .chart-baseline { fill: none; stroke: #888; stroke-width: 2; stroke-dasharray: 5 4; }
+.adsp-intro-chart .chart-model { fill: none; stroke: #17624f; stroke-width: 2.5; }
+.adsp-intro-chart .chart-point { fill: #17624f; }
+.gn-intro-detail .adsp-intro-chart .chart-model { stroke: #444; }
+.gn-intro-detail .adsp-intro-chart .chart-point { fill: #444; }
+.adsp-intro-chart .chart-legend { display: flex; justify-content: center; gap: 16px; margin: 4px 0 0; font-size: 11px; line-height: 1.6; }

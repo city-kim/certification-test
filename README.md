@@ -102,6 +102,8 @@ npm run build        # 타입체크 + 프로덕션 빌드(dist/)
 ADsP는 기출문제 대신 요약자료 기반 선행 학습을 먼저 제공합니다.
 
 - `src/data/adsp/guide.ts`: 14일 일정, 12개 개념 모듈, 시험 함정 교정
+- `src/data/adsp/intro.ts`: 핵심요약과 대응하는 12장 입문서. 소주제 목차, 설명·생활 예시·계산 과정, 비교표·결과표·성능 곡선, 시험 포인트, 확인 질문·해설을 일반 화면과 뉴스형 화면에서 공유
+- `docs/adsp-intro-sources.md`: 입문서 보강 시 확인한 캡처 자료와 개념 검증 출처
 - `src/data/adsp/flashcards.tsv`: 암기카드 원본 145장
 - `src/data/flashcards/adsp.json`: 웹앱에서 사용하는 생성본
 - `npm run build-adsp-study`: TSV 원본에서 카드 JSON 재생성
