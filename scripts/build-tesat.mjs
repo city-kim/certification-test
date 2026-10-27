@@ -41,7 +41,7 @@ const questions=terms.map((t,index)=>{
   const answerIndex=index%optionCount;
   const options=[...others];options.splice(answerIndex,0,t);
   const sourceRefs=refsFor(t.articleIds);
-  return {id:`tesat-concept-${t.id}`,exam:'concepts',number:index+1,type:'mcq',subject:t.subject,title:`${labels[t.subject]} · ${t.definition.slice(0,44)}${t.definition.length>44?'…':''}`,
+  return {id:`tesat-concept-${t.id}`,exam:'concepts',number:index+1,type:'mcq',subject:t.subject,title:`${t.definition.slice(0,44)}${t.definition.length>44?'…':''}`,
     question:`다음 설명에 해당하는 개념을 고르세요.\n\n${t.definition}`,options:options.map(x=>x.name),answerIndex,
     explanation:`${t.name}: ${t.definition}\n${t.example}`,keyPoints:[t.definition,t.contrast],termIds:[t.id],
     optionExplanations:options.map(x=>x.id===t.id?`정답. ${t.example}`:`${x.name}: ${x.definition}`),
