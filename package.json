@@ -7,7 +7,9 @@
     "dev": "vite --port 5090",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "build-bank": "node scripts/build-bank.mjs",
+    "build-bank": "node scripts/build-tesat.mjs && node scripts/build-bank.mjs",
+    "build-tesat": "node scripts/build-tesat.mjs",
+    "test": "node --test tests/*.test.mjs",
     "build-refs": "node scripts/build-refs.mjs",
     "build-adsp-study": "node scripts/build-adsp-study.mjs"
   },

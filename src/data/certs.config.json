@@ -1,6 +1,23 @@
 {
   "certs": [
     {
+      "id": "tesat",
+      "label": "한경 TESAT",
+      "sub": "경제 개념 학습 · 시사용어 · 오답 복습",
+      "bankMode": "study",
+      "optionCounts": [4, 5],
+      "passScore": 0,
+      "subjectPassRatio": 0,
+      "subjects": [
+        { "key": "micro", "label": "미시경제", "count": 4 },
+        { "key": "macro", "label": "거시경제", "count": 4 },
+        { "key": "finance", "label": "금융", "count": 4 },
+        { "key": "international", "label": "국제경제", "count": 3 },
+        { "key": "business", "label": "기업·경영", "count": 3 },
+        { "key": "current", "label": "시사경제", "count": 2 }
+      ]
+    },
+    {
       "id": "network_2",
       "label": "네트워크관리사 2급",
       "sub": "모바일 모의고사 · 매회 랜덤 출제",

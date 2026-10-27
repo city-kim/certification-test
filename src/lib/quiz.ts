@@ -66,7 +66,8 @@ function toExamItem(q: Question): ExamItem {
   if (isShort(q)) {
     return { question: q, options: [], answerIndex: -1, selected: null, input: "", hintUsed: false };
   }
-  const order = shuffle(q.options.map((_, i) => i)); // 원래 인덱스의 셔플 순서
+  const indices = q.options.map((_, i) => i);
+  const order = q.shuffleOptions === false ? indices : shuffle(indices);
   const options = order.map((i) => q.options[i]);
   const answerIndex = order.indexOf(q.answerIndex);
   return { question: q, options, answerIndex, selected: null, input: "", hintUsed: false };

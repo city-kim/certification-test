@@ -13,6 +13,11 @@ const CFG = JSON.parse(readFileSync(join(ROOT, "src", "data", "certs.config.json
 let hadError = false;
 
 for (const cert of CFG.certs) {
+  // TESAT article/concept banks have variable sizes and their own semantic checks.
+  if (cert.bankMode === "study") {
+    console.log(`[${cert.id}] 별도 학습 은행 — build-tesat 검증 사용`);
+    continue;
+  }
   const examsDir = join(ROOT, "src", "data", "exams", cert.id);
   const outDir = join(ROOT, "src", "data", cert.id);
   const out = join(outDir, "questions.json");
@@ -68,10 +73,10 @@ for (const cert of CFG.certs) {
           errors.push(`${q.id}: 주관식에는 options/answerIndex 를 쓰지 않는다`);
       } else {
         if (q.type != null && q.type !== "mcq") errors.push(`${q.id}: type 무효 (${q.type})`);
-        if (!Array.isArray(q.options) || q.options.length !== 4)
+        if (!Array.isArray(q.options) || !(cert.optionCounts ?? [4]).includes(q.options.length))
           errors.push(`${q.id}: 보기 개수 ${q.options?.length}`);
-        else if (new Set(q.options).size !== 4) errors.push(`${q.id}: 보기 중복`);
-        if (typeof q.answerIndex !== "number" || q.answerIndex < 0 || q.answerIndex > 3)
+        else if (new Set(q.options).size !== q.options.length) errors.push(`${q.id}: 보기 중복`);
+        if (!Number.isInteger(q.answerIndex) || q.answerIndex < 0 || q.answerIndex >= (q.options?.length ?? 0))
           errors.push(`${q.id}: answerIndex 무효 (${q.answerIndex})`);
       }
 

@@ -10,6 +10,12 @@ interface QuestionBase {
   question: string;
   figure?: string;
   explanation: string;
+  /** 출처·학습 보강 정보. 기존 자격증 데이터에는 없어도 된다. */
+  sourceRefs?: { articleId: string; url: string; title: string; publishedAt: string; source: string }[];
+  publishedAt?: string;
+  keyPoints?: string[];
+  termIds?: string[];
+  optionExplanations?: string[];
 }
 
 /** 4지선다 문항. type 을 생략하면 이쪽으로 본다(기존 데이터 호환). */
@@ -17,6 +23,7 @@ export interface McqQuestion extends QuestionBase {
   type?: "mcq";
   options: string[];
   answerIndex: number;
+  shuffleOptions?: boolean;
 }
 
 /** 주관식(단답형) 문항. 실기처럼 답을 직접 적는 유형. */

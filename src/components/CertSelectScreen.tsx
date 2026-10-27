@@ -25,7 +25,7 @@ export default function CertSelectScreen() {
               <div className="cert-card-main">
                 <h2>{cert.label}</h2>
                 <p className="muted small">
-                  {bankSize > 0 ? `출제 ${totalQuestions(cert)}문항` : "개념 학습"} · {cert.subjects.map((s) => s.label).join(" · ")}
+                  {cert.id === "tesat" ? "출처별 개념 학습 · 20문항 실력 점검" : bankSize > 0 ? `출제 ${totalQuestions(cert)}문항` : "개념 학습"} · {cert.subjects.map((s) => s.label).join(" · ")}
                 </p>
               </div>
               <span className={`cert-badge ${ready ? "ready" : "soon"}`}>

@@ -1,0 +1,65 @@
+/* Use the existing exam and GeekNews styles; only TESAT-specific controls live here. */
+.tesat-study button{font-family:inherit;cursor:pointer}
+.tesat-study button:disabled{cursor:default}
+.tesat-study .tesat-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tesat-filters label,.tesat-jump{display:block;min-width:0;color:var(--muted);font-size:13px}
+.tesat-filters input,.tesat-filters select,.tesat-jump select{box-sizing:border-box;display:block;width:100%;min-width:0;border:1px solid var(--line);border-radius:8px;padding:10px;background:var(--card);color:var(--text);font:inherit}
+.tesat-filters label select{margin-top:4px}
+.tesat-filters input{grid-column:1/-1}
+.tesat-jump{margin:0 0 12px}
+.tesat-jump select{margin-top:5px}
+.tesat-library-actions,.tesat-term-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.tesat-library-actions .btn,.tesat-term-actions .btn{flex:1;margin-top:0}
+.tesat-study .options{margin-top:14px}
+.tesat-study .option:disabled{opacity:1}
+.tesat-term-links{flex-wrap:wrap;overflow:visible;margin:12px 0}
+.tesat-refs,.tesat-review-notes{margin:12px 0;font-size:13px;color:var(--muted)}
+.tesat-refs summary,.tesat-review-notes summary,.tesat-option-notes summary{cursor:pointer}
+.tesat-refs a,.tesat-news .gn-accordion a{display:block;margin:8px 0;color:inherit;overflow-wrap:anywhere}
+.tesat-notes{font-size:14px;white-space:normal}
+.tesat-notes>strong{display:block;margin-top:10px}
+.tesat-notes>strong:first-child{margin-top:0}
+.tesat-notes ul,.tesat-summary{padding-left:20px;font-size:14px}
+.tesat-notes li,.tesat-summary li{margin:6px 0}
+.tesat-option-notes{margin-top:12px;font-size:13px}
+.tesat-option-notes ol{list-style:none;padding:0}
+.tesat-option-notes li{border-top:1px solid var(--line);padding:8px 0}
+.tesat-review-notes{padding:0 14px 10px}
+.tesat-review .review-item{margin-bottom:6px}
+.tesat-definition{font-size:15px;white-space:pre-line}
+.tesat-term-example strong{display:block;margin-top:10px}
+.tesat-term-example strong:first-child{margin-top:0}
+.tesat-term-actions [aria-pressed=true]{outline:2px solid var(--primary);outline-offset:-2px}
+.tesat-score{background:var(--primary)}
+.tesat-resume{margin:10px 0}
+/* Keep the same 920px content, header and plain poll rows as the Network channel. */
+.gn.gn-tesat{min-width:0}
+.gn-tesat .gn-top-inner{flex-wrap:wrap;gap:8px 18px}
+.gn-tesat .gn-nav{flex-wrap:wrap}
+.tesat-news{--line:var(--gn-border);--text:var(--gn-text);--muted:var(--gn-muted);--card:var(--gn-surface);font-size:14px}
+.tesat-news-tools{display:flex;flex-wrap:wrap;gap:6px 16px;margin:0 0 14px}
+.tesat-news-tools .active{font-weight:700;color:var(--gn-text)}
+.tesat-news .gn-back,.tesat-text-button{border:0;background:none;padding:0;font-family:inherit;cursor:pointer;text-align:left}
+.tesat-news-section{border-bottom:1px solid var(--gn-border);padding:12px 0}
+.tesat-news-subjects{list-style:none;padding:0;margin:0;font-size:13px}
+.tesat-news-subjects li{display:flex;justify-content:space-between;gap:10px;padding:7px 0}
+.tesat-news .tesat-filters{padding:8px 0;max-width:650px}
+.tesat-news .tesat-filters label{font-size:12px}
+.tesat-news .tesat-filters input,.tesat-news .tesat-filters select{border-radius:3px;padding:6px;font-size:12px}
+.tesat-filter-disclosure{margin:0}
+.tesat-news .tesat-library-actions{margin-top:8px;padding-top:0;border-top:0}
+.tesat-news-row{border:0;background:transparent;width:100%;text-align:left;font-family:inherit;color:inherit}
+.tesat-news .gn-row-title-line,.tesat-news .gn-meta{display:flex}
+.tesat-news .gn-row-detail{padding-bottom:10px}
+.tesat-news .tesat-question{white-space:pre-line}
+.tesat-news .gn-choice:disabled{opacity:1;cursor:default}
+.tesat-news .tesat-notes{font-size:13px}
+.tesat-news .tesat-notes p{white-space:pre-line}
+.tesat-news .tesat-notes ul,.tesat-news .tesat-summary{font-size:13px}
+.tesat-news-links{display:flex;flex-wrap:wrap;gap:6px 12px;margin:10px 0}
+.tesat-news-table{width:100%;border-collapse:collapse;font-size:13px}
+.tesat-news-table th,.tesat-news-table td{text-align:left;padding:8px;border-bottom:1px solid var(--gn-border)}
+.tesat-news .tesat-term-example{padding:0}
+.tesat-news .tesat-term-actions [aria-pressed=true]{outline:1px solid var(--gn-text);outline-offset:2px}
+.tesat-news .tesat-definition{font-size:13px}
+@media(max-width:480px){.gn-tesat .gn-row-title-line{flex-wrap:wrap;gap:0 6px}.gn-tesat .gn-title{max-width:100%}.gn-tesat .gn-row-detail{padding-left:12px}.gn-tesat .gn-domain{font-size:11px}}

@@ -11,6 +11,7 @@ import NewsResult from "./NewsResult";
 import NewsPractical from "./NewsPractical";
 import NewsAdspStudy from "./NewsAdspStudy";
 import NewsAdspIntro from "./NewsAdspIntro";
+import TesatApp from "../components/TesatApp";
 
 type View = "list" | "result" | "practical" | "adsp-study" | "adsp-intro";
 
@@ -21,8 +22,21 @@ type View = "list" | "result" | "practical" | "adsp-study" | "adsp-intro";
  * 채점 결과만 별도 화면으로 전환한다.
  */
 export default function SecretApp() {
-  const [certId, setCertId] = useState<string>(CERTS[0]?.id ?? "network_2");
+  const [certId, setCertId] = useState<string>(() => {
+    const channel = new URLSearchParams(window.location.search).get("channel");
+    return channel && getCert(channel) ? channel : "network_2";
+  });
   const cert = getCert(certId)!;
+  if (cert.id === "tesat") return (
+    <div className="gn gn-tesat">
+      <header className="gn-top"><div className="gn-top-inner">
+        <a className="gn-logo" onClick={() => setCertId("network_2")}><span className="gn-mark">GN</span> GeekNews</a>
+        <nav className="gn-nav">{CERTS.map(c => <a key={c.id} className={c.id === certId ? "active" : ""} onClick={() => setCertId(c.id)}>{navLabel(c)}</a>)}</nav>
+      </div></header>
+      <main className="gn-main"><TesatApp secret /></main>
+      <footer className="gn-foot">Guidelines | FAQ | API | Contact — Search stories by keyword</footer>
+    </div>
+  );
   return <Feed key={certId} cert={cert} onSwitchCert={setCertId} />;
 }
 
@@ -172,6 +186,7 @@ function navLabel(c: CertConfig): string {
     network_2: "Network",
     network_2_practical: "Ops",
     adsp: "adsp",
+    tesat: "Economy",
   };
   return map[c.id] ?? c.label;
 }

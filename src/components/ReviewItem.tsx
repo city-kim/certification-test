@@ -57,7 +57,7 @@ export default function ReviewItem({ data }: { data: ReviewData }) {
               return (
                 <li key={i}>
                   <div className={`option static ${cls}`}>
-                    <span className="opt-marker">{"①②③④"[i]}</span>
+                    <span className="opt-marker">{"①②③④⑤"[i]}</span>
                     <span className="opt-text">{opt}</span>
                     {isCorrect && <span className="badge ok">정답</span>}
                     {isSelected && !isCorrect && <span className="badge no">내 선택</span>}

@@ -2,12 +2,14 @@ import type { Question } from "../lib/types";
 import network_2 from "./network_2/questions.json";
 import network_2_practical from "./network_2_practical/questions.json";
 import adsp from "./adsp/questions.json";
+import tesat from "./tesat/questions.json";
 
 /** 자격증 id → 문제은행. build-bank.mjs 가 생성한 회차 병합본을 정적 import. */
 export const BANKS: Record<string, Question[]> = {
   network_2: network_2 as Question[],
   network_2_practical: network_2_practical as Question[],
   adsp: adsp as Question[],
+  tesat: tesat as Question[],
 };
 
 export function getBank(certId: string): Question[] {
