@@ -1,17 +1,20 @@
 import { useEffect, useMemo, useState } from 'react';
 import { figureUrl } from '../data/questions';
-import { TESAT_ARTICLES, TESAT_BANK, TESAT_RANGES, TESAT_TERMS } from '../data/tesat';
+import { TESAT_ARCHIVE_BANK, TESAT_ARTICLES, TESAT_BANK, TESAT_RANGES, TESAT_TERMS } from '../data/tesat';
 import { changeLearning, useLearning } from '../lib/tesatStorage';
 import { emptyFilter, filterQuestions, focusStudySession, newSession, reconcileLearning, selectPractice, SOURCE_LABELS, SUBJECT_LABELS, submitLearning, updateSelection } from '../lib/tesat';
 import type { SourceId, StudyFilter, StudyMode, StudySession, TesatQuestion, Term, WrongStatus } from '../lib/tesat';
 import { fakeMeta } from '../secret/meta';
 import ReviewItem from './ReviewItem';
+import QuestionContent from './QuestionContent';
 import './TesatApp.css';
 
 type View = 'home' | 'library' | 'session' | 'wrong' | 'terms' | 'current' | 'sources';
 const MARKERS = '①②③④⑤';
 const STATUS_LABELS = { unreviewed: '미복습', again: '다시 틀림', done: '복습 완료' };
-const lookup = new Map(TESAT_BANK.map(q => [q.id, q]));
+const learningBank = [...TESAT_BANK, ...TESAT_ARCHIVE_BANK];
+const lookup = new Map(learningBank.map(q => [q.id, q]));
+const restoreLearning = (state: Parameters<typeof reconcileLearning>[0]) => reconcileLearning(state, state.session?.mode === 'review' ? learningBank : TESAT_BANK);
 const termMap = new Map(TESAT_TERMS.map(t => [t.id, t]));
 const VIEW_LABELS: Record<View, string> = {
   home: 'TESAT', library: '정답·해설 모아보기', session: '개념 학습',
@@ -20,7 +23,7 @@ const VIEW_LABELS: Record<View, string> = {
 
 export default function TesatApp({ secret = false }: { secret?: boolean }) {
   const { state, failed } = useLearning();
-  const restoredSession = focusStudySession(reconcileLearning(state, TESAT_BANK).session);
+  const restoredSession = focusStudySession(restoreLearning(state).session);
   const [view, setView] = useState<View>(secret ? restoredSession ? 'session' : 'library' : 'home');
   const [filter, setFilter] = useState<StudyFilter>(emptyFilter);
   const [wrongFilter, setWrongFilter] = useState<WrongStatus | ''>('');
@@ -35,15 +38,18 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
   const [articleId, setArticleId] = useState('');
   const [limit, setLimit] = useState(secret && restoredSession ? Math.max(30, restoredSession.cursor + 1) : 30);
 
-  useEffect(() => { changeLearning(old => reconcileLearning(old, TESAT_BANK)); }, []);
+  useEffect(() => { changeLearning(restoreLearning); }, []);
   const session = state.session;
   const questions = useMemo(() => filterQuestions(TESAT_BANK, filter, state.progress)
     .filter(q => !articleId || q.sourceRefs.some(r => r.articleId === articleId))
-    .map(q => articleId ? { ...q, publishedAt: q.sourceRefs.find(r => r.articleId === articleId)!.publishedAt } : q),
+    .map(q => {
+      const ref = articleId ? q.sourceRefs.find(r => r.articleId === articleId)! : null;
+      return ref ? { ...q, publishedAt: ref.publishedAt, number: ref.questionNumber ?? q.number } : q;
+    }).sort((a,b) => articleId ? a.number-b.number : 0),
   [filter, state.progress, articleId]);
-  const wrong = TESAT_BANK.filter(q => state.progress[q.id]?.wrongCount > 0 && (!wrongFilter || state.progress[q.id].wrongStatus === wrongFilter))
+  const wrong = learningBank.filter(q => state.progress[q.id]?.wrongCount > 0 && (!wrongFilter || state.progress[q.id].wrongStatus === wrongFilter))
     .sort((a, b) => state.progress[b.id].lastAttempt - state.progress[a.id].lastAttempt);
-  const activeWrong = TESAT_BANK.filter(q => state.progress[q.id]?.wrongStatus && state.progress[q.id].wrongStatus !== 'done');
+  const activeWrong = learningBank.filter(q => state.progress[q.id]?.wrongStatus && state.progress[q.id].wrongStatus !== 'done');
   const terms = TESAT_TERMS.filter(t => (!termFocus || t.id === termFocus)
     && (!termSearch || [t.name, t.definition, t.explanation, ...(t.aliases ?? [])].join(' ').toLowerCase().includes(termSearch.toLowerCase()))
     && (secret ? !termSubject || t.subject === termSubject : !termStatus || (termStatus === 'new' ? !state.terms[t.id] : state.terms[t.id] === termStatus)));
@@ -95,13 +101,14 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
     if (!session) return;
     const missing = session.ids.filter(id => session.selections[id] == null).length;
     if (missing && !window.confirm(`미응답 ${missing}문항도 오답으로 채점할까요?`)) return;
-    changeLearning(old => submitLearning(old, TESAT_BANK, Date.now(), true));
+    changeLearning(old => submitLearning(old, learningBank, Date.now(), true));
     window.scrollTo(0, 0);
   }
   function gradeOne(index: number) {
-    changeLearning(old => submitLearning({ ...old, session: old.session ? { ...old.session, cursor: index } : null }, TESAT_BANK, Date.now()));
+    changeLearning(old => submitLearning({ ...old, session: old.session ? { ...old.session, cursor: index } : null }, learningBank, Date.now()));
   }
   function openSource(source: SourceId) {
+    if (!TESAT_BANK.some(q => q.sourceRefs.some(r => r.source === source))) { go('sources'); return; }
     setFilter({ ...emptyFilter, source }); setArticleId(''); go('library');
   }
   function openTerm(id: string) {
@@ -118,18 +125,18 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
   function refs(q: TesatQuestion) {
     return <details className={secret ? 'gn-accordion small' : 'tesat-refs'}>
       <summary>관련 원문 {q.sourceRefs.length}편 · 게시 당시 기준</summary>
-      <div>{q.sourceRefs.map(r => <a key={r.articleId} href={r.url} target="_blank" rel="noreferrer">
-        {SOURCE_LABELS[r.source as SourceId]} · {r.publishedAt} · {r.title} ↗
+      <div>{q.sourceRefs.map(r => <a key={r.articleId+':'+r.questionNumber} href={r.url} target="_blank" rel="noreferrer">
+        {SOURCE_LABELS[r.source as SourceId]} · {r.publishedAt} · {r.title}{r.questionNumber ? ` · ${r.questionNumber}번` : ''} ↗
       </a>)}</div>
     </details>;
   }
   function notes(q: TesatQuestion, includeExplanation = true) {
     const body = <>
-      {includeExplanation && <><strong>해설</strong><p>{q.explanation}</p></>}
-      <strong>핵심 요점</strong><ul>{q.keyPoints.map((p, i) => <li key={i}>{p}</li>)}</ul>
-      <details className="tesat-option-notes"><summary>보기별 설명 · 오답의 함정</summary>
+      {includeExplanation && <><strong>{q.explanationKind === 'original' ? '원문 해설' : q.explanationKind === 'concept' ? '정답표·관련 개념 해설' : q.explanationKind === 'answer-key' ? '원문 정답표' : '해설'}</strong><p>{q.explanation}</p></>}
+      {!!q.keyPoints.length && <><strong>핵심 요점</strong><ul>{q.keyPoints.map((p, i) => <li key={i}>{p}</li>)}</ul></>}
+      {!!q.optionExplanations.length && <details className="tesat-option-notes"><summary>보기별 설명 · 오답의 함정</summary>
         <ol>{q.optionExplanations.map((text, i) => <li key={i}><b>{MARKERS[i]} {q.options[i]}</b><p>{text}</p></li>)}</ol>
-      </details>
+      </details>}
     </>;
     return <>
       {secret ? <details className="gn-accordion"><summary>💬 정리 코멘트 펼치기 (spoiler)</summary><div className="gn-accordion-body tesat-notes">{body}</div></details>
@@ -139,8 +146,8 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
   }
   function questionBody(q: TesatQuestion, selected: number | null, graded: boolean, onSelect?: (index: number) => void, index?: number) {
     return <>
-      <p className={secret ? 'gn-lead tesat-question' : 'q-text'}>{index != null && !secret && <span className="q-num">{index + 1}.</span>}{q.question}</p>
-      {q.figure && <img className={secret ? 'gn-figure' : 'q-figure'} src={figureUrl(q.figure)} alt="문제 그림" />}
+      <div className={secret ? 'gn-lead tesat-question' : 'q-text'}>{q.content ? <QuestionContent content={q.content} prefix={index != null && !secret ? <span className="q-num">{index + 1}.</span> : undefined} /> : <>{index != null && !secret && <span className="q-num">{index + 1}.</span>}{q.question}</>}</div>
+      {q.figure && !q.content && <img className={secret ? 'gn-figure' : 'q-figure'} src={figureUrl(q.figure)} alt="문제 그림" />}
       <ul className={secret ? 'gn-poll' : `options ${graded ? 'review' : ''}`}>
         {q.options.map((opt, i) => {
           const cls = secret ? `gn-choice ${selected === i ? 'voted' : ''}`
@@ -153,6 +160,7 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
             : <div className={cls}>{content}</div>}</li>;
         })}
       </ul>
+      {q.originalIssues?.map((issue, i) => <p className={secret ? 'gn-progress' : 'muted small'} key={i}>원문 확인사항: {issue}</p>)}
       {graded && <>{onSelect && <p className={secret ? 'gn-lead' : 'muted small'} role="status">{selected === null ? '미응답' : selected === q.answerIndex ? '정답입니다' : '오답입니다'} · 정답 {MARKERS[q.answerIndex]}</p>}{notes(q)}</>}
     </>;
   }
@@ -163,7 +171,7 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
       <button className={`gn-row tesat-news-row ${state.progress[q.id] ? 'read' : ''}`} onClick={onToggle} aria-expanded={open}>
         <span className="gn-rank">{index + 1}.</span><span className="gn-row-body">
           <span className="gn-row-title-line"><span className="gn-title">{q.title}</span><span className="gn-domain">({domain})</span></span>
-          <span className="gn-meta"><span className="gn-points">{meta.points} points</span><span className="gn-tag">{SUBJECT_LABELS[q.subject]}</span><span>{q.publishedAt}</span><span className="gn-comments">{state.progress[q.id] ? '읽음' : `댓글 ${meta.comments}`}</span></span>
+          <span className="gn-meta"><span className="gn-points">{meta.points} points</span><span className="gn-tag">{SUBJECT_LABELS[q.subject]}</span><span>{q.publishedAt}</span>{q.delivery === 'authored' && <span>이전 개념 연습</span>}<span className="gn-comments">{state.progress[q.id] ? '읽음' : `댓글 ${meta.comments}`}</span></span>
         </span>
       </button>
       {open && <div className="gn-row-detail">{children}</div>}
@@ -172,7 +180,8 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
   function review(q: TesatQuestion, index: number, selected: number | null) {
     return <div key={q.id} className="tesat-review">
       <ReviewItem data={{ index: index + 1, subjectLabel: SUBJECT_LABELS[q.subject], question: q.question,
-        figure: q.figure, options: q.options, correctText: q.options[q.answerIndex],
+        content: q.content, figure: q.figure, options: q.options, correctText: q.options[q.answerIndex],
+        correctIndex: q.answerIndex, selectedIndex: selected,
         selectedText: selected == null ? null : q.options[selected], explanation: q.explanation }} />
       <details className="tesat-review-notes"><summary>요점·관련 용어 보기</summary>{notes(q, false)}</details>
     </div>;
@@ -207,7 +216,7 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
   }
 
   const filterControls = <div className="tesat-filters">
-    <label>출처<select value={filter.source} onChange={e => { setArticleId(''); setFilter({ ...filter, source: e.target.value }); setLimit(30); }}><option value="">전체 출처</option>{Object.entries(SOURCE_LABELS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}</select></label>
+    <label>출처<select value={filter.source} onChange={e => { setArticleId(''); setFilter({ ...filter, source: e.target.value }); setLimit(30); }}><option value="">전체 출처</option>{Object.entries(SOURCE_LABELS).filter(([key]) => TESAT_BANK.some(q => q.sourceRefs.some(r => r.source === key))).map(([k, v]) => <option key={k} value={k}>{v}</option>)}</select></label>
     <label>게시월<select value={filter.month} onChange={e => { setFilter({ ...filter, month: e.target.value }); setLimit(30); }}><option value="">전체 기간</option>{months.map(m => <option key={m}>{m}</option>)}</select></label>
     <label>주제<select value={filter.subject} onChange={e => { setFilter({ ...filter, subject: e.target.value }); setLimit(30); }}><option value="">전체 주제</option>{Object.entries(SUBJECT_LABELS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}</select></label>
     <label>학습 상태<select value={filter.status} onChange={e => { setFilter({ ...filter, status: e.target.value }); setLimit(30); }}><option value="">전체 상태</option><option value="new">미학습</option><option value="correct">최근 정답</option><option value="wrong">복습할 오답</option></select></label>
@@ -240,11 +249,11 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
       </section>}
       <section className={card}><h2 className={secret ? 'gn-wrong-title' : ''}>출처별 학습</h2><ul className={secret ? 'tesat-news-subjects' : 'subject-list'}>{(['quiz', 'taste', 'today'] as SourceId[]).map(source => {
         const pool = TESAT_BANK.filter(q => q.sourceRefs.some(r => r.source === source));
-        return <li key={source}><button className={secret ? 'gn-back' : 'link'} onClick={() => openSource(source)}>{SOURCE_LABELS[source]}</button><span className="count">{pool.filter(q => state.progress[q.id]).length}/{pool.length}</span></li>;
+        return <li key={source}><button className={secret ? 'gn-back' : 'link'} onClick={() => openSource(source)}>{SOURCE_LABELS[source]}</button><span className="count">{pool.length ? `${pool.filter(q => state.progress[q.id]).length}/${pool.length}` : '원문 링크'}</span></li>;
       })}</ul><p className={secret ? 'gn-progress' : 'muted small'}>학습한 문제 {learned}개 · 복습할 오답 {activeWrong.length}개</p></section>
       <section className={card}><h2 className={secret ? 'gn-wrong-title' : ''}>{secret ? 'Keywords' : '용어장·암기카드'} ({TESAT_TERMS.length}개)</h2><p className={secret ? 'gn-progress' : 'muted small'}>{secret ? '용어의 뜻·예시·혼동하기 쉬운 개념을 모았습니다.' : '뜻·예시·혼동하기 쉬운 개념을 연결하고 알아요 / 다시 보기로 복습합니다.'}</p><button className={button} onClick={() => { setTermFocus(null); setTermSearch(''); setTermStatus(''); setTermSubject(''); setCardMode(!secret); setRevealed(new Set()); go('terms'); }}>{secret ? 'View keywords' : '🗂️ 암기카드 시작'}</button></section>
       <section className={card}><h2 className={secret ? 'gn-wrong-title' : ''}>시사 경제용어 따라잡기 ({currentArticles.length}편)</h2><p className={secret ? 'gn-progress' : 'muted small'}>최근 반년치 게시글의 요약과 관련 용어를 확인합니다.</p><button className={button} onClick={() => go('current')}>📘 시사용어 보기</button></section>
-      <section className={card}><h2 className={secret ? 'gn-wrong-title' : ''}>자료 목록</h2><p className={secret ? 'gn-progress' : 'muted small'}>공식 원문은 출처 링크에서 읽습니다. 앱의 문제·해설은 별도로 작성한 개념 연습입니다.</p><button className={button} onClick={() => go('sources')}>📚 출처와 학습 기간 보기</button></section>
+      <section className={card}><h2 className={secret ? 'gn-wrong-title' : ''}>자료 목록</h2><p className={secret ? 'gn-progress' : 'muted small'}>제공하신 HTML의 문제·보기·정답을 보존해 등록했습니다. 원문 해설과 별도로 보강한 개념 설명을 구분해서 읽을 수 있습니다.</p><button className={button} onClick={() => go('sources')}>📚 출처와 학습 기간 보기</button></section>
       <div className={secret ? 'gn-article-nav' : 'actions sticky'}><button className={primary} onClick={() => start(selectPractice(TESAT_BANK), 'test')}>실력 점검 시작</button><button className={secret ? 'gn-navbtn' : 'btn ghost'} onClick={() => go('wrong')}>오답노트 {activeWrong.length ? `(${activeWrong.length})` : ''}</button><button className={secret ? 'gn-navbtn' : 'btn ghost'} onClick={() => { setFilter(emptyFilter); setArticleId(''); go('library'); }}>정답·해설 ({TESAT_BANK.length}문항)</button></div>
     </>}
 
@@ -325,10 +334,10 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
 
     {view === 'sources' && <>
       {secret && <h1 className="gn-page-title">Sources</h1>}
-      <section className={card}><p className={secret ? 'gn-progress' : 'muted small'}>최초 게시일 기준 · 확인일 2026.10.27<br />원문 문항 수와 앱 자체 연습문제 수는 다릅니다. 같은 개념의 연습문제는 여러 원문에 연결됩니다.</p>{TESAT_RANGES.map(r => <p key={r.source} className={secret ? 'gn-progress' : 'muted small'}><b>{r.source === 'current-terms' ? '시사 경제용어' : SOURCE_LABELS[r.source as SourceId]}</b><br />{r.start} ~ {r.end}</p>)}</section>
+      <section className={card}><p className={secret ? 'gn-progress' : 'muted small'}>최초 게시일 기준 · 확인일 2026.10.27<br />제공 원문 {TESAT_ARTICLES.filter(a => a.provided).length}편에서 {TESAT_BANK.reduce((sum, q) => sum + q.sourceRefs.length, 0)}문항을 읽었습니다. 동일 문항은 출처를 함께 연결해 {TESAT_BANK.length}문항으로 등록했습니다.<br />오늘의 TESAT 문제는 원문 파일이 제공되지 않아 링크 자료로 확인합니다.</p>{TESAT_RANGES.map(r => <p key={r.source} className={secret ? 'gn-progress' : 'muted small'}><b>{r.source === 'current-terms' ? '시사 경제용어' : SOURCE_LABELS[r.source as SourceId]}</b><br />{r.start} ~ {r.end}</p>)}</section>
       {TESAT_ARTICLES.map(a => {
         const linked = TESAT_BANK.filter(q => q.sourceRefs.some(r => r.articleId === a.id));
-        return <article className={card} key={a.id}><p className={secret ? 'gn-progress' : 'muted small'}>{SOURCE_LABELS[a.source]} · {a.publishedAt} · {a.included ? '대상 자료' : '대상 제외'}</p><h2 className={secret ? 'gn-page-title' : ''}><a href={a.url} target="_blank" rel="noreferrer">{a.title} ↗</a></h2><p className={secret ? 'gn-progress' : 'muted small'}>{a.kind === 'terms' ? '용어 자료' : `원문 ${a.questionCount ?? '미확인'}문항`} · 연결 연습 {linked.length}문항{a.imageCount ? ` · 원문 그림 ${a.imageCount}개` : ''}</p>{a.note && <p className={secret ? 'gn-progress' : 'muted small'}>{a.note}</p>}{a.included && linked.length > 0 && <button className={button} onClick={() => { setFilter(emptyFilter); setArticleId(a.id); go('library'); }}>이 게시글 관련 개념 학습</button>}</article>;
+        return <article className={card} key={a.id}><p className={secret ? 'gn-progress' : 'muted small'}>{SOURCE_LABELS[a.source]} · {a.publishedAt} · {a.provided ? '제공 원문 등록' : a.included ? '링크 자료' : '대상 제외'}</p><h2 className={secret ? 'gn-page-title' : ''}><a href={a.url} target="_blank" rel="noreferrer">{a.title} ↗</a></h2><p className={secret ? 'gn-progress' : 'muted small'}>{a.kind === 'terms' ? '용어 자료' : `원문 ${a.questionCount ?? '미확인'}문항`}{a.provided ? ` · 등록 ${linked.length}문항` : ''}{a.imageCount ? ` · 원문 그림 ${a.imageCount}개` : ''}</p>{a.note && <p className={secret ? 'gn-progress' : 'muted small'}>{a.note}</p>}{a.included && linked.length > 0 && <button className={button} onClick={() => { setFilter(emptyFilter); setArticleId(a.id); go('library'); }}>이 게시글 풀기</button>}</article>;
       })}
     </>}
   </div>;

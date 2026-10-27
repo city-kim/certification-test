@@ -5,7 +5,9 @@ export type WrongStatus = 'unreviewed' | 'again' | 'done';
 export type StudyMode = 'learn' | 'test' | 'review';
 export interface TesatQuestion extends McqQuestion {
   title: string;
-  delivery: 'authored' | 'reference';
+  delivery: 'authored' | 'reference' | 'original';
+  explanationKind?: 'original' | 'concept' | 'answer-key';
+  originalIssues?: string[];
   keyPoints: string[];
   termIds: string[];
   sourceRefs: NonNullable<McqQuestion['sourceRefs']>;
@@ -35,6 +37,7 @@ export interface Article {
   questionCount: number | null;
   imageCount: number | null;
   included: boolean;
+  provided?: boolean;
   note?: string;
   summary?: string[];
   termIds?: string[];
@@ -147,9 +150,11 @@ export function filterQuestions(bank: TesatQuestion[], filter: StudyFilter, prog
       && (!filter.subject || q.subject === filter.subject)
       && (!filter.status || (filter.status === 'new' ? !p : filter.status === 'correct' ? p?.lastCorrect : p?.wrongStatus && p.wrongStatus !== 'done'))
       && (!query || [q.title, q.question, ...q.keyPoints, ...q.sourceRefs.map(r=>r.title)].join(' ').toLowerCase().includes(query));
-  }).map(q => ({ ...q, publishedAt: q.sourceRefs
-    .filter(r => (!filter.source || r.source === filter.source) && (!filter.month || r.publishedAt.startsWith(filter.month)))
-    .map(r => r.publishedAt).sort().slice(-1)[0] }))
+  }).map(q => {
+    const refs = q.sourceRefs.filter(r => (!filter.source || r.source === filter.source) && (!filter.month || r.publishedAt.startsWith(filter.month)));
+    const latest = refs.reduce((a,b) => b.publishedAt > a.publishedAt ? b : a);
+    return { ...q, publishedAt: latest.publishedAt, number: latest.questionNumber ?? q.number };
+  })
     .sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt)||a.number-b.number||a.id.localeCompare(b.id));
 }
 

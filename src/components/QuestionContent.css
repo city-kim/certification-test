@@ -1,0 +1,6 @@
+.question-content{white-space:normal;overflow-wrap:anywhere;line-height:1.7}
+.question-content>p{margin:8px 0}
+.question-content .question-box{border:1px solid var(--line,#ddd);background:var(--card,#fff);padding:10px 12px;margin:10px 0;font-weight:400;border-radius:3px}
+.question-content .q-figure{display:block;max-width:100%;height:auto;margin:10px 0}
+.tesat-news .question-content{font-size:13px;line-height:1.65}
+.tesat-news .question-content .question-box{background:transparent}

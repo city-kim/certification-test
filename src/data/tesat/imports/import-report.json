@@ -1,0 +1,1024 @@
+{
+  "articles": [
+    {
+      "source": "quiz",
+      "captureIndex": 1,
+      "questionCount": 8,
+      "sha256": "707dc2c9ab29deeeae02bd3359769ad03d5408774ada72cd73a9be0b8aacd011",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 2,
+      "questionCount": 8,
+      "sha256": "94bd735e67f57102b75e97c571c216b3014b72e12beac98aa897417aa8298cfb",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 3,
+      "questionCount": 8,
+      "sha256": "c2fdcf42262e2959690ee4b55c7571a498e8a93c558af67c20b806942d1184ef",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 4,
+      "questionCount": 8,
+      "sha256": "4f36ce9ccf76b2cda280b7ea84fd8f7e4448b2dc4da398f24d1aa3c41ff8cdc1",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 5,
+      "questionCount": 8,
+      "sha256": "a6bb58f866b9f2e78563d981039f98b0a6495fc624c75266eb6a99eff253ab89",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 6,
+      "questionCount": 8,
+      "sha256": "f201ae004bb74aff22121cde5a69fcd1d93b07c39c7298d3ff264d2472e0ae4a",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 7,
+      "questionCount": 8,
+      "sha256": "eed370cad7891ccf24fb06c84fc369c789c712c50fc30c3580ed091dda220245",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 8,
+      "questionCount": 8,
+      "sha256": "90f1fe7efb80d2b480279fe03b4c73091f74ee0c1b9fcc392b2bf4014e9fbcf8",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 9,
+      "questionCount": 8,
+      "sha256": "f2f764c7b9be43f0644f9fe8c0e806208e77c8387337efb2b1a5998f249985d1",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 10,
+      "questionCount": 8,
+      "sha256": "bda42aebbad5a60379d1fa8cc865547903698bdcf6f686d332379eeca3e76131",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 11,
+      "questionCount": 8,
+      "sha256": "6d9e488fd8e92359f378461b014db52191b298f033f3d94cf2870c19a439d987",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 12,
+      "questionCount": 8,
+      "sha256": "5a9c7ac5b033fc4324f4e923b43af1616fd21223edef487221894301e18058bb",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 13,
+      "questionCount": 8,
+      "sha256": "d748021983a78fca5f033c2eda3d648631f2dc915338a7b6b4206033982bfaef",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 14,
+      "questionCount": 8,
+      "sha256": "8a5aad39b3001518d480a21974f00bbb4310f37b839a843a8521f4084ca43d25",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 15,
+      "questionCount": 8,
+      "sha256": "82f89352c49e2794a1cfc9aabe16e1700e1e3d8f5fd35bd2771dfd106299489f",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 16,
+      "questionCount": 8,
+      "sha256": "f2e31f537904bdae087da7794f434bb2843bf95464f92a34176aaf1494ef0dcd",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 17,
+      "questionCount": 8,
+      "sha256": "157dd125e28d5190d5f78503baab8101cb892e8e213b1d1e4b7bed62adf81b62",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 18,
+      "questionCount": 8,
+      "sha256": "8c77b40bffda083b34618c9f216aaeb8441a9f6721bb7f2f7ed6afdfe8d219b5",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 19,
+      "questionCount": 8,
+      "sha256": "5134b96fe44a082a974f705eab640eae38b3f582baa23ac1a4ab2312f0872c49",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 20,
+      "questionCount": 8,
+      "sha256": "6653b59a57c1b6767e5793a61f0a7fb711adbbd903b56fa4e8f9b7defc9f694c",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 21,
+      "questionCount": 8,
+      "sha256": "2f99ed5c58ff9c7b345544cccf31261d69d61fcc52b6f4462b79ef7c8d546aa9",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 22,
+      "questionCount": 8,
+      "sha256": "9635d7af1711880a8627f6db6519d15aa17807d68f51712aacde07f9ddb61abd",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 23,
+      "questionCount": 8,
+      "sha256": "e4a8e4f9c1b272bbae6e38fa8d5a5d453b5eac1440c4b3fb5debcda3d7b793c5",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 24,
+      "questionCount": 8,
+      "sha256": "c3f77afc0d7cb3fa53251899f71f8db904804572f46d60a4454bdf371eff1f5f",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 25,
+      "questionCount": 8,
+      "sha256": "9601d01278a66e50ad27d2460100c6301149925b41f5b6e0e995e456e0ea259c",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 26,
+      "questionCount": 8,
+      "sha256": "ac34dc5c23e92f38050d90444387a9591011825a9d45ddf5f15d9f85b19113c7",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 27,
+      "questionCount": 8,
+      "sha256": "b8deebd913b906186d2712b765b07a6122260cf6f59c2d945d92a41f51b2aa75",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 28,
+      "questionCount": 8,
+      "sha256": "d3793979533188eada36f5df6a47419321e7da68a700dff9f11bf4c1181a9bd5",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 29,
+      "questionCount": 8,
+      "sha256": "8f081a187f88a78286abef8679c9a971da80a02a212f1e1b9bad7f5f671b5f4b",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 30,
+      "questionCount": 8,
+      "sha256": "cf149ee69adc5e3361760d3e0128f2734a5f4e33772f9c058c812d702081195c",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 31,
+      "questionCount": 8,
+      "sha256": "1e917415121811ebfbd2cd52638c86c29580776634ba48357246374d17ac7745",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 32,
+      "questionCount": 8,
+      "sha256": "9ab7339c7d839d4f70d9405ad140c04147f337ff3cf1771a56a118962bf88635",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 33,
+      "questionCount": 8,
+      "sha256": "615fb95a086bd5c6724ef229a77099e40c1804b7960f346c9f14b295b4761ad2",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 34,
+      "questionCount": 8,
+      "sha256": "7956a1e8e10384c3fcf658be7b48f22769b89565fbb01edaeb2c44ec4f2e8c4c",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 35,
+      "questionCount": 8,
+      "sha256": "83b2787c5057db01de973b962d9e330a78988ab5713e72a2e6ba11e6229c7241",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 36,
+      "questionCount": 8,
+      "sha256": "e80fc5e42cdb0a1a7d829bed800a18d375b2fcb90c600295ba467c7f0db30b80",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 37,
+      "questionCount": 8,
+      "sha256": "427ef24c04bb852dbd2f3f176759855158c31be33542a25ad2b1c12173d8303c",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 38,
+      "questionCount": 8,
+      "sha256": "84595364a9aea30a31d9aed7dda4a11d5ff56abf21ce127bd6106205ef87af31",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 39,
+      "questionCount": 8,
+      "sha256": "200224dbcd7edbd477052b373ae7ae9f7823110f4b940f841f6698aacc4595d1",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 40,
+      "questionCount": 8,
+      "sha256": "c2c05ed9aec1b3add0139bb052e153d8681f7e1ec8b61f5cecc2453ab353689c",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 41,
+      "questionCount": 8,
+      "sha256": "859a4382d2bf79e6692dfea3d6c62a27d33a45b61105fb8eed083db48450a27c",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 42,
+      "questionCount": 8,
+      "sha256": "73ae94b033a826e1248030e4b8e52e5681b297ded6ccd3572125b9f56870d1f3",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 43,
+      "questionCount": 8,
+      "sha256": "908fb397d32b7fb33e44226bf8faf1a216fc11016c446fb0db6f92d9293cd86d",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 44,
+      "questionCount": 8,
+      "sha256": "53fb9e48b98154a9364118467ab8b826f5edca367f05acd33f37d16a729dac8d",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 45,
+      "questionCount": 8,
+      "sha256": "ea5875752ba416d624c6d7c19c85f750d07096dcb9fec94c0b81527a0b6c2247",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 46,
+      "questionCount": 8,
+      "sha256": "828581afcc2c10f93a03f5fe2821f7423544299e1597cd6e6850cfa05991a684",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 47,
+      "questionCount": 8,
+      "sha256": "c01046f266f1d1031ed0a1dad8b2e21695733f37836a563b7af05d1956810ac2",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 48,
+      "questionCount": 8,
+      "sha256": "f55022be68541c0d80b76ee3efb15828c21f97d5f73acd19f50eeb85051ca756",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 49,
+      "questionCount": 8,
+      "sha256": "de14c1177cf22f997c3cad06bca4bc88f2667a7ba6f35cb97b8eb82ed75fa872",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 50,
+      "questionCount": 8,
+      "sha256": "f4b68c27d1e36a3b859ff38796bdf4631d8ec6f302789e3ed85ae0591a58e79e",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 51,
+      "questionCount": 8,
+      "sha256": "2e445e28ad46d960918b717ee189558af616f63bc89897553f0451cc0020b9b4",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 52,
+      "questionCount": 8,
+      "sha256": "52019d60c7ddc094c7c1bae3a72a5d8e08586d69c976509a20beb3d29f2401b6",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 53,
+      "questionCount": 8,
+      "sha256": "757dd7c1dab30eb7c72480ef400257f3d0908ab0b28d65bd952f3b4e6827dd06",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 54,
+      "questionCount": 8,
+      "sha256": "daf4a6cb124e153e46391b0cbad6ccdf0f054809fe1178f87e56bc9a698c8da3",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 55,
+      "questionCount": 8,
+      "sha256": "ed068fef8644ad1237423cdb9b86d20e4ceeeb2521219b5d1fadc6cdfffafb54",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 56,
+      "questionCount": 8,
+      "sha256": "c9da1d7526fae5459c3ce41c30364ef54fe7012f9c6cdd9e5c7700f28f99d1c9",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 57,
+      "questionCount": 8,
+      "sha256": "a021d44670d6be1171f2de315e94d846725c159f3c2e9f2acd8a90553e54a407",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 58,
+      "questionCount": 8,
+      "sha256": "7673610953ae9f6c22ead9a539e65b9f256193e9e775f0494ed09dfc677058ad",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 59,
+      "questionCount": 8,
+      "sha256": "647fb3043ea97eeaef9033d183b6a6bf5be20c93b06705a9f03863c8e02fa1f3",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 60,
+      "questionCount": 8,
+      "sha256": "b941c2e6c19cf50209ee2ca772899631411e3dd695c031ec1d36eac5591bf6fc",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 61,
+      "questionCount": 8,
+      "sha256": "0346a296a93bf4cc7ba17684ac782e206304b7326e5eafb1de2257411a09ee58",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 62,
+      "questionCount": 8,
+      "sha256": "a8480d9a20c7dbbb33b8fcc46086ab6cf2b60a1c97d00f607a7efe3a159a25ec",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 63,
+      "questionCount": 8,
+      "sha256": "460aba6f2f8ff526d4740747980a5cc5915a7d743340d1e87ac06bd4a3aa1200",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 64,
+      "questionCount": 8,
+      "sha256": "5d5ba0ca6ec24af5629c20bfd8a88fa071a4cd1cd0478aef262776deaf91cb5c",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 65,
+      "questionCount": 8,
+      "sha256": "25a5d89d13da86b3a5c15623f845fc6324ba3d5600b7479e424a96f811925450",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 66,
+      "questionCount": 8,
+      "sha256": "cd851c061f8402a695ae440fbec2f07d6c9b05d9c6058e337fc510d106d2e9b0",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 67,
+      "questionCount": 8,
+      "sha256": "282024f29f56f67c8f9861eca77212e9afb6329ad904e3b2c71e3edda6a08da5",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 68,
+      "questionCount": 8,
+      "sha256": "a900c327959e2c141a27dbf629871491f92073f771e2d95dbc142d611578599a",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 69,
+      "questionCount": 8,
+      "sha256": "d3e51352e307c12c5f00faf59fa6b20393c57191ef34954e9d68ae5b56acb14a",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 70,
+      "questionCount": 8,
+      "sha256": "b31328d3cc88a1e63df099262247d5e9875e13aded839d812777f0a66da0b3b6",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 71,
+      "questionCount": 8,
+      "sha256": "410b96fb27e822303cd6e25389f168c2aaa010268766034c393576eb56249eef",
+      "status": "parsed"
+    },
+    {
+      "source": "quiz",
+      "captureIndex": 72,
+      "questionCount": 8,
+      "sha256": "5f93fb0fee60d316f679191f9c6169061a076554c3b987ab0f78ee9c253ac4aa",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 1,
+      "questionCount": 3,
+      "sha256": "78b33b96e9e6eb629ca752a23ca40f6902d3e07db9258c6c583810b1562d4f0b",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 2,
+      "questionCount": 3,
+      "sha256": "01082c0a2d20aeda1802b27ee692e958b21834d81aadda56741b8d5814672b77",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 3,
+      "questionCount": 3,
+      "sha256": "87abe5554d8085eebee215e3deb1886d706afb770c7825fb1b9accc02d0d3a8b",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 4,
+      "questionCount": 3,
+      "sha256": "8ca69a7d5353d9c6dd5fef609d1fc279662e2e8d4c2a10a3b60b45a647dd83ea",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 5,
+      "questionCount": 3,
+      "sha256": "08538eae32376dc892f1804cff90f196f15c443391bcb26eb656cdb338f67b4b",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 6,
+      "questionCount": 3,
+      "sha256": "6756f21874ba7b88f47bc116e7403da6f3c487f602e23a3e9e9399a78788fbc2",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 7,
+      "questionCount": 3,
+      "sha256": "246552ef547fc6124adcbecda83392c9195e030af6149f9736844d7ac737eec7",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 8,
+      "questionCount": 3,
+      "sha256": "3da86b86cda73470b7f4cfc8d869f46127744028716b5cb7cbec41269ff34d25",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 9,
+      "questionCount": 3,
+      "sha256": "9c7ed26ea047c7fd01e6ca62eb6662ee16d7df23e44411f481546ec51245ed6b",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 10,
+      "questionCount": 3,
+      "sha256": "a953a95bfda1a5d64095488ce7074b17de35a1f68fd035074c9c0481e8601dba",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 11,
+      "questionCount": 3,
+      "sha256": "8b2d1862fbae38cc50ff5641981fe46e149fb49952007cd00ca9bdff367bfcbb",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 12,
+      "questionCount": 3,
+      "sha256": "2e31a1b5e565f5423d627f3719191a0720d008d9a4f3b14cc4ccbd26489ccaaa",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 13,
+      "questionCount": 3,
+      "sha256": "f4452e4873867cf8dfdbf0518c3cc5fe62c1472e9ce70641abb826715444f07c",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 14,
+      "questionCount": 3,
+      "sha256": "a4e6198e5c1076447550625d603bfd11472b56e9efdfa3486d744eac1ce8f284",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 15,
+      "questionCount": 3,
+      "sha256": "b5479a3ca8239776d25b7329a86fed08e7dc7aefbbe745025cbf035048a395e0",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 16,
+      "questionCount": 3,
+      "sha256": "6e58123a31538d57c76cc2d63f7b4b3f5c62310e4d462cc3c4960a484c1f273b",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 17,
+      "questionCount": 3,
+      "sha256": "90a3b18a10efaf0010d30c5afd5eb15dec06467c0d750658665b6bb22e91a6e4",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 18,
+      "questionCount": 3,
+      "sha256": "a6e171e510d721964f8214cb74755f92d32956d07f4bd2299eac2934b733f42e",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 19,
+      "questionCount": 3,
+      "sha256": "d7713b1e00bb638a5ab647d06b72681ecfc676e12304a86d7354e931c6461cd0",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 20,
+      "questionCount": 3,
+      "sha256": "27275f6734db54035c290be3b836eab6656c828d97ca8041cd16257ffe287c0e",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 21,
+      "questionCount": 3,
+      "sha256": "51faaea6302b3971938ad32ab81241482f70f8228527a3ccf9e9d59107ad9cd2",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 22,
+      "questionCount": 3,
+      "sha256": "104f418141815d2510923bdd89ce3d347f0457368794a16dfaebbb0f0b1727b2",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 23,
+      "questionCount": 3,
+      "sha256": "f3120fbb5d42afa40cb4cba3bc80df72270f9edc5ccaeb2fb45bf38532b1536a",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 24,
+      "questionCount": 3,
+      "sha256": "cf72fe03c56b1b3238af761f619f687595ed9ecb8c549bd70c154da52c597fb6",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 25,
+      "questionCount": 3,
+      "sha256": "4261336f142fb6404ef8c6d4abf09650c5867562f117a7b0e5f2edd5499a5d59",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 26,
+      "questionCount": 3,
+      "sha256": "04aa27e0f354dd84958556835244552c2e34e1bf69db0e539c05a0cf8e5a8e4f",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 27,
+      "questionCount": 3,
+      "sha256": "387b2b5565311ac2f1b21ef89d819eebd4ae8fd68162e737a7b8e4241ea10a18",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 28,
+      "questionCount": 3,
+      "sha256": "1aa83bf93a3b6ad9f10c5ce6f67bdcfe27d183fc34c7ecacea6ba7cf495f730e",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 29,
+      "questionCount": 3,
+      "sha256": "52b15fa4ba86e26717deea560d713ac95a40fbd95aeb11ea6be629765ea3ba3e",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 30,
+      "questionCount": 3,
+      "sha256": "8d5b6b850fdf8d2b2fd7f3c83c971b7ddcb3911060623d5411bed9609c8a6e65",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 31,
+      "questionCount": 3,
+      "sha256": "168e17413c1b91758568576c879aa0f124bb2548fade7f2167ca9b1075bfcba8",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 32,
+      "questionCount": 3,
+      "sha256": "5758b3b9f685ce8db4320e12c316184e5e35aab6b50c6aa6f9306713e815e970",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 33,
+      "questionCount": 3,
+      "sha256": "ddb5773bc95595b46c49791eed82d5e9ce2a34e8efb2316f066f8a404b1fc34b",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 34,
+      "questionCount": 3,
+      "sha256": "f1403d2f7fd6ed964bece418fe5377157c18db50fa74df9d4a13a4dcc4bb76da",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 35,
+      "questionCount": 3,
+      "sha256": "892ad64f1dad8046bac905734c1f58f0d40a40442c8b62ed83a4f6cf8179dcd5",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 36,
+      "questionCount": 3,
+      "sha256": "d0490cd365a2c04e78b7997440664df8a6129eafd53473f10134e11b2f5c0781",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 37,
+      "questionCount": 3,
+      "sha256": "683440e39a6182cce9a50e156b7a9375833397f9276b564885a198c531cee18f",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 38,
+      "questionCount": 3,
+      "sha256": "a66dceb274f932947a2d716d8248eed1c78dba6fdba1e57bb6a924b9a13f46f0",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 39,
+      "questionCount": 3,
+      "sha256": "9390d7e9cedbafa7e73deb9ebdcd149ee83d04362bc3ef63712f5f0673ecf26e",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 40,
+      "questionCount": 3,
+      "sha256": "fb0bec2548bcd814b159f2af40cede5dfbdd83b0b80daabde848865a48313474",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 41,
+      "questionCount": 3,
+      "sha256": "b4aea45163df8ed94e0b29508c60f848b251d8194d3359b1b510476ecbc74582",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 42,
+      "questionCount": 3,
+      "sha256": "13cfb67f758f848e49f04e39a062753877c9ceed82d921bcacbc163c03c8f06e",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 43,
+      "questionCount": 3,
+      "sha256": "679b44899ad0f9cea70ac2cde9e5ff80ba55cc3973457500c7dbfce745e1f663",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 44,
+      "questionCount": 3,
+      "sha256": "0c1d8fe24230b86407ae14b907c9fc9925e5a06431ee303292a4676a83dcb5bd",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 45,
+      "questionCount": 3,
+      "sha256": "11e5d8c215eb69c297f6e8dd781207cdaa55d7844c1edac0030079c6e7c987b4",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 46,
+      "questionCount": 3,
+      "sha256": "011e52faaf1ba6af2443c9ab4ba6d8597b6eff9068dd6737cee61f6a8e164a07",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 47,
+      "questionCount": 3,
+      "sha256": "ab1d2694bbf93c386485541ea627fd1f385a78f1fec61a2f0857849cf7637ddd",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 48,
+      "questionCount": 3,
+      "sha256": "a02c0fd3ec0fef26601a3dbcbb1e60cb6ac163004705727614ed2b07dcefc23e",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 49,
+      "questionCount": 3,
+      "sha256": "a02bc46516f07bc72a51e5367d1b49dff2372e89004ae8da4b165e8d7cb2538f",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 50,
+      "questionCount": 3,
+      "sha256": "80238a348e5356d7703f923dd3780676ec54105754744bac9091f0734922885c",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 51,
+      "questionCount": 3,
+      "sha256": "c2c43b69b048450fcdc61d90f6350931dabad4da76ee2e585cd8be3c18e2965d",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 52,
+      "questionCount": 3,
+      "sha256": "bc7eed822850867b82f36eff50599c6dfa0b49c179d8b6524b1c9c341ff86aa7",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 53,
+      "questionCount": 3,
+      "sha256": "218411fdd8aa896e38d136850db130352bc62d01d045bdda690ecfb61313f5fc",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 54,
+      "questionCount": 3,
+      "sha256": "5ac6828be18307d68c09b7ec8312ff15baee35f4a6797c695303d0951f45d79d",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 55,
+      "questionCount": 3,
+      "sha256": "5a07728da165fe18b7da92340bf5ed62492cfc61799a0f4f06a579c00b6b7e2a",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 56,
+      "questionCount": 3,
+      "sha256": "32d9a45735c5a75249b35515aae1278e639decd7df39ec23e509822f2239e564",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 57,
+      "questionCount": 3,
+      "sha256": "54c798be24a206b0a7d8e29d65d39c3d888fd3b8848597716b62c4c2f981e527",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 58,
+      "questionCount": 3,
+      "sha256": "b19191ecc709e71509593f5318ff1288278e7ed8cb1ce36a52fc008233ae8d2a",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 59,
+      "questionCount": 3,
+      "sha256": "152d6bf242b3d0201d89406d35e7e3d8af85899ca0a48e5dcad271559611a8f8",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 60,
+      "questionCount": 3,
+      "sha256": "e86c9130ede2d3022fd7de6dc373a1818aa7378b1ada5bcc87f8b0f284a39102",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 61,
+      "questionCount": 3,
+      "sha256": "2156e6ac962d068d3b4a0ca93306c2f7d6a24b4f9ade1ccadec14be93011a841",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 62,
+      "questionCount": 3,
+      "sha256": "6b5dd9ff85004f42d1c563f3175b14b4f461c3c83c39c72942c90aa78eff31aa",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 63,
+      "questionCount": 3,
+      "sha256": "c39564db446d5df9e7f5112442e99ff5c640961ba7765e941d184bf970bc18c2",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 64,
+      "questionCount": 3,
+      "sha256": "376ad422e9be0d02d5e33b7fe1c7f49347691c24fb4048809d23fabcf2ffb28c",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 65,
+      "questionCount": 3,
+      "sha256": "aab04756a034fffb20b757a6839a924e623969d1d9782e4e822d347d13cc998b",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 66,
+      "questionCount": 3,
+      "sha256": "e1b690eafee41fa2d73d46636906aa0355c38e2d16ff26ef9438af9967ae2ecb",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 67,
+      "questionCount": 3,
+      "sha256": "38ec2d18eb650d63892700f6369c9801c9765af89f65ec16f1ff56e34eaec528",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 68,
+      "questionCount": 3,
+      "sha256": "290525a85ac04a75f5412e4553ab008c1a20499abf4ff4041fba2eb796c774b4",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 69,
+      "questionCount": 3,
+      "sha256": "00a89282fc4b5b82b0e58c27ef5c6810bf2f5ddf4d4aa6a289640f3fceea588e",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 70,
+      "questionCount": 3,
+      "sha256": "064d3f456a1155d40a9e4d3b9d9d8024a9a918c8f0cc76fa5d5fc024070c7d4f",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 71,
+      "questionCount": 3,
+      "sha256": "467daa07259f2eab67e18cee10dd82fd8115bda481b93807bdee1505b00b83f0",
+      "status": "parsed"
+    },
+    {
+      "source": "taste",
+      "captureIndex": 72,
+      "questionCount": 3,
+      "sha256": "7dc9499b564925fdb58b69e766eea66c5cfc29b0aa6c95cf2cba31409d659b57",
+      "status": "parsed"
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    {
+      "source": "quiz",
+      "captureIndex": 49,
+      "number": 8,
+      "issues": [
+        "제공 원문에서 ①·④ 보기의 문구가 같습니다. 원문 그대로 표시합니다."
+      ]
+    }
+  ],
+  "questionCount": 792
+}

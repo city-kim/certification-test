@@ -1,14 +1,19 @@
 import { figureUrl } from "../data/questions";
+import type { QuestionContentNode } from '../lib/types';
+import QuestionContent from './QuestionContent';
 
 export interface ReviewData {
   index?: number;
   subjectLabel: string;
   question: string;
+  content?: QuestionContentNode[];
   figure?: string;
   /** 4지선다의 보기 목록. 주관식이면 빈 배열 */
   options: string[];
   correctText: string;
   selectedText: string | null;
+  correctIndex?: number;
+  selectedIndex?: number | null;
   explanation: string;
   /** 주관식에서 정답으로 인정되는 다른 표기 */
   altAnswers?: string[];
@@ -28,8 +33,8 @@ export default function ReviewItem({ data }: { data: ReviewData }) {
         {short && <span className="type-tag short">단답형</span>}
         {data.hintUsed && <span className="badge hint">힌트 사용</span>}
       </div>
-      <p className="q-text">{data.question}</p>
-      {data.figure && (
+      <div className="q-text">{data.content ? <QuestionContent content={data.content} /> : data.question}</div>
+      {data.figure && !data.content && (
         <img className="q-figure" src={figureUrl(data.figure)} alt="문제 그림" />
       )}
 
@@ -51,8 +56,8 @@ export default function ReviewItem({ data }: { data: ReviewData }) {
         <>
           <ul className="options review">
             {data.options.map((opt, i) => {
-              const isCorrect = opt === data.correctText;
-              const isSelected = data.selectedText !== null && opt === data.selectedText;
+              const isCorrect = data.correctIndex !== undefined ? i === data.correctIndex : opt === data.correctText;
+              const isSelected = data.selectedIndex !== undefined ? i === data.selectedIndex : data.selectedText !== null && opt === data.selectedText;
               const cls = isCorrect ? "correct" : isSelected ? "wrong" : "";
               return (
                 <li key={i}>

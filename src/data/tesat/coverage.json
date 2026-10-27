@@ -1,7 +1,18 @@
 {
-  "sourceArticles": 131,
+  "sourceArticles": 184,
   "currentArticles": 4,
-  "sourceQuestions": 553,
-  "practiceQuestions": 295,
-  "terms": 257
+  "sourceQuestions": 832,
+  "practiceQuestions": 781,
+  "terms": 257,
+  "providedArticles": 144,
+  "originalOccurrences": 792,
+  "originalQuestions": 781,
+  "repeatedOccurrences": 11,
+  "originalExplanations": 216,
+  "conceptExplanations": 255,
+  "answerKeyOnly": 310,
+  "originalImages": 4,
+  "originalIssueQuestions": 1,
+  "authoredQuestions": 295,
+  "referenceOnlyArticles": 40
 }

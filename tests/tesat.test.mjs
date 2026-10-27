@@ -7,6 +7,7 @@ const quiz=await loadTS('src/lib/quiz.ts');
 const {emptyLearning,newSession,focusStudySession,submitLearning,updateSelection,reconcileLearning,filterQuestions,emptyFilter,selectPractice}=engine;
 const read=p=>JSON.parse(readFileSync(new URL('../'+p,import.meta.url),'utf8'));
 const bank=read('src/data/tesat/questions.json');
+const archive=read('src/data/tesat/authored-questions.json');
 const terms=read('src/data/tesat/terms.json');
 const manifest=read('src/data/tesat/manifest.json');
 const four=bank.find(q=>q.options.length===4),five=bank.find(q=>q.options.length===5);
@@ -99,10 +100,12 @@ test('다른 세트의 문제나 완료된 세트는 이어풀기로 잘못 열�
   assert.equal(focusStudySession(null),null);
 });
 test('출처와 게시월은 동일한 원문 참조에서 동시에 일치해야 한다',()=>{
-  const q={...four,sourceRefs:[{source:'quiz',publishedAt:'2026-03-01'},{source:'taste',publishedAt:'2026-04-01'}]};
+  const q={...four,sourceRefs:[{source:'quiz',publishedAt:'2026-03-01',questionNumber:8},{source:'taste',publishedAt:'2026-04-01',questionNumber:2}]};
   assert.equal(filterQuestions([q],{...emptyFilter,source:'quiz',month:'2026-04'},{}).length,0);
   assert.equal(filterQuestions([q],{...emptyFilter,source:'taste',month:'2026-04'},{}).length,1);
   assert.equal(filterQuestions([q],{...emptyFilter,source:'quiz'},{} )[0].publishedAt,'2026-03-01');
+  assert.equal(filterQuestions([q],{...emptyFilter,source:'quiz'},{} )[0].number,8);
+  assert.equal(filterQuestions([q],{...emptyFilter,month:'2026-04'},{} )[0].number,2);
 });
 test('미학습과 오답 필터 및 복습 완료 제외',()=>{
   let state=answer(begin(four),four,(four.answerIndex+1)%4);
@@ -150,18 +153,59 @@ test('전체 문항·출처·기간·용어·그림 연결 무결성',()=>{
   const tids=new Set(terms.map(t=>t.id));const articles=new Map(manifest.articles.map(a=>[a.id,a]));
   for(const q of bank) {
     assert.ok([4,5].includes(q.options.length));assert.ok(q.answerIndex>=0&&q.answerIndex<q.options.length);
-    assert.equal(q.options.length,q.optionExplanations.length);
-    assert.ok(q.explanation&&q.keyPoints.length&&q.termIds.length);
+    assert.equal(q.delivery,'original');
+    assert.ok(q.explanation&&q.content.length);
     q.termIds.forEach(id=>assert.ok(tids.has(id)));
     q.sourceRefs.forEach(r=>{assert.ok(articles.get(r.articleId).included);const range=manifest.ranges.find(x=>x.source===r.source);assert.ok(range.start<=r.publishedAt&&r.publishedAt<=range.end);});
     if(q.figure)assert.ok(existsSync(new URL('../public/'+q.figure,import.meta.url)));
   }
-  for(const a of manifest.articles.filter(a=>a.included))assert.ok(a.termIds.length,a.id);
+  for(const a of manifest.articles.filter(a=>a.included&&a.kind==='terms'))assert.ok(a.termIds.length,a.id);
   const current=manifest.articles.filter(a=>a.kind==='terms'&&a.included);
   assert.equal(current.length,4);
   const range=manifest.ranges.find(r=>r.source==='current-terms');
   current.forEach(a=>assert.ok(range.start<=a.publishedAt&&a.publishedAt<=range.end));
   assert.ok(manifest.articles.filter(a=>a.title.includes('스도쿠')).every(a=>!a.included));
+});
+test('제공한 792문항의 지문·보기 순서·정답·원문 해설을 변형하지 않는다',()=>{
+  const parsed=read('src/data/tesat/imports/parsed-questions.json');
+  const occurrences=read('src/data/tesat/imports/occurrences.json');
+  const byId=new Map(bank.map(q=>[q.id,q]));
+  assert.equal(parsed.length,792);assert.equal(bank.length,781);
+  assert.equal(occurrences.length,parsed.length);
+  const compact=s=>s.replace(/\s+/g,'');
+  for(const original of parsed){
+    const entry=occurrences.find(q=>q.source===original.source&&q.captureIndex===original.captureIndex&&q.number===original.originalNumber);
+    const q=byId.get(entry.id);
+    assert.equal(compact(q.question),compact(original.question));
+    assert.deepEqual(q.options.map(compact),original.options.map(compact));
+    assert.equal(q.answerIndex,original.answerIndex);
+    assert.equal(q.shuffleOptions,false);
+    assert.ok(q.sourceRefs.some(r=>r.source===original.source&&r.captureIndex===original.captureIndex&&r.questionNumber===original.originalNumber));
+    if(original.officialExplanation)assert.equal(q.explanation,original.officialExplanation);
+  }
+  assert.equal(bank.reduce((n,q)=>n+q.sourceRefs.length,0),792);
+  assert.equal(bank.filter(q=>q.figure).length,4);
+});
+test('원문에 중복된 오답 보기는 그대로 보존하되 정답 번호대로 채점한다',()=>{
+  const q=bank.find(q=>q.originalIssues?.length);
+  assert.equal(q.options[0],q.options[3]);assert.equal(q.answerIndex,2);
+  assert.equal(answer(begin(q),q,0).progress[q.id].lastCorrect,false);
+  assert.equal(answer(begin(q),q,3).progress[q.id].lastCorrect,false);
+  assert.equal(answer(begin(q),q,2).progress[q.id].lastCorrect,true);
+});
+test('기존 자체 연습의 진도는 원문에 전용하지 않고 이전 오답은 복습할 수 있다',()=>{
+  const old=archive[0];
+  let state={...emptyLearning(),session:newSession([old.id],'learn','old')};
+  state=submitLearning(updateSelection(state,old.id,(old.answerIndex+1)%old.options.length),archive,100);
+  state={...state,session:newSession([old.id],'learn','unfinished')};
+  const migrated=reconcileLearning(state,bank);
+  assert.equal(migrated.session,null);
+  assert.deepEqual(migrated.progress,state.progress);
+  assert.ok(!bank.some(q=>q.id===old.id));
+  const reviewState={...migrated,session:newSession([old.id],'review','old-review')};
+  const reviewed=submitLearning(updateSelection(reviewState,old.id,old.answerIndex),[...bank,...archive],200);
+  assert.equal(reviewed.progress[old.id].wrongStatus,'done');
+  assert.equal(reviewed.progress[old.id].wrongCount,1);
 });
 test('브라우저 저장·복원·저장 실패 시 메모리 보존 및 자격증 격리',async()=>{
   const values=new Map([['ncq.network_2.wrongbook.v1','existing']]);

@@ -1,6 +1,14 @@
 /** 과목 key 는 자격증마다 다르므로 문자열로 둔다(정의는 certs.config.json). */
 export type Subject = string;
 
+/** Imported HTML is parsed to this inert vocabulary; scripts and attributes are discarded. */
+export type QuestionContentNode = string | {
+  tag: 'p' | 'box' | 'strong' | 'em' | 'sub' | 'sup' | 'br' | 'img';
+  children?: QuestionContentNode[];
+  src?: string;
+  alt?: string;
+};
+
 /** 문항 공통 필드 */
 interface QuestionBase {
   id: string;
@@ -8,10 +16,11 @@ interface QuestionBase {
   subject: Subject;
   number: number;
   question: string;
+  content?: QuestionContentNode[];
   figure?: string;
   explanation: string;
   /** 출처·학습 보강 정보. 기존 자격증 데이터에는 없어도 된다. */
-  sourceRefs?: { articleId: string; url: string; title: string; publishedAt: string; source: string }[];
+  sourceRefs?: { articleId: string; url: string; title: string; publishedAt: string; source: string; questionNumber?: number; captureIndex?: number }[];
   publishedAt?: string;
   keyPoints?: string[];
   termIds?: string[];
