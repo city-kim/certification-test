@@ -8,6 +8,14 @@ const data=resolve(root,'src/data/tesat');
 const read=name=>JSON.parse(readFileSync(resolve(data,name),'utf8'));
 const save=(name,value)=>writeFileSync(resolve(data,name),JSON.stringify(value,null,2)+'\n');
 const manifest=read('sources.json'), overrides=read('editorial.json'), mapping=read('article-concepts.json');
+const explanationEntries=readFileSync(resolve(data,'term-explanations.psv'),'utf8').split('\n')
+  .filter(line=>line.trim()&&!line.startsWith('#')).map(line=>{
+    const fields=line.split('|');
+    if(fields.length!==2||fields.some(field=>!field.trim()))throw Error('Invalid term explanation: '+line);
+    return fields;
+  });
+const explanations=new Map(explanationEntries);
+if(explanations.size!==explanationEntries.length)throw Error('Duplicate term explanation ID');
 const articles=manifest.articles.map(a=>({...a,...Object.fromEntries(Object.entries(overrides[a.id]??{}).filter(([k])=>k!=='conceptIds'))}));
 const included=articles.filter(a=>a.included);
 const concepts=readFileSync(resolve(data,'concepts.psv'),'utf8').split('\n').filter(l=>l.trim()&&!l.startsWith('#')).map(line=>{
@@ -15,7 +23,13 @@ const concepts=readFileSync(resolve(data,'concepts.psv'),'utf8').split('\n').fil
   const [id,subject,name,definition,example,contrast,aliases]=fields;
   return {id,subject,name,definition,example,contrast,aliases:aliases.split(';'),articleIds:included.filter(a=>mapping[a.id]?.includes(id)).map(a=>a.id)};
 });
-const terms=concepts.filter(t=>t.articleIds.length);
+const terms=concepts.filter(t=>t.articleIds.length).map(t=>{
+  const explanation=explanations.get(t.id);
+  if(!explanation)throw Error(t.id+': missing detailed explanation');
+  const app=applications.find(q=>q.termIds[0]===t.id)??applications.find(q=>q.termIds.includes(t.id));
+  return {...t,explanation,...(app?{caseStudy:{question:app.question,options:app.options,answer:app.options[app.answerIndex],explanation:app.explanation,...(app.figure?{figure:app.figure}:{})}}:{})};
+});
+for(const id of explanations.keys())if(!concepts.some(t=>t.id===id))throw Error(id+': unknown term explanation ID');
 const termsById=new Map(terms.map(t=>[t.id,t]));
 const labels={micro:'미시경제',macro:'거시경제',finance:'금융',international:'국제경제',business:'기업·경영',current:'시사경제'};
 const refsFor=ids=>included.filter(a=>ids.includes(a.id)).map(a=>({articleId:a.id,source:a.source,title:a.title,publishedAt:a.publishedAt,url:a.url})).sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt));

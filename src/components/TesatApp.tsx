@@ -25,6 +25,7 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
   const [wrongFilter, setWrongFilter] = useState<WrongStatus | ''>('');
   const [termSearch, setTermSearch] = useState('');
   const [termStatus, setTermStatus] = useState('');
+  const [termSubject, setTermSubject] = useState('');
   const [termFocus, setTermFocus] = useState<string | null>(null);
   const [revealed, setRevealed] = useState<Set<string>>(new Set());
   const [cardMode, setCardMode] = useState(false);
@@ -43,8 +44,8 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
     .sort((a, b) => state.progress[b.id].lastAttempt - state.progress[a.id].lastAttempt);
   const activeWrong = TESAT_BANK.filter(q => state.progress[q.id]?.wrongStatus && state.progress[q.id].wrongStatus !== 'done');
   const terms = TESAT_TERMS.filter(t => (!termFocus || t.id === termFocus)
-    && (!termSearch || [t.name, t.definition, ...(t.aliases ?? [])].join(' ').toLowerCase().includes(termSearch.toLowerCase()))
-    && (!termStatus || (termStatus === 'new' ? !state.terms[t.id] : state.terms[t.id] === termStatus)));
+    && (!termSearch || [t.name, t.definition, t.explanation, ...(t.aliases ?? [])].join(' ').toLowerCase().includes(termSearch.toLowerCase()))
+    && (secret ? !termSubject || t.subject === termSubject : !termStatus || (termStatus === 'new' ? !state.terms[t.id] : state.terms[t.id] === termStatus)));
   const currentArticles = TESAT_ARTICLES.filter(a => a.kind === 'terms' && a.included);
   const months = [...new Set(TESAT_BANK.flatMap(q => q.sourceRefs.map(r => r.publishedAt.slice(0, 7))))].sort().reverse();
   const learned = TESAT_BANK.filter(q => state.progress[q.id]).length;
@@ -93,7 +94,7 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
     setFilter({ ...emptyFilter, source }); setArticleId(''); go('library');
   }
   function openTerm(id: string) {
-    setTermFocus(id); setTermSearch(''); setTermStatus(''); setCardMode(false); go('terms');
+    setTermFocus(id); setTermSearch(''); setTermStatus(''); setTermSubject(''); setCardMode(false); go('terms');
   }
   function related(id: string) {
     start(TESAT_BANK.filter(q => q.termIds.includes(id)).map(q => q.id), 'learn');
@@ -230,7 +231,7 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
         const pool = TESAT_BANK.filter(q => q.sourceRefs.some(r => r.source === source));
         return <li key={source}><button className={secret ? 'gn-back' : 'link'} onClick={() => openSource(source)}>{SOURCE_LABELS[source]}</button><span className="count">{pool.filter(q => state.progress[q.id]).length}/{pool.length}</span></li>;
       })}</ul><p className={secret ? 'gn-progress' : 'muted small'}>학습한 문제 {learned}개 · 복습할 오답 {activeWrong.length}개</p></section>
-      <section className={card}><h2 className={secret ? 'gn-wrong-title' : ''}>용어장·암기카드 ({TESAT_TERMS.length}개)</h2><p className={secret ? 'gn-progress' : 'muted small'}>뜻·예시·혼동하기 쉬운 개념을 연결하고 알아요 / 다시 보기로 복습합니다.</p><button className={button} onClick={() => { setTermFocus(null); setTermSearch(''); setTermStatus(''); setCardMode(true); setRevealed(new Set()); go('terms'); }}>🗂️ 암기카드 시작</button></section>
+      <section className={card}><h2 className={secret ? 'gn-wrong-title' : ''}>{secret ? 'Keywords' : '용어장·암기카드'} ({TESAT_TERMS.length}개)</h2><p className={secret ? 'gn-progress' : 'muted small'}>{secret ? '용어의 뜻·예시·혼동하기 쉬운 개념을 모았습니다.' : '뜻·예시·혼동하기 쉬운 개념을 연결하고 알아요 / 다시 보기로 복습합니다.'}</p><button className={button} onClick={() => { setTermFocus(null); setTermSearch(''); setTermStatus(''); setTermSubject(''); setCardMode(!secret); setRevealed(new Set()); go('terms'); }}>{secret ? 'View keywords' : '🗂️ 암기카드 시작'}</button></section>
       <section className={card}><h2 className={secret ? 'gn-wrong-title' : ''}>시사 경제용어 따라잡기 ({currentArticles.length}편)</h2><p className={secret ? 'gn-progress' : 'muted small'}>최근 반년치 게시글의 요약과 관련 용어를 확인합니다.</p><button className={button} onClick={() => go('current')}>📘 시사용어 보기</button></section>
       <section className={card}><h2 className={secret ? 'gn-wrong-title' : ''}>자료 목록</h2><p className={secret ? 'gn-progress' : 'muted small'}>공식 원문은 출처 링크에서 읽습니다. 앱의 문제·해설은 별도로 작성한 개념 연습입니다.</p><button className={button} onClick={() => go('sources')}>📚 출처와 학습 기간 보기</button></section>
       <div className={secret ? 'gn-article-nav' : 'actions sticky'}><button className={primary} onClick={() => start(selectPractice(TESAT_BANK), 'test')}>실력 점검 시작</button><button className={secret ? 'gn-navbtn' : 'btn ghost'} onClick={() => go('wrong')}>오답노트 {activeWrong.length ? `(${activeWrong.length})` : ''}</button><button className={secret ? 'gn-navbtn' : 'btn ghost'} onClick={() => { setFilter(emptyFilter); setArticleId(''); go('library'); }}>정답·해설 ({TESAT_BANK.length}문항)</button></div>
@@ -284,16 +285,31 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
     {view === 'terms' && <>
       {secret && <div className="gn-list-head"><h1 className="gn-page-title">Keywords</h1><span className="gn-progress">{terms.length} notes</span></div>}
       {termFocus && <button className={button} onClick={() => setTermFocus(null)}>전체 용어 보기</button>}
-      <div className={card}><div className="tesat-filters"><input aria-label="용어 검색" placeholder="용어·약어·뜻 검색" value={termSearch} onChange={e => { setTermSearch(e.target.value); setLimit(30); }} /><select aria-label="용어 학습 상태" value={termStatus} onChange={e => { setTermStatus(e.target.value); setLimit(30); }}><option value="">모든 용어</option><option value="new">아직 안 본 용어</option><option value="again">다시 보기</option><option value="known">알아요</option></select></div><button className={button} onClick={() => { setCardMode(!cardMode); setRevealed(new Set()); }}>{cardMode ? '용어장으로 보기' : '암기카드로 보기'}</button></div>
-      {terms.slice(0, limit).map(term => <TermCard key={term.id} term={term} secret={secret} hidden={cardMode && !revealed.has(term.id)} state={state.terms[term.id]} onReveal={() => setRevealed(new Set(revealed).add(term.id))} onMark={status => changeLearning(old => ({ ...old, terms: { ...old.terms, [term.id]: status } }))} onRelated={() => related(term.id)} />)}
+      {secret ? <>
+        <details className="gn-accordion small tesat-filter-disclosure"><summary>Search keywords · 검색</summary>
+          <div className="tesat-filters tesat-keyword-search">
+            <select aria-label="용어 주제" value={termSubject} onChange={e => { setTermSubject(e.target.value); setLimit(30); }}><option value="">전체 주제</option>{Object.entries(SUBJECT_LABELS).map(([key, label]) => <option key={key} value={key}>{label}</option>)}</select>
+            <input aria-label="용어 검색" placeholder="용어·약어·뜻 검색" value={termSearch} onChange={e => { setTermSearch(e.target.value); setLimit(30); }} />
+          </div>
+        </details>
+        <ol className="gn-list tesat-keyword-list">{terms.slice(0, limit).map((term, index) => <KeywordRow key={term.id} term={term} index={index} />)}</ol>
+      </> : <>
+        <div className={card}><div className="tesat-filters"><input aria-label="용어 검색" placeholder="용어·약어·뜻 검색" value={termSearch} onChange={e => { setTermSearch(e.target.value); setLimit(30); }} /><select aria-label="용어 학습 상태" value={termStatus} onChange={e => { setTermStatus(e.target.value); setLimit(30); }}><option value="">모든 용어</option><option value="new">아직 안 본 용어</option><option value="again">다시 보기</option><option value="known">알아요</option></select></div><button className={button} onClick={() => { setCardMode(!cardMode); setRevealed(new Set()); }}>{cardMode ? '용어장으로 보기' : '암기카드로 보기'}</button></div>
+        {terms.slice(0, limit).map(term => <TermCard key={term.id} term={term} secret={false} hidden={cardMode && !revealed.has(term.id)} state={state.terms[term.id]} onReveal={() => setRevealed(new Set(revealed).add(term.id))} onMark={status => changeLearning(old => ({ ...old, terms: { ...old.terms, [term.id]: status } }))} onRelated={() => related(term.id)} />)}
+      </>}
       {!terms.length && <p className={secret ? 'gn-empty' : 'muted center'}>조건에 맞는 용어가 없습니다.</p>}
-      {terms.length > limit && <button className={button} onClick={() => setLimit(limit + 30)}>30개 더 보기</button>}
+      {terms.length > limit && <div className={secret ? 'gn-list-foot tesat-more-center' : ''}><button className={button} onClick={() => setLimit(limit + 30)}>30개 더 보기</button></div>}
     </>}
 
     {view === 'current' && <>
       {secret && <h1 className="gn-page-title">Briefing</h1>}
       <p className={secret ? 'gn-progress' : 'muted small'}>{TESAT_RANGES.find(r => r.source === 'current-terms')?.start} ~ {TESAT_RANGES.find(r => r.source === 'current-terms')?.end} · {currentArticles.length}편</p>
-      {currentArticles.map(a => <article className={card} key={a.id}><p className={secret ? 'gn-progress' : 'muted small'}>{a.publishedAt}</p><h2 className={secret ? 'gn-article-title' : ''}>{a.title}</h2><ul className="tesat-summary">{a.summary?.map((text, i) => <li key={i}>{text}</li>)}</ul>{termLinks(a.termIds ?? [])}<a className={secret ? 'gn-back' : 'link'} href={a.url} target="_blank" rel="noreferrer">공식 원문 읽기 ↗</a></article>)}
+      {secret ? <ol className="gn-list tesat-briefing-list">{currentArticles.map((a, index) => <li className="gn-item" key={a.id}>
+        <article className="gn-row tesat-reading-row"><span className="gn-rank">{index + 1}.</span><div className="gn-row-body">
+          <div className="gn-meta"><time dateTime={a.publishedAt}>{a.publishedAt}</time><a className="gn-back" href={a.url} target="_blank" rel="noreferrer">공식 원문 ↗</a></div>
+          <ul className="tesat-summary">{a.summary?.map((text, i) => <li key={i}>{text}</li>)}</ul>
+        </div></article>
+      </li>)}</ol> : currentArticles.map(a => <article className={card} key={a.id}><p className="muted small">{a.publishedAt}</p><h2>{a.title}</h2><ul className="tesat-summary">{a.summary?.map((text, i) => <li key={i}>{text}</li>)}</ul>{termLinks(a.termIds ?? [])}<a className="link" href={a.url} target="_blank" rel="noreferrer">공식 원문 읽기 ↗</a></article>)}
     </>}
 
     {view === 'sources' && <>
@@ -307,6 +323,34 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
   </div>;
 }
 
+function KeywordRow({ term, index }: { term: Term; index: number }) {
+  return <li className="gn-item"><article className="gn-row tesat-reading-row">
+    <span className="gn-rank">{index + 1}.</span><div className="gn-row-body">
+      <div className="gn-row-title-line"><strong className="gn-title">{term.name}</strong><span className="gn-meta">{SUBJECT_LABELS[term.subject]}</span></div>
+      <p className="tesat-keyword-definition">{term.definition}</p>
+      <TermExplanation term={term} secret />
+      <p className="tesat-keyword-detail"><b>예시</b> {term.example}</p>
+      <p className="tesat-keyword-detail"><b>혼동 주의</b> {term.contrast}</p>
+    </div>
+  </article></li>;
+}
+
+function TermExplanation({ term, secret = false }: { term: Term; secret?: boolean }) {
+  const study = term.caseStudy;
+  return <>
+    <p className={secret ? 'tesat-keyword-explanation' : 'tesat-term-explanation'}>{term.explanation}</p>
+    {study && <details className="tesat-keyword-case">
+      <summary>계산·사례로 이해하기</summary>
+      <div className={secret ? 'tesat-keyword-case-body' : 'explanation'}>
+        <p>{study.question}</p>
+        {study.figure && <img className={secret ? 'gn-figure' : 'q-figure'} src={figureUrl(study.figure)} alt="사례 참고 그림" />}
+        <ul className="tesat-case-options">{study.options.map((option, index) => <li key={index}>{MARKERS[index]} {option}</li>)}</ul>
+        <p><strong>답: {study.answer}</strong></p><p>{study.explanation}</p>
+      </div>
+    </details>}
+  </>;
+}
+
 function TermCard({ term, secret, hidden, state, onReveal, onMark, onRelated }: {
   term: Term; secret: boolean; hidden: boolean; state?: string; onReveal: () => void;
   onMark: (state: 'known' | 'again') => void; onRelated: () => void;
@@ -315,6 +359,6 @@ function TermCard({ term, secret, hidden, state, onReveal, onMark, onRelated }: 
   return <article className={secret ? 'tesat-news-section' : 'card'}>
     <p className={secret ? 'gn-progress' : 'muted small'}>{SUBJECT_LABELS[term.subject]}{state ? ` · ${state === 'known' ? '알아요' : '다시 보기'}` : ''}</p>
     <h2 className={secret ? 'gn-article-title' : ''}>{term.name}</h2>
-    {hidden ? <button className={button} onClick={onReveal}>뜻 떠올린 뒤 확인하기</button> : <><p className="tesat-definition">{term.definition}</p><div className={secret ? 'gn-accordion-body tesat-term-example' : 'explanation tesat-term-example'}><strong>예시</strong><p>{term.example}</p><strong>혼동 주의</strong><p>{term.contrast}</p></div><div className="tesat-term-actions"><button className={button} aria-pressed={state === 'known'} onClick={() => onMark('known')}>알아요</button><button className={button} aria-pressed={state === 'again'} onClick={() => onMark('again')}>다시 보기</button><button className={button} onClick={onRelated}>관련 문제</button></div></>}
+    {hidden ? <button className={button} onClick={onReveal}>뜻 떠올린 뒤 확인하기</button> : <><p className="tesat-definition">{term.definition}</p><TermExplanation term={term} /><div className={secret ? 'gn-accordion-body tesat-term-example' : 'explanation tesat-term-example'}><strong>예시</strong><p>{term.example}</p><strong>혼동 주의</strong><p>{term.contrast}</p></div><div className="tesat-term-actions"><button className={button} aria-pressed={state === 'known'} onClick={() => onMark('known')}>알아요</button><button className={button} aria-pressed={state === 'again'} onClick={() => onMark('again')}>다시 보기</button><button className={button} onClick={onRelated}>관련 문제</button></div></>}
   </article>;
 }

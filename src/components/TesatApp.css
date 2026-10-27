@@ -62,4 +62,24 @@
 .tesat-news .tesat-term-example{padding:0}
 .tesat-news .tesat-term-actions [aria-pressed=true]{outline:1px solid var(--gn-text);outline-offset:2px}
 .tesat-news .tesat-definition{font-size:13px}
+.tesat-news .tesat-keyword-search{grid-template-columns:minmax(100px,150px) minmax(0,1fr);max-width:none;gap:8px}
+.tesat-keyword-search input{grid-column:auto}
+.tesat-reading-row{cursor:default}
+.tesat-keyword-list .gn-title{font-weight:600;white-space:normal;overflow:visible}
+.tesat-keyword-list .gn-meta{margin-top:0}
+.tesat-keyword-definition{font-size:13px;margin:2px 0;line-height:1.5}
+.tesat-keyword-explanation{font-size:13px;margin:4px 0;line-height:1.55}
+.tesat-term-explanation{font-size:14px;line-height:1.65}
+.tesat-keyword-case{font-size:12px;margin:6px 0}
+.tesat-keyword-case summary{cursor:pointer;color:var(--muted)}
+.tesat-keyword-case-body p{font-size:12px;line-height:1.55;white-space:pre-line;margin:5px 0}
+.tesat-keyword-case .gn-figure{display:block;width:100%;max-width:320px;margin:6px 0}
+.tesat-case-options{list-style:none;padding:0;margin:6px 0;font-size:12px;line-height:1.6}
+.tesat-reading-row:hover .gn-title{text-decoration:none}
+.tesat-keyword-detail{font-size:12px;color:var(--gn-muted);margin:2px 0;line-height:1.5}
+.tesat-keyword-detail b{font-weight:500;color:var(--gn-text)}
+.tesat-news .tesat-more-center{justify-content:center}
+.tesat-briefing-list .gn-meta{margin-top:0}
+.tesat-briefing-list .tesat-summary{margin:4px 0 0;padding-left:16px;line-height:1.5}
+.tesat-briefing-list .tesat-summary li{margin:2px 0}
 @media(max-width:480px){.gn-tesat .gn-row-title-line{flex-wrap:wrap;gap:0 6px}.gn-tesat .gn-title{max-width:100%}.gn-tesat .gn-row-detail{padding-left:12px}.gn-tesat .gn-domain{font-size:11px}}

@@ -61,7 +61,8 @@ npm run build-tesat # 개념 원본·사례·출처 연결에서 앱 데이터�
 npm test           # 채점, 오답, 저장, 출처 연결, 기존 시험 회귀 검사
 ```
 
-편집 원본은 `src/data/tesat/concepts.psv`, `applications.mjs`, `editorial.json`, `article-concepts.json`입니다.
+용어 257개에 정의와 별도로 작동 원리를 설명하는 해설을 제공하며, 연결되는 계산·사례가 있으면 용어 안에서 풀이를 펼칠 수 있습니다.
+편집 원본은 `src/data/tesat/concepts.psv`, `term-explanations.psv`, `applications.mjs`, `editorial.json`, `article-concepts.json`입니다.
 `collect-tesat.py`는 공개 목록의 메타데이터를 수집하며 원문 검토용 임시 캐시는 `/tmp/tesat-editorial`에만 둡니다.
 `map-tesat-concepts.py`는 이 임시 자료로 개념 연결 후보를 생성합니다. 다시 수집할 때에는 기간·제외 대상·연결을 검토해야 합니다.
 회원 인증이 필요한 본문은 자동으로 우회하지 않고, 브라우저에서 확인한 메타데이터·개념만 `editorial.json`에 반영합니다.

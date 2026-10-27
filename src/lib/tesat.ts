@@ -17,8 +17,10 @@ export interface Term {
   name: string;
   subject: string;
   definition: string;
+  explanation: string;
   example: string;
   contrast: string;
+  caseStudy?: { question: string; options: string[]; answer: string; explanation: string; figure?: string };
   aliases?: string[];
   articleIds: string[];
 }
