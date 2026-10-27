@@ -82,6 +82,14 @@ export function newSession(ids: string[], mode: StudyMode, id: string): StudySes
   return { id, mode, ids: [...new Set(ids)], cursor: 0, selections: {}, graded: {}, completed: false };
 }
 
+/** Reopen an ongoing question without creating a set or changing any answers. */
+export function focusStudySession(session: StudySession | null, questionId?: string): StudySession | null {
+  if (!session || session.completed) return null;
+  const cursor = questionId === undefined ? session.cursor : session.ids.indexOf(questionId);
+  if (cursor < 0 || cursor >= session.ids.length) return null;
+  return cursor === session.cursor ? session : { ...session, cursor };
+}
+
 /** One immutable transaction per submission. Repeated submit does not double-count. */
 export function submitLearning(state: LearningState, bank: TesatQuestion[], now: number, all = false): LearningState {
   const session = state.session;

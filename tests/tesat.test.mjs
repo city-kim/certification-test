@@ -4,7 +4,7 @@ import { readFileSync,existsSync } from 'node:fs';
 import { loadTS } from './load-ts.mjs';
 const engine=await loadTS('src/lib/tesat.ts');
 const quiz=await loadTS('src/lib/quiz.ts');
-const {emptyLearning,newSession,submitLearning,updateSelection,reconcileLearning,filterQuestions,emptyFilter,selectPractice}=engine;
+const {emptyLearning,newSession,focusStudySession,submitLearning,updateSelection,reconcileLearning,filterQuestions,emptyFilter,selectPractice}=engine;
 const read=p=>JSON.parse(readFileSync(new URL('../'+p,import.meta.url),'utf8'));
 const bank=read('src/data/tesat/questions.json');
 const terms=read('src/data/tesat/terms.json');
@@ -59,6 +59,44 @@ test('부분 학습을 여러 번 채점해도 기존 제출은 중복 누적되
 test('완료된 답은 수정되지 않는다',()=>{
   const state=answer(begin(four),four,four.answerIndex);
   assert.equal(updateSelection(state,four.id,(four.answerIndex+1)%4),state);
+});
+test('새로고침 뒤 같은 문제를 열면 세트·선택 답·채점 기록을 보존한다',()=>{
+  let state={...emptyLearning(),session:newSession([four.id,five.id],'learn','ongoing')};
+  state=answer(state,four,four.answerIndex);
+  state=updateSelection(state,five.id,(five.answerIndex+1)%5);
+  state.session.cursor=1;
+  const saved=JSON.parse(JSON.stringify(state));
+  const restored=focusStudySession(saved.session);
+  assert.equal(restored.id,'ongoing');
+  assert.equal(restored.cursor,1);
+  assert.equal(restored.selections[five.id],(five.answerIndex+1)%5);
+  assert.equal(restored.graded[four.id],true);
+  assert.equal(restored.graded[five.id],undefined);
+  const reopened=focusStudySession(restored,four.id);
+  assert.equal(reopened.id,'ongoing');
+  assert.equal(reopened.cursor,0);
+  assert.deepEqual(reopened.ids,saved.session.ids);
+  assert.deepEqual(reopened.selections,saved.session.selections);
+  assert.deepEqual(reopened.graded,saved.session.graded);
+  const resumed={...saved,session:reopened};
+  assert.deepEqual(submitLearning(resumed,bank,300).progress,saved.progress);
+  assert.equal(saved.progress[four.id].attempts,1);
+});
+test('진행 중인 실력 점검은 학습 모드로 바꾸거나 미리 채점하지 않는다',()=>{
+  const state=updateSelection({...emptyLearning(),session:newSession([four.id,five.id],'test','test-set')},five.id,five.answerIndex);
+  const resumed=focusStudySession(state.session,five.id);
+  assert.equal(resumed.id,'test-set');
+  assert.equal(resumed.mode,'test');
+  assert.equal(resumed.selections[five.id],five.answerIndex);
+  assert.deepEqual(resumed.graded,{});
+  assert.deepEqual(state.progress,{});
+});
+test('다른 세트의 문제나 완료된 세트는 이어풀기로 잘못 열지 않는다',()=>{
+  const active=newSession([four.id],'learn','active');
+  assert.equal(focusStudySession(active,five.id),null);
+  assert.equal(active.cursor,0);
+  assert.equal(focusStudySession({...active,completed:true},four.id),null);
+  assert.equal(focusStudySession(null),null);
 });
 test('출처와 게시월은 동일한 원문 참조에서 동시에 일치해야 한다',()=>{
   const q={...four,sourceRefs:[{source:'quiz',publishedAt:'2026-03-01'},{source:'taste',publishedAt:'2026-04-01'}]};

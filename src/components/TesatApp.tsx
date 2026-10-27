@@ -2,8 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { figureUrl } from '../data/questions';
 import { TESAT_ARTICLES, TESAT_BANK, TESAT_RANGES, TESAT_TERMS } from '../data/tesat';
 import { changeLearning, useLearning } from '../lib/tesatStorage';
-import { emptyFilter, filterQuestions, newSession, reconcileLearning, selectPractice, SOURCE_LABELS, SUBJECT_LABELS, submitLearning, updateSelection } from '../lib/tesat';
-import type { SourceId, StudyFilter, StudyMode, TesatQuestion, Term, WrongStatus } from '../lib/tesat';
+import { emptyFilter, filterQuestions, focusStudySession, newSession, reconcileLearning, selectPractice, SOURCE_LABELS, SUBJECT_LABELS, submitLearning, updateSelection } from '../lib/tesat';
+import type { SourceId, StudyFilter, StudyMode, StudySession, TesatQuestion, Term, WrongStatus } from '../lib/tesat';
 import { fakeMeta } from '../secret/meta';
 import ReviewItem from './ReviewItem';
 import './TesatApp.css';
@@ -20,7 +20,8 @@ const VIEW_LABELS: Record<View, string> = {
 
 export default function TesatApp({ secret = false }: { secret?: boolean }) {
   const { state, failed } = useLearning();
-  const [view, setView] = useState<View>(secret ? 'library' : 'home');
+  const restoredSession = focusStudySession(reconcileLearning(state, TESAT_BANK).session);
+  const [view, setView] = useState<View>(secret ? restoredSession ? 'session' : 'library' : 'home');
   const [filter, setFilter] = useState<StudyFilter>(emptyFilter);
   const [wrongFilter, setWrongFilter] = useState<WrongStatus | ''>('');
   const [termSearch, setTermSearch] = useState('');
@@ -30,9 +31,9 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
   const [revealed, setRevealed] = useState<Set<string>>(new Set());
   const [cardMode, setCardMode] = useState(false);
   const [hideAnswers, setHideAnswers] = useState(false);
-  const [openId, setOpenId] = useState<string | null>(null);
+  const [openId, setOpenId] = useState<string | null>(secret && restoredSession ? restoredSession.ids[restoredSession.cursor] : null);
   const [articleId, setArticleId] = useState('');
-  const [limit, setLimit] = useState(30);
+  const [limit, setLimit] = useState(secret && restoredSession ? Math.max(30, restoredSession.cursor + 1) : 30);
 
   useEffect(() => { changeLearning(old => reconcileLearning(old, TESAT_BANK)); }, []);
   const session = state.session;
@@ -58,21 +59,31 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
     setLimit(30);
     window.scrollTo(0, 0);
   }
+  function showSession(next: StudySession) {
+    setOpenId(next.ids[next.cursor]);
+    go('session');
+    setLimit(Math.max(30, next.cursor + 1));
+  }
   function start(ids: string[], mode: StudyMode, focusId = ids[0]) {
     if (!ids.length) return;
     if (session && !session.completed && !window.confirm('진행 중인 풀이를 새 세트로 바꿀까요? 이미 채점한 학습 기록은 유지됩니다.')) return;
     const next = newSession(ids, mode, crypto.randomUUID());
     next.cursor = Math.max(0, next.ids.indexOf(focusId));
     changeLearning(old => ({ ...old, session: next }));
-    setOpenId(focusId);
-    go('session');
-    setLimit(Math.max(30, next.cursor + 1));
+    showSession(next);
   }
   function resume() {
     if (!session) return;
-    setOpenId(session.ids[session.cursor]);
-    go('session');
-    setLimit(Math.max(30, session.cursor + 1));
+    showSession(session);
+  }
+  function openStory(questionId: string) {
+    const existing = focusStudySession(session, questionId);
+    if (existing) {
+      changeLearning(old => ({ ...old, session: focusStudySession(old.session, questionId) ?? old.session }));
+      showSession(existing);
+    } else {
+      start(questions.map(q => q.id), 'learn', questionId);
+    }
   }
   function move(delta: number) {
     changeLearning(old => ({ ...old, session: old.session ? {
@@ -244,7 +255,7 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
       <div className={secret ? 'gn-article-nav tesat-library-actions' : 'tesat-library-actions'}><button className={button} disabled={!questions.length} onClick={() => start(questions.map(q => q.id), 'learn')}>{secret ? 'Read selected stories' : '선택 범위 학습'}</button><button className={button} disabled={!questions.length} onClick={() => start(selectPractice(questions), 'test')}>{secret ? 'New set' : '실력 점검'} ({Math.min(20, questions.length)})</button></div>
       {!secret && <p className="muted small">총 {questions.length}문항 · {hideAnswers ? '정답을 가리고 확인해 보세요' : '정답·해설과 함께 읽기'}</p>}
       {!questions.length && <p className={secret ? 'gn-empty' : 'muted center'}>조건에 맞는 문제가 없습니다.</p>}
-      {secret ? <ol className="gn-list">{questions.slice(0, limit).map((q, i) => newsRow(q, i, false, () => start(questions.map(item => item.id), 'learn', q.id)))}</ol>
+      {secret ? <ol className="gn-list">{questions.slice(0, limit).map((q, i) => newsRow(q, i, false, () => openStory(q.id)))}</ol>
         : questions.slice(0, limit).map((q, i) => <article className="card study-item" key={q.id}><div className="review-head"><span className="review-num">{i + 1}</span><span className="subject-tag small">{SUBJECT_LABELS[q.subject]}</span><span className="muted small">{q.publishedAt}</span></div>{questionBody(q, null, !hideAnswers)}<button className={button} onClick={() => start([q.id], 'learn')}>이 문제 풀기</button></article>)}
       {questions.length > limit && <div className={secret ? 'gn-list-foot' : ''}><button className={secret ? 'gn-more tesat-text-button' : 'btn ghost'} onClick={() => setLimit(limit + 30)}>{secret ? 'More ▾' : '30문항 더 보기'}</button></div>}
     </>}
