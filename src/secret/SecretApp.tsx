@@ -24,13 +24,13 @@ type View = "list" | "result" | "practical" | "adsp-study" | "adsp-intro";
 export default function SecretApp() {
   const [certId, setCertId] = useState<string>(() => {
     const channel = new URLSearchParams(window.location.search).get("channel");
-    return channel && getCert(channel) ? channel : "network_2";
+    return channel && getCert(channel) ? channel : "tesat";
   });
   const cert = getCert(certId)!;
   if (cert.id === "tesat") return (
     <div className="gn gn-tesat">
       <header className="gn-top"><div className="gn-top-inner">
-        <a className="gn-logo" onClick={() => setCertId("network_2")}><span className="gn-mark">GN</span> GeekNews</a>
+        <a className="gn-logo" href={`${import.meta.env.BASE_URL}certification-test-secret/`}><span className="gn-mark">GN</span> GeekNews</a>
         <nav className="gn-nav">{CERTS.map(c => <a key={c.id} className={c.id === certId ? "active" : ""} onClick={() => setCertId(c.id)}>{navLabel(c)}</a>)}</nav>
       </div></header>
       <main className="gn-main"><TesatApp secret /></main>
