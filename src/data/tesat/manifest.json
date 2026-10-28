@@ -3913,7 +3913,7 @@
       "imageCount": 1,
       "verifiedAt": "2026-10-28",
       "matchMethod": "official-date-and-original-image-or-stem",
-      "note": "제공 HTML에 정답 번호가 없어 공식 게시글의 정답 ②를 확인.",
+      "note": "제공 HTML에 정답 번호가 없어 공식 게시글과 대조했습니다.",
       "included": true,
       "termIds": []
     },

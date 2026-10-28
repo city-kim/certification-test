@@ -167,7 +167,7 @@
 | taste | 2025-03-24 | [독감 예방주사](https://sgsg.hankyung.com/article/2025032193021) | 3 | 5 | 기간 제외 · 이전 오답 복습용 보존 |
 | taste | 2025-03-17 | [무역정책](https://sgsg.hankyung.com/article/2025031438261) | 3 | 1 | 기간 제외 · 이전 오답 복습용 보존 |
 | taste | 2025-03-10 | [비용인상 인플레이션](https://sgsg.hankyung.com/article/2025030787511) | 3 | 9 | 기간 제외 · 이전 오답 복습용 보존 |
-| today | 2026-10-27 | [혐오시설 유치 반대](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25592&s_cateno=1) | 1 | 0 | 제공 원문 등록 · 제공 HTML에 정답 번호가 없어 공식 게시글의 정답 ②를 확인. |
+| today | 2026-10-27 | [혐오시설 유치 반대](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25592&s_cateno=1) | 1 | 0 | 제공 원문 등록 · 제공 HTML에 정답 번호가 없어 공식 게시글과 대조했습니다. |
 | today | 2026-10-15 | [주거비와 식료품비](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25585&s_cateno=1) | 1 | 3 | 제공 원문 등록 |
 | today | 2026-09-22 | [세이의 법칙](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25559&s_cateno=1) | 1 | 3 | 제공 원문 등록 |
 | today | 2026-09-16 | [시사 경제용어 따라잡기](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25542&s_cateno=1) | 0 | 6 | public-accessible |
