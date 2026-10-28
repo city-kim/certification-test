@@ -148,8 +148,8 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
     const original = lookup.get(q.id);
     const shuffledImageChoices = q.imageContainsChoices && original && q.options.some((option, i) => option !== original.options[i]);
     return <>
-      <div className={secret ? 'gn-lead tesat-question' : 'q-text'}>{q.content ? <QuestionContent key={q.id} content={q.content} prefix={index != null && !secret ? <span className="q-num">{index + 1}.</span> : undefined} /> : <>{index != null && !secret && <span className="q-num">{index + 1}.</span>}{q.question}</>}</div>
-      {q.figure && !q.content && <QuestionImage key={q.id} className={secret ? 'gn-figure' : 'q-figure'} src={q.figure} alt="문제 그림" />}
+      <div className={secret ? 'gn-lead tesat-question' : 'q-text'}>{q.content ? <QuestionContent key={q.id} content={q.content} hideImages={secret} prefix={index != null && !secret ? <span className="q-num">{index + 1}.</span> : undefined} /> : <>{index != null && !secret && <span className="q-num">{index + 1}.</span>}{q.question}</>}</div>
+      {q.figure && !q.content && <QuestionImage key={q.id} className={secret ? 'gn-figure' : 'q-figure'} src={q.figure} alt="문제 그림" collapsible={secret} />}
       {shuffledImageChoices && <p className={secret ? 'gn-progress' : 'muted small'}>그림 속 보기 번호는 원문 기준입니다. 답은 아래 선택지의 번호로 고르세요.</p>}
       <ul className={secret ? 'gn-poll' : `options ${graded ? 'review' : ''}`}>
         {q.options.map((opt, i) => {
@@ -185,7 +185,7 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
     const selected = displayedSelection(original, originalSelected, order);
     return <div key={q.id} className="tesat-review">
       <ReviewItem data={{ index: index + 1, subjectLabel: SUBJECT_LABELS[q.subject], question: q.question,
-        content: q.content, figure: q.figure, hideFigures: true, options: q.options, correctText: q.options[q.answerIndex],
+        content: q.content, figure: q.figure, hideFigures: secret, options: q.options, correctText: q.options[q.answerIndex],
         correctIndex: q.answerIndex, selectedIndex: selected,
         selectedText: selected == null ? null : q.options[selected], explanation: q.explanation }} />
       {q.imageContainsChoices && q !== original && <p className="muted small">그림 속 보기 번호는 원문 기준입니다. 아래 선택지의 번호를 확인하세요.</p>}
@@ -375,7 +375,7 @@ function TermExplanation({ term, secret = false }: { term: Term; secret?: boolea
       <summary>계산·사례로 이해하기</summary>
       <div className={secret ? 'tesat-keyword-case-body' : 'explanation'}>
         <p>{study.question}</p>
-        {study.figure && <QuestionImage key={study.figure} className={secret ? 'gn-figure' : 'q-figure'} src={study.figure} alt="사례 참고 그림" />}
+        {study.figure && <QuestionImage key={study.figure} className={secret ? 'gn-figure' : 'q-figure'} src={study.figure} alt="사례 참고 그림" collapsible={secret} />}
         <ul className="tesat-case-options">{study.options.map((option, index) => <li key={index}>{MARKERS[index]} {option}</li>)}</ul>
         <p><strong>답: {study.answer}</strong></p><p>{study.explanation}</p>
       </div>

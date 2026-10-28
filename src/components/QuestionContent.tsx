@@ -4,14 +4,14 @@ import QuestionImage from './QuestionImage';
 import './QuestionContent.css';
 
 /** Render parsed content with React text nodes, never arbitrary source HTML. */
-export default function QuestionContent({ content, prefix }: { content: QuestionContentNode[]; prefix?: ReactNode }) {
+export default function QuestionContent({ content, prefix, hideImages = false }: { content: QuestionContentNode[]; prefix?: ReactNode; hideImages?: boolean }) {
   function render(nodes: QuestionContentNode[]): ReactNode {
     return nodes.map((node, index) => {
       if (typeof node === 'string') return <Fragment key={index}>{node}</Fragment>;
       const children = node.children ? render(node.children) : null;
       switch (node.tag) {
         case 'br': return <br key={index} />;
-        case 'img': return node.src ? <QuestionImage key={node.src} src={node.src} alt={node.alt ?? '문제 참고 그림'} /> : null;
+        case 'img': return node.src ? <QuestionImage key={node.src} src={node.src} alt={node.alt ?? '문제 참고 그림'} collapsible={hideImages} /> : null;
         case 'box': return <div key={index} className="question-box">{children}</div>;
         case 'p': return <p key={index}>{children}</p>;
         case 'strong': return <strong key={index}>{children}</strong>;

@@ -35,9 +35,9 @@ export default function ReviewItem({ data }: { data: ReviewData }) {
         {short && <span className="type-tag short">단답형</span>}
         {data.hintUsed && <span className="badge hint">힌트 사용</span>}
       </div>
-      <div className="q-text">{data.content ? <QuestionContent content={data.content} /> : data.question}</div>
+      <div className="q-text">{data.content ? <QuestionContent content={data.content} hideImages={data.hideFigures} /> : data.question}</div>
       {data.figure && !data.content && (data.hideFigures
-        ? <QuestionImage key={data.figure} src={data.figure} alt="문제 그림" />
+        ? <QuestionImage key={data.figure} src={data.figure} alt="문제 그림" collapsible />
         : <img className="q-figure" src={figureUrl(data.figure)} alt="문제 그림" />)}
 
       {short ? (
