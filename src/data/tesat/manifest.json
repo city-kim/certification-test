@@ -1,23 +1,23 @@
 {
-  "collectedAt": "2026-10-27",
+  "collectedAt": "2026-10-28",
   "ranges": [
     {
       "source": "quiz",
-      "start": "2024-10-07",
+      "start": "2025-10-01",
       "end": "2026-04-06",
-      "basis": "user-provided-files"
+      "basis": "user-provided-files-date-filter"
     },
     {
       "source": "taste",
-      "start": "2025-03-10",
+      "start": "2025-10-01",
       "end": "2026-10-14",
-      "basis": "user-provided-files"
+      "basis": "user-provided-files-date-filter"
     },
     {
       "source": "today",
-      "start": "2025-10-15",
-      "end": "2026-10-15",
-      "basis": "latest-published"
+      "start": "2025-10-01",
+      "end": "2026-10-27",
+      "basis": "user-provided-files-date-filter"
     },
     {
       "source": "current-terms",
@@ -839,7 +839,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 25,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -871,7 +871,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 26,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -897,7 +897,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 27,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -929,7 +929,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 28,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -951,7 +951,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 29,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -985,7 +985,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 30,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1015,7 +1015,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 31,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1045,7 +1045,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 32,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1078,7 +1078,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 33,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1106,7 +1106,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 34,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1135,7 +1135,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 35,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1162,7 +1162,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 36,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1192,7 +1192,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 37,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1215,7 +1215,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 38,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1239,7 +1239,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 39,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1271,7 +1271,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 40,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1307,7 +1307,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 41,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1332,7 +1332,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 42,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1365,7 +1365,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 43,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1394,7 +1394,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 44,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1422,7 +1422,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 45,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1453,7 +1453,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 46,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1496,7 +1496,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 47,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1522,7 +1522,7 @@
       "status": "user-provided-html",
       "questionCount": 8,
       "imageCount": 0,
-      "included": true,
+      "included": false,
       "captureIndex": 48,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
@@ -1549,7 +1549,7 @@
       "captureIndex": 49,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "paid-increase",
@@ -1572,7 +1572,7 @@
       "captureIndex": 50,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "cofix",
@@ -1593,7 +1593,7 @@
       "captureIndex": 51,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "employment",
@@ -1618,7 +1618,7 @@
       "captureIndex": 52,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "employment",
@@ -1640,7 +1640,7 @@
       "captureIndex": 53,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "kimchi-premium",
@@ -1662,7 +1662,7 @@
       "captureIndex": 54,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "engel",
@@ -1683,7 +1683,7 @@
       "captureIndex": 55,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "galapagos",
@@ -1707,7 +1707,7 @@
       "captureIndex": 56,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "smr",
@@ -1729,7 +1729,7 @@
       "captureIndex": 57,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "bitcoin",
@@ -1751,7 +1751,7 @@
       "captureIndex": 58,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "indifference"
@@ -1770,7 +1770,7 @@
       "captureIndex": 59,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "dollar-index",
@@ -1791,7 +1791,7 @@
       "captureIndex": 60,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "central-bank",
@@ -1811,7 +1811,7 @@
       "captureIndex": 61,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "central-bank",
@@ -1831,7 +1831,7 @@
       "captureIndex": 62,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "bitcoin",
@@ -1853,7 +1853,7 @@
       "captureIndex": 63,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "portfolio",
@@ -1878,7 +1878,7 @@
       "captureIndex": 64,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "crowding-out",
@@ -1900,7 +1900,7 @@
       "captureIndex": 65,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "dead-cat",
@@ -1922,7 +1922,7 @@
       "captureIndex": 66,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "windfall-tax",
@@ -1944,7 +1944,7 @@
       "captureIndex": 67,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "default",
@@ -1967,7 +1967,7 @@
       "captureIndex": 68,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "barbell",
@@ -1991,7 +1991,7 @@
       "captureIndex": 69,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "base-effect",
@@ -2013,7 +2013,7 @@
       "captureIndex": 70,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "fractional",
@@ -2034,7 +2034,7 @@
       "captureIndex": 71,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "forced-sale",
@@ -2055,7 +2055,7 @@
       "captureIndex": 72,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "white-knight",
@@ -3234,7 +3234,7 @@
       "captureIndex": 45,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "central-bank",
@@ -3257,7 +3257,7 @@
       "captureIndex": 46,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "demand-shift",
@@ -3284,7 +3284,7 @@
       "captureIndex": 47,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "producer-surplus",
@@ -3310,7 +3310,7 @@
       "captureIndex": 48,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "public-good",
@@ -3332,7 +3332,7 @@
       "captureIndex": 49,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "bandwagon",
@@ -3358,7 +3358,7 @@
       "captureIndex": 50,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "stock-split",
@@ -3382,7 +3382,7 @@
       "captureIndex": 51,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "perfect-competition",
@@ -3402,7 +3402,7 @@
       "captureIndex": 52,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "demand-shift",
@@ -3430,7 +3430,7 @@
       "captureIndex": 53,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "inflation",
@@ -3456,7 +3456,7 @@
       "captureIndex": 54,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "deflation",
@@ -3481,7 +3481,7 @@
       "captureIndex": 55,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "aggregate-demand",
@@ -3507,7 +3507,7 @@
       "captureIndex": 56,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "elasticity",
@@ -3531,7 +3531,7 @@
       "captureIndex": 57,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "crowding-out",
@@ -3556,7 +3556,7 @@
       "captureIndex": 58,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "consumer-surplus",
@@ -3581,7 +3581,7 @@
       "captureIndex": 59,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "tax-direct",
@@ -3605,7 +3605,7 @@
       "captureIndex": 60,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "gdp",
@@ -3629,7 +3629,7 @@
       "captureIndex": 61,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "opportunity-cost",
@@ -3657,7 +3657,7 @@
       "captureIndex": 62,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "supply-shift",
@@ -3681,7 +3681,7 @@
       "captureIndex": 63,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "central-bank",
@@ -3701,7 +3701,7 @@
       "captureIndex": 64,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "fiscal-policy",
@@ -3726,7 +3726,7 @@
       "captureIndex": 65,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "current-account",
@@ -3747,7 +3747,7 @@
       "captureIndex": 66,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "gdp",
@@ -3774,7 +3774,7 @@
       "captureIndex": 67,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "demand-shift",
@@ -3799,7 +3799,7 @@
       "captureIndex": 68,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "insider",
@@ -3819,7 +3819,7 @@
       "captureIndex": 69,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "aggregate-demand",
@@ -3843,7 +3843,7 @@
       "captureIndex": 70,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "marginal-cost",
@@ -3866,7 +3866,7 @@
       "captureIndex": 71,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "direct-finance"
@@ -3885,7 +3885,7 @@
       "captureIndex": 72,
       "matchMethod": "unique-content-match",
       "matchScore": 1,
-      "included": true,
+      "included": false,
       "provided": true,
       "termIds": [
         "supply-shift",
@@ -3901,6 +3901,24 @@
     },
     {
       "source": "today",
+      "url": "https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25592&s_cateno=1",
+      "title": "혐오시설 유치 반대",
+      "publishedAt": "2026-10-27",
+      "id": "today-25592",
+      "kind": "questions",
+      "status": "public-accessible",
+      "captureIndex": 1,
+      "provided": true,
+      "questionCount": 1,
+      "imageCount": 1,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-original-image-or-stem",
+      "note": "제공 HTML에 정답 번호가 없어 공식 게시글의 정답 ②를 확인.",
+      "included": true,
+      "termIds": []
+    },
+    {
+      "source": "today",
       "url": "https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25585&s_cateno=1",
       "title": "주거비와 식료품비",
       "publishedAt": "2026-10-15",
@@ -3908,8 +3926,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 3,
+      "imageCount": 1,
       "included": true,
+      "captureIndex": 2,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "engel",
         "exchange-rate",
@@ -3925,8 +3947,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 3,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "inflation",
         "marginal-utility",
@@ -3970,8 +3996,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 1,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 4,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "complements",
         "demand-shift",
@@ -3988,8 +4018,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 5,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "aggregate-demand",
         "bond",
@@ -4009,8 +4043,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 6,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "bond",
         "seigniorage"
@@ -4025,8 +4063,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 7,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "bond",
         "exchange-rate",
@@ -4043,8 +4085,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 8,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "aggregate-demand",
         "central-bank",
@@ -4061,8 +4107,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 3,
+      "imageCount": 1,
       "included": true,
+      "captureIndex": 9,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "tariff"
       ]
@@ -4128,8 +4178,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 1,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 10,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "credit-rating",
         "credit-score"
@@ -4144,8 +4198,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 4,
+      "imageCount": 2,
       "included": true,
+      "captureIndex": 11,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "complements",
         "demand-shift",
@@ -4162,8 +4220,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 12,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "public-choice"
       ]
@@ -4177,8 +4239,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 13,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "bond",
         "bsi",
@@ -4196,8 +4262,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 14,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "cbdc",
         "central-bank",
@@ -4266,8 +4336,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 1,
       "included": true,
+      "captureIndex": 15,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "employment",
         "gdp",
@@ -4285,8 +4359,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 3,
+      "imageCount": 2,
       "included": true,
+      "captureIndex": 16,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "economic-cycle"
       ]
@@ -4300,8 +4378,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 3,
+      "imageCount": 1,
       "included": true,
+      "captureIndex": 17,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "bond",
         "convertible",
@@ -4350,17 +4432,22 @@
       "publishedAt": "2026-04-29",
       "id": "today-25328",
       "kind": "questions",
-      "status": "reviewed-image",
+      "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 1,
       "included": true,
-      "note": "이미지로 된 문제·해설 확인. 가격상한·하한, 잉여와 사회적 후생손실을 다룬다. 광고 배너는 그림 수에서 제외.",
+      "note": "원문 문제·해설이 그림으로 되어 있어 직접 확인 후 전사. 원문 문제 그림도 유지.",
+      "captureIndex": 18,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-original-image-or-stem",
       "termIds": [
         "consumer-surplus",
         "market-failure",
         "price-ceiling",
         "price-floor",
-        "producer-surplus"
+        "producer-surplus",
+        "demand-shift"
       ]
     },
     {
@@ -4372,8 +4459,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 1,
       "included": true,
+      "captureIndex": 19,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "central-bank"
       ]
@@ -4387,8 +4478,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 20,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "economic-cycle",
         "public-good"
@@ -4403,8 +4498,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 3,
+      "imageCount": 1,
       "included": true,
+      "captureIndex": 21,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "aggregate-demand",
         "fiscal-policy",
@@ -4423,8 +4522,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 1,
       "included": true,
+      "captureIndex": 22,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "cpi"
       ]
@@ -4453,6 +4556,10 @@
       "questionCount": 1,
       "imageCount": 1,
       "included": true,
+      "captureIndex": 23,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "aggregate-demand",
         "central-bank",
@@ -4470,6 +4577,10 @@
       "questionCount": 1,
       "imageCount": 1,
       "included": true,
+      "captureIndex": 24,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "gdp"
       ]
@@ -4483,8 +4594,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 1,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 25,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "aggregate-demand",
         "aggregate-supply",
@@ -4505,8 +4620,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 1,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 26,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "gdp"
       ]
@@ -4520,8 +4639,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 1,
       "included": true,
+      "captureIndex": 27,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "tariff"
       ]
@@ -4535,8 +4658,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 28,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "diminishing-returns"
       ]
@@ -4563,8 +4690,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 29,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "bond",
         "convertible",
@@ -4581,8 +4712,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 30,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "common-resource",
         "economies-scale",
@@ -4601,8 +4736,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 31,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "externality"
       ]
@@ -4618,6 +4757,11 @@
       "questionCount": 0,
       "imageCount": 0,
       "included": false,
+      "captureIndex": 32,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
+      "note": "시사용어 글이며 현재 Briefing 반년 범위 이전 자료. 원본과 목록만 보존.",
       "termIds": []
     },
     {
@@ -4631,6 +4775,10 @@
       "questionCount": 1,
       "imageCount": 0,
       "included": true,
+      "captureIndex": 33,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "shareholder-activism"
       ]
@@ -4644,8 +4792,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 1,
       "included": true,
+      "captureIndex": 34,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "economic-system"
       ]
@@ -4659,8 +4811,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 35,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "reshoring"
       ]
@@ -4674,8 +4830,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 3,
+      "imageCount": 1,
       "included": true,
+      "captureIndex": 36,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "economic-cycle",
         "minimum-wage",
@@ -4691,8 +4851,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 1,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 37,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "opportunity-cost",
         "sunk-cost"
@@ -4707,8 +4871,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 2,
+      "imageCount": 0,
       "included": true,
+      "captureIndex": 38,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "bond",
         "stock-option",
@@ -4724,8 +4892,12 @@
       "kind": "questions",
       "status": "public-accessible",
       "questionCount": 1,
-      "imageCount": 3,
+      "imageCount": 1,
       "included": true,
+      "captureIndex": 39,
+      "provided": true,
+      "verifiedAt": "2026-10-28",
+      "matchMethod": "official-date-and-visible-text",
       "termIds": [
         "bond",
         "current-account",

@@ -1,6 +1,6 @@
 import { Fragment, type ReactNode } from 'react';
 import type { QuestionContentNode } from '../lib/types';
-import { figureUrl } from '../data/questions';
+import QuestionImage from './QuestionImage';
 import './QuestionContent.css';
 
 /** Render parsed content with React text nodes, never arbitrary source HTML. */
@@ -11,7 +11,7 @@ export default function QuestionContent({ content, prefix }: { content: Question
       const children = node.children ? render(node.children) : null;
       switch (node.tag) {
         case 'br': return <br key={index} />;
-        case 'img': return node.src ? <img key={index} className="q-figure" src={figureUrl(node.src)} alt={node.alt ?? '문제 참고 그림'} /> : null;
+        case 'img': return node.src ? <QuestionImage key={node.src} src={node.src} alt={node.alt ?? '문제 참고 그림'} /> : null;
         case 'box': return <div key={index} className="question-box">{children}</div>;
         case 'p': return <p key={index}>{children}</p>;
         case 'strong': return <strong key={index}>{children}</strong>;

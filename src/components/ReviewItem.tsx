@@ -1,6 +1,7 @@
 import { figureUrl } from "../data/questions";
 import type { QuestionContentNode } from '../lib/types';
 import QuestionContent from './QuestionContent';
+import QuestionImage from './QuestionImage';
 
 export interface ReviewData {
   index?: number;
@@ -8,6 +9,7 @@ export interface ReviewData {
   question: string;
   content?: QuestionContentNode[];
   figure?: string;
+  hideFigures?: boolean;
   /** 4지선다의 보기 목록. 주관식이면 빈 배열 */
   options: string[];
   correctText: string;
@@ -34,9 +36,9 @@ export default function ReviewItem({ data }: { data: ReviewData }) {
         {data.hintUsed && <span className="badge hint">힌트 사용</span>}
       </div>
       <div className="q-text">{data.content ? <QuestionContent content={data.content} /> : data.question}</div>
-      {data.figure && !data.content && (
-        <img className="q-figure" src={figureUrl(data.figure)} alt="문제 그림" />
-      )}
+      {data.figure && !data.content && (data.hideFigures
+        ? <QuestionImage key={data.figure} src={data.figure} alt="문제 그림" />
+        : <img className="q-figure" src={figureUrl(data.figure)} alt="문제 그림" />)}
 
       {short ? (
         <div className="short-review">

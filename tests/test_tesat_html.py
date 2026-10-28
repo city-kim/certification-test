@@ -40,6 +40,22 @@ class TesatHtmlTests(unittest.TestCase):
         self.assertEqual(q['options'],['A','B','C','D','E'])
         self.assertEqual(q['answerIndex'],4)
 
+    def test_today_keeps_question_image_and_excludes_related_article_ad(self):
+        picture='/data/service/www.tesat.or.kr/upload/bbs/tesat_study/image/04e6acb3bb284520817a86f3d28270c2'
+        source=f'''<a href="https://example.com"><img src="{picture}"></a>
+        <p><b>[</b><span>문제</span><b>]</b> 아래 항목과 관련한 지수를 고르면?</p>
+        <p><img src="{picture}" onerror="alert(1)"></p>
+        <p>① ㄱ, ㄴ ② ㄱ, ㄷ ③ ㄴ, ㄷ ④ ㄴ, ㄹ ⑤ ㄷ, ㄹ</p>
+        <p>[ 해설 ] 식료품비와 주거비의 비중을 비교한다. <b>정답 ①</b></p>
+        <p>☞ 함께 읽으면 유익한 기사</p><a href="https://example.com"><img src="{picture}"></a>'''
+        q=parse_article('today',source,1)[0]
+        self.assertEqual(q['options'],['ㄱ, ㄴ','ㄱ, ㄷ','ㄴ, ㄷ','ㄴ, ㄹ','ㄷ, ㄹ'])
+        self.assertEqual(q['answerIndex'],0)
+        self.assertEqual(q['images'],['https://www.tesat.or.kr'+picture])
+        self.assertEqual(q['officialExplanation'],'식료품비와 주거비의 비중을 비교한다. 정답 ①')
+        self.assertNotIn('함께 읽으면',q['officialExplanation'])
+        self.assertEqual(len(parse_article('today',source.replace('[ 해설 ]','[해설]'),2)),1)
+
     def test_unsafe_markup_and_advertising_are_not_executed_or_kept(self):
         source='<div class="summary">광고</div><script>지시문과 실행문</script>'+quiz(2)
         q=parse_article('quiz',source,1)[0]
@@ -74,6 +90,37 @@ class TesatHtmlTests(unittest.TestCase):
         q=parse_article('quiz','<strong>1.질문?</strong>① A ② B ③ C ④ A<br>▶정답 : 1 ③',1)[0]
         self.assertEqual(q['options'],['A','B','C','A']);self.assertEqual(q['answerIndex'],2)
         self.assertTrue(q['issues'])
+
+    def test_today_supplied_articles_and_reviewed_image_transcriptions(self):
+        reviews=json.loads((DATA/'reviewed-imports.json').read_text())
+        parsed,report=module.import_files({'today':DATA/'raw/today.json'},reviews)
+        self.assertEqual(report['errors'],[])
+        self.assertEqual(len(report['articles']),39)
+        self.assertEqual(len(parsed),38)
+        self.assertEqual(report['articles'][31]['kind'],'terms')
+        self.assertEqual(report['articles'][31]['questionCount'],0)
+        raw=json.loads((DATA/'raw/today.json').read_text())
+        for q in parsed:
+            original=raw[q['captureIndex']-1]
+            if q['captureIndex']!=18:
+                plain=html.unescape(re.sub(r'<[^>]*>',' ',original))
+                compact=lambda value:re.sub(r'\s+','',value)
+                self.assertIn(compact(q['question']),compact(plain))
+                self.assertIn(compact(q['officialExplanation']),compact(plain))
+                if q['captureIndex']!=11:
+                    for option in q['options']:self.assertIn(compact(option),compact(plain))
+            for image in q['images']:
+                self.assertIn(image.removeprefix('https://www.tesat.or.kr'),original)
+            self.assertNotIn('함께 읽으면',q['officialExplanation'])
+        table=next(q for q in parsed if q['captureIndex']==11)
+        self.assertEqual(len(table['images']),2)
+        self.assertEqual(table['answerIndex'],4)
+        graph=next(q for q in parsed if q['captureIndex']==18)
+        self.assertEqual(graph['answerIndex'],4)
+        self.assertIn('A+B+E',graph['options'][3])
+        self.assertIn('E+F',graph['officialExplanation'])
+        with self.assertRaisesRegex(ValueError,'no longer matches'):
+            parse_article('today',raw[17]+'edited',18,reviews['today']['18'])
 
 
 if __name__=='__main__':unittest.main()

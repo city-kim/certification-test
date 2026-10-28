@@ -24,7 +24,7 @@ export function loadOriginals(root, terms) {
   if (report.errors.length) throw Error('Resolve HTML import errors first');
   const metadata = new Map(articles.map(a => [a.source+':'+a.captureIndex, a]));
   if (metadata.size !== report.articles.length) throw Error('Missing or duplicate imported article metadata');
-  for (const source of ['quiz', 'taste']) {
+  for (const source of new Set(report.articles.map(a=>a.source))) {
     const raw = read('raw/'+source+'.json');
     const expected = report.articles.filter(a => a.source === source);
     if (raw.length !== expected.length) throw Error(source+': stale import report');

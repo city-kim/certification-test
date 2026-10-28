@@ -7,7 +7,9 @@ const quiz=await loadTS('src/lib/quiz.ts');
 const {emptyLearning,newSession,focusStudySession,submitLearning,updateSelection,reconcileLearning,filterQuestions,emptyFilter,selectPractice}=engine;
 const read=p=>JSON.parse(readFileSync(new URL('../'+p,import.meta.url),'utf8'));
 const bank=read('src/data/tesat/questions.json');
-const archive=read('src/data/tesat/authored-questions.json');
+const authored=read('src/data/tesat/authored-questions.json');
+const archivedOriginals=read('src/data/tesat/archived-original-questions.json');
+const archive=[...authored,...archivedOriginals];
 const terms=read('src/data/tesat/terms.json');
 const manifest=read('src/data/tesat/manifest.json');
 const four=bank.find(q=>q.options.length===4),five=bank.find(q=>q.options.length===5);
@@ -166,11 +168,12 @@ test('전체 문항·출처·기간·용어·그림 연결 무결성',()=>{
   current.forEach(a=>assert.ok(range.start<=a.publishedAt&&a.publishedAt<=range.end));
   assert.ok(manifest.articles.filter(a=>a.title.includes('스도쿠')).every(a=>!a.included));
 });
-test('제공한 792문항의 지문·보기 순서·정답·원문 해설을 변형하지 않는다',()=>{
+test('제공한 830문항의 지문·보기 순서·정답·원문 해설을 변형하지 않는다',()=>{
   const parsed=read('src/data/tesat/imports/parsed-questions.json');
   const occurrences=read('src/data/tesat/imports/occurrences.json');
-  const byId=new Map(bank.map(q=>[q.id,q]));
-  assert.equal(parsed.length,792);assert.equal(bank.length,781);
+  const byId=new Map([...bank,...archivedOriginals].map(q=>[q.id,q]));
+  const articles=new Map(manifest.articles.map(a=>[a.source+':'+a.captureIndex,a]));
+  assert.equal(parsed.length,830);assert.equal(byId.size,819);
   assert.equal(occurrences.length,parsed.length);
   const compact=s=>s.replace(/\s+/g,'');
   for(const original of parsed){
@@ -180,18 +183,78 @@ test('제공한 792문항의 지문·보기 순서·정답·원문 해설을 변
     assert.deepEqual(q.options.map(compact),original.options.map(compact));
     assert.equal(q.answerIndex,original.answerIndex);
     assert.equal(q.shuffleOptions,false);
-    assert.ok(q.sourceRefs.some(r=>r.source===original.source&&r.captureIndex===original.captureIndex&&r.questionNumber===original.originalNumber));
+    const article=articles.get(original.source+':'+original.captureIndex);
+    assert.ok(article);
+    if(article.included||!bank.some(active=>active.id===q.id))assert.ok(q.sourceRefs.some(r=>r.source===original.source&&r.captureIndex===original.captureIndex&&r.questionNumber===original.originalNumber));
     if(original.officialExplanation)assert.equal(q.explanation,original.officialExplanation);
   }
-  assert.equal(bank.reduce((n,q)=>n+q.sourceRefs.length,0),792);
-  assert.equal(bank.filter(q=>q.figure).length,4);
+  assert.equal([...byId.values()].filter(q=>q.figure).length,21);
+});
+test('기본 은행은 2025년 10월부터 확보된 최신 글까지만 포함한다',()=>{
+  assert.equal(bank.length,362);
+  assert.equal(archivedOriginals.length,457);
+  const articles=manifest.articles.filter(a=>a.provided&&a.included);
+  assert.equal(articles.length,106);
+  for(const source of ['quiz','taste']){
+    const selected=articles.filter(a=>a.source===source);
+    const range=manifest.ranges.find(r=>r.source===source);
+    assert.equal(range.start,'2025-10-01');
+    assert.equal(range.end,source==='quiz'?'2026-04-06':'2026-10-14');
+    assert.equal(selected.length,source==='quiz'?24:44);
+    assert.equal(bank.filter(q=>q.sourceRefs.some(r=>r.source===source)).length,source==='quiz'?192:132);
+  }
+  assert.ok(bank.every(q=>q.sourceRefs.every(r=>r.publishedAt>='2025-10-01')));
+  assert.ok(archivedOriginals.every(q=>q.sourceRefs.every(r=>r.publishedAt<'2025-10-01')));
+  const ids=new Set(bank.map(q=>q.id));
+  assert.ok(archive.every(q=>!ids.has(q.id)));
+  const months=new Set(bank.flatMap(q=>q.sourceRefs.map(r=>r.publishedAt.slice(0,7))));
+  assert.ok([...months].every(m=>m>='2025-10'));
+});
+test('오늘의 TESAT의 원문·그림 선택지·그림 문제·공식 정답을 연결한다',()=>{
+  const questions=bank.filter(q=>q.sourceRefs.some(r=>r.source==='today'));
+  assert.equal(questions.length,38);
+  assert.equal(questions.at(-1).publishedAt,'2025-11-21');
+  assert.equal(questions[0].publishedAt,'2026-10-27');
+  assert.ok(questions.every(q=>q.options.length===5&&q.explanationKind==='original'));
+  assert.equal(questions[0].options[questions[0].answerIndex],'님비(NIMBY)');
+  assert.ok(questions[0].originalIssues.some(note=>note.includes('공식 게시글')));
+  const table=questions.find(q=>q.sourceRefs.some(r=>r.captureIndex===11));
+  assert.deepEqual(table.options,['(A) 가격탄력성 · (B) 대체재','(A) 가격탄력성 · (B) 보완재','(A) 가격탄력성 · (B) 정상재','(A) 교차탄력성 · (B) 대체재','(A) 교차탄력성 · (B) 보완재']);
+  const graph=questions.find(q=>q.sourceRefs.some(r=>r.captureIndex===18));
+  assert.equal(graph.answerIndex,4);
+  assert.ok(graph.figure&&graph.explanation.includes('E+F'));
+  const termArticle=manifest.articles.find(a=>a.source==='today'&&a.captureIndex===32);
+  assert.equal(termArticle.kind,'terms');assert.equal(termArticle.included,false);
+  assert.ok(!questions.some(q=>q.sourceRefs.some(r=>r.captureIndex===32)));
+  assert.equal(manifest.articles.filter(a=>a.kind==='questions'&&a.included&&!a.provided).length,3);
+  const wrong=answer(begin(table),table,0);
+  assert.equal(wrong.progress[table.id].wrongStatus,'unreviewed');
+  const done=answer(begin(table,'review',wrong,'today-review'),table,table.answerIndex);
+  assert.equal(done.progress[table.id].wrongStatus,'done');
+});
+test('기간에서 제외한 원문의 오답은 유지하고 다시 채점할 수 있다',()=>{
+  const q=archivedOriginals[0];
+  const fullBank=[...bank,...archive];
+  let state={...emptyLearning(),session:newSession([q.id],'learn','before-cutoff')};
+  state=submitLearning(updateSelection(state,q.id,(q.answerIndex+1)%q.options.length),fullBank,100);
+  state={...state,session:newSession([q.id,four.id],'learn','old-mixed')};
+  const migrated=reconcileLearning(state,bank);
+  assert.deepEqual(migrated.session.ids,[four.id]);
+  assert.deepEqual(migrated.progress,state.progress);
+  assert.deepEqual(migrated.history,state.history);
+  const review={...migrated,session:newSession([q.id],'review','old-original-review')};
+  assert.deepEqual(reconcileLearning(review,fullBank).session.ids,[q.id]);
+  const graded=submitLearning(updateSelection(review,q.id,q.answerIndex),fullBank,200);
+  assert.equal(graded.progress[q.id].wrongStatus,'done');
+  assert.equal(graded.progress[q.id].wrongCount,1);
 });
 test('원문에 중복된 오답 보기는 그대로 보존하되 정답 번호대로 채점한다',()=>{
-  const q=bank.find(q=>q.originalIssues?.length);
+  const q=[...bank,...archivedOriginals].find(q=>q.originalIssues?.length&&q.options[0]===q.options[3]);
+  const grade=selected=>submitLearning(updateSelection(begin(q),q.id,selected),[...bank,...archive],100);
   assert.equal(q.options[0],q.options[3]);assert.equal(q.answerIndex,2);
-  assert.equal(answer(begin(q),q,0).progress[q.id].lastCorrect,false);
-  assert.equal(answer(begin(q),q,3).progress[q.id].lastCorrect,false);
-  assert.equal(answer(begin(q),q,2).progress[q.id].lastCorrect,true);
+  assert.equal(grade(0).progress[q.id].lastCorrect,false);
+  assert.equal(grade(3).progress[q.id].lastCorrect,false);
+  assert.equal(grade(2).progress[q.id].lastCorrect,true);
 });
 test('기존 자체 연습의 진도는 원문에 전용하지 않고 이전 오답은 복습할 수 있다',()=>{
   const old=archive[0];

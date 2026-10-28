@@ -105,7 +105,10 @@ class Document(HTMLParser):
                 return [{'tag': 'br'}]
             if node.tag == 'img':
                 src = node.attrs.get('src', '')
-                if not re.match(r'^https://img\.hankyung\.com/[^\s]+\.(?:png|jpe?g|webp)(?:\?[^\s]*)?$', src, re.I):
+                if re.fullmatch(r'/data/service/www\.tesat\.or\.kr/upload/bbs/tesat_study/image/[a-fA-F0-9]+', src):
+                    src = 'https://www.tesat.or.kr'+src
+                if not (re.match(r'^https://img\.hankyung\.com/[^\s]+\.(?:png|jpe?g|webp)(?:\?[^\s]*)?$', src, re.I)
+                        or re.fullmatch(r'https://www\.tesat\.or\.kr/data/service/www\.tesat\.or\.kr/upload/bbs/tesat_study/image/[a-fA-F0-9]+', src)):
                     raise ValueError('Unsupported image source: '+src)
                 return [{'tag': 'img', 'src': src, 'alt': node.attrs.get('alt', '문제 참고 그림')}]
             children = [part for child in node.children for part in clip(child)]
@@ -152,7 +155,12 @@ def image_sources(content):
             for src in ([node['src']] if node['tag']=='img' else image_sources(node.get('children', [])))]
 
 
-def parse_article(source: str, html: str, capture_index: int):
+def parse_article(source: str, html: str, capture_index: int, reviewed=None):
+    reviewed = reviewed or {}
+    if reviewed and reviewed.get('sha256') != hashlib.sha256(html.encode()).hexdigest():
+        raise ValueError('Reviewed transcription no longer matches the supplied HTML')
+    if reviewed.get('transcriptionHtml'):
+        html = reviewed['transcriptionHtml']
     doc = Document(html)
     text = doc.text
     if source == 'quiz':
@@ -165,9 +173,13 @@ def parse_article(source: str, html: str, capture_index: int):
             raise ValueError('Duplicate number in quiz answer table')
         markers = list(re.finditer(r'(?:^|\n)\s*(\d+)\.\s*', text[:answer_key.start()]))
         content_end = answer_key.start()
-    elif source == 'taste':
-        markers = list(re.finditer(r'\[문제\s*(\d*)\]', text))
+    elif source in ('taste', 'today'):
         content_end = len(text)
+        if source == 'today':
+            related_article = re.search(r'☞\s*함께\s*읽으면\s*유익한\s*기사', text)
+            if related_article:
+                content_end = related_article.start()
+        markers = list(re.finditer(r'\[\s*문제\s*(\d*)\s*\]', text[:content_end]))
         answers = {}
     else:
         raise ValueError('Unknown source '+source)
@@ -181,22 +193,29 @@ def parse_article(source: str, html: str, capture_index: int):
         start, end = marker.end(), markers[index+1].start() if index+1<len(markers) else content_end
         body = text[start:end]
         official_explanation = None
-        if source == 'taste':
-            explanation_marker = re.search(r'\[해설\]', body)
+        if source in ('taste', 'today'):
+            explanation_marker = re.search(r'\[\s*해설\s*\]', body)
             if not explanation_marker:
                 raise ValueError(f'Q{number}: Missing official explanation')
             choice_text = body[:explanation_marker.start()]
             official_explanation = clean(body[explanation_marker.end():])
             found = re.findall(r'정답\s*(?:\]|은|[:：])?\s*([①②③④⑤])', official_explanation)
-            if not found:
+            if not found and 'answerIndex' not in reviewed:
                 raise ValueError(f'Q{number}: Missing official answer')
-            answer = MARKERS.index(found[-1])
+            answer = MARKERS.index(found[-1]) if found else reviewed['answerIndex']
+            if found and 'answerIndex' in reviewed and answer != reviewed['answerIndex']:
+                raise ValueError('Reviewed answer conflicts with supplied answer')
         else:
             choice_text = body
             if number not in answers:
                 raise ValueError(f'Q{number}: Not present in official answer table')
             answer = answers[number]
-        option_start, options = choices(choice_text, start)
+        if reviewed.get('options'):
+            option_start, options = start+len(choice_text), reviewed['options']
+            if len(options) not in (4,5) or not all(isinstance(x,str) and x.strip() for x in options):
+                raise ValueError('Invalid reviewed image choices')
+        else:
+            option_start, options = choices(choice_text, start)
         if not 0 <= answer < len(options):
             raise ValueError(f'Q{number}: Answer outside the choices')
         question = clean(text[start:option_start])
@@ -206,6 +225,8 @@ def parse_article(source: str, html: str, capture_index: int):
         duplicates = [[MARKERS[i] for i, value in enumerate(options) if value == option]
                       for option in dict.fromkeys(options) if options.count(option) > 1]
         issues = ['제공 원문에서 '+ '·'.join(group)+' 보기의 문구가 같습니다. 원문 그대로 표시합니다.' for group in duplicates]
+        if reviewed.get('displayNote'):
+            issues.append(reviewed['displayNote'])
         result.append({'source': source, 'captureIndex': capture_index, 'originalNumber': number,
                        'question': question, 'content': content, 'options': options, 'answerIndex': answer,
                        'officialExplanation': official_explanation, 'images': image_sources(content), 'issues': issues})
@@ -214,7 +235,8 @@ def parse_article(source: str, html: str, capture_index: int):
     return result
 
 
-def import_files(inputs):
+def import_files(inputs, reviewed=None):
+    reviewed = reviewed or {}
     parsed, articles, errors = [], [], []
     for source, path in inputs.items():
         documents = json.loads(Path(path).read_text())
@@ -222,10 +244,18 @@ def import_files(inputs):
             raise ValueError(f'{source}: expected an array of HTML strings')
         for index, html in enumerate(documents, 1):
             try:
-                questions = parse_article(source, html, index)
+                review = reviewed.get(source, {}).get(str(index), {})
+                if review.get('kind') == 'terms':
+                    if review.get('sha256') != hashlib.sha256(html.encode()).hexdigest():
+                        raise ValueError('Reviewed article classification no longer matches the HTML')
+                    questions = []
+                else:
+                    questions = parse_article(source, html, index, review)
                 parsed.extend(questions)
                 articles.append({'source':source,'captureIndex':index,'questionCount':len(questions),
-                                 'sha256':hashlib.sha256(html.encode()).hexdigest(), 'status':'parsed'})
+                                 'sha256':hashlib.sha256(html.encode()).hexdigest(),
+                                 'kind':review.get('kind','questions'), 'status':'reference-only' if review.get('kind')=='terms' else 'parsed',
+                                 **({'reviewNote':review['note']} if review.get('note') else {})})
             except ValueError as error:
                 errors.append({'source':source,'captureIndex':index,'error':str(error)})
     warnings=[{'source':q['source'],'captureIndex':q['captureIndex'],'number':q['originalNumber'],'issues':q['issues']} for q in parsed if q['issues']]
@@ -236,8 +266,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--quiz', type=Path, default=DATA/'raw/quiz.json')
     parser.add_argument('--taste', type=Path, default=DATA/'raw/taste.json')
+    parser.add_argument('--today', type=Path, default=DATA/'raw/today.json')
     args = parser.parse_args()
-    parsed, report = import_files({'quiz':args.quiz,'taste':args.taste})
+    inputs = {'quiz':args.quiz,'taste':args.taste}
+    if args.today.exists():
+        inputs['today'] = args.today
+    reviewed_path = DATA/'reviewed-imports.json'
+    reviewed = json.loads(reviewed_path.read_text()) if reviewed_path.exists() else {}
+    parsed, report = import_files(inputs, reviewed)
     DATA.mkdir(parents=True, exist_ok=True)
     (DATA/'parsed-questions.json').write_text(json.dumps(parsed, ensure_ascii=False, indent=2)+'\n')
     (DATA/'import-report.json').write_text(json.dumps(report, ensure_ascii=False, indent=2)+'\n')

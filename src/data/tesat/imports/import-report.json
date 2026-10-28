@@ -5,6 +5,7 @@
       "captureIndex": 1,
       "questionCount": 8,
       "sha256": "707dc2c9ab29deeeae02bd3359769ad03d5408774ada72cd73a9be0b8aacd011",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -12,6 +13,7 @@
       "captureIndex": 2,
       "questionCount": 8,
       "sha256": "94bd735e67f57102b75e97c571c216b3014b72e12beac98aa897417aa8298cfb",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -19,6 +21,7 @@
       "captureIndex": 3,
       "questionCount": 8,
       "sha256": "c2fdcf42262e2959690ee4b55c7571a498e8a93c558af67c20b806942d1184ef",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -26,6 +29,7 @@
       "captureIndex": 4,
       "questionCount": 8,
       "sha256": "4f36ce9ccf76b2cda280b7ea84fd8f7e4448b2dc4da398f24d1aa3c41ff8cdc1",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -33,6 +37,7 @@
       "captureIndex": 5,
       "questionCount": 8,
       "sha256": "a6bb58f866b9f2e78563d981039f98b0a6495fc624c75266eb6a99eff253ab89",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -40,6 +45,7 @@
       "captureIndex": 6,
       "questionCount": 8,
       "sha256": "f201ae004bb74aff22121cde5a69fcd1d93b07c39c7298d3ff264d2472e0ae4a",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -47,6 +53,7 @@
       "captureIndex": 7,
       "questionCount": 8,
       "sha256": "eed370cad7891ccf24fb06c84fc369c789c712c50fc30c3580ed091dda220245",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -54,6 +61,7 @@
       "captureIndex": 8,
       "questionCount": 8,
       "sha256": "90f1fe7efb80d2b480279fe03b4c73091f74ee0c1b9fcc392b2bf4014e9fbcf8",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -61,6 +69,7 @@
       "captureIndex": 9,
       "questionCount": 8,
       "sha256": "f2f764c7b9be43f0644f9fe8c0e806208e77c8387337efb2b1a5998f249985d1",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -68,6 +77,7 @@
       "captureIndex": 10,
       "questionCount": 8,
       "sha256": "bda42aebbad5a60379d1fa8cc865547903698bdcf6f686d332379eeca3e76131",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -75,6 +85,7 @@
       "captureIndex": 11,
       "questionCount": 8,
       "sha256": "6d9e488fd8e92359f378461b014db52191b298f033f3d94cf2870c19a439d987",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -82,6 +93,7 @@
       "captureIndex": 12,
       "questionCount": 8,
       "sha256": "5a9c7ac5b033fc4324f4e923b43af1616fd21223edef487221894301e18058bb",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -89,6 +101,7 @@
       "captureIndex": 13,
       "questionCount": 8,
       "sha256": "d748021983a78fca5f033c2eda3d648631f2dc915338a7b6b4206033982bfaef",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -96,6 +109,7 @@
       "captureIndex": 14,
       "questionCount": 8,
       "sha256": "8a5aad39b3001518d480a21974f00bbb4310f37b839a843a8521f4084ca43d25",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -103,6 +117,7 @@
       "captureIndex": 15,
       "questionCount": 8,
       "sha256": "82f89352c49e2794a1cfc9aabe16e1700e1e3d8f5fd35bd2771dfd106299489f",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -110,6 +125,7 @@
       "captureIndex": 16,
       "questionCount": 8,
       "sha256": "f2e31f537904bdae087da7794f434bb2843bf95464f92a34176aaf1494ef0dcd",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -117,6 +133,7 @@
       "captureIndex": 17,
       "questionCount": 8,
       "sha256": "157dd125e28d5190d5f78503baab8101cb892e8e213b1d1e4b7bed62adf81b62",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -124,6 +141,7 @@
       "captureIndex": 18,
       "questionCount": 8,
       "sha256": "8c77b40bffda083b34618c9f216aaeb8441a9f6721bb7f2f7ed6afdfe8d219b5",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -131,6 +149,7 @@
       "captureIndex": 19,
       "questionCount": 8,
       "sha256": "5134b96fe44a082a974f705eab640eae38b3f582baa23ac1a4ab2312f0872c49",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -138,6 +157,7 @@
       "captureIndex": 20,
       "questionCount": 8,
       "sha256": "6653b59a57c1b6767e5793a61f0a7fb711adbbd903b56fa4e8f9b7defc9f694c",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -145,6 +165,7 @@
       "captureIndex": 21,
       "questionCount": 8,
       "sha256": "2f99ed5c58ff9c7b345544cccf31261d69d61fcc52b6f4462b79ef7c8d546aa9",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -152,6 +173,7 @@
       "captureIndex": 22,
       "questionCount": 8,
       "sha256": "9635d7af1711880a8627f6db6519d15aa17807d68f51712aacde07f9ddb61abd",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -159,6 +181,7 @@
       "captureIndex": 23,
       "questionCount": 8,
       "sha256": "e4a8e4f9c1b272bbae6e38fa8d5a5d453b5eac1440c4b3fb5debcda3d7b793c5",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -166,6 +189,7 @@
       "captureIndex": 24,
       "questionCount": 8,
       "sha256": "c3f77afc0d7cb3fa53251899f71f8db904804572f46d60a4454bdf371eff1f5f",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -173,6 +197,7 @@
       "captureIndex": 25,
       "questionCount": 8,
       "sha256": "9601d01278a66e50ad27d2460100c6301149925b41f5b6e0e995e456e0ea259c",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -180,6 +205,7 @@
       "captureIndex": 26,
       "questionCount": 8,
       "sha256": "ac34dc5c23e92f38050d90444387a9591011825a9d45ddf5f15d9f85b19113c7",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -187,6 +213,7 @@
       "captureIndex": 27,
       "questionCount": 8,
       "sha256": "b8deebd913b906186d2712b765b07a6122260cf6f59c2d945d92a41f51b2aa75",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -194,6 +221,7 @@
       "captureIndex": 28,
       "questionCount": 8,
       "sha256": "d3793979533188eada36f5df6a47419321e7da68a700dff9f11bf4c1181a9bd5",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -201,6 +229,7 @@
       "captureIndex": 29,
       "questionCount": 8,
       "sha256": "8f081a187f88a78286abef8679c9a971da80a02a212f1e1b9bad7f5f671b5f4b",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -208,6 +237,7 @@
       "captureIndex": 30,
       "questionCount": 8,
       "sha256": "cf149ee69adc5e3361760d3e0128f2734a5f4e33772f9c058c812d702081195c",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -215,6 +245,7 @@
       "captureIndex": 31,
       "questionCount": 8,
       "sha256": "1e917415121811ebfbd2cd52638c86c29580776634ba48357246374d17ac7745",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -222,6 +253,7 @@
       "captureIndex": 32,
       "questionCount": 8,
       "sha256": "9ab7339c7d839d4f70d9405ad140c04147f337ff3cf1771a56a118962bf88635",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -229,6 +261,7 @@
       "captureIndex": 33,
       "questionCount": 8,
       "sha256": "615fb95a086bd5c6724ef229a77099e40c1804b7960f346c9f14b295b4761ad2",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -236,6 +269,7 @@
       "captureIndex": 34,
       "questionCount": 8,
       "sha256": "7956a1e8e10384c3fcf658be7b48f22769b89565fbb01edaeb2c44ec4f2e8c4c",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -243,6 +277,7 @@
       "captureIndex": 35,
       "questionCount": 8,
       "sha256": "83b2787c5057db01de973b962d9e330a78988ab5713e72a2e6ba11e6229c7241",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -250,6 +285,7 @@
       "captureIndex": 36,
       "questionCount": 8,
       "sha256": "e80fc5e42cdb0a1a7d829bed800a18d375b2fcb90c600295ba467c7f0db30b80",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -257,6 +293,7 @@
       "captureIndex": 37,
       "questionCount": 8,
       "sha256": "427ef24c04bb852dbd2f3f176759855158c31be33542a25ad2b1c12173d8303c",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -264,6 +301,7 @@
       "captureIndex": 38,
       "questionCount": 8,
       "sha256": "84595364a9aea30a31d9aed7dda4a11d5ff56abf21ce127bd6106205ef87af31",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -271,6 +309,7 @@
       "captureIndex": 39,
       "questionCount": 8,
       "sha256": "200224dbcd7edbd477052b373ae7ae9f7823110f4b940f841f6698aacc4595d1",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -278,6 +317,7 @@
       "captureIndex": 40,
       "questionCount": 8,
       "sha256": "c2c05ed9aec1b3add0139bb052e153d8681f7e1ec8b61f5cecc2453ab353689c",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -285,6 +325,7 @@
       "captureIndex": 41,
       "questionCount": 8,
       "sha256": "859a4382d2bf79e6692dfea3d6c62a27d33a45b61105fb8eed083db48450a27c",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -292,6 +333,7 @@
       "captureIndex": 42,
       "questionCount": 8,
       "sha256": "73ae94b033a826e1248030e4b8e52e5681b297ded6ccd3572125b9f56870d1f3",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -299,6 +341,7 @@
       "captureIndex": 43,
       "questionCount": 8,
       "sha256": "908fb397d32b7fb33e44226bf8faf1a216fc11016c446fb0db6f92d9293cd86d",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -306,6 +349,7 @@
       "captureIndex": 44,
       "questionCount": 8,
       "sha256": "53fb9e48b98154a9364118467ab8b826f5edca367f05acd33f37d16a729dac8d",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -313,6 +357,7 @@
       "captureIndex": 45,
       "questionCount": 8,
       "sha256": "ea5875752ba416d624c6d7c19c85f750d07096dcb9fec94c0b81527a0b6c2247",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -320,6 +365,7 @@
       "captureIndex": 46,
       "questionCount": 8,
       "sha256": "828581afcc2c10f93a03f5fe2821f7423544299e1597cd6e6850cfa05991a684",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -327,6 +373,7 @@
       "captureIndex": 47,
       "questionCount": 8,
       "sha256": "c01046f266f1d1031ed0a1dad8b2e21695733f37836a563b7af05d1956810ac2",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -334,6 +381,7 @@
       "captureIndex": 48,
       "questionCount": 8,
       "sha256": "f55022be68541c0d80b76ee3efb15828c21f97d5f73acd19f50eeb85051ca756",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -341,6 +389,7 @@
       "captureIndex": 49,
       "questionCount": 8,
       "sha256": "de14c1177cf22f997c3cad06bca4bc88f2667a7ba6f35cb97b8eb82ed75fa872",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -348,6 +397,7 @@
       "captureIndex": 50,
       "questionCount": 8,
       "sha256": "f4b68c27d1e36a3b859ff38796bdf4631d8ec6f302789e3ed85ae0591a58e79e",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -355,6 +405,7 @@
       "captureIndex": 51,
       "questionCount": 8,
       "sha256": "2e445e28ad46d960918b717ee189558af616f63bc89897553f0451cc0020b9b4",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -362,6 +413,7 @@
       "captureIndex": 52,
       "questionCount": 8,
       "sha256": "52019d60c7ddc094c7c1bae3a72a5d8e08586d69c976509a20beb3d29f2401b6",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -369,6 +421,7 @@
       "captureIndex": 53,
       "questionCount": 8,
       "sha256": "757dd7c1dab30eb7c72480ef400257f3d0908ab0b28d65bd952f3b4e6827dd06",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -376,6 +429,7 @@
       "captureIndex": 54,
       "questionCount": 8,
       "sha256": "daf4a6cb124e153e46391b0cbad6ccdf0f054809fe1178f87e56bc9a698c8da3",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -383,6 +437,7 @@
       "captureIndex": 55,
       "questionCount": 8,
       "sha256": "ed068fef8644ad1237423cdb9b86d20e4ceeeb2521219b5d1fadc6cdfffafb54",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -390,6 +445,7 @@
       "captureIndex": 56,
       "questionCount": 8,
       "sha256": "c9da1d7526fae5459c3ce41c30364ef54fe7012f9c6cdd9e5c7700f28f99d1c9",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -397,6 +453,7 @@
       "captureIndex": 57,
       "questionCount": 8,
       "sha256": "a021d44670d6be1171f2de315e94d846725c159f3c2e9f2acd8a90553e54a407",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -404,6 +461,7 @@
       "captureIndex": 58,
       "questionCount": 8,
       "sha256": "7673610953ae9f6c22ead9a539e65b9f256193e9e775f0494ed09dfc677058ad",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -411,6 +469,7 @@
       "captureIndex": 59,
       "questionCount": 8,
       "sha256": "647fb3043ea97eeaef9033d183b6a6bf5be20c93b06705a9f03863c8e02fa1f3",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -418,6 +477,7 @@
       "captureIndex": 60,
       "questionCount": 8,
       "sha256": "b941c2e6c19cf50209ee2ca772899631411e3dd695c031ec1d36eac5591bf6fc",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -425,6 +485,7 @@
       "captureIndex": 61,
       "questionCount": 8,
       "sha256": "0346a296a93bf4cc7ba17684ac782e206304b7326e5eafb1de2257411a09ee58",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -432,6 +493,7 @@
       "captureIndex": 62,
       "questionCount": 8,
       "sha256": "a8480d9a20c7dbbb33b8fcc46086ab6cf2b60a1c97d00f607a7efe3a159a25ec",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -439,6 +501,7 @@
       "captureIndex": 63,
       "questionCount": 8,
       "sha256": "460aba6f2f8ff526d4740747980a5cc5915a7d743340d1e87ac06bd4a3aa1200",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -446,6 +509,7 @@
       "captureIndex": 64,
       "questionCount": 8,
       "sha256": "5d5ba0ca6ec24af5629c20bfd8a88fa071a4cd1cd0478aef262776deaf91cb5c",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -453,6 +517,7 @@
       "captureIndex": 65,
       "questionCount": 8,
       "sha256": "25a5d89d13da86b3a5c15623f845fc6324ba3d5600b7479e424a96f811925450",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -460,6 +525,7 @@
       "captureIndex": 66,
       "questionCount": 8,
       "sha256": "cd851c061f8402a695ae440fbec2f07d6c9b05d9c6058e337fc510d106d2e9b0",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -467,6 +533,7 @@
       "captureIndex": 67,
       "questionCount": 8,
       "sha256": "282024f29f56f67c8f9861eca77212e9afb6329ad904e3b2c71e3edda6a08da5",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -474,6 +541,7 @@
       "captureIndex": 68,
       "questionCount": 8,
       "sha256": "a900c327959e2c141a27dbf629871491f92073f771e2d95dbc142d611578599a",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -481,6 +549,7 @@
       "captureIndex": 69,
       "questionCount": 8,
       "sha256": "d3e51352e307c12c5f00faf59fa6b20393c57191ef34954e9d68ae5b56acb14a",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -488,6 +557,7 @@
       "captureIndex": 70,
       "questionCount": 8,
       "sha256": "b31328d3cc88a1e63df099262247d5e9875e13aded839d812777f0a66da0b3b6",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -495,6 +565,7 @@
       "captureIndex": 71,
       "questionCount": 8,
       "sha256": "410b96fb27e822303cd6e25389f168c2aaa010268766034c393576eb56249eef",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -502,6 +573,7 @@
       "captureIndex": 72,
       "questionCount": 8,
       "sha256": "5f93fb0fee60d316f679191f9c6169061a076554c3b987ab0f78ee9c253ac4aa",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -509,6 +581,7 @@
       "captureIndex": 1,
       "questionCount": 3,
       "sha256": "78b33b96e9e6eb629ca752a23ca40f6902d3e07db9258c6c583810b1562d4f0b",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -516,6 +589,7 @@
       "captureIndex": 2,
       "questionCount": 3,
       "sha256": "01082c0a2d20aeda1802b27ee692e958b21834d81aadda56741b8d5814672b77",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -523,6 +597,7 @@
       "captureIndex": 3,
       "questionCount": 3,
       "sha256": "87abe5554d8085eebee215e3deb1886d706afb770c7825fb1b9accc02d0d3a8b",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -530,6 +605,7 @@
       "captureIndex": 4,
       "questionCount": 3,
       "sha256": "8ca69a7d5353d9c6dd5fef609d1fc279662e2e8d4c2a10a3b60b45a647dd83ea",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -537,6 +613,7 @@
       "captureIndex": 5,
       "questionCount": 3,
       "sha256": "08538eae32376dc892f1804cff90f196f15c443391bcb26eb656cdb338f67b4b",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -544,6 +621,7 @@
       "captureIndex": 6,
       "questionCount": 3,
       "sha256": "6756f21874ba7b88f47bc116e7403da6f3c487f602e23a3e9e9399a78788fbc2",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -551,6 +629,7 @@
       "captureIndex": 7,
       "questionCount": 3,
       "sha256": "246552ef547fc6124adcbecda83392c9195e030af6149f9736844d7ac737eec7",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -558,6 +637,7 @@
       "captureIndex": 8,
       "questionCount": 3,
       "sha256": "3da86b86cda73470b7f4cfc8d869f46127744028716b5cb7cbec41269ff34d25",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -565,6 +645,7 @@
       "captureIndex": 9,
       "questionCount": 3,
       "sha256": "9c7ed26ea047c7fd01e6ca62eb6662ee16d7df23e44411f481546ec51245ed6b",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -572,6 +653,7 @@
       "captureIndex": 10,
       "questionCount": 3,
       "sha256": "a953a95bfda1a5d64095488ce7074b17de35a1f68fd035074c9c0481e8601dba",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -579,6 +661,7 @@
       "captureIndex": 11,
       "questionCount": 3,
       "sha256": "8b2d1862fbae38cc50ff5641981fe46e149fb49952007cd00ca9bdff367bfcbb",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -586,6 +669,7 @@
       "captureIndex": 12,
       "questionCount": 3,
       "sha256": "2e31a1b5e565f5423d627f3719191a0720d008d9a4f3b14cc4ccbd26489ccaaa",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -593,6 +677,7 @@
       "captureIndex": 13,
       "questionCount": 3,
       "sha256": "f4452e4873867cf8dfdbf0518c3cc5fe62c1472e9ce70641abb826715444f07c",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -600,6 +685,7 @@
       "captureIndex": 14,
       "questionCount": 3,
       "sha256": "a4e6198e5c1076447550625d603bfd11472b56e9efdfa3486d744eac1ce8f284",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -607,6 +693,7 @@
       "captureIndex": 15,
       "questionCount": 3,
       "sha256": "b5479a3ca8239776d25b7329a86fed08e7dc7aefbbe745025cbf035048a395e0",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -614,6 +701,7 @@
       "captureIndex": 16,
       "questionCount": 3,
       "sha256": "6e58123a31538d57c76cc2d63f7b4b3f5c62310e4d462cc3c4960a484c1f273b",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -621,6 +709,7 @@
       "captureIndex": 17,
       "questionCount": 3,
       "sha256": "90a3b18a10efaf0010d30c5afd5eb15dec06467c0d750658665b6bb22e91a6e4",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -628,6 +717,7 @@
       "captureIndex": 18,
       "questionCount": 3,
       "sha256": "a6e171e510d721964f8214cb74755f92d32956d07f4bd2299eac2934b733f42e",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -635,6 +725,7 @@
       "captureIndex": 19,
       "questionCount": 3,
       "sha256": "d7713b1e00bb638a5ab647d06b72681ecfc676e12304a86d7354e931c6461cd0",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -642,6 +733,7 @@
       "captureIndex": 20,
       "questionCount": 3,
       "sha256": "27275f6734db54035c290be3b836eab6656c828d97ca8041cd16257ffe287c0e",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -649,6 +741,7 @@
       "captureIndex": 21,
       "questionCount": 3,
       "sha256": "51faaea6302b3971938ad32ab81241482f70f8228527a3ccf9e9d59107ad9cd2",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -656,6 +749,7 @@
       "captureIndex": 22,
       "questionCount": 3,
       "sha256": "104f418141815d2510923bdd89ce3d347f0457368794a16dfaebbb0f0b1727b2",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -663,6 +757,7 @@
       "captureIndex": 23,
       "questionCount": 3,
       "sha256": "f3120fbb5d42afa40cb4cba3bc80df72270f9edc5ccaeb2fb45bf38532b1536a",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -670,6 +765,7 @@
       "captureIndex": 24,
       "questionCount": 3,
       "sha256": "cf72fe03c56b1b3238af761f619f687595ed9ecb8c549bd70c154da52c597fb6",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -677,6 +773,7 @@
       "captureIndex": 25,
       "questionCount": 3,
       "sha256": "4261336f142fb6404ef8c6d4abf09650c5867562f117a7b0e5f2edd5499a5d59",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -684,6 +781,7 @@
       "captureIndex": 26,
       "questionCount": 3,
       "sha256": "04aa27e0f354dd84958556835244552c2e34e1bf69db0e539c05a0cf8e5a8e4f",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -691,6 +789,7 @@
       "captureIndex": 27,
       "questionCount": 3,
       "sha256": "387b2b5565311ac2f1b21ef89d819eebd4ae8fd68162e737a7b8e4241ea10a18",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -698,6 +797,7 @@
       "captureIndex": 28,
       "questionCount": 3,
       "sha256": "1aa83bf93a3b6ad9f10c5ce6f67bdcfe27d183fc34c7ecacea6ba7cf495f730e",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -705,6 +805,7 @@
       "captureIndex": 29,
       "questionCount": 3,
       "sha256": "52b15fa4ba86e26717deea560d713ac95a40fbd95aeb11ea6be629765ea3ba3e",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -712,6 +813,7 @@
       "captureIndex": 30,
       "questionCount": 3,
       "sha256": "8d5b6b850fdf8d2b2fd7f3c83c971b7ddcb3911060623d5411bed9609c8a6e65",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -719,6 +821,7 @@
       "captureIndex": 31,
       "questionCount": 3,
       "sha256": "168e17413c1b91758568576c879aa0f124bb2548fade7f2167ca9b1075bfcba8",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -726,6 +829,7 @@
       "captureIndex": 32,
       "questionCount": 3,
       "sha256": "5758b3b9f685ce8db4320e12c316184e5e35aab6b50c6aa6f9306713e815e970",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -733,6 +837,7 @@
       "captureIndex": 33,
       "questionCount": 3,
       "sha256": "ddb5773bc95595b46c49791eed82d5e9ce2a34e8efb2316f066f8a404b1fc34b",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -740,6 +845,7 @@
       "captureIndex": 34,
       "questionCount": 3,
       "sha256": "f1403d2f7fd6ed964bece418fe5377157c18db50fa74df9d4a13a4dcc4bb76da",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -747,6 +853,7 @@
       "captureIndex": 35,
       "questionCount": 3,
       "sha256": "892ad64f1dad8046bac905734c1f58f0d40a40442c8b62ed83a4f6cf8179dcd5",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -754,6 +861,7 @@
       "captureIndex": 36,
       "questionCount": 3,
       "sha256": "d0490cd365a2c04e78b7997440664df8a6129eafd53473f10134e11b2f5c0781",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -761,6 +869,7 @@
       "captureIndex": 37,
       "questionCount": 3,
       "sha256": "683440e39a6182cce9a50e156b7a9375833397f9276b564885a198c531cee18f",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -768,6 +877,7 @@
       "captureIndex": 38,
       "questionCount": 3,
       "sha256": "a66dceb274f932947a2d716d8248eed1c78dba6fdba1e57bb6a924b9a13f46f0",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -775,6 +885,7 @@
       "captureIndex": 39,
       "questionCount": 3,
       "sha256": "9390d7e9cedbafa7e73deb9ebdcd149ee83d04362bc3ef63712f5f0673ecf26e",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -782,6 +893,7 @@
       "captureIndex": 40,
       "questionCount": 3,
       "sha256": "fb0bec2548bcd814b159f2af40cede5dfbdd83b0b80daabde848865a48313474",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -789,6 +901,7 @@
       "captureIndex": 41,
       "questionCount": 3,
       "sha256": "b4aea45163df8ed94e0b29508c60f848b251d8194d3359b1b510476ecbc74582",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -796,6 +909,7 @@
       "captureIndex": 42,
       "questionCount": 3,
       "sha256": "13cfb67f758f848e49f04e39a062753877c9ceed82d921bcacbc163c03c8f06e",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -803,6 +917,7 @@
       "captureIndex": 43,
       "questionCount": 3,
       "sha256": "679b44899ad0f9cea70ac2cde9e5ff80ba55cc3973457500c7dbfce745e1f663",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -810,6 +925,7 @@
       "captureIndex": 44,
       "questionCount": 3,
       "sha256": "0c1d8fe24230b86407ae14b907c9fc9925e5a06431ee303292a4676a83dcb5bd",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -817,6 +933,7 @@
       "captureIndex": 45,
       "questionCount": 3,
       "sha256": "11e5d8c215eb69c297f6e8dd781207cdaa55d7844c1edac0030079c6e7c987b4",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -824,6 +941,7 @@
       "captureIndex": 46,
       "questionCount": 3,
       "sha256": "011e52faaf1ba6af2443c9ab4ba6d8597b6eff9068dd6737cee61f6a8e164a07",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -831,6 +949,7 @@
       "captureIndex": 47,
       "questionCount": 3,
       "sha256": "ab1d2694bbf93c386485541ea627fd1f385a78f1fec61a2f0857849cf7637ddd",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -838,6 +957,7 @@
       "captureIndex": 48,
       "questionCount": 3,
       "sha256": "a02c0fd3ec0fef26601a3dbcbb1e60cb6ac163004705727614ed2b07dcefc23e",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -845,6 +965,7 @@
       "captureIndex": 49,
       "questionCount": 3,
       "sha256": "a02bc46516f07bc72a51e5367d1b49dff2372e89004ae8da4b165e8d7cb2538f",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -852,6 +973,7 @@
       "captureIndex": 50,
       "questionCount": 3,
       "sha256": "80238a348e5356d7703f923dd3780676ec54105754744bac9091f0734922885c",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -859,6 +981,7 @@
       "captureIndex": 51,
       "questionCount": 3,
       "sha256": "c2c43b69b048450fcdc61d90f6350931dabad4da76ee2e585cd8be3c18e2965d",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -866,6 +989,7 @@
       "captureIndex": 52,
       "questionCount": 3,
       "sha256": "bc7eed822850867b82f36eff50599c6dfa0b49c179d8b6524b1c9c341ff86aa7",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -873,6 +997,7 @@
       "captureIndex": 53,
       "questionCount": 3,
       "sha256": "218411fdd8aa896e38d136850db130352bc62d01d045bdda690ecfb61313f5fc",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -880,6 +1005,7 @@
       "captureIndex": 54,
       "questionCount": 3,
       "sha256": "5ac6828be18307d68c09b7ec8312ff15baee35f4a6797c695303d0951f45d79d",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -887,6 +1013,7 @@
       "captureIndex": 55,
       "questionCount": 3,
       "sha256": "5a07728da165fe18b7da92340bf5ed62492cfc61799a0f4f06a579c00b6b7e2a",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -894,6 +1021,7 @@
       "captureIndex": 56,
       "questionCount": 3,
       "sha256": "32d9a45735c5a75249b35515aae1278e639decd7df39ec23e509822f2239e564",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -901,6 +1029,7 @@
       "captureIndex": 57,
       "questionCount": 3,
       "sha256": "54c798be24a206b0a7d8e29d65d39c3d888fd3b8848597716b62c4c2f981e527",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -908,6 +1037,7 @@
       "captureIndex": 58,
       "questionCount": 3,
       "sha256": "b19191ecc709e71509593f5318ff1288278e7ed8cb1ce36a52fc008233ae8d2a",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -915,6 +1045,7 @@
       "captureIndex": 59,
       "questionCount": 3,
       "sha256": "152d6bf242b3d0201d89406d35e7e3d8af85899ca0a48e5dcad271559611a8f8",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -922,6 +1053,7 @@
       "captureIndex": 60,
       "questionCount": 3,
       "sha256": "e86c9130ede2d3022fd7de6dc373a1818aa7378b1ada5bcc87f8b0f284a39102",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -929,6 +1061,7 @@
       "captureIndex": 61,
       "questionCount": 3,
       "sha256": "2156e6ac962d068d3b4a0ca93306c2f7d6a24b4f9ade1ccadec14be93011a841",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -936,6 +1069,7 @@
       "captureIndex": 62,
       "questionCount": 3,
       "sha256": "6b5dd9ff85004f42d1c563f3175b14b4f461c3c83c39c72942c90aa78eff31aa",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -943,6 +1077,7 @@
       "captureIndex": 63,
       "questionCount": 3,
       "sha256": "c39564db446d5df9e7f5112442e99ff5c640961ba7765e941d184bf970bc18c2",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -950,6 +1085,7 @@
       "captureIndex": 64,
       "questionCount": 3,
       "sha256": "376ad422e9be0d02d5e33b7fe1c7f49347691c24fb4048809d23fabcf2ffb28c",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -957,6 +1093,7 @@
       "captureIndex": 65,
       "questionCount": 3,
       "sha256": "aab04756a034fffb20b757a6839a924e623969d1d9782e4e822d347d13cc998b",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -964,6 +1101,7 @@
       "captureIndex": 66,
       "questionCount": 3,
       "sha256": "e1b690eafee41fa2d73d46636906aa0355c38e2d16ff26ef9438af9967ae2ecb",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -971,6 +1109,7 @@
       "captureIndex": 67,
       "questionCount": 3,
       "sha256": "38ec2d18eb650d63892700f6369c9801c9765af89f65ec16f1ff56e34eaec528",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -978,6 +1117,7 @@
       "captureIndex": 68,
       "questionCount": 3,
       "sha256": "290525a85ac04a75f5412e4553ab008c1a20499abf4ff4041fba2eb796c774b4",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -985,6 +1125,7 @@
       "captureIndex": 69,
       "questionCount": 3,
       "sha256": "00a89282fc4b5b82b0e58c27ef5c6810bf2f5ddf4d4aa6a289640f3fceea588e",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -992,6 +1133,7 @@
       "captureIndex": 70,
       "questionCount": 3,
       "sha256": "064d3f456a1155d40a9e4d3b9d9d8024a9a918c8f0cc76fa5d5fc024070c7d4f",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -999,6 +1141,7 @@
       "captureIndex": 71,
       "questionCount": 3,
       "sha256": "467daa07259f2eab67e18cee10dd82fd8115bda481b93807bdee1505b00b83f0",
+      "kind": "questions",
       "status": "parsed"
     },
     {
@@ -1006,6 +1149,323 @@
       "captureIndex": 72,
       "questionCount": 3,
       "sha256": "7dc9499b564925fdb58b69e766eea66c5cfc29b0aa6c95cf2cba31409d659b57",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 1,
+      "questionCount": 1,
+      "sha256": "13a30eda837a271a0d706c4940aa13f9d3d987d4a3489b7b1a51d5f54a34055f",
+      "kind": "questions",
+      "status": "parsed",
+      "reviewNote": "제공 HTML의 해설이 정답 번호 전에 끝남. 공식 게시글 https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25592&s_cateno=1 의 정답 ②를 대조. 제공된 해설 본문은 보충·변경하지 않음."
+    },
+    {
+      "source": "today",
+      "captureIndex": 2,
+      "questionCount": 1,
+      "sha256": "b5a3a8f3dd606157156b5403b74a5f7a9bc459b8593847e2245ecfd69ed303b8",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 3,
+      "questionCount": 1,
+      "sha256": "cf5b55ca72782e3d55e243c48c282ec3618832f6df3d4b05b89f432f01fcda9b",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 4,
+      "questionCount": 1,
+      "sha256": "091c52bcf40d125434be7eeb0aab6f7e710f6e962c9896d410d76217e11053b7",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 5,
+      "questionCount": 1,
+      "sha256": "a11c7caa303fc4c2f4fc5a22cc0a0077b3a292c3c7df61b10e994d1fdead257e",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 6,
+      "questionCount": 1,
+      "sha256": "e4aede1ed8d2acabab408753efafd2e1d34e79eff788da5ba9f6dcf017ace532",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 7,
+      "questionCount": 1,
+      "sha256": "4df185f27b7799a7fd6fdeff9f54cf28472a72d229a53c530e5bad57a727f890",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 8,
+      "questionCount": 1,
+      "sha256": "f8dfc70fb4285baead7113db89ffb319801ff07e4170e3ffc43d91903155c44c",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 9,
+      "questionCount": 1,
+      "sha256": "638f872e3625d71b7c4ab77d130fbac9b23af0f3e2812e24e60dda4ab765c097",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 10,
+      "questionCount": 1,
+      "sha256": "d63e972efa3e80925cc5b4bca61e0837492e758708f538fa1cce7f3252f60c7b",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 11,
+      "questionCount": 1,
+      "sha256": "69ae81118889e4edae8b858daa61019de4f01fe52f7746393dbae6d23a87a55c",
+      "kind": "questions",
+      "status": "parsed",
+      "reviewNote": "첨부 HTML의 선택지 표 그림 3cd1d0ecc24e77f76dd23615f9d6c4cb를 직접 확인해 행·열 순서대로 전사. 원문 표 그림도 지문에 유지."
+    },
+    {
+      "source": "today",
+      "captureIndex": 12,
+      "questionCount": 1,
+      "sha256": "5a76285ac005713214b8142c70360ab940866f02f60e06828d4a4a97084bf0be",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 13,
+      "questionCount": 1,
+      "sha256": "8eb5d0db67d0b117f4d0e2f91609a9301a07eff705ee411b0fe415f4b8dff32f",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 14,
+      "questionCount": 1,
+      "sha256": "d86f513f9fd349e823a12b63b1d0aa2880dd92268963826562eeeeb8b36956cc",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 15,
+      "questionCount": 1,
+      "sha256": "6fea136b1494b35b339f0672a7c88b744fcadb89c1e6466c96551ab565cbc8c9",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 16,
+      "questionCount": 1,
+      "sha256": "acbc2c1b01739436e4d547a2e9d5b1e6dc1b20e6ab1f585ea59dfbacbeb09bdf",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 17,
+      "questionCount": 1,
+      "sha256": "7842ddcd96b6cddfa27c9e797c4d0f6259303ade9547445deb768e1fde20fb32",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 18,
+      "questionCount": 1,
+      "sha256": "b8e466ca22e6bc6d566e55a127c1749e9a00732aff28d22065fc8ed15cd71c17",
+      "kind": "questions",
+      "status": "parsed",
+      "reviewNote": "첨부 HTML의 그림 10caf0c467bb02546668ae0cca24afb7(문제·선택지)와 c3b62db2e31ae194fb401e534532a90c(해설)을 직접 확인해 전사. 원문 문제 그림을 함께 유지. P*는 균형가격, P₀/P₁은 통제가격이며 원문 수치·선택지 순서·정답 ⑤를 유지."
+    },
+    {
+      "source": "today",
+      "captureIndex": 19,
+      "questionCount": 1,
+      "sha256": "be85e9c6538c3659ccd86d820bee0e5af237de497b9e03978abbd10b801fd285",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 20,
+      "questionCount": 1,
+      "sha256": "a642cc17361e2f191d0f42a7dbee687f1ff7d5dc72939a2c31fae81f50901f7a",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 21,
+      "questionCount": 1,
+      "sha256": "2fb2680a06d3c94f07498667ec31af29e2b07291ea47349cc0767a1bf5a372b8",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 22,
+      "questionCount": 1,
+      "sha256": "980cd453be9708b07a2ac47516c6719274ee326a51d30a7b0dc84b0d97d81cef",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 23,
+      "questionCount": 1,
+      "sha256": "d776a8b503f2c24f016890a3d33565da6ad2f12d3ea924ce3e08f1c93e4aa2fa",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 24,
+      "questionCount": 1,
+      "sha256": "5b419e6fba3b9b3e4e82351a515c842254873806ae02d83585d5b9d426194271",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 25,
+      "questionCount": 1,
+      "sha256": "7011a2f6cc6f8227e6e3fa11bbf7f2b11cb564f967f16c20b945782dada8cc5e",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 26,
+      "questionCount": 1,
+      "sha256": "adaffac6e6f714c9155c3303643140d03eed073337fc7d75c2941f42243de8a3",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 27,
+      "questionCount": 1,
+      "sha256": "ce5f7a71839fd185613193120f1ed746c816c0314cb082875482b74e585fda13",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 28,
+      "questionCount": 1,
+      "sha256": "8f29d344eddfb08561adc53594d20e5961e68c08564e2e2592ada70dbbdedaaa",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 29,
+      "questionCount": 1,
+      "sha256": "1389d48815cb0ace3aaaf09c9c0377972a816296308a209a8c50de2b913c3bc2",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 30,
+      "questionCount": 1,
+      "sha256": "60d7cc6b62ea1ca9f2e0548bc67d11273b427e66538b16403eaaaf525a0a7b02",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 31,
+      "questionCount": 1,
+      "sha256": "79dd3142d72447e61c6cd8f2b8506fb339cf0857501a8eb285a976e3f130f4cc",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 32,
+      "questionCount": 0,
+      "sha256": "23f50e2f5fa7a0a06d7088368f29f434afdfc668a1630ff5e08ec8356676f472",
+      "kind": "terms",
+      "status": "reference-only",
+      "reviewNote": "2025-12-24 시사 경제용어 따라잡기. 문제 게시글이 아니며 기존 Briefing 반년 범위 밖이므로 문제은행과 Briefing에서 제외하고 원본·목록을 보존."
+    },
+    {
+      "source": "today",
+      "captureIndex": 33,
+      "questionCount": 1,
+      "sha256": "d294b54292d726c33738ab56eb9baeab933d828ad748362b08292c8131a1cb70",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 34,
+      "questionCount": 1,
+      "sha256": "849075635b023e1d74f2f8bf73c9e42146fa70b26adfb365a56ce76477f05025",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 35,
+      "questionCount": 1,
+      "sha256": "be32c19e29a4abc16d9248868df2c37b37b9781c03a29536a47c182c9cbfe917",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 36,
+      "questionCount": 1,
+      "sha256": "c580df205c252c6782970079b667fc7e08a70140d8ce4da583aa668d49298266",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 37,
+      "questionCount": 1,
+      "sha256": "43dfd7030aef2080c5e99c7525a0f86b229bc363f98f79f5076127a868dcf5da",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 38,
+      "questionCount": 1,
+      "sha256": "0cf08ffeb664684600e7a80548b78515cc45411f0de8ba902d39755cfb2b0aa0",
+      "kind": "questions",
+      "status": "parsed"
+    },
+    {
+      "source": "today",
+      "captureIndex": 39,
+      "questionCount": 1,
+      "sha256": "ea8bb09b7c33c49be9e6c3b304f5bff59d9227dc57e55cc44614a08c73a30fe6",
+      "kind": "questions",
       "status": "parsed"
     }
   ],
@@ -1018,7 +1478,15 @@
       "issues": [
         "제공 원문에서 ①·④ 보기의 문구가 같습니다. 원문 그대로 표시합니다."
       ]
+    },
+    {
+      "source": "today",
+      "captureIndex": 1,
+      "number": 1,
+      "issues": [
+        "제공 파일에 정답 번호가 없어 공식 게시글의 정답 ②를 확인했습니다."
+      ]
     }
   ],
-  "questionCount": 792
+  "questionCount": 830
 }

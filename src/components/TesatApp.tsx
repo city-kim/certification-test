@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
-import { figureUrl } from '../data/questions';
-import { TESAT_ARCHIVE_BANK, TESAT_ARTICLES, TESAT_BANK, TESAT_RANGES, TESAT_TERMS } from '../data/tesat';
+import { TESAT_ARCHIVE_BANK, TESAT_ARTICLES, TESAT_BANK, TESAT_COLLECTED_AT, TESAT_RANGES, TESAT_TERMS } from '../data/tesat';
 import { changeLearning, useLearning } from '../lib/tesatStorage';
 import { emptyFilter, filterQuestions, focusStudySession, newSession, reconcileLearning, selectPractice, SOURCE_LABELS, SUBJECT_LABELS, submitLearning, updateSelection } from '../lib/tesat';
 import type { SourceId, StudyFilter, StudyMode, StudySession, TesatQuestion, Term, WrongStatus } from '../lib/tesat';
 import { fakeMeta } from '../secret/meta';
 import ReviewItem from './ReviewItem';
 import QuestionContent from './QuestionContent';
+import QuestionImage from './QuestionImage';
 import './TesatApp.css';
 
 type View = 'home' | 'library' | 'session' | 'wrong' | 'terms' | 'current' | 'sources';
@@ -146,8 +146,8 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
   }
   function questionBody(q: TesatQuestion, selected: number | null, graded: boolean, onSelect?: (index: number) => void, index?: number) {
     return <>
-      <div className={secret ? 'gn-lead tesat-question' : 'q-text'}>{q.content ? <QuestionContent content={q.content} prefix={index != null && !secret ? <span className="q-num">{index + 1}.</span> : undefined} /> : <>{index != null && !secret && <span className="q-num">{index + 1}.</span>}{q.question}</>}</div>
-      {q.figure && !q.content && <img className={secret ? 'gn-figure' : 'q-figure'} src={figureUrl(q.figure)} alt="문제 그림" />}
+      <div className={secret ? 'gn-lead tesat-question' : 'q-text'}>{q.content ? <QuestionContent key={q.id} content={q.content} prefix={index != null && !secret ? <span className="q-num">{index + 1}.</span> : undefined} /> : <>{index != null && !secret && <span className="q-num">{index + 1}.</span>}{q.question}</>}</div>
+      {q.figure && !q.content && <QuestionImage key={q.id} className={secret ? 'gn-figure' : 'q-figure'} src={q.figure} alt="문제 그림" />}
       <ul className={secret ? 'gn-poll' : `options ${graded ? 'review' : ''}`}>
         {q.options.map((opt, i) => {
           const cls = secret ? `gn-choice ${selected === i ? 'voted' : ''}`
@@ -180,7 +180,7 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
   function review(q: TesatQuestion, index: number, selected: number | null) {
     return <div key={q.id} className="tesat-review">
       <ReviewItem data={{ index: index + 1, subjectLabel: SUBJECT_LABELS[q.subject], question: q.question,
-        content: q.content, figure: q.figure, options: q.options, correctText: q.options[q.answerIndex],
+        content: q.content, figure: q.figure, hideFigures: true, options: q.options, correctText: q.options[q.answerIndex],
         correctIndex: q.answerIndex, selectedIndex: selected,
         selectedText: selected == null ? null : q.options[selected], explanation: q.explanation }} />
       <details className="tesat-review-notes"><summary>요점·관련 용어 보기</summary>{notes(q, false)}</details>
@@ -334,10 +334,10 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
 
     {view === 'sources' && <>
       {secret && <h1 className="gn-page-title">Sources</h1>}
-      <section className={card}><p className={secret ? 'gn-progress' : 'muted small'}>최초 게시일 기준 · 확인일 2026.10.27<br />제공 원문 {TESAT_ARTICLES.filter(a => a.provided).length}편에서 {TESAT_BANK.reduce((sum, q) => sum + q.sourceRefs.length, 0)}문항을 읽었습니다. 동일 문항은 출처를 함께 연결해 {TESAT_BANK.length}문항으로 등록했습니다.<br />오늘의 TESAT 문제는 원문 파일이 제공되지 않아 링크 자료로 확인합니다.</p>{TESAT_RANGES.map(r => <p key={r.source} className={secret ? 'gn-progress' : 'muted small'}><b>{r.source === 'current-terms' ? '시사 경제용어' : SOURCE_LABELS[r.source as SourceId]}</b><br />{r.start} ~ {r.end}</p>)}</section>
+      <section className={card}><p className={secret ? 'gn-progress' : 'muted small'}>최초 게시일 기준 · 원문 확인일 {TESAT_COLLECTED_AT.replace(/-/g, '.')}<br />현재 학습 기간에 해당하는 제공 원문 {TESAT_ARTICLES.filter(a => a.provided && a.included).length}편에서 {TESAT_BANK.reduce((sum, q) => sum + q.sourceRefs.length, 0)}문항을 읽었습니다. 동일 문항은 출처를 함께 연결해 {TESAT_BANK.length}문항으로 등록했습니다.<br />기간에서 제외한 문제의 기존 오답은 오답노트에서 복습할 수 있습니다.<br />원문 파일이 없는 {TESAT_ARTICLES.filter(a => a.kind === 'questions' && a.included && !a.provided).length}편은 링크 자료로 확인합니다.</p>{TESAT_RANGES.map(r => <p key={r.source} className={secret ? 'gn-progress' : 'muted small'}><b>{r.source === 'current-terms' ? '시사 경제용어' : SOURCE_LABELS[r.source as SourceId]}</b><br />{r.start} ~ {r.end}</p>)}</section>
       {TESAT_ARTICLES.map(a => {
         const linked = TESAT_BANK.filter(q => q.sourceRefs.some(r => r.articleId === a.id));
-        return <article className={card} key={a.id}><p className={secret ? 'gn-progress' : 'muted small'}>{SOURCE_LABELS[a.source]} · {a.publishedAt} · {a.provided ? '제공 원문 등록' : a.included ? '링크 자료' : '대상 제외'}</p><h2 className={secret ? 'gn-page-title' : ''}><a href={a.url} target="_blank" rel="noreferrer">{a.title} ↗</a></h2><p className={secret ? 'gn-progress' : 'muted small'}>{a.kind === 'terms' ? '용어 자료' : `원문 ${a.questionCount ?? '미확인'}문항`}{a.provided ? ` · 등록 ${linked.length}문항` : ''}{a.imageCount ? ` · 원문 그림 ${a.imageCount}개` : ''}</p>{a.note && <p className={secret ? 'gn-progress' : 'muted small'}>{a.note}</p>}{a.included && linked.length > 0 && <button className={button} onClick={() => { setFilter(emptyFilter); setArticleId(a.id); go('library'); }}>이 게시글 풀기</button>}</article>;
+        return <article className={card} key={a.id}><p className={secret ? 'gn-progress' : 'muted small'}>{SOURCE_LABELS[a.source]} · {a.publishedAt} · {!a.included ? a.provided ? '기간 제외 · 이전 오답 복습용 보존' : '대상 제외' : a.provided ? '제공 원문 등록' : '링크 자료'}</p><h2 className={secret ? 'gn-page-title' : ''}><a href={a.url} target="_blank" rel="noreferrer">{a.title} ↗</a></h2><p className={secret ? 'gn-progress' : 'muted small'}>{a.kind === 'terms' ? '용어 자료' : `원문 ${a.questionCount ?? '미확인'}문항`}{a.provided && a.included ? ` · 등록 ${linked.length}문항` : ''}{a.imageCount ? ` · 원문 그림 ${a.imageCount}개` : ''}</p>{a.note && <p className={secret ? 'gn-progress' : 'muted small'}>{a.note}</p>}{a.included && linked.length > 0 && <button className={button} onClick={() => { setFilter(emptyFilter); setArticleId(a.id); go('library'); }}>이 게시글 풀기</button>}</article>;
       })}
     </>}
   </div>;
@@ -363,7 +363,7 @@ function TermExplanation({ term, secret = false }: { term: Term; secret?: boolea
       <summary>계산·사례로 이해하기</summary>
       <div className={secret ? 'tesat-keyword-case-body' : 'explanation'}>
         <p>{study.question}</p>
-        {study.figure && <img className={secret ? 'gn-figure' : 'q-figure'} src={figureUrl(study.figure)} alt="사례 참고 그림" />}
+        {study.figure && <QuestionImage key={study.figure} className={secret ? 'gn-figure' : 'q-figure'} src={study.figure} alt="사례 참고 그림" />}
         <ul className="tesat-case-options">{study.options.map((option, index) => <li key={index}>{MARKERS[index]} {option}</li>)}</ul>
         <p><strong>답: {study.answer}</strong></p><p>{study.explanation}</p>
       </div>
