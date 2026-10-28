@@ -229,7 +229,8 @@ def parse_article(source: str, html: str, capture_index: int, reviewed=None):
             issues.append(reviewed['displayNote'])
         result.append({'source': source, 'captureIndex': capture_index, 'originalNumber': number,
                        'question': question, 'content': content, 'options': options, 'answerIndex': answer,
-                       'officialExplanation': official_explanation, 'images': image_sources(content), 'issues': issues})
+                       'officialExplanation': official_explanation, 'images': image_sources(content), 'issues': issues,
+                       **({'imageContainsChoices': True} if reviewed.get('imageContainsChoices') else {})})
     if source == 'quiz' and set(answers) != {q['originalNumber'] for q in result}:
         raise ValueError('Question count and answer table do not match')
     return result

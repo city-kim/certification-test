@@ -8,6 +8,7 @@ export interface TesatQuestion extends McqQuestion {
   delivery: 'authored' | 'reference' | 'original';
   explanationKind?: 'original' | 'concept' | 'answer-key';
   originalIssues?: string[];
+  imageContainsChoices?: boolean;
   keyPoints: string[];
   termIds: string[];
   sourceRefs: NonNullable<McqQuestion['sourceRefs']>;
@@ -46,6 +47,8 @@ export interface QuestionProgress {
   attempts: number;
   wrongCount: number;
   lastSelected: number | null;
+  /** Last displayed order, stored as original option indices. */
+  lastOptionOrder?: number[];
   lastCorrect: boolean;
   lastAttempt: number;
   wrongStatus?: WrongStatus;
@@ -56,6 +59,8 @@ export interface StudySession {
   ids: string[];
   cursor: number;
   selections: Record<string, number | null>;
+  /** Selections stay in original indices; only presentation uses this order. */
+  optionOrders?: Record<string, number[]>;
   graded: Record<string, boolean>;
   completed: boolean;
 }
@@ -81,8 +86,53 @@ export const SUBJECT_LABELS: Record<string, string> = {
 };
 export const emptyLearning = (): LearningState => ({ version: 1, progress: {}, terms: {}, session: null, history: [] });
 
-export function newSession(ids: string[], mode: StudyMode, id: string): StudySession {
-  return { id, mode, ids: [...new Set(ids)], cursor: 0, selections: {}, graded: {}, completed: false };
+function validOrder(order: unknown, count?: number): order is number[] {
+  return Array.isArray(order) && [4, 5].includes(order.length) && (count === undefined || order.length === count)
+    && new Set(order).size === order.length && order.every(i => Number.isInteger(i) && i >= 0 && i < order.length);
+}
+
+export function optionOrder(q: TesatQuestion, order?: number[]): number[] {
+  return validOrder(order, q.options.length) ? order : q.options.map((_, i) => i);
+}
+
+export function displayedSelection(q: TesatQuestion, selected: number | null | undefined, order?: number[]): number | null {
+  if (selected == null) return null;
+  const index = optionOrder(q, order).indexOf(selected);
+  return index < 0 ? null : index;
+}
+
+/** Leave the original bank intact and translate explanation numbers for this attempt. */
+export function presentQuestion(q: TesatQuestion, storedOrder?: number[]): TesatQuestion {
+  const order = optionOrder(q, storedOrder);
+  if (order.every((original, index) => original === index)) return q;
+  const markers = '①②③④⑤';
+  const renumber = (text: string) => text.replace(/[①②③④⑤]/g, marker => {
+    const index = order.indexOf(markers.indexOf(marker));
+    return index < 0 ? marker : markers[index];
+  });
+  return { ...q, options: order.map(i => q.options[i]), answerIndex: order.indexOf(q.answerIndex),
+    explanation: renumber(q.explanation).replace(/^제공 원문 정답표:/, '이번 풀이 정답:'), keyPoints: q.keyPoints.map(renumber),
+    optionExplanations: q.optionExplanations.length ? order.map(i => renumber(q.optionExplanations[i])) : [] };
+}
+
+export function newSession(ids: string[], mode: StudyMode, id: string, bank: TesatQuestion[] = [], random = Math.random): StudySession {
+  const unique = [...new Set(ids)];
+  const optionOrders: Record<string, number[]> = {};
+  if (mode === 'test') {
+    const lookup = new Map(bank.map(q => [q.id, q]));
+    for (const questionId of unique) {
+      const q = lookup.get(questionId);
+      if (!q) continue;
+      const order = q.options.map((_, i) => i);
+      for (let i = order.length - 1; i > 0; i--) {
+        const j = Math.floor(random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+      }
+      optionOrders[questionId] = order;
+    }
+  }
+  return { id, mode, ids: unique, cursor: 0, selections: {}, graded: {}, completed: false,
+    ...(Object.keys(optionOrders).length ? { optionOrders } : {}) };
 }
 
 /** Reopen an ongoing question without creating a set or changing any answers. */
@@ -112,6 +162,7 @@ export function submitLearning(state: LearningState, bank: TesatQuestion[], now:
     progress[id] = {
       attempts: (old?.attempts ?? 0) + 1, wrongCount,
       lastSelected: selected, lastCorrect: correct, lastAttempt: now,
+      ...(session.optionOrders?.[id] ? { lastOptionOrder: [...optionOrder(q, session.optionOrders[id])] } : {}),
       wrongStatus: correct ? (wrongCount ? 'done' : undefined) : (wrongCount > 1 ? 'again' : 'unreviewed'),
     };
     graded[id] = true;
@@ -123,20 +174,29 @@ export function submitLearning(state: LearningState, bank: TesatQuestion[], now:
     history: completed ? [result, ...state.history.filter(h => h.id !== result.id)].slice(0, 30) : state.history };
 }
 
+/** Accept a displayed index and persist its original option index for grading. */
 export function updateSelection(state: LearningState, id: string, selected: number): LearningState {
   const s = state.session;
   if (!s || !s.ids.includes(id) || s.graded[id] || s.completed) return state;
-  return { ...state, session: { ...s, selections: { ...s.selections, [id]: selected } } };
+  const order = s.optionOrders?.[id];
+  const originalIndex = validOrder(order) ? order[selected] : selected;
+  if (!Number.isInteger(originalIndex) || originalIndex < 0 || originalIndex > 4) return state;
+  return { ...state, session: { ...s, selections: { ...s.selections, [id]: originalIndex } } };
 }
 
 /** Remove obsolete question IDs on data updates without touching other certificates. */
 export function reconcileLearning(state: LearningState, bank: TesatQuestion[]): LearningState {
   const s = state.session;
   if (!s) return state;
-  const valid = new Set(bank.map(q => q.id));
-  const ids = s.ids.filter(id => valid.has(id));
-  if (ids.length === s.ids.length) return state;
-  return { ...state, session: ids.length ? { ...s, ids, cursor: Math.min(s.cursor, ids.length - 1), completed: ids.every(id=>s.graded[id]) } : null };
+  const lookup = new Map(bank.map(q => [q.id, q]));
+  const ids = s.ids.filter(id => lookup.has(id));
+  const orderEntries = s.optionOrders && typeof s.optionOrders === 'object' && !Array.isArray(s.optionOrders) ? Object.entries(s.optionOrders) : [];
+  const validEntries = orderEntries.filter(([id, order]) => ids.includes(id) && validOrder(order, lookup.get(id)!.options.length));
+  const ordersValid = s.optionOrders === undefined || (!!s.optionOrders && !Array.isArray(s.optionOrders)
+    && typeof s.optionOrders === 'object' && orderEntries.length === validEntries.length);
+  if (ids.length === s.ids.length && ordersValid) return state;
+  return { ...state, session: ids.length ? { ...s, ids, cursor: Math.min(s.cursor, ids.length - 1), completed: ids.every(id=>s.graded[id]),
+    optionOrders: validEntries.length ? Object.fromEntries(validEntries) : undefined } : null };
 }
 
 export interface StudyFilter { source: string; month: string; subject: string; status: string; search: string }

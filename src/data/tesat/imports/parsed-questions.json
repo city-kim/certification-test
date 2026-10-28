@@ -25090,7 +25090,8 @@
       "https://www.tesat.or.kr/data/service/www.tesat.or.kr/upload/bbs/tesat_study/image/ff2f6301b15454f4fa5e9d95f2fd74aa",
       "https://www.tesat.or.kr/data/service/www.tesat.or.kr/upload/bbs/tesat_study/image/3cd1d0ecc24e77f76dd23615f9d6c4cb"
     ],
-    "issues": []
+    "issues": [],
+    "imageContainsChoices": true
   },
   {
     "source": "today",
@@ -25414,7 +25415,8 @@
     "images": [
       "https://www.tesat.or.kr/data/service/www.tesat.or.kr/upload/bbs/tesat_study/image/10caf0c467bb02546668ae0cca24afb7"
     ],
-    "issues": []
+    "issues": [],
+    "imageContainsChoices": true
   },
   {
     "source": "today",

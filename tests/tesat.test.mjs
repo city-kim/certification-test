@@ -4,7 +4,7 @@ import { readFileSync,existsSync } from 'node:fs';
 import { loadTS } from './load-ts.mjs';
 const engine=await loadTS('src/lib/tesat.ts');
 const quiz=await loadTS('src/lib/quiz.ts');
-const {emptyLearning,newSession,focusStudySession,submitLearning,updateSelection,reconcileLearning,filterQuestions,emptyFilter,selectPractice}=engine;
+const {emptyLearning,newSession,focusStudySession,submitLearning,updateSelection,reconcileLearning,filterQuestions,emptyFilter,selectPractice,optionOrder,presentQuestion,displayedSelection}=engine;
 const read=p=>JSON.parse(readFileSync(new URL('../'+p,import.meta.url),'utf8'));
 const bank=read('src/data/tesat/questions.json');
 const authored=read('src/data/tesat/authored-questions.json');
@@ -122,6 +122,97 @@ test('실력 점검은 중복 없이 최대 20개, 작은 풀은 있는 만큼',
   assert.deepEqual(selectPractice([four,four]),[four.id]);
   assert.deepEqual(selectPractice([]),[]);
 });
+test('새 실력 점검만 선택지를 섞고 학습·복습과 원문은 유지한다',()=>{
+  const originals=JSON.stringify([four,five]);
+  const session=newSession([four.id,five.id],'test','shuffled',bank,()=>0);
+  for(const q of [four,five]){
+    const order=session.optionOrders[q.id];
+    assert.equal(order.length,q.options.length);
+    assert.deepEqual([...order].sort(),q.options.map((_,i)=>i));
+    assert.notDeepEqual(order,q.options.map((_,i)=>i));
+    assert.equal(presentQuestion(q,order).options[presentQuestion(q,order).answerIndex],q.options[q.answerIndex]);
+    assert.notDeepEqual(newSession([q.id],'test','different',bank,()=>0.999).optionOrders[q.id],order);
+  }
+  for(const mode of ['learn','review'])assert.equal(newSession([five.id],mode,'fixed',bank,()=>{throw Error('must not shuffle');}).optionOrders,undefined);
+  assert.equal(JSON.stringify([four,five]),originals);
+});
+test('4·5지선다의 모든 순열에서 화면 번호와 원문 번호를 일치시켜 채점한다',()=>{
+  function* permutations(items){
+    if(!items.length){yield [];return;}
+    for(let i=0;i<items.length;i++)for(const rest of permutations(items.filter((_,j)=>j!==i)))yield [items[i],...rest];
+  }
+  const duplicate=archivedOriginals.find(q=>q.options[0]===q.options[3]);
+  for(const q of [four,five,duplicate])for(const order of permutations(q.options.map((_,i)=>i))){
+    const shown=presentQuestion(q,order);
+    for(let display=0;display<order.length;display++){
+      let state={...emptyLearning(),session:{...newSession([q.id],'test','permutation'),optionOrders:{[q.id]:order}}};
+      state=submitLearning(updateSelection(state,q.id,display),[q],100,true);
+      const expected=order[display]===q.answerIndex;
+      assert.equal(state.session.selections[q.id],order[display]);
+      assert.equal(state.progress[q.id].lastSelected,order[display]);
+      assert.equal(state.progress[q.id].lastCorrect,expected);
+      assert.equal(state.history[0].correct,Number(expected));
+      assert.equal(displayedSelection(q,state.progress[q.id].lastSelected,order),display);
+      assert.equal(shown.options[display],q.options[order[display]]);
+    }
+  }
+});
+test('섞인 오답은 당시 보기 순서를 보존하고 원문 순서 복습에서도 같은 답을 채점한다',()=>{
+  const session=newSession([five.id],'test','random-wrong',bank,()=>0);
+  const order=session.optionOrders[five.id];
+  const wrong=(presentQuestion(five,order).answerIndex+1)%five.options.length;
+  let state=submitLearning(updateSelection({...emptyLearning(),session},five.id,wrong),bank,100,true);
+  const progress=JSON.parse(JSON.stringify(state.progress[five.id]));
+  assert.deepEqual(progress.lastOptionOrder,order);
+  assert.equal(displayedSelection(five,progress.lastSelected,progress.lastOptionOrder),wrong);
+  const shown=presentQuestion(five,progress.lastOptionOrder);
+  assert.equal(shown.options[wrong],five.options[progress.lastSelected]);
+  state={...state,session:newSession([five.id],'review','original-review',bank)};
+  state=submitLearning(updateSelection(state,five.id,five.answerIndex),bank,200);
+  assert.equal(state.progress[five.id].wrongStatus,'done');
+  assert.equal(state.progress[five.id].wrongCount,1);
+  assert.equal(state.progress[five.id].lastOptionOrder,undefined);
+});
+test('해설의 보기 참조와 정답 번호를 섞인 순서로 함께 바꾼다',()=>{
+  const q={...five,explanation:'①과 ②를 비교한다. 정답 ⑤',optionExplanations:['설명①','설명②','설명③','설명④','설명⑤']};
+  const shown=presentQuestion(q,[4,0,1,2,3]);
+  assert.equal(shown.explanation,'②과 ③를 비교한다. 정답 ①');
+  assert.deepEqual(shown.optionExplanations,['설명①','설명②','설명③','설명④','설명⑤']);
+  assert.equal(q.explanation,'①과 ②를 비교한다. 정답 ⑤');
+  const key=presentQuestion({...five,explanation:`제공 원문 정답표: ${'①②③④⑤'[five.answerIndex]} ${five.options[five.answerIndex]}`},[4,0,1,2,3]);
+  assert.equal(key.explanation,`이번 풀이 정답: ${'①②③④⑤'[key.answerIndex]} ${five.options[five.answerIndex]}`);
+  for(const original of bank){
+    const order=newSession([original.id],'test','explanation',bank,()=>0).optionOrders[original.id];
+    const displayed=presentQuestion(original,order);
+    const marker=displayed.explanation.match(/정답\s*[\]은:：]?\s*([①②③④⑤])/);
+    if(marker)assert.equal('①②③④⑤'.indexOf(marker[1]),displayed.answerIndex,original.id);
+  }
+});
+test('새로고침·이어풀기·문항 제거 뒤에도 이미 저장한 선택지 순서를 유지한다',()=>{
+  const session=newSession([four.id,five.id],'test','saved-order',bank,()=>0);
+  let state=updateSelection({...emptyLearning(),session},five.id,1);
+  state.session.cursor=1;
+  const saved=JSON.parse(JSON.stringify(state));
+  assert.deepEqual(reconcileLearning(saved,bank),saved);
+  assert.deepEqual(focusStudySession(saved.session,four.id).optionOrders,session.optionOrders);
+  assert.deepEqual(reconcileLearning(saved,[five]).session.optionOrders,{[five.id]:session.optionOrders[five.id]});
+  assert.equal(displayedSelection(five,saved.session.selections[five.id],saved.session.optionOrders[five.id]),1);
+  const legacy={...emptyLearning(),session:newSession([five.id],'test','old-in-progress')};
+  assert.equal(reconcileLearning(legacy,bank),legacy);
+  assert.equal(presentQuestion(five,legacy.session.optionOrders?.[five.id]),five);
+});
+test('깨진 선택지 순서만 제거하고 기존 답과 학습 기록을 보존한다',()=>{
+  for(const bad of [[0,0,1,2,3],[0,1,2,3,9],[0,1,2,3],null,'invalid']){
+    const state={...emptyLearning(),session:{...newSession([five.id],'test','corrupt-order'),selections:{[five.id]:five.answerIndex},optionOrders:{[five.id]:bad}}};
+    const clean=reconcileLearning(state,bank);
+    assert.equal(clean.session.optionOrders,undefined);
+    assert.deepEqual(clean.session.selections,state.session.selections);
+    assert.deepEqual(clean.progress,state.progress);
+    assert.equal(presentQuestion(five,bad),five);
+  }
+  assert.deepEqual(optionOrder(four,[0,1,2,3,4]),[0,1,2,3]);
+  assert.equal(displayedSelection(five,null),null);
+});
 test('자료 갱신 시 사라진 문항을 제외하고 커서를 보정',()=>{
   const state={...emptyLearning(),session:{...newSession([four.id,'removed',five.id],'learn','resume'),cursor:2}};
   const result=reconcileLearning(state,bank);
@@ -222,6 +313,7 @@ test('오늘의 TESAT의 원문·그림 선택지·그림 문제·공식 정답�
   assert.deepEqual(table.options,['(A) 가격탄력성 · (B) 대체재','(A) 가격탄력성 · (B) 보완재','(A) 가격탄력성 · (B) 정상재','(A) 교차탄력성 · (B) 대체재','(A) 교차탄력성 · (B) 보완재']);
   const graph=questions.find(q=>q.sourceRefs.some(r=>r.captureIndex===18));
   assert.equal(graph.answerIndex,4);
+  assert.equal(table.imageContainsChoices,true);assert.equal(graph.imageContainsChoices,true);
   assert.ok(graph.figure&&graph.explanation.includes('E+F'));
   const termArticle=manifest.articles.find(a=>a.source==='today'&&a.captureIndex===32);
   assert.equal(termArticle.kind,'terms');assert.equal(termArticle.included,false);
@@ -280,6 +372,11 @@ test('브라우저 저장·복원·저장 실패 시 메모리 보존 및 자격
   const restored=JSON.parse(values.get(storage.TESAT_STORAGE_KEY));
   assert.equal(restored.progress[four.id].attempts,1);
   assert.equal(values.get('ncq.network_2.wrongbook.v1'),'existing');
+  const shuffled=newSession([four.id],'test','browser-order',bank,()=>0);
+  storage.changeLearning(old=>updateSelection({...old,session:shuffled},four.id,1));
+  const savedOrder=JSON.parse(values.get(storage.TESAT_STORAGE_KEY));
+  assert.deepEqual(savedOrder.session.optionOrders,shuffled.optionOrders);
+  assert.equal(savedOrder.session.selections[four.id],shuffled.optionOrders[four.id][1]);
   fail=true;
   storage.changeLearning(old=>({...old,terms:{[terms[0].id]:'again'}}));
   storage.changeLearning(old=>({...old,terms:{...old.terms,[terms[1].id]:'known'}}));

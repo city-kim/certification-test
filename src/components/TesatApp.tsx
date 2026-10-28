@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { TESAT_ARCHIVE_BANK, TESAT_ARTICLES, TESAT_BANK, TESAT_COLLECTED_AT, TESAT_RANGES, TESAT_TERMS } from '../data/tesat';
 import { changeLearning, useLearning } from '../lib/tesatStorage';
-import { emptyFilter, filterQuestions, focusStudySession, newSession, reconcileLearning, selectPractice, SOURCE_LABELS, SUBJECT_LABELS, submitLearning, updateSelection } from '../lib/tesat';
+import { displayedSelection, emptyFilter, filterQuestions, focusStudySession, newSession, presentQuestion, reconcileLearning, selectPractice, SOURCE_LABELS, SUBJECT_LABELS, submitLearning, updateSelection } from '../lib/tesat';
 import type { SourceId, StudyFilter, StudyMode, StudySession, TesatQuestion, Term, WrongStatus } from '../lib/tesat';
 import { fakeMeta } from '../secret/meta';
 import ReviewItem from './ReviewItem';
@@ -73,7 +73,7 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
   function start(ids: string[], mode: StudyMode, focusId = ids[0]) {
     if (!ids.length) return;
     if (session && !session.completed && !window.confirm('진행 중인 풀이를 새 세트로 바꿀까요? 이미 채점한 학습 기록은 유지됩니다.')) return;
-    const next = newSession(ids, mode, crypto.randomUUID());
+    const next = newSession(ids, mode, crypto.randomUUID(), learningBank);
     next.cursor = Math.max(0, next.ids.indexOf(focusId));
     changeLearning(old => ({ ...old, session: next }));
     showSession(next);
@@ -145,9 +145,12 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
     </>;
   }
   function questionBody(q: TesatQuestion, selected: number | null, graded: boolean, onSelect?: (index: number) => void, index?: number) {
+    const original = lookup.get(q.id);
+    const shuffledImageChoices = q.imageContainsChoices && original && q.options.some((option, i) => option !== original.options[i]);
     return <>
       <div className={secret ? 'gn-lead tesat-question' : 'q-text'}>{q.content ? <QuestionContent key={q.id} content={q.content} prefix={index != null && !secret ? <span className="q-num">{index + 1}.</span> : undefined} /> : <>{index != null && !secret && <span className="q-num">{index + 1}.</span>}{q.question}</>}</div>
       {q.figure && !q.content && <QuestionImage key={q.id} className={secret ? 'gn-figure' : 'q-figure'} src={q.figure} alt="문제 그림" />}
+      {shuffledImageChoices && <p className={secret ? 'gn-progress' : 'muted small'}>그림 속 보기 번호는 원문 기준입니다. 답은 아래 선택지의 번호로 고르세요.</p>}
       <ul className={secret ? 'gn-poll' : `options ${graded ? 'review' : ''}`}>
         {q.options.map((opt, i) => {
           const cls = secret ? `gn-choice ${selected === i ? 'voted' : ''}`
@@ -177,12 +180,15 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
       {open && <div className="gn-row-detail">{children}</div>}
     </li>;
   }
-  function review(q: TesatQuestion, index: number, selected: number | null) {
+  function review(original: TesatQuestion, index: number, originalSelected: number | null, order?: number[]) {
+    const q = presentQuestion(original, order);
+    const selected = displayedSelection(original, originalSelected, order);
     return <div key={q.id} className="tesat-review">
       <ReviewItem data={{ index: index + 1, subjectLabel: SUBJECT_LABELS[q.subject], question: q.question,
         content: q.content, figure: q.figure, hideFigures: true, options: q.options, correctText: q.options[q.answerIndex],
         correctIndex: q.answerIndex, selectedIndex: selected,
         selectedText: selected == null ? null : q.options[selected], explanation: q.explanation }} />
+      {q.imageContainsChoices && q !== original && <p className="muted small">그림 속 보기 번호는 원문 기준입니다. 아래 선택지의 번호를 확인하세요.</p>}
       <details className="tesat-review-notes"><summary>요점·관련 용어 보기</summary>{notes(q, false)}</details>
     </div>;
   }
@@ -207,8 +213,9 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
         {!missed.length && <p className={secret ? 'gn-empty' : 'muted'}>틀린 문제가 없습니다.</p>}
         {secret ? <ol className="gn-list">{missed.map((id, i) => {
           const q = lookup.get(id)!;
-          return newsRow(q, i, openId === id, () => setOpenId(openId === id ? null : id), questionBody(q, session.selections[id] ?? null, true));
-        })}</ol> : missed.map((id, i) => review(lookup.get(id)!, i, session.selections[id] ?? null))}
+          const order = session.optionOrders?.[id];
+          return newsRow(q, i, openId === id, () => setOpenId(openId === id ? null : id), questionBody(presentQuestion(q, order), displayedSelection(q, session.selections[id], order), true));
+        })}</ol> : missed.map((id, i) => review(lookup.get(id)!, i, session.selections[id] ?? null, session.optionOrders?.[id]))}
         {!!missed.length && <button className={button} onClick={() => start(missed, 'review')}>이번 오답 다시 풀기</button>}
       </section>
       <div className={secret ? 'gn-article-nav' : 'actions sticky two'}><button className={secret ? 'gn-navbtn' : 'btn ghost'} onClick={() => go(secret ? 'library' : 'home')}>{secret ? '목록으로' : '홈으로'}</button><button className={secret ? 'gn-navbtn primary' : 'btn primary'} onClick={() => start(selectPractice(questions), 'test')}>{secret ? 'Load new stories' : '새 실력 점검'}</button></div>
@@ -224,7 +231,10 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
   </div>;
   const sessionAnswered = session?.ids.filter(id => session.selections[id] != null).length ?? 0;
   const testResult = view === 'session' && session?.mode === 'test' && session.completed;
-  const currentQuestion = session ? lookup.get(session.ids[session.cursor]) : undefined;
+  const currentOriginal = session ? lookup.get(session.ids[session.cursor]) : undefined;
+  const currentOrder = currentOriginal ? session?.optionOrders?.[currentOriginal.id] : undefined;
+  const currentQuestion = currentOriginal ? presentQuestion(currentOriginal, currentOrder) : undefined;
+  const currentSelected = currentOriginal ? displayedSelection(currentOriginal, session?.selections[currentOriginal.id], currentOrder) : null;
 
   return <div className={`tesat-study ${secret ? 'tesat-news' : `screen ${view === 'home' ? 'start' : view === 'session' ? 'quiz' : 'study'}`}`}>
     {secret ? <>
@@ -241,7 +251,7 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
       {secret && <h1 className="gn-page-title">Channel overview</h1>}
       <section className={card}><h2 className={secret ? 'gn-wrong-title' : ''}>학습 범위 ({TESAT_BANK.length}문항)</h2>
         <ul className={secret ? 'tesat-news-subjects' : 'subject-list'}>{Object.entries(SUBJECT_LABELS).map(([key, label]) => <li key={key}><span>{label}</span><span className="count">{TESAT_BANK.filter(q => q.subject === key).length}문항</span></li>)}</ul>
-        <p className={secret ? 'gn-lead' : 'muted small'}>실력 점검은 최대 20문항 무작위 출제 · 보기 순서 고정</p>
+        <p className={secret ? 'gn-lead' : 'muted small'}>실력 점검은 최대 20문항 · 문제와 선택지 순서 무작위</p>
       </section>
       {(state.history[0] || session) && <section className={card}><h2 className={secret ? 'gn-wrong-title' : ''}>최근 기록</h2>
         {state.history[0] && <p className="last-record"><strong>{Math.round(state.history[0].correct / state.history[0].total * 100)}%</strong><span className={secret ? 'gn-progress' : 'muted'}> · {state.history[0].correct}/{state.history[0].total} 정답</span></p>}
@@ -275,15 +285,17 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
       {session.completed && <p className={secret ? 'gn-lead' : 'muted small'} role="status">학습 완료 · {session.ids.filter(id => session.selections[id] === lookup.get(id)?.answerIndex).length}/{session.ids.length} 정답 <button className={secret ? 'gn-back' : 'link'} onClick={() => go('wrong')}>오답노트</button></p>}
       {!secret && session.mode !== 'test' && <label className="tesat-jump">문항 이동<select value={session.cursor} onChange={e => changeLearning(old => ({ ...old, session: old.session ? { ...old.session, cursor: Number(e.target.value) } : null }))}>{session.ids.map((id, i) => <option key={id} value={i}>{i + 1}. {session.graded[id] ? '✓ ' : ''}{lookup.get(id)?.title}</option>)}</select></label>}
       {secret ? <ol className="gn-list">{session.ids.slice(0, limit).map((id, index) => {
-        const q = lookup.get(id); if (!q) return null;
-        const selected = session.selections[id] ?? null;
+        const original = lookup.get(id); if (!original) return null;
+        const order = session.optionOrders?.[id];
+        const q = presentQuestion(original, order);
+        const selected = displayedSelection(original, session.selections[id], order);
         return newsRow(q, index, openId === id, () => { setOpenId(openId === id ? null : id); changeLearning(old => ({ ...old, session: old.session ? { ...old.session, cursor: index } : null })); }, <>
           <p className="gn-lead">아래 코멘트 중 이 주제를 가장 정확히 설명한 항목에 투표하세요.</p>
           {questionBody(q, selected, !!session.graded[id], choice => changeLearning(old => updateSelection(old, id, choice)))}
           {session.mode !== 'test' && !session.graded[id] && <button className="gn-submit" disabled={selected == null} onClick={() => gradeOne(index)}>Save comment · 정리 보기</button>}
         </>);
       })}</ol> : currentQuestion && <div className="q-body">
-        {questionBody(currentQuestion, session.selections[currentQuestion.id] ?? null, !!session.graded[currentQuestion.id], choice => changeLearning(old => updateSelection(old, currentQuestion.id, choice)), session.cursor)}
+        {questionBody(currentQuestion, currentSelected, !!session.graded[currentQuestion.id], choice => changeLearning(old => updateSelection(old, currentQuestion.id, choice)), session.cursor)}
         {session.mode !== 'test' && !session.graded[currentQuestion.id] && <div className="hint-zone"><button className="btn hint" disabled={session.selections[currentQuestion.id] == null} onClick={() => gradeOne(session.cursor)}>답 제출 · 해설 보기</button>{session.selections[currentQuestion.id] == null && <p className="muted small">보기를 먼저 선택하면 해설을 볼 수 있습니다.</p>}</div>}
       </div>}
       {secret ? <div className="gn-list-foot"><button className="gn-more tesat-text-button" onClick={() => session.ids.length > limit ? setLimit(limit + 30) : start(selectPractice(questions), 'test')}>More ▾</button>{session.mode === 'test' && !session.completed && <button className="gn-submit" onClick={submitAll}>Archive ({sessionAnswered}/{session.ids.length})</button>}</div>
@@ -297,8 +309,8 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
       <p className={secret ? 'gn-progress' : 'muted small'}>총 {wrong.length}문항</p><button className={button} disabled={!wrong.length} onClick={() => start(wrong.map(q => q.id), 'review')}>이 목록 다시 풀기</button>
       {!wrong.length && <p className={secret ? 'gn-empty' : 'muted center'}>해당 상태의 오답이 없습니다.</p>}
       {secret ? <ol className="gn-list">{wrong.slice(0, limit).map((q, i) => newsRow(q, i, openId === q.id, () => setOpenId(openId === q.id ? null : q.id), <>
-        <p className="gn-progress">{STATUS_LABELS[state.progress[q.id].wrongStatus!]} · 오답 {state.progress[q.id].wrongCount}회</p>{questionBody(q, state.progress[q.id].lastSelected, true)}<button className="gn-submit" onClick={() => start([q.id], 'review')}>Read again</button>
-      </>))}</ol> : wrong.slice(0, limit).map((q, i) => <div key={q.id}><p className="muted small">{STATUS_LABELS[state.progress[q.id].wrongStatus!]} · 오답 {state.progress[q.id].wrongCount}회 · {new Date(state.progress[q.id].lastAttempt).toLocaleDateString('ko-KR')}</p>{review(q, i, state.progress[q.id].lastSelected)}<button className={button} onClick={() => start([q.id], 'review')}>다시 풀고 복습 상태 갱신</button></div>)}
+        <p className="gn-progress">{STATUS_LABELS[state.progress[q.id].wrongStatus!]} · 오답 {state.progress[q.id].wrongCount}회</p>{questionBody(presentQuestion(q, state.progress[q.id].lastOptionOrder), displayedSelection(q, state.progress[q.id].lastSelected, state.progress[q.id].lastOptionOrder), true)}<button className="gn-submit" onClick={() => start([q.id], 'review')}>Read again</button>
+      </>))}</ol> : wrong.slice(0, limit).map((q, i) => <div key={q.id}><p className="muted small">{STATUS_LABELS[state.progress[q.id].wrongStatus!]} · 오답 {state.progress[q.id].wrongCount}회 · {new Date(state.progress[q.id].lastAttempt).toLocaleDateString('ko-KR')}</p>{review(q, i, state.progress[q.id].lastSelected, state.progress[q.id].lastOptionOrder)}<button className={button} onClick={() => start([q.id], 'review')}>다시 풀고 복습 상태 갱신</button></div>)}
       {wrong.length > limit && <button className={button} onClick={() => setLimit(limit + 30)}>더 보기</button>}
     </>}
 

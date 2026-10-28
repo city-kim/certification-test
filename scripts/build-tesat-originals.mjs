@@ -92,6 +92,7 @@ export function loadOriginals(root, terms) {
       ...(q.images.length?{figure:assets[q.images[0]]}:{}), options:q.options,answerIndex:q.answerIndex,
       explanation,explanationKind:q.officialExplanation?'original':exact?'concept':'answer-key',
       ...(q.issues?.length?{originalIssues:q.issues}:{}),
+      ...(q.imageContainsChoices?{imageContainsChoices:true}:{}),
       keyPoints:exact?[exact.definition,exact.contrast]:[],termIds:related.map(t=>t.id),optionExplanations:[],
       publishedAt:article.publishedAt,sourceRefs:[ref],delivery:'original',shuffleOptions:false});
   }
