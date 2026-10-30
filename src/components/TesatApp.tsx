@@ -34,6 +34,8 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
   const [revealed, setRevealed] = useState<Set<string>>(new Set());
   const [cardMode, setCardMode] = useState(false);
   const [hideAnswers, setHideAnswers] = useState(false);
+  const [showAllResults, setShowAllResults] = useState(false);
+  const [openResultId, setOpenResultId] = useState<string | null>(null);
   const [openId, setOpenId] = useState<string | null>(secret && restoredSession ? restoredSession.ids[restoredSession.cursor] : null);
   const [articleId, setArticleId] = useState('');
   const [limit, setLimit] = useState(secret && restoredSession ? Math.max(30, restoredSession.cursor + 1) : 30);
@@ -75,6 +77,8 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
     if (session && !session.completed && !window.confirm('진행 중인 풀이를 새 세트로 바꿀까요? 이미 채점한 학습 기록은 유지됩니다.')) return;
     const next = newSession(ids, mode, crypto.randomUUID(), learningBank);
     next.cursor = Math.max(0, next.ids.indexOf(focusId));
+    setShowAllResults(false);
+    setOpenResultId(null);
     changeLearning(old => ({ ...old, session: next }));
     showSession(next);
   }
@@ -102,6 +106,7 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
     const missing = session.ids.filter(id => session.selections[id] == null).length;
     if (missing && !window.confirm(`미응답 ${missing}문항도 오답으로 채점할까요?`)) return;
     changeLearning(old => submitLearning(old, learningBank, Date.now(), true));
+    setOpenResultId(null);
     window.scrollTo(0, 0);
   }
   function gradeOne(index: number) {
@@ -167,13 +172,13 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
       {graded && <>{onSelect && <p className={secret ? 'gn-lead' : 'muted small'} role="status">{selected === null ? '미응답' : selected === q.answerIndex ? '정답입니다' : '오답입니다'} · 정답 {MARKERS[q.answerIndex]}</p>}{notes(q)}</>}
     </>;
   }
-  function newsRow(q: TesatQuestion, index: number, open: boolean, onToggle: () => void, children?: React.ReactNode) {
+  function newsRow(q: TesatQuestion, index: number, open: boolean, onToggle: () => void, children?: React.ReactNode, resultCorrect = false) {
     const meta = fakeMeta(q.id);
     const domain = new URL(q.sourceRefs[0].url).hostname;
     return <li key={q.id} className={`gn-item ${open ? 'open' : ''}`}>
       <button className={`gn-row tesat-news-row ${state.progress[q.id] ? 'read' : ''}`} onClick={onToggle} aria-expanded={open}>
         <span className="gn-rank">{index + 1}.</span><span className="gn-row-body">
-          <span className="gn-row-title-line"><span className="gn-title">{q.title}</span><span className="gn-domain">({domain})</span></span>
+          <span className="gn-row-title-line">{resultCorrect ? <strong className="gn-title">{q.title}</strong> : <span className="gn-title">{q.title}</span>}<span className="gn-domain">({domain})</span></span>
           <span className="gn-meta"><span className="gn-points">{meta.points} points</span><span className="gn-tag">{SUBJECT_LABELS[q.subject]}</span><span>{q.publishedAt}</span>{q.delivery === 'authored' && <span>이전 개념 연습</span>}<span className="gn-comments">{state.progress[q.id] ? '읽음' : `댓글 ${meta.comments}`}</span></span>
         </span>
       </button>
@@ -197,6 +202,7 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
     const correct = session.ids.filter(id => session.selections[id] === lookup.get(id)?.answerIndex).length;
     const ratio = Math.round(correct / session.ids.length * 100);
     const missed = session.ids.filter(id => session.selections[id] !== lookup.get(id)?.answerIndex);
+    const resultIds = showAllResults ? session.ids : missed;
     return <>
       {secret ? <><h1 className="gn-article-title">Weekly Reading Digest</h1><div className="gn-score-card"><div className="gn-score">{ratio}<span className="gn-score-unit">%</span></div><div className="gn-score-side">{correct} / {session.ids.length} correct</div></div></>
         : <section className="score-card tesat-score"><div className="score-big">{ratio}%</div><div className="verdict">실력 점검 결과</div><div className="muted">{correct} / {session.ids.length} 정답</div></section>}
@@ -209,13 +215,24 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
           })}
         </tbody></table><p className={secret ? 'gn-lead' : 'muted small'}>TESAT 공식 점수·등급으로 환산하지 않습니다.</p>
       </section>
-      <section className={card}><h2 className={secret ? 'gn-wrong-title' : ''}>{secret ? '틀린 코멘트' : '틀린 문제'} ({missed.length})</h2>
-        {!missed.length && <p className={secret ? 'gn-empty' : 'muted'}>틀린 문제가 없습니다.</p>}
-        {secret ? <ol className="gn-list">{missed.map((id, i) => {
+      <section className={card}><div className="tesat-result-head">
+        <h2 className={secret ? 'gn-wrong-title' : ''}>{showAllResults ? secret ? '전체 코멘트' : '전체 문제' : secret ? '틀린 코멘트' : '틀린 문제'} ({resultIds.length})</h2>
+        <button className={button} aria-pressed={showAllResults} aria-controls="tesat-result-list" onClick={() => setShowAllResults(!showAllResults)}>{showAllResults ? '오답만 보기' : '전체보기'}</button>
+      </div>
+        {!showAllResults && !missed.length && <p className={secret ? 'gn-empty' : 'muted'}>틀린 문제가 없습니다.</p>}
+        {secret ? <ol id="tesat-result-list" className="gn-list">{resultIds.map(id => {
           const q = lookup.get(id)!;
           const order = session.optionOrders?.[id];
-          return newsRow(q, i, openId === id, () => setOpenId(openId === id ? null : id), questionBody(presentQuestion(q, order), displayedSelection(q, session.selections[id], order), true));
-        })}</ol> : missed.map((id, i) => review(lookup.get(id)!, i, session.selections[id] ?? null, session.optionOrders?.[id]))}
+          return newsRow(q, session.ids.indexOf(id), openResultId === id, () => setOpenResultId(openResultId === id ? null : id), questionBody(presentQuestion(q, order), displayedSelection(q, session.selections[id], order), true), session.selections[id] === q.answerIndex);
+        })}</ol> : <div id="tesat-result-list">{resultIds.map(id => {
+          const q = lookup.get(id)!;
+          const index = session.ids.indexOf(id);
+          const isCorrect = session.selections[id] === q.answerIndex;
+          return <details key={id} className="tesat-result-item" open={!isCorrect}>
+            <summary><span className="tesat-result-number">문제 {index + 1}</span>{isCorrect ? <strong>{q.title}</strong> : <span>{q.title}</span>}</summary>
+            {review(q, index, session.selections[id] ?? null, session.optionOrders?.[id])}
+          </details>;
+        })}</div>}
         {!!missed.length && <button className={button} onClick={() => start(missed, 'review')}>이번 오답 다시 풀기</button>}
       </section>
       <div className={secret ? 'gn-article-nav' : 'actions sticky two'}><button className={secret ? 'gn-navbtn' : 'btn ghost'} onClick={() => go(secret ? 'library' : 'home')}>{secret ? '목록으로' : '홈으로'}</button><button className={secret ? 'gn-navbtn primary' : 'btn primary'} onClick={() => start(selectPractice(questions), 'test')}>{secret ? 'Load new stories' : '새 실력 점검'}</button></div>

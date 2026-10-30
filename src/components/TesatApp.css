@@ -31,6 +31,15 @@
 .tesat-term-example strong:first-child{margin-top:0}
 .tesat-term-actions [aria-pressed=true]{outline:2px solid var(--primary);outline-offset:-2px}
 .tesat-score{background:var(--primary)}
+.tesat-result-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tesat-result-head h2{margin:0}
+.tesat-result-head button{flex-shrink:0;margin:0}
+.tesat-result-item{margin-top:12px}
+.tesat-result-item>summary{cursor:pointer;font-size:14px;line-height:1.6;font-weight:400;overflow-wrap:anywhere}
+.tesat-result-item>summary strong{font-weight:700}
+.tesat-result-number{font-size:13px;color:var(--muted);margin-right:8px}
+.tesat-news .tesat-result-head{margin-bottom:8px}
+.tesat-news .tesat-result-head .gn-submit{margin:0}
 .tesat-resume{margin:10px 0}
 /* Keep the same 920px content, header and plain poll rows as the Network channel. */
 .gn.gn-tesat{min-width:0}
