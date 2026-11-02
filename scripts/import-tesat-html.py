@@ -227,9 +227,13 @@ def parse_article(source: str, html: str, capture_index: int, reviewed=None):
         issues = ['제공 원문에서 '+ '·'.join(group)+' 보기의 문구가 같습니다. 원문 그대로 표시합니다.' for group in duplicates]
         if reviewed.get('displayNote'):
             issues.append(reviewed['displayNote'])
+        review_required = reviewed.get('questionReviews', {}).get(str(number))
+        if review_required:
+            issues.append(review_required)
         result.append({'source': source, 'captureIndex': capture_index, 'originalNumber': number,
                        'question': question, 'content': content, 'options': options, 'answerIndex': answer,
                        'officialExplanation': official_explanation, 'images': image_sources(content), 'issues': issues,
+                       **({'reviewRequired': review_required} if review_required else {}),
                        **({'imageContainsChoices': True} if reviewed.get('imageContainsChoices') else {})})
     if source == 'quiz' and set(answers) != {q['originalNumber'] for q in result}:
         raise ValueError('Question count and answer table do not match')

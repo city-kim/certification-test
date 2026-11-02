@@ -46,26 +46,9 @@ const terms=concepts.filter(t=>t.articleIds.length).map(t=>{
 for(const id of explanations.keys())if(!concepts.some(t=>t.id===id))throw Error(id+': unknown term explanation ID');
 const termsById=new Map(terms.map(t=>[t.id,t]));
 const labels={micro:'미시경제',macro:'거시경제',finance:'금융',international:'국제경제',business:'기업·경영',current:'시사경제'};
-const refsFor=ids=>referenceArticles.filter(a=>ids.includes(a.id)).map(a=>({articleId:a.id,source:a.source,title:a.title,publishedAt:a.publishedAt,url:a.url})).sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt));
-const authored=terms.map((t,index)=>{
-  const candidates=terms.filter(x=>x.id!==t.id&&x.subject===t.subject);
-  const optionCount=index%3===0?4:5;
-  const offset=(index*7)%candidates.length;
-  const others=Array.from({length:optionCount-1},(_,i)=>candidates[(offset+i)%candidates.length]);
-  const answerIndex=index%optionCount;
-  const options=[...others];options.splice(answerIndex,0,t);
-  const sourceRefs=refsFor(t.articleIds);
-  return {id:`tesat-concept-${t.id}`,exam:'concepts',number:index+1,type:'mcq',subject:t.subject,title:`${t.definition.slice(0,44)}${t.definition.length>44?'…':''}`,
-    question:`다음 설명에 해당하는 개념을 고르세요.\n\n${t.definition}`,options:options.map(x=>x.name),answerIndex,
-    explanation:`${t.name}: ${t.definition}\n${t.example}`,keyPoints:[t.definition,t.contrast],termIds:[t.id],
-    optionExplanations:options.map(x=>x.id===t.id?`정답. ${t.example}`:`${x.name}: ${x.definition}`),
-    publishedAt:sourceRefs[0].publishedAt,sourceRefs,delivery:'authored',shuffleOptions:false};
-});
-for(const app of applications) {
-  const sourceRefs=refsFor(referenceArticles.filter(a=>app.termIds.some(id=>mapping[a.id]?.includes(id))).map(a=>a.id));
-  if(!sourceRefs.length)throw Error(`${app.id}: no sources`);
-  authored.push({...app,exam:'applications',number:authored.length+1,type:'mcq',publishedAt:sourceRefs[0].publishedAt,sourceRefs,delivery:'authored',shuffleOptions:false});
-}
+// Historical practice is review-only. New glossary entries must not regenerate
+// its choices or answer positions and change the meaning of saved attempts.
+const authored=read('authored-questions.json');
 const originals=loadOriginals(root,terms);
 const questions=originals.questions.flatMap(q=>{
   const sourceRefs=q.sourceRefs.filter(selectedArticle);
@@ -99,22 +82,24 @@ for(const a of included) {
 if(errors.length)throw Error(errors.join('\n'));
 save('questions.json',questions);save('archived-original-questions.json',archived);save('authored-questions.json',authored);save('terms.json',terms);save('manifest.json',{...manifest,collectedAt,ranges,articles});
 save('imports/occurrences.json',originals.occurrences);
+save('imports/review-required.json',originals.pending);
 const originalOccurrences=questions.reduce((sum,q)=>sum+q.sourceRefs.length,0);
 const contentImages=nodes=>(nodes??[]).flatMap(node=>typeof node==='string'?[]:node.tag==='img'?[node.src]:contentImages(node.children));
 const stats={sourceArticles:included.filter(a=>a.kind==='questions').length,currentArticles:included.filter(a=>a.kind==='terms').length,sourceQuestions:included.filter(a=>a.kind==='questions').reduce((s,a)=>s+a.questionCount,0),practiceQuestions:questions.length,terms:terms.length,
   providedArticles:included.filter(a=>a.provided).length,originalOccurrences,originalQuestions:questions.length,repeatedOccurrences:originalOccurrences-questions.length,
   originalExplanations:questions.filter(q=>q.explanationKind==='original').length,conceptExplanations:questions.filter(q=>q.explanationKind==='concept').length,answerKeyOnly:questions.filter(q=>q.explanationKind==='answer-key').length,
   originalImages:new Set(questions.flatMap(q=>contentImages(q.content))).size,originalIssueQuestions:questions.filter(q=>q.originalIssues?.length).length,
-  importedArticles:originals.stats.providedArticles,importedOccurrences:originals.stats.originalOccurrences,archivedOriginalQuestions:archived.length,
+  importedArticles:originals.stats.providedArticles,importedOccurrences:originals.stats.originalOccurrences,reviewRequiredQuestions:originals.pending.length,archivedOriginalQuestions:archived.length,
   authoredQuestions:authored.length,referenceOnlyArticles:included.filter(a=>a.kind==='questions'&&!a.provided).length};
 save('coverage.json',stats);
 mkdirSync(resolve(root,'docs'),{recursive:true});
-writeFileSync(resolve(root,'docs/tesat-sources.md'),`# TESAT 자료 목록\n\n확인일: ${collectedAt}. 사용자가 제공한 HTML JSON의 지문·보기·정답·해설을 보존해 등록했습니다.\n\n`+
+writeFileSync(resolve(root,'docs/tesat-sources.md'),`# TESAT 자료 목록\n\n확인일: ${collectedAt}. 사용자가 제공한 JSON·본문과 대조한 공식 원문의 지문·보기·정답·해설을 보존해 등록했습니다.\n\n`+
   ranges.map(r=>`- ${r.source}: ${r.start} ~ ${r.end}${r.basis==='user-provided-files-date-filter'?' (현재 확보된 원문 중 해당 기간)':''}`).join('\n')+
-  `\n\n제공 파일 전체 ${stats.importedArticles}편·${stats.importedOccurrences}문항 중, ${selection.start} 이후 ${stats.providedArticles}편·${stats.originalOccurrences}문항을 학습 대상으로 등록했습니다. 현재 문제은행은 ${stats.originalQuestions}문항이며, 기간 내 반복 문항은 ${stats.repeatedOccurrences}건입니다. 시사용어 ${stats.currentArticles}편, 용어 ${stats.terms}개.\n`+
+  `\n\n보존한 원문 전체 ${stats.importedArticles}편·${stats.importedOccurrences}문항 중, ${selection.start} 이후 ${stats.providedArticles}편에서 풀이 조건을 확인한 ${stats.originalOccurrences}문항을 학습 대상으로 등록했습니다. 현재 문제은행은 ${stats.originalQuestions}문항이며, 기간 내 반복 문항은 ${stats.repeatedOccurrences}건입니다. 검토 대기 ${stats.reviewRequiredQuestions}문항은 출제하지 않습니다. 시사용어 ${stats.currentArticles}편, 용어 ${stats.terms}개.\n`+
+  (originals.pending.length?`\n검토 대기 목록 (원문·정답·해설은 imports/review-required.json에 보존):\n${originals.pending.map(q=>`- ${q.publishedAt} [${q.sourceRefs[0].title}](${q.sourceRefs[0].url}) ${q.number}번: ${q.reviewReason}`).join('\n')}\n`:'')+
   `\n기간에서 제외한 원문 ${stats.archivedOriginalQuestions}문항은 기본 문제은행과 실력 점검에서 제외하고 기존 오답 복습용으로 보존합니다. 원본 HTML과 전체 문항 대응표도 유지합니다.\n`+
   `\n오늘의 TESAT 제공 원문 ${supplied.filter(a=>a.source==='today'&&a.kind==='questions'&&a.included!==false).length}편을 문제은행에 연결했습니다. 원문 파일이 없는 ${stats.referenceOnlyArticles}편은 자료 링크로 제공합니다. 기존 자체 연습 ${stats.authoredQuestions}문항은 Top Stories에서 제외하며 이전 오답 복습용으로 보존합니다.\n`+
-  `\n오늘의 TESAT 파일에 섞인 2025-12-24 시사용어 글은 현재 Briefing 기간 이전이므로 원본·목록만 보존합니다. 그림으로 된 지문·선택지·해설은 직접 확인해 전사했으며, 정답 번호가 없는 최신 글은 공식 게시글의 정답 ②를 대조했습니다.\n`+
+  `\n오늘의 TESAT 파일에 섞인 2025-12-24 시사용어 글은 현재 Briefing 기간 이전이므로 원본·목록만 보존합니다. 그림으로 된 지문·선택지·해설은 직접 확인해 전사했으며, 정답 번호가 없는 2026-10-27 글(혐오시설 유치 반대)은 공식 게시글의 정답을 대조했습니다.\n`+
   `\n테샛 맛보기의 해설은 제공 원문을 유지합니다. 해설이 없는 경제상식 퀴즈는 원문 정답표와 관련 개념 해설을 구분합니다. 현재 학습 범위의 그림 ${stats.originalImages}개와 보기 박스, 조합형 보기도 보존했습니다. 원문 확인사항이 있는 문항은 임의 수정 없이 표시합니다.\n\n`+
   '| 출처 | 게시일 | 제목 | 원문 문항 | 연결 개념 | 상태 |\n|---|---|---|---:|---:|---|\n'+articles.map(a=>`| ${a.source} | ${a.publishedAt} | [${a.title.replaceAll('|','/').trim()}](${a.url}) | ${a.questionCount??'확인 필요'} | ${a.termIds.length} | ${a.included?a.provided?'제공 원문 등록':a.status:a.provided?'기간 제외 · 이전 오답 복습용 보존':'제외'}${a.note?' · '+a.note:''} |`).join('\n')+'\n');
 console.log(stats);

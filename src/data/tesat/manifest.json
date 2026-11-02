@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-10-28",
+  "collectedAt": "2026-11-02",
   "ranges": [
     {
       "source": "quiz",
@@ -10,13 +10,13 @@
     {
       "source": "taste",
       "start": "2025-10-01",
-      "end": "2026-10-14",
+      "end": "2026-10-28",
       "basis": "user-provided-files-date-filter"
     },
     {
       "source": "today",
       "start": "2025-10-01",
-      "end": "2026-10-27",
+      "end": "2026-10-30",
       "basis": "user-provided-files-date-filter"
     },
     {
@@ -1689,6 +1689,7 @@
         "galapagos",
         "treasury",
         "golden-share",
+        "laffer-curve",
         "foundry",
         "cofix",
         "leniency"
@@ -2066,6 +2067,124 @@
     },
     {
       "source": "taste",
+      "url": "https://sgsg.hankyung.com/article/202610265835m",
+      "title": "세금의 종류, 지니계수 등",
+      "publishedAt": "2026-10-28",
+      "id": "taste-202610265835m",
+      "kind": "questions",
+      "status": "user-provided-html",
+      "questionCount": 3,
+      "imageCount": 0,
+      "captureIndex": 74,
+      "provided": true,
+      "verifiedAt": "2026-11-02",
+      "matchMethod": "user-provided-text-and-official-browser-check",
+      "studyNotes": {
+        "1": {
+          "subject": "macro",
+          "termIds": [
+            "tax-direct"
+          ],
+          "keyPoints": [
+            "㉠ 직접세는 납세의무자와 담세자가 일치하고 ㉡ 간접세는 일치하지 않는다.",
+            "직접세는 세부담을 인식하기 쉬워 조세저항과 탈세 유인이 상대적으로 클 수 있다.",
+            "부가가치세는 비례세이지만 소득 대비 부담에서 역진성이 나타날 수 있다."
+          ]
+        },
+        "2": {
+          "subject": "macro",
+          "termIds": [
+            "gini-coefficient",
+            "lorenz-curve"
+          ],
+          "keyPoints": [
+            "지니계수가 0.3에서 0.5로 오르면 소득분배가 더 불평등해진 것이다.",
+            "로렌츠곡선은 완전평등선인 45도 대각선에서 더 멀어진다."
+          ]
+        },
+        "3": {
+          "subject": "macro",
+          "termIds": [
+            "single-tax"
+          ],
+          "keyPoints": [
+            "토지 단일세를 주장한 경제학자는 헨리 조지다.",
+            "《진보와 빈곤》에서 토지의 불로소득을 환수하고 다른 세금을 없애자고 주장했다."
+          ]
+        }
+      },
+      "included": true,
+      "termIds": [
+        "tax-direct",
+        "gini-coefficient",
+        "lorenz-curve",
+        "single-tax"
+      ]
+    },
+    {
+      "source": "taste",
+      "url": "https://sgsg.hankyung.com/article/202610202549m",
+      "title": "부채 경제학, 펀드 투자 등",
+      "publishedAt": "2026-10-21",
+      "id": "taste-202610202549m",
+      "kind": "questions",
+      "status": "user-provided-html",
+      "questionCount": 3,
+      "imageCount": 0,
+      "captureIndex": 73,
+      "provided": true,
+      "verifiedAt": "2026-11-02",
+      "matchMethod": "user-provided-text-and-official-browser-check",
+      "studyNotes": {
+        "1": {
+          "subject": "finance",
+          "termIds": [
+            "minsky-moment",
+            "gray-rhino"
+          ],
+          "keyPoints": [
+            "민스키 모멘트는 누적된 부채가 자산 매각과 금융위기로 이어지는 순간이다.",
+            "회색 코뿔소는 예견되는데도 간과하는 위험을 가리킨다."
+          ]
+        },
+        "2": {
+          "subject": "finance",
+          "termIds": [
+            "misselling"
+          ],
+          "keyPoints": [
+            "금융상품의 운용 방법·위험·손실 가능성을 충분히 알리지 않은 판매는 불완전판매다.",
+            "계열사 사이 거래인 내부거래와 미공개 정보를 이용한 내부자거래를 구분한다."
+          ]
+        },
+        "3": {
+          "subject": "finance",
+          "termIds": [
+            "portfolio",
+            "leverage",
+            "passive-investing",
+            "active-fund"
+          ],
+          "keyPoints": [
+            "포트폴리오 투자는 여러 자산에 분산해 위험을 줄이는 방법이다.",
+            "패시브는 지수 추종, 액티브는 시장 초과수익 추구, 레버리지는 차입 활용에 초점이 있다."
+          ]
+        }
+      },
+      "note": "1번은 제공된 내용과 공식 회원 원문 모두에 참조 지문이 없어 검토 대기로 보존하고 출제에서 제외했습니다. 2·3번만 등록했습니다.",
+      "included": true,
+      "termIds": [
+        "minsky-moment",
+        "gray-rhino",
+        "misselling",
+        "portfolio",
+        "leverage",
+        "passive-investing",
+        "active-fund"
+      ]
+    },
+    {
+      "source": "taste",
       "url": "https://sgsg.hankyung.com/article/202610138770m",
       "title": "중앙은행 독립성, 필립스곡선...",
       "publishedAt": "2026-10-14",
@@ -2421,7 +2540,10 @@
         "marginal-utility",
         "real-gdp",
         "snob",
-        "vix"
+        "vix",
+        "gini-coefficient",
+        "lorenz-curve",
+        "income-decile-ratio"
       ]
     },
     {
@@ -2809,7 +2931,9 @@
         "monetary-policy",
         "phillips",
         "progressive-tax",
-        "tax-direct"
+        "tax-direct",
+        "gini-coefficient",
+        "lorenz-curve"
       ]
     },
     {
@@ -3009,7 +3133,8 @@
         "perfect-competition",
         "phillips",
         "price-discrimination",
-        "producer-surplus"
+        "producer-surplus",
+        "laffer-curve"
       ]
     },
     {
@@ -3080,7 +3205,11 @@
       "termIds": [
         "etf",
         "externality",
-        "market-failure"
+        "market-failure",
+        "gini-coefficient",
+        "lorenz-curve",
+        "income-quintile-ratio",
+        "income-decile-ratio"
       ]
     },
     {
@@ -3827,7 +3956,9 @@
         "bsi",
         "minimum-wage",
         "asymmetric-info",
-        "structural-unemployment"
+        "structural-unemployment",
+        "gini-coefficient",
+        "lorenz-curve"
       ]
     },
     {
@@ -3896,7 +4027,47 @@
         "price-ceiling",
         "price-floor",
         "minimum-wage",
-        "economic-cycle"
+        "economic-cycle",
+        "laffer-curve"
+      ]
+    },
+    {
+      "source": "today",
+      "url": "https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25599&s_cateno=1",
+      "title": "주니어-소득 불평등",
+      "publishedAt": "2026-10-30",
+      "id": "today-25599",
+      "kind": "questions",
+      "status": "public-accessible",
+      "questionCount": 1,
+      "imageCount": 0,
+      "captureIndex": 40,
+      "provided": true,
+      "verifiedAt": "2026-11-02",
+      "matchMethod": "user-provided-text-and-official-page-check",
+      "studyNotes": {
+        "1": {
+          "subject": "macro",
+          "termIds": [
+            "laffer-curve",
+            "gini-coefficient",
+            "lorenz-curve",
+            "income-quintile-ratio",
+            "income-decile-ratio"
+          ],
+          "keyPoints": [
+            "래퍼곡선은 세율과 세수의 관계로, 소득 불평등을 측정하는 지표가 아니다.",
+            "지니계수·5분위 배율은 커질수록 불평등하고, 10분위 분배율은 커질수록 평등하다."
+          ]
+        }
+      },
+      "included": true,
+      "termIds": [
+        "laffer-curve",
+        "gini-coefficient",
+        "lorenz-curve",
+        "income-quintile-ratio",
+        "income-decile-ratio"
       ]
     },
     {

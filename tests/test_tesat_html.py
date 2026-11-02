@@ -75,7 +75,7 @@ class TesatHtmlTests(unittest.TestCase):
         total=images=0
         for source in ['quiz','taste']:
             raw=json.loads((DATA/'raw'/f'{source}.json').read_text())
-            self.assertEqual(len(raw),72)
+            self.assertEqual(len(raw),72 if source=='quiz' else 74)
             for index,s in enumerate(raw,1):
                 plain=html.unescape(re.sub(r'<[^>]*>',' ',s))
                 compact=lambda value:re.sub(r'\s+','',value)
@@ -84,7 +84,7 @@ class TesatHtmlTests(unittest.TestCase):
                     self.assertIn(compact(q['question']),compact(plain))
                     for option in q['options']:self.assertIn(compact(option),compact(plain))
                     if q['officialExplanation']:self.assertIn(compact(q['officialExplanation']),compact(plain))
-        self.assertEqual(total,792);self.assertEqual(images,4)
+        self.assertEqual(total,798);self.assertEqual(images,4)
 
     def test_duplicate_original_options_are_reported_and_preserved(self):
         q=parse_article('quiz','<strong>1.질문?</strong>① A ② B ③ C ④ A<br>▶정답 : 1 ③',1)[0]
@@ -95,8 +95,8 @@ class TesatHtmlTests(unittest.TestCase):
         reviews=json.loads((DATA/'reviewed-imports.json').read_text())
         parsed,report=module.import_files({'today':DATA/'raw/today.json'},reviews)
         self.assertEqual(report['errors'],[])
-        self.assertEqual(len(report['articles']),39)
-        self.assertEqual(len(parsed),38)
+        self.assertEqual(len(report['articles']),40)
+        self.assertEqual(len(parsed),39)
         self.assertEqual(report['articles'][31]['kind'],'terms')
         self.assertEqual(report['articles'][31]['questionCount'],0)
         raw=json.loads((DATA/'raw/today.json').read_text())
@@ -121,6 +121,18 @@ class TesatHtmlTests(unittest.TestCase):
         self.assertIn('E+F',graph['officialExplanation'])
         with self.assertRaisesRegex(ValueError,'no longer matches'):
             parse_article('today',raw[17]+'edited',18,reviews['today']['18'])
+
+    def test_missing_reference_stem_is_reviewed_without_rewriting_or_losing_other_questions(self):
+        raw=json.loads((DATA/'raw/taste.json').read_text())
+        review=json.loads((DATA/'reviewed-imports.json').read_text())['taste']['73']
+        parsed=parse_article('taste',raw[72],73,review)
+        self.assertEqual(len(parsed),3)
+        self.assertEqual(parsed[0]['question'],'아래의 내용을 설명할 수 있는 알맞은 용어는?')
+        self.assertIn('참조 지문',parsed[0]['reviewRequired'])
+        self.assertEqual(parsed[0]['answerIndex'],2)
+        self.assertTrue(all('reviewRequired' not in q for q in parsed[1:]))
+        with self.assertRaisesRegex(ValueError,'no longer matches'):
+            parse_article('taste',raw[72]+'edited',73,review)
 
 
 if __name__=='__main__':unittest.main()

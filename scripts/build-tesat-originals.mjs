@@ -60,6 +60,7 @@ export function loadOriginals(root, terms) {
     return {exact:exact?.term, related:[...new Map([...(exact?[exact.term]:[]),...related].map(t=>[t.id,t])).values()].slice(0,6)};
   }
   const questions = new Map();
+  const pending = new Map();
   const answerKeys = new Map();
   const occurrences = [];
   const ordered=[...parsed].sort((a,b)=>metadata.get(b.source+':'+b.captureIndex).publishedAt.localeCompare(metadata.get(a.source+':'+a.captureIndex).publishedAt)||a.originalNumber-b.originalNumber);
@@ -72,7 +73,7 @@ export function loadOriginals(root, terms) {
     const id = 'tesat-original-'+hash(base+':'+q.answerIndex).slice(0,20);
     const ref = {articleId:article.id,source:q.source,title:article.title,publishedAt:article.publishedAt,
       url:article.url,questionNumber:q.originalNumber,captureIndex:q.captureIndex};
-    occurrences.push({source:q.source,captureIndex:q.captureIndex,number:q.originalNumber,id});
+    occurrences.push({source:q.source,captureIndex:q.captureIndex,number:q.originalNumber,id,...(q.reviewRequired?{reviewRequired:true}:{})});
     const previous = questions.get(id);
     if (previous) {
       previous.sourceRefs.push(ref);
@@ -87,14 +88,17 @@ export function loadOriginals(root, terms) {
       ? `${answerLine}\n\n관련 개념: ${exact.name}\n${exact.definition}\n${exact.explanation}`
       : `${answerLine}\n\n원문에는 별도 해설이 없습니다. 이 문항은 ${article.publishedAt} 게시 당시의 조건과 정답표를 기준으로 채점합니다.`);
     const stem = content(q.content);
-    questions.set(id, {id,exam:'original-'+q.source,number:q.originalNumber,type:'mcq',subject,
+    const study = article.studyNotes?.[q.originalNumber];
+    const entry = {id,exam:'original-'+q.source,number:q.originalNumber,type:'mcq',subject:study?.subject??subject,
       title:q.question.split('\n')[0].slice(0,90),question:q.question,content:stem,
       ...(q.images.length?{figure:assets[q.images[0]]}:{}), options:q.options,answerIndex:q.answerIndex,
       explanation,explanationKind:q.officialExplanation?'original':exact?'concept':'answer-key',
       ...(q.issues?.length?{originalIssues:q.issues}:{}),
       ...(q.imageContainsChoices?{imageContainsChoices:true}:{}),
-      keyPoints:exact?[exact.definition,exact.contrast]:[],termIds:related.map(t=>t.id),optionExplanations:[],
-      publishedAt:article.publishedAt,sourceRefs:[ref],delivery:'original',shuffleOptions:false});
+      keyPoints:study?.keyPoints??(exact?[exact.definition,exact.contrast]:[]),termIds:study?.termIds??related.map(t=>t.id),optionExplanations:[],
+      publishedAt:article.publishedAt,sourceRefs:[ref],delivery:'original',shuffleOptions:false};
+    if (q.reviewRequired) pending.set(id,{...entry,reviewReason:q.reviewRequired});
+    else questions.set(id,entry);
   }
   for (const q of questions.values()) {
     q.sourceRefs.sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt)||a.questionNumber-b.questionNumber);
@@ -107,9 +111,9 @@ export function loadOriginals(root, terms) {
     const count=occurrences.filter(q=>q.source===article.source&&q.captureIndex===article.captureIndex).length;
     if (count!==article.questionCount) throw Error(article.id+': original article count mismatch');
   }
-  return {questions:bank,articles:articles.map(a=>({...a,provided:true})),occurrences,
+  return {questions:bank,pending:[...pending.values()],articles:articles.map(a=>({...a,provided:true})),occurrences,
     stats:{providedArticles:articles.length,originalOccurrences:occurrences.length,originalQuestions:bank.length,
-      repeatedOccurrences:occurrences.length-bank.length,originalExplanations:bank.filter(q=>q.explanationKind==='original').length,
+      repeatedOccurrences:occurrences.filter(q=>!q.reviewRequired).length-bank.length,pendingQuestions:pending.size,originalExplanations:bank.filter(q=>q.explanationKind==='original').length,
       conceptExplanations:bank.filter(q=>q.explanationKind==='concept').length,answerKeyOnly:bank.filter(q=>q.explanationKind==='answer-key').length,
       originalImages:new Set(parsed.flatMap(q=>q.images)).size,originalIssueQuestions:bank.filter(q=>q.originalIssues?.length).length}};
 }

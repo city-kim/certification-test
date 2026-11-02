@@ -259,12 +259,13 @@ test('전체 문항·출처·기간·용어·그림 연결 무결성',()=>{
   current.forEach(a=>assert.ok(range.start<=a.publishedAt&&a.publishedAt<=range.end));
   assert.ok(manifest.articles.filter(a=>a.title.includes('스도쿠')).every(a=>!a.included));
 });
-test('제공한 830문항의 지문·보기 순서·정답·원문 해설을 변형하지 않는다',()=>{
+test('제공한 원문 전체의 지문·보기 순서·정답·원문 해설을 변형하지 않는다',()=>{
   const parsed=read('src/data/tesat/imports/parsed-questions.json');
   const occurrences=read('src/data/tesat/imports/occurrences.json');
-  const byId=new Map([...bank,...archivedOriginals].map(q=>[q.id,q]));
+  const pending=read('src/data/tesat/imports/review-required.json');
+  const byId=new Map([...bank,...archivedOriginals,...pending].map(q=>[q.id,q]));
   const articles=new Map(manifest.articles.map(a=>[a.source+':'+a.captureIndex,a]));
-  assert.equal(parsed.length,830);assert.equal(byId.size,819);
+  assert.equal(parsed.length,837);assert.equal(byId.size,826);
   assert.equal(occurrences.length,parsed.length);
   const compact=s=>s.replace(/\s+/g,'');
   for(const original of parsed){
@@ -282,17 +283,17 @@ test('제공한 830문항의 지문·보기 순서·정답·원문 해설을 변
   assert.equal([...byId.values()].filter(q=>q.figure).length,21);
 });
 test('기본 은행은 2025년 10월부터 확보된 최신 글까지만 포함한다',()=>{
-  assert.equal(bank.length,362);
+  assert.equal(bank.length,368);
   assert.equal(archivedOriginals.length,457);
   const articles=manifest.articles.filter(a=>a.provided&&a.included);
-  assert.equal(articles.length,106);
+  assert.equal(articles.length,109);
   for(const source of ['quiz','taste']){
     const selected=articles.filter(a=>a.source===source);
     const range=manifest.ranges.find(r=>r.source===source);
     assert.equal(range.start,'2025-10-01');
-    assert.equal(range.end,source==='quiz'?'2026-04-06':'2026-10-14');
-    assert.equal(selected.length,source==='quiz'?24:44);
-    assert.equal(bank.filter(q=>q.sourceRefs.some(r=>r.source===source)).length,source==='quiz'?192:132);
+    assert.equal(range.end,source==='quiz'?'2026-04-06':'2026-10-28');
+    assert.equal(selected.length,source==='quiz'?24:46);
+    assert.equal(bank.filter(q=>q.sourceRefs.some(r=>r.source===source)).length,source==='quiz'?192:137);
   }
   assert.ok(bank.every(q=>q.sourceRefs.every(r=>r.publishedAt>='2025-10-01')));
   assert.ok(archivedOriginals.every(q=>q.sourceRefs.every(r=>r.publishedAt<'2025-10-01')));
@@ -303,12 +304,13 @@ test('기본 은행은 2025년 10월부터 확보된 최신 글까지만 포함�
 });
 test('오늘의 TESAT의 원문·그림 선택지·그림 문제·공식 정답을 연결한다',()=>{
   const questions=bank.filter(q=>q.sourceRefs.some(r=>r.source==='today'));
-  assert.equal(questions.length,38);
+  assert.equal(questions.length,39);
   assert.equal(questions.at(-1).publishedAt,'2025-11-21');
-  assert.equal(questions[0].publishedAt,'2026-10-27');
+  assert.equal(questions[0].publishedAt,'2026-10-30');
   assert.ok(questions.every(q=>q.options.length===5&&q.explanationKind==='original'));
-  assert.equal(questions[0].options[questions[0].answerIndex],'님비(NIMBY)');
-  assert.ok(questions[0].originalIssues.some(note=>note.includes('공식 게시글')));
+  const nimby=questions.find(q=>q.sourceRefs.some(r=>r.articleId==='today-25592'));
+  assert.equal(nimby.options[nimby.answerIndex],'님비(NIMBY)');
+  assert.ok(nimby.originalIssues.some(note=>note.includes('공식 게시글')));
   const table=questions.find(q=>q.sourceRefs.some(r=>r.captureIndex===11));
   assert.deepEqual(table.options,['(A) 가격탄력성 · (B) 대체재','(A) 가격탄력성 · (B) 보완재','(A) 가격탄력성 · (B) 정상재','(A) 교차탄력성 · (B) 대체재','(A) 교차탄력성 · (B) 보완재']);
   const graph=questions.find(q=>q.sourceRefs.some(r=>r.captureIndex===18));
@@ -323,6 +325,33 @@ test('오늘의 TESAT의 원문·그림 선택지·그림 문제·공식 정답�
   assert.equal(wrong.progress[table.id].wrongStatus,'unreviewed');
   const done=answer(begin(table,'review',wrong,'today-review'),table,table.answerIndex);
   assert.equal(done.progress[table.id].wrongStatus,'done');
+});
+test('10월 신규 6문항은 출제하고 지문이 누락된 1문항은 검토 목록에만 보존한다',()=>{
+  const expected=new Map([
+    ['today-25599',[[1,0]]],
+    ['taste-202610202549m',[[2,4],[3,4]]],
+    ['taste-202610265835m',[[1,1],[2,4],[3,1]]],
+  ]);
+  for(const [articleId,answers] of expected){
+    const questions=bank.filter(q=>q.sourceRefs.some(r=>r.articleId===articleId));
+    assert.equal(questions.length,answers.length);
+    for(const [number,answerIndex] of answers){
+      const q=questions.find(q=>q.number===number);
+      assert.equal(q.answerIndex,answerIndex);
+      assert.equal(q.explanationKind,'original');
+      assert.ok(q.keyPoints.length&&q.termIds.length);
+      assert.equal(answer(begin(q),q,answerIndex).progress[q.id].lastCorrect,true);
+    }
+  }
+  const pending=read('src/data/tesat/imports/review-required.json');
+  assert.equal(pending.length,1);
+  assert.equal(pending[0].sourceRefs[0].articleId,'taste-202610202549m');
+  assert.equal(pending[0].number,1);
+  assert.equal(pending[0].options[pending[0].answerIndex],'민스키 모멘트');
+  assert.ok(pending[0].reviewReason.includes('참조 지문'));
+  assert.ok(![...bank,...archive].some(q=>q.id===pending[0].id));
+  assert.equal(manifest.collectedAt,'2026-11-02');
+  assert.equal(terms.length,266);
 });
 test('기간에서 제외한 원문의 오답은 유지하고 다시 채점할 수 있다',()=>{
   const q=archivedOriginals[0];

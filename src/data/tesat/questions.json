@@ -1,5 +1,222 @@
 [
   {
+    "id": "tesat-original-00149a5f6ad6cb9fd7d3",
+    "exam": "original-today",
+    "number": 1,
+    "type": "mcq",
+    "subject": "macro",
+    "title": "다음 중 소득 불평등을 파악하는 데 활용되는 지표가 아닌 것은?",
+    "question": "다음 중 소득 불평등을 파악하는 데 활용되는 지표가 아닌 것은?",
+    "content": [
+      {
+        "tag": "p",
+        "children": [
+          " 다음 중 소득 불평등을 파악하는 데 활용되는 지표가 아닌 것은?"
+        ]
+      },
+      " "
+    ],
+    "options": [
+      "래퍼곡선",
+      "지니계수",
+      "로렌츠곡선",
+      "5분위 배율",
+      "10분위 분배율"
+    ],
+    "answerIndex": 0,
+    "explanation": "소득 불평등이란 사람들 사이에 벌어들이는 소득의 차이가 크게 나타나는 현상을 말한다. 소득 불평등의 정도를 알아보는 대표적인 지표에는 지니계수, 로렌츠곡선, 5분위 배율, 10분위 분배율 등이 있다.\n\n로렌츠곡선은 소득이 사람들에게 얼마나 고르게 나누어져 있는지를 보여주는 그래프이며, 지니계수는 소득 불평등의 정도를 0에서 1 사이의 숫자로 나타낸 것이다. 지니계수가 0에 가까울수록 소득이 고르게 분배되고, 1에 가까울수록 불평등이 심하다는 뜻이다.\n\n5분위 배율은 소득이 높은 상위 20%와 낮은 하위 20%의 소득을 비교하는 지표이며, 10분위 분배율은 소득이 낮은 하위 40%와 높은 상위 20%의 소득을 비교하는 지표이다.\n\n반면 래퍼곡선은 세율과 정부의 세금 수입 사이의 관계를 나타내는 그래프로, 소득 불평등을 측정하는 지표가 아니다. 정답 ①",
+    "explanationKind": "original",
+    "keyPoints": [
+      "래퍼곡선은 세율과 세수의 관계로, 소득 불평등을 측정하는 지표가 아니다.",
+      "지니계수·5분위 배율은 커질수록 불평등하고, 10분위 분배율은 커질수록 평등하다."
+    ],
+    "termIds": [
+      "laffer-curve",
+      "gini-coefficient",
+      "lorenz-curve",
+      "income-quintile-ratio",
+      "income-decile-ratio"
+    ],
+    "optionExplanations": [],
+    "publishedAt": "2026-10-30",
+    "sourceRefs": [
+      {
+        "articleId": "today-25599",
+        "source": "today",
+        "title": "주니어-소득 불평등",
+        "publishedAt": "2026-10-30",
+        "url": "https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25599&s_cateno=1",
+        "questionNumber": 1,
+        "captureIndex": 40
+      }
+    ],
+    "delivery": "original",
+    "shuffleOptions": false
+  },
+  {
+    "id": "tesat-original-29149a85830f063df73f",
+    "exam": "original-taste",
+    "number": 1,
+    "type": "mcq",
+    "subject": "macro",
+    "title": "아래 지문의 ㉠, ㉡과 관련한 설명 중 옳은 것은?",
+    "question": "아래 지문의 ㉠, ㉡과 관련한 설명 중 옳은 것은?\n\n소득세, 재산세는 ㉠에 해당한다.\n반면 부가가치세는 대표적인 ㉡이다.",
+    "content": [
+      " 아래 지문의 ㉠, ㉡과 관련한 설명 중 옳은 것은?",
+      {
+        "tag": "br"
+      },
+      {
+        "tag": "br"
+      },
+      "소득세, 재산세는 ㉠에 해당한다.",
+      {
+        "tag": "br"
+      },
+      "반면 부가가치세는 대표적인 ㉡이다.",
+      {
+        "tag": "br"
+      },
+      {
+        "tag": "br"
+      }
+    ],
+    "options": [
+      "㉠과 같은 세금을 간접세라고 한다.",
+      "㉠은 ㉡보다 탈세하려는 경향이 높다.",
+      "㉡은 세금의 납세의무자와 담세자가 일치한다.",
+      "㉡은 ㉠보다 소득이 낮을수록 더 유리한 세금이다.",
+      "㉡은 과세 대상 금액이 커질수록 더 높은 세율이 적용된다."
+    ],
+    "answerIndex": 1,
+    "explanation": "㉠은 직접세, ㉡은 간접세에 해당한다. 직접세와 간접세는 기본적으로 세금을 법적으로 납부할 의무가 있는 납세의무자와 그 세금을 실제로 부담하는 담세자가 일치하는지를 기준으로 구분한다. 직접세는 납세의무자와 담세자가 일치하는 세금으로, 소득세와 재산세 등이 대표적이다. 직접세는 납세자가 자신이 부담하는 세액을 직접 인식하기 쉬워 조세에 대한 저항과 탈세 유인이 상대적으로 크게 나타날 수 있다. 하지만 간접세는 납세의무자와 담세자가 일치하지 않는 세금이다. 부가가치세와 개별소비세 등이 대표적인 간접세에 해당한다. 예를 들어 부가가치세는 사업자가 세금을 납부하지만, 세금이 상품 및 서비스 가격에 포함되는 방식으로 소비자에게 전가될 수 있다. 또한 부가가치세 같은 간접세는 소득 수준과 관계없이 동일한 세율이 적용되므로 소득에서 소비가 차지하는 비중이 높은 저소득층에 상대적으로 불리할 수 있다. 정답 ②",
+    "explanationKind": "original",
+    "keyPoints": [
+      "㉠ 직접세는 납세의무자와 담세자가 일치하고 ㉡ 간접세는 일치하지 않는다.",
+      "직접세는 세부담을 인식하기 쉬워 조세저항과 탈세 유인이 상대적으로 클 수 있다.",
+      "부가가치세는 비례세이지만 소득 대비 부담에서 역진성이 나타날 수 있다."
+    ],
+    "termIds": [
+      "tax-direct"
+    ],
+    "optionExplanations": [],
+    "publishedAt": "2026-10-28",
+    "sourceRefs": [
+      {
+        "articleId": "taste-202610265835m",
+        "source": "taste",
+        "title": "세금의 종류, 지니계수 등",
+        "publishedAt": "2026-10-28",
+        "url": "https://sgsg.hankyung.com/article/202610265835m",
+        "questionNumber": 1,
+        "captureIndex": 74
+      }
+    ],
+    "delivery": "original",
+    "shuffleOptions": false
+  },
+  {
+    "id": "tesat-original-e9576b307af6d1707da5",
+    "exam": "original-taste",
+    "number": 2,
+    "type": "mcq",
+    "subject": "macro",
+    "title": "지니계수가 0.3에서 0.5로 상승한 상황을 가장 잘 설명한 것은?",
+    "question": "지니계수가 0.3에서 0.5로 상승한 상황을 가장 잘 설명한 것은?",
+    "content": [
+      " 지니계수가 0.3에서 0.5로 상승한 상황을 가장 잘 설명한 것은?",
+      {
+        "tag": "br"
+      },
+      {
+        "tag": "br"
+      }
+    ],
+    "options": [
+      "올해 노동생산성이 상승했다.",
+      "이전보다 해당 국가의 교역 조건이 악화했다.",
+      "세율이 비표준 지대에서 표준 지대로 이동했다.",
+      "생산가능곡선이 오른쪽으로(바깥쪽으로) 이동했다.",
+      "로렌츠곡선이 완전 평등선인 45도 대각선에서 멀어졌다."
+    ],
+    "answerIndex": 4,
+    "explanation": "로렌츠곡선, 지니계수 등으로 소득분배의 불평등 정도를 측정할 수 있다. 로렌츠곡선은 가로축에 가구(또는 인구)의 누적 백분율을, 세로축에 소득의 누적 백분율을 나타냄으로써 얻어지는 곡선이다. 이 곡선이 45도 대각선에 가까울수록 소득 분배가 평등하다. 반대로 45도 대각선에서 멀어질수록 소득 분배가 불평등한 상태다. 이 로렌츠곡선을 이용해 만든 소득분배지표가 지니계수다. 지니계수는 0과 1 사이의 값을 가지며, 0에 가까울수록 소득 분배가 평등하게 이뤄졌음을, 1에 가까울수록 소득 분배가 불평등하게 이뤄졌음을 의미한다. 정답 ⑤",
+    "explanationKind": "original",
+    "keyPoints": [
+      "지니계수가 0.3에서 0.5로 오르면 소득분배가 더 불평등해진 것이다.",
+      "로렌츠곡선은 완전평등선인 45도 대각선에서 더 멀어진다."
+    ],
+    "termIds": [
+      "gini-coefficient",
+      "lorenz-curve"
+    ],
+    "optionExplanations": [],
+    "publishedAt": "2026-10-28",
+    "sourceRefs": [
+      {
+        "articleId": "taste-202610265835m",
+        "source": "taste",
+        "title": "세금의 종류, 지니계수 등",
+        "publishedAt": "2026-10-28",
+        "url": "https://sgsg.hankyung.com/article/202610265835m",
+        "questionNumber": 2,
+        "captureIndex": 74
+      }
+    ],
+    "delivery": "original",
+    "shuffleOptions": false
+  },
+  {
+    "id": "tesat-original-1db6b71a6b0254086cb6",
+    "exam": "original-taste",
+    "number": 3,
+    "type": "mcq",
+    "subject": "macro",
+    "title": "19세기에 토지 단일세(single tax)를 주장한 경제학자는 누구인가?",
+    "question": "19세기에 토지 단일세(single tax)를 주장한 경제학자는 누구인가?",
+    "content": [
+      " 19세기에 토지 단일세(single tax)를 주장한 경제학자는 누구인가?",
+      {
+        "tag": "br"
+      },
+      {
+        "tag": "br"
+      }
+    ],
+    "options": [
+      "게리 베커",
+      "헨리 조지",
+      "애덤 스미스",
+      "밀턴 프리드먼",
+      "데이비드 리카도"
+    ],
+    "answerIndex": 1,
+    "explanation": "19세기 미국 정치경제학자인 헨리 조지는 사회가 발전해도 빈부 격차가 커지는 이유를 토지 사유제로 인한 불로소득에서 찾았다. 그는 토지를 소유한 사람은 일하지 않아도 지대를 통해 소득을 얻고, 토지를 소유하지 못한 사람은 열심히 일해도 가난에서 벗어나기 어렵다고 봤다. 이에 따라 저서 <진보와 빈곤>에서 토지에서 발생하는 불로소득을 모두 세금으로 환수하고 열심히 일해서 벌어들인 소득세를 비롯한 다른 세금은 모두 없애야 한다는 토지 단일세를 주장했다. 정답 ②",
+    "explanationKind": "original",
+    "keyPoints": [
+      "토지 단일세를 주장한 경제학자는 헨리 조지다.",
+      "《진보와 빈곤》에서 토지의 불로소득을 환수하고 다른 세금을 없애자고 주장했다."
+    ],
+    "termIds": [
+      "single-tax"
+    ],
+    "optionExplanations": [],
+    "publishedAt": "2026-10-28",
+    "sourceRefs": [
+      {
+        "articleId": "taste-202610265835m",
+        "source": "taste",
+        "title": "세금의 종류, 지니계수 등",
+        "publishedAt": "2026-10-28",
+        "url": "https://sgsg.hankyung.com/article/202610265835m",
+        "questionNumber": 3,
+        "captureIndex": 74
+      }
+    ],
+    "delivery": "original",
+    "shuffleOptions": false
+  },
+  {
     "id": "tesat-original-b7316893e83bbd6f293e",
     "exam": "original-today",
     "number": 1,
@@ -89,6 +306,106 @@
         "url": "https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25592&s_cateno=1",
         "questionNumber": 1,
         "captureIndex": 1
+      }
+    ],
+    "delivery": "original",
+    "shuffleOptions": false
+  },
+  {
+    "id": "tesat-original-e6ad5a7b98f3556f14d8",
+    "exam": "original-taste",
+    "number": 2,
+    "type": "mcq",
+    "subject": "finance",
+    "title": "직장인 A씨는 증권사 직원으로부터 ‘B펀드가 수익률이 높으니 투자하라’는 권유를 받았다. 하지만 이 직원은 A씨에게 해당 펀드의 운용 방식, 위험도, 손실 가능성",
+    "question": "직장인 A씨는 증권사 직원으로부터 ‘B펀드가 수익률이 높으니 투자하라’는 권유를 받았다. 하지만 이 직원은 A씨에게 해당 펀드의 운용 방식, 위험도, 손실 가능성 등에 대해 충분히 설명하지 않았다. 이 경우 추후 법적으로 어떤 문제의 소지가 있을까?",
+    "content": [
+      " 직장인 A씨는 증권사 직원으로부터 ‘B펀드가 수익률이 높으니 투자하라’는 권유를 받았다. 하지만 이 직원은 A씨에게 해당 펀드의 운용 방식, 위험도, 손실 가능성 등에 대해 충분히 설명하지 않았다. 이 경우 추후 법적으로 어떤 문제의 소지가 있을까?",
+      {
+        "tag": "br"
+      },
+      {
+        "tag": "br"
+      }
+    ],
+    "options": [
+      "내부거래",
+      "결합판매",
+      "내부자거래",
+      "불공정거래",
+      "불완전판매"
+    ],
+    "answerIndex": 4,
+    "explanation": "불완전판매는 은행, 증권사, 보험사 등의 금융회사가 고객에게 상품의 운용 방법, 위험도, 손실 가능성 등을 제대로 알리지 않고 판매하는 행위를 가리킨다. 펀드의 경우 투자 원금 또는 수익률을 보장하는 행위, 사실에 근거하지 않은 판단 자료, 출처를 제시하지 않은 예측 자료를 투자자에게 제시하거나 펀드 가치에 중대한 부정적 영향을 미치는 사항을 알고도 투자자에게 미리 알리지 않고 판매하는 행위 등이 이에 해당한다. 내부거래는 같은 기업집단에 속한 회사(계열사) 간에 상품이나 서비스를 사고파는 행위, 내부자거래란 기업과 특수관계에 있는 사람이 자신의 직무 또는 지위를 통해 얻은 정보로 불공정한 주식매매를 하는 행위다. 정답 ⑤",
+    "explanationKind": "original",
+    "keyPoints": [
+      "금융상품의 운용 방법·위험·손실 가능성을 충분히 알리지 않은 판매는 불완전판매다.",
+      "계열사 사이 거래인 내부거래와 미공개 정보를 이용한 내부자거래를 구분한다."
+    ],
+    "termIds": [
+      "misselling"
+    ],
+    "optionExplanations": [],
+    "publishedAt": "2026-10-21",
+    "sourceRefs": [
+      {
+        "articleId": "taste-202610202549m",
+        "source": "taste",
+        "title": "부채 경제학, 펀드 투자 등",
+        "publishedAt": "2026-10-21",
+        "url": "https://sgsg.hankyung.com/article/202610202549m",
+        "questionNumber": 2,
+        "captureIndex": 73
+      }
+    ],
+    "delivery": "original",
+    "shuffleOptions": false
+  },
+  {
+    "id": "tesat-original-9ec4fcaa7a280744bbe7",
+    "exam": "original-taste",
+    "number": 3,
+    "type": "mcq",
+    "subject": "finance",
+    "title": "위험을 줄이고 수익을 극대화하기 위해 여러 자산에 분산 투자하는 기법을 무엇이라고 하는가?",
+    "question": "위험을 줄이고 수익을 극대화하기 위해 여러 자산에 분산 투자하는 기법을 무엇이라고 하는가?",
+    "content": [
+      " 위험을 줄이고 수익을 극대화하기 위해 여러 자산에 분산 투자하는 기법을 무엇이라고 하는가?",
+      {
+        "tag": "br"
+      }
+    ],
+    "options": [
+      "재고 투자",
+      "패시브 투자",
+      "액티브 투자",
+      "레버리지 투자",
+      "포트폴리오 투자"
+    ],
+    "answerIndex": 4,
+    "explanation": "포트폴리오 투자는 주식, 채권 및 다른 유가증권 등 다양한 금융상품에 분할해 투자하는 방법이다. 위험을 줄이고 투자 수익을 극대화하기 위해 여러 자산에 분산 투자한다. 레버리지 투자란 모자란 돈을 빌려서 투자해 수익률을 극대화하는 방법이다. 패시브 투자란 코스피200 같은 주요 지수의 등락에 따라 기계적으로 편입된 종목을 사고파는 투자 방식이다. 시장 평균 수익률을 목표로 한다. 액티브 투자는 펀드매니저 등 전문가가 개별 종목을 분석해 선별적으로 주식을 사고파는 투자 방식으로 시장 평균을 웃도는 수익률을 내는 게 목표다. 정답 ⑤",
+    "explanationKind": "original",
+    "keyPoints": [
+      "포트폴리오 투자는 여러 자산에 분산해 위험을 줄이는 방법이다.",
+      "패시브는 지수 추종, 액티브는 시장 초과수익 추구, 레버리지는 차입 활용에 초점이 있다."
+    ],
+    "termIds": [
+      "portfolio",
+      "leverage",
+      "passive-investing",
+      "active-fund"
+    ],
+    "optionExplanations": [],
+    "publishedAt": "2026-10-21",
+    "sourceRefs": [
+      {
+        "articleId": "taste-202610202549m",
+        "source": "taste",
+        "title": "부채 경제학, 펀드 투자 등",
+        "publishedAt": "2026-10-21",
+        "url": "https://sgsg.hankyung.com/article/202610202549m",
+        "questionNumber": 3,
+        "captureIndex": 73
       }
     ],
     "delivery": "original",
@@ -3296,7 +3613,10 @@
     "explanationKind": "original",
     "keyPoints": [],
     "termIds": [
-      "vix"
+      "vix",
+      "gini-coefficient",
+      "lorenz-curve",
+      "income-decile-ratio"
     ],
     "optionExplanations": [],
     "publishedAt": "2026-05-25",
@@ -10296,7 +10616,7 @@
     "exam": "original-taste",
     "number": 3,
     "type": "mcq",
-    "subject": "current",
+    "subject": "macro",
     "title": "로렌츠곡선을 통해 지니계수를 구할 수 있다. 로렌츠곡선이 45도 대각선일 경우 지니계수는 얼마일까?",
     "question": "로렌츠곡선을 통해 지니계수를 구할 수 있다. 로렌츠곡선이 45도 대각선일 경우 지니계수는 얼마일까?",
     "content": [
@@ -10324,7 +10644,10 @@
     "explanation": "소득의 불균등 수준을 파악하기 위해 로렌츠곡선, 지니계수 등을 활용한다. 로렌츠곡선은 가로축에 가구(또는 인구)의 누적 백분율을, 세로축에 소득의 누적 백분율을 나타내어 얻은 곡선이다. 이 곡선이 45도 대각선에 가까울수록 소득분배가 평등하며 멀어질수록 불평등하다. 이때 로렌츠곡선을 이용해 만든 소득분배 지표가 바로 지니계수다. 지니계수는 0과 1 사이의 값을 가지며, 0에 가까울수록 소득분배가 평등하게 이뤄졌다고 판단한다. 정답 ①",
     "explanationKind": "original",
     "keyPoints": [],
-    "termIds": [],
+    "termIds": [
+      "gini-coefficient",
+      "lorenz-curve"
+    ],
     "optionExplanations": [],
     "publishedAt": "2026-02-02",
     "sourceRefs": [
@@ -14994,7 +15317,7 @@
     "exam": "original-taste",
     "number": 3,
     "type": "mcq",
-    "subject": "current",
+    "subject": "macro",
     "title": "전문가들은 정부가 세율을 계속 올린다고 세수가 늘어나는 것은 아니라고 지적한다. 세율이 적정 수준을 벗어나면 오히려 세수가 감소할 수 있다고 주장한다. 이를 설명",
     "question": "전문가들은 정부가 세율을 계속 올린다고 세수가 늘어나는 것은 아니라고 지적한다. 세율이 적정 수준을 벗어나면 오히려 세수가 감소할 수 있다고 주장한다. 이를 설명할 수 있는 곡선은?",
     "content": [
@@ -15021,8 +15344,13 @@
     "answerIndex": 1,
     "explanation": "래퍼곡선이란 세율과 정부의 조세 수입 간 관계를 설명한 곡선이다. 미국의 경제학자 아서 래퍼가 주장했다. 래퍼는 한 나라의 세율이 적정 수준(최적 조세율)을 넘어 비표준 지대에 놓여 있을 때는 오히려 세율을 낮추는 것이 가계와 기업 등 경제주체의 의욕을 높여 경기와 세수를 동시에 회복할 수 있다고 설명했다. 래퍼곡선은 미국 레이건 행정부에서 세금 부담을 낮추는 감세정책의 이론적 근거가 됐다. 하지만 미국 정부의 거대한 재정적자가 발생하는 원인도 되었다. 그리고 한 나라의 최적 조세율이 어느 위치인지는 고려해야 할 변수가 많기에 현실에서는 정확히 알 수 없다. 정답 ②",
     "explanationKind": "original",
-    "keyPoints": [],
-    "termIds": [],
+    "keyPoints": [
+      "세율 변화에 따라 정부의 조세 수입이 어떻게 달라지는지 보여주는 곡선이다.",
+      "소득 불평등 지표가 아니며 어느 상황에서나 감세가 세수를 늘린다는 뜻도 아니다."
+    ],
+    "termIds": [
+      "laffer-curve"
+    ],
     "optionExplanations": [],
     "publishedAt": "2025-12-08",
     "sourceRefs": [
@@ -16704,7 +17032,7 @@
     "exam": "original-taste",
     "number": 2,
     "type": "mcq",
-    "subject": "current",
+    "subject": "macro",
     "title": "소득분배 지표와 관련한 설명 중 옳지 않은 것은?",
     "question": "소득분배 지표와 관련한 설명 중 옳지 않은 것은?",
     "content": [
@@ -16733,7 +17061,12 @@
     "explanation": "지니계수는 0과 1 사이의 값을 가진다. 0에 가까울수록 소득분배가 평등함을 의미한다. 소득분배가 평등할수록 로렌츠곡선은 45도 대각선에 가까워진다. 십분위분배율은 모든 가구를 소득에 따라 10등분해 최하위 40% 계층이 차지하는 소득점유율을 최상위 20% 계층이 차지하는 소득점유율로 나누어 계산한다. 십분위분배율은 0과 2 사이의 값을 가지며, 값이 클수록 소득분배가 평등함을 뜻한다. 소득 5분위 배율이란 최상위 20%의 평균소득을 최하위 20%의 평균소득으로 나눈 값이다. 소득분배가 완전 평등하면 소득 5분위 배율은 1, 완전 불평등하면 무한대(∞)다. 정답 ②",
     "explanationKind": "original",
     "keyPoints": [],
-    "termIds": [],
+    "termIds": [
+      "gini-coefficient",
+      "lorenz-curve",
+      "income-quintile-ratio",
+      "income-decile-ratio"
+    ],
     "optionExplanations": [],
     "publishedAt": "2025-11-17",
     "sourceRefs": [

@@ -1,0 +1,54 @@
+[
+  {
+    "id": "tesat-original-9dedf616df22fb6fc039",
+    "exam": "original-taste",
+    "number": 1,
+    "type": "mcq",
+    "subject": "finance",
+    "title": "아래의 내용을 설명할 수 있는 알맞은 용어는?",
+    "question": "아래의 내용을 설명할 수 있는 알맞은 용어는?",
+    "content": [
+      " 아래의 내용을 설명할 수 있는 알맞은 용어는?",
+      {
+        "tag": "br"
+      }
+    ],
+    "options": [
+      "사이드카",
+      "퍼스트 펭귄",
+      "민스키 모멘트",
+      "회색 코뿔소",
+      "트리플 위칭데이"
+    ],
+    "answerIndex": 2,
+    "explanation": "민스키 모멘트는 누적된 부채가 임계점을 지나면서 자산가치의 붕괴와 경제위기가 일어나는 순간을 일컫는다. 과도한 부채 확대에 따른 금융시장 호황이 이어지다가 호황이 끝나면 채무자의 부채 상환 능력이 나빠지고 결국 채무자는 건전한 자산까지 팔아 빚을 갚으면서 금융 시스템이 붕괴하고 금융위기까지 초래한다는 것이다. 미국 경제학자 하이먼 민스키가 언급한 내용이다. 2008년 미국 서브프라임 모기지 사태로 재조명받기 시작했다. 회색 코뿔소는 지속적인 경고로 충분히 예상할 수 있지만 쉽게 간과하는 위험 요인을 말한다. 코뿔소는 멀리서도 눈에 잘 띄며 진동만으로 움직임을 느낄 수 있지만 다가오면 두려움 때문에 아무것도 하지 못하거나 대처 방법을 알지 못해 일부러 무시하는 것을 비유한 말이다. 정답 ③",
+    "explanationKind": "original",
+    "originalIssues": [
+      "제공된 내용과 공식 회원 원문에 참조 지문이 없어 풀이 조건을 확인할 수 없습니다."
+    ],
+    "keyPoints": [
+      "민스키 모멘트는 누적된 부채가 자산 매각과 금융위기로 이어지는 순간이다.",
+      "회색 코뿔소는 예견되는데도 간과하는 위험을 가리킨다."
+    ],
+    "termIds": [
+      "minsky-moment",
+      "gray-rhino"
+    ],
+    "optionExplanations": [],
+    "publishedAt": "2026-10-21",
+    "sourceRefs": [
+      {
+        "articleId": "taste-202610202549m",
+        "source": "taste",
+        "title": "부채 경제학, 펀드 투자 등",
+        "publishedAt": "2026-10-21",
+        "url": "https://sgsg.hankyung.com/article/202610202549m",
+        "questionNumber": 1,
+        "captureIndex": 73
+      }
+    ],
+    "delivery": "original",
+    "shuffleOptions": false,
+    "reviewReason": "제공된 내용과 공식 회원 원문에 참조 지문이 없어 풀이 조건을 확인할 수 없습니다."
+  }
+]
