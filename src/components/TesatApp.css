@@ -4,8 +4,15 @@
 .tesat-study .tesat-filters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .tesat-filters label,.tesat-jump{display:block;min-width:0;color:var(--muted);font-size:13px}
 .tesat-filters input,.tesat-filters select,.tesat-jump select{box-sizing:border-box;display:block;width:100%;min-width:0;border:1px solid var(--line);border-radius:8px;padding:10px;background:var(--card);color:var(--text);font:inherit}
-.tesat-filters label select{margin-top:4px}
+.tesat-filters label select,.tesat-filters label input{margin-top:4px}
 .tesat-filters input{grid-column:1/-1}
+.tesat-source-filter,.tesat-date-range,.tesat-date-error{grid-column:1/-1}
+.tesat-date-range{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:end;gap:8px}
+.tesat-date-range input{min-height:38px}
+.tesat-date-separator{align-self:end;padding-bottom:10px;color:var(--muted)}
+.tesat-date-error{margin:0;color:var(--text);font-size:12px}
+.tesat-news .tesat-date-range input{min-height:30px}
+.tesat-news .tesat-date-separator{padding-bottom:7px}
 .tesat-jump{margin:0 0 12px}
 .tesat-jump select{margin-top:5px}
 .tesat-library-actions,.tesat-term-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}

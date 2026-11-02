@@ -101,13 +101,29 @@ test('다른 세트의 문제나 완료된 세트는 이어풀기로 잘못 열�
   assert.equal(focusStudySession({...active,completed:true},four.id),null);
   assert.equal(focusStudySession(null),null);
 });
-test('출처와 게시월은 동일한 원문 참조에서 동시에 일치해야 한다',()=>{
+test('출처와 날짜 범위는 동일한 원문 참조에서 동시에 일치해야 한다',()=>{
   const q={...four,sourceRefs:[{source:'quiz',publishedAt:'2026-03-01',questionNumber:8},{source:'taste',publishedAt:'2026-04-01',questionNumber:2}]};
-  assert.equal(filterQuestions([q],{...emptyFilter,source:'quiz',month:'2026-04'},{}).length,0);
-  assert.equal(filterQuestions([q],{...emptyFilter,source:'taste',month:'2026-04'},{}).length,1);
+  const range={startDate:'2026-04-01',endDate:'2026-04-30'};
+  assert.equal(filterQuestions([q],{...emptyFilter,source:'quiz',...range},{}).length,0);
+  assert.equal(filterQuestions([q],{...emptyFilter,source:'taste',...range},{}).length,1);
   assert.equal(filterQuestions([q],{...emptyFilter,source:'quiz'},{} )[0].publishedAt,'2026-03-01');
   assert.equal(filterQuestions([q],{...emptyFilter,source:'quiz'},{} )[0].number,8);
-  assert.equal(filterQuestions([q],{...emptyFilter,month:'2026-04'},{} )[0].number,2);
+  assert.equal(filterQuestions([q],{...emptyFilter,...range},{} )[0].number,2);
+});
+test('시작일·종료일은 양 끝을 포함하며 한쪽 생략·기간 역전·조건 결합을 처리한다',()=>{
+  const qs=['2026-09-30','2026-10-01','2026-10-28','2026-10-30','2026-11-01'].map((date,i)=>({
+    ...five,id:'range-'+i,subject:i===2?'finance':'macro',sourceRefs:[{source:'taste',publishedAt:date,questionNumber:i+1}],
+  }));
+  const filtered=range=>filterQuestions(qs,{...emptyFilter,...range},{}).map(q=>q.publishedAt);
+  assert.deepEqual(filtered({}),['2026-11-01','2026-10-30','2026-10-28','2026-10-01','2026-09-30']);
+  assert.deepEqual(filtered({startDate:'2026-10-01',endDate:'2026-10-30'}),['2026-10-30','2026-10-28','2026-10-01']);
+  assert.deepEqual(filtered({startDate:'2026-09-30',endDate:'2026-10-01'}),['2026-10-01','2026-09-30']);
+  assert.deepEqual(filtered({startDate:'2026-10-28',endDate:'2026-10-28'}),['2026-10-28']);
+  assert.deepEqual(filtered({startDate:'2026-10-30'}),['2026-11-01','2026-10-30']);
+  assert.deepEqual(filtered({endDate:'2026-10-01'}),['2026-10-01','2026-09-30']);
+  assert.deepEqual(filtered({startDate:'2026-10-30',endDate:'2026-10-01'}),[]);
+  assert.deepEqual(filtered({startDate:'2026-10-01',endDate:'2026-10-30',source:'taste',subject:'finance'}),['2026-10-28']);
+  assert.deepEqual(filtered({startDate:'2026-12-01'}),[]);
 });
 test('미학습과 오답 필터 및 복습 완료 제외',()=>{
   let state=answer(begin(four),four,(four.answerIndex+1)%4);

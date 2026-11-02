@@ -199,19 +199,21 @@ export function reconcileLearning(state: LearningState, bank: TesatQuestion[]): 
     optionOrders: validEntries.length ? Object.fromEntries(validEntries) : undefined } : null };
 }
 
-export interface StudyFilter { source: string; month: string; subject: string; status: string; search: string }
-export const emptyFilter: StudyFilter = { source: '', month: '', subject: '', status: '', search: '' };
+export interface StudyFilter { source: string; startDate: string; endDate: string; subject: string; status: string; search: string }
+export const emptyFilter: StudyFilter = { source: '', startDate: '', endDate: '', subject: '', status: '', search: '' };
 export function filterQuestions(bank: TesatQuestion[], filter: StudyFilter, progress: LearningState['progress']): TesatQuestion[] {
   const query = filter.search.trim().toLowerCase();
+  const matchesReference = (r: TesatQuestion['sourceRefs'][number]) => (!filter.source || r.source === filter.source)
+    && (!filter.startDate || r.publishedAt >= filter.startDate) && (!filter.endDate || r.publishedAt <= filter.endDate);
   return bank.filter(q => {
     const p = progress[q.id];
     // Source and date must match the same reference for cross-posted questions.
-    return q.sourceRefs.some(r => (!filter.source || r.source === filter.source) && (!filter.month || r.publishedAt.startsWith(filter.month)))
+    return q.sourceRefs.some(matchesReference)
       && (!filter.subject || q.subject === filter.subject)
       && (!filter.status || (filter.status === 'new' ? !p : filter.status === 'correct' ? p?.lastCorrect : p?.wrongStatus && p.wrongStatus !== 'done'))
       && (!query || [q.title, q.question, ...q.keyPoints, ...q.sourceRefs.map(r=>r.title)].join(' ').toLowerCase().includes(query));
   }).map(q => {
-    const refs = q.sourceRefs.filter(r => (!filter.source || r.source === filter.source) && (!filter.month || r.publishedAt.startsWith(filter.month)));
+    const refs = q.sourceRefs.filter(matchesReference);
     const latest = refs.reduce((a,b) => b.publishedAt > a.publishedAt ? b : a);
     return { ...q, publishedAt: latest.publishedAt, number: latest.questionNumber ?? q.number };
   })

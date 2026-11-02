@@ -56,7 +56,7 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
     && (!termSearch || [t.name, t.definition, t.explanation, ...(t.aliases ?? [])].join(' ').toLowerCase().includes(termSearch.toLowerCase()))
     && (secret ? !termSubject || t.subject === termSubject : !termStatus || (termStatus === 'new' ? !state.terms[t.id] : state.terms[t.id] === termStatus)));
   const currentArticles = TESAT_ARTICLES.filter(a => a.kind === 'terms' && a.included);
-  const months = [...new Set(TESAT_BANK.flatMap(q => q.sourceRefs.map(r => r.publishedAt.slice(0, 7))))].sort().reverse();
+  const invalidDateRange = !!filter.startDate && !!filter.endDate && filter.startDate > filter.endDate;
   const learned = TESAT_BANK.filter(q => state.progress[q.id]).length;
   const button = secret ? 'gn-submit' : 'btn ghost small-btn';
   const primary = secret ? 'gn-submit' : 'btn primary';
@@ -240,8 +240,13 @@ export default function TesatApp({ secret = false }: { secret?: boolean }) {
   }
 
   const filterControls = <div className="tesat-filters">
-    <label>출처<select value={filter.source} onChange={e => { setArticleId(''); setFilter({ ...filter, source: e.target.value }); setLimit(30); }}><option value="">전체 출처</option>{Object.entries(SOURCE_LABELS).filter(([key]) => TESAT_BANK.some(q => q.sourceRefs.some(r => r.source === key))).map(([k, v]) => <option key={k} value={k}>{v}</option>)}</select></label>
-    <label>게시월<select value={filter.month} onChange={e => { setFilter({ ...filter, month: e.target.value }); setLimit(30); }}><option value="">전체 기간</option>{months.map(m => <option key={m}>{m}</option>)}</select></label>
+    <label className="tesat-source-filter">출처<select value={filter.source} onChange={e => { setArticleId(''); setFilter({ ...filter, source: e.target.value }); setLimit(30); }}><option value="">전체 출처</option>{Object.entries(SOURCE_LABELS).filter(([key]) => TESAT_BANK.some(q => q.sourceRefs.some(r => r.source === key))).map(([k, v]) => <option key={k} value={k}>{v}</option>)}</select></label>
+    <div className="tesat-date-range">
+      <label>{secret ? 'Start · 시작일' : '시작일'}<input type="date" aria-label="시작일" value={filter.startDate} max={filter.endDate || undefined} aria-invalid={invalidDateRange} aria-describedby={invalidDateRange ? 'tesat-date-error' : undefined} onChange={e => { setFilter({ ...filter, startDate: e.target.value }); setLimit(30); }} /></label>
+      <span className="tesat-date-separator" aria-hidden="true">~</span>
+      <label>{secret ? 'End · 종료일' : '종료일'}<input type="date" aria-label="종료일" value={filter.endDate} min={filter.startDate || undefined} aria-invalid={invalidDateRange} aria-describedby={invalidDateRange ? 'tesat-date-error' : undefined} onChange={e => { setFilter({ ...filter, endDate: e.target.value }); setLimit(30); }} /></label>
+    </div>
+    {invalidDateRange && <p id="tesat-date-error" className="tesat-date-error" role="alert">종료일은 시작일과 같거나 이후여야 합니다.</p>}
     <label>주제<select value={filter.subject} onChange={e => { setFilter({ ...filter, subject: e.target.value }); setLimit(30); }}><option value="">전체 주제</option>{Object.entries(SUBJECT_LABELS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}</select></label>
     <label>학습 상태<select value={filter.status} onChange={e => { setFilter({ ...filter, status: e.target.value }); setLimit(30); }}><option value="">전체 상태</option><option value="new">미학습</option><option value="correct">최근 정답</option><option value="wrong">복습할 오답</option></select></label>
     <input aria-label="문제 검색" placeholder="주제·문제·원문 제목 검색" value={filter.search} onChange={e => { setFilter({ ...filter, search: e.target.value }); setLimit(30); }} />
