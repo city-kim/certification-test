@@ -2092,8 +2092,13 @@
     "answerIndex": 4,
     "explanation": "신용부도스와프(Credit Default Swap, CDS)는 채권을 발행한 기업이나 국가가 부도나면 원금을 돌려받을 수 있는 금융 파생상품이다. 채권자와 제3의 금융회사 간에 CDS 거래가 이뤄지며, 채무자가 부도를 내면 제3의 금융회사가 채권자에게 원금을 지급한다. 그 대가로 채권자는 보험료 성격의 수수료인 CDS 프리미엄을 낸다. 보험료가 사고 위험이 클수록 비싸지는 것처럼, 기업이나 국가의 신용위험도가 높을수록 CDS 프리미엄은 오르고 낮을수록 떨어진다. 따라서 CDS 프리미엄은 기업이나 국가의 부도 위험을 판단하는 지표로 활용된다. 정답 ⑤",
     "explanationKind": "original",
-    "keyPoints": [],
-    "termIds": [],
+    "keyPoints": [
+      "신용부도스와프로 채무자의 신용위험을 보장받는 대가로 지급하는 보험료 성격의 금액이다.",
+      "신용위험의 지표이며 채권의 표면금리나 이미 확정된 손실액과는 다르다."
+    ],
+    "termIds": [
+      "cds-premium"
+    ],
     "optionExplanations": [],
     "publishedAt": "2026-07-20",
     "sourceRefs": [
@@ -2375,7 +2380,8 @@
       "real-gdp",
       "central-bank",
       "csi",
-      "bsi"
+      "bsi",
+      "cds-premium"
     ],
     "optionExplanations": [],
     "publishedAt": "2026-07-06",
@@ -8600,7 +8606,8 @@
     "termIds": [
       "fiscal-policy",
       "crowding-out",
-      "credit-rating"
+      "credit-rating",
+      "cds-premium"
     ],
     "optionExplanations": [],
     "publishedAt": "2026-03-02",
@@ -13648,7 +13655,7 @@
     "exam": "original-taste",
     "number": 2,
     "type": "mcq",
-    "subject": "current",
+    "subject": "macro",
     "title": "예비타당성조사, 비용·편익 분석, 총사업비관리제도의 목적은 무엇인가?",
     "question": "예비타당성조사, 비용·편익 분석, 총사업비관리제도의 목적은 무엇인가?",
     "content": [
@@ -13677,7 +13684,9 @@
     "explanation": "예비타당성조사는 사회간접자본(SOC), 연구·개발(R&D) 등 대규모 재정 투입이 예상되는 신규 사업의 경제성, 재원 조달 방법 등을 검토해 사업성을 판단하는 절차다. 비용·편익 분석은 정부가 어떤 사업으로 발생하는 편익과 비용을 따져 사업 시행 여부를 평가하는 방법이다. 각 방안의 비용이 동일하다면 편익이 가장 큰 것을 선택하고, 반대로 편익이 동일하다면 비용이 가장 적게 드는 것을 선택한다. 총편익을 총비용으로 나눈 비율이 1 이상이면 경제적으로 타당성이 있다고 판단한다. 총사업비관리제도는 국가재정법의 각종 규정에 따라 국가 예산 또는 기금으로 시행하는 대규모 사업의 총사업비를 사업 추진 단계별로 합리적으로 조정·관리함으로써 재정지출의 효율성을 높이기 위한 제도다. 이들 제도는 정부 예산이 무분별하고 비효율적으로 지출되는 것을 막기 위한 것이다. 정답 ①",
     "explanationKind": "original",
     "keyPoints": [],
-    "termIds": [],
+    "termIds": [
+      "feasibility-cost-benefit"
+    ],
     "optionExplanations": [],
     "publishedAt": "2025-12-22",
     "sourceRefs": [
@@ -16899,7 +16908,8 @@
     "explanationKind": "original",
     "keyPoints": [],
     "termIds": [
-      "current-account"
+      "current-account",
+      "cds-premium"
     ],
     "optionExplanations": [],
     "publishedAt": "2025-11-21",
@@ -19094,7 +19104,9 @@
     "explanation": "제공 원문 정답표: ④ 유류세\n\n원문에는 별도 해설이 없습니다. 이 문항은 2025-10-27 게시 당시의 조건과 정답표를 기준으로 채점합니다.",
     "explanationKind": "answer-key",
     "keyPoints": [],
-    "termIds": [],
+    "termIds": [
+      "quasi-tax"
+    ],
     "optionExplanations": [],
     "publishedAt": "2025-10-27",
     "sourceRefs": [
@@ -19143,7 +19155,9 @@
     "explanation": "제공 원문 정답표: ① 광군제\n\n원문에는 별도 해설이 없습니다. 이 문항은 2025-10-27 게시 당시의 조건과 정답표를 기준으로 채점합니다.",
     "explanationKind": "answer-key",
     "keyPoints": [],
-    "termIds": [],
+    "termIds": [
+      "black-friday"
+    ],
     "optionExplanations": [],
     "publishedAt": "2025-10-27",
     "sourceRefs": [
@@ -19636,7 +19650,7 @@
     "exam": "original-quiz",
     "number": 5,
     "type": "mcq",
-    "subject": "current",
+    "subject": "finance",
     "title": "다양한 자산의 가격이 전반적으로 모두 상승하는 동반 강세장을 가리키는 용어는?",
     "question": "다양한 자산의 가격이 전반적으로 모두 상승하는 동반 강세장을 가리키는 용어는?",
     "content": [
@@ -19660,10 +19674,15 @@
       "서머 랠리"
     ],
     "answerIndex": 1,
-    "explanation": "제공 원문 정답표: ② 에브리싱 랠리\n\n원문에는 별도 해설이 없습니다. 이 문항은 2025-10-20 게시 당시의 조건과 정답표를 기준으로 채점합니다.",
-    "explanationKind": "answer-key",
-    "keyPoints": [],
-    "termIds": [],
+    "explanation": "제공 원문 정답표: ② 에브리싱 랠리\n\n관련 개념: 에브리싱 랠리\n주식·금·원자재·부동산·가상자산 등 다양한 자산 가격이 함께 상승하는 장세다.\n주식, 금, 원자재, 부동산, 가상자산 등 다양한 자산의 가격이 동시 상승하는 동반 강세장을 의미한다.",
+    "explanationKind": "concept",
+    "keyPoints": [
+      "주식·금·원자재·부동산·가상자산 등 다양한 자산 가격이 함께 상승하는 장세다.",
+      "특정 종목이나 한 자산군만 상승하는 경우와 구분하며 상승 지속을 보장하지 않는다."
+    ],
+    "termIds": [
+      "everything-rally"
+    ],
     "optionExplanations": [],
     "publishedAt": "2025-10-20",
     "sourceRefs": [

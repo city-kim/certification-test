@@ -1,13 +1,13 @@
 # TESAT 자료 목록
 
-확인일: 2026-11-02. 사용자가 제공한 JSON·본문과 대조한 공식 원문의 지문·보기·정답·해설을 보존해 등록했습니다.
+확인일: 2026-11-06. 사용자가 제공한 JSON·본문과 대조한 공식 원문의 지문·보기·정답·해설을 보존해 등록했습니다.
 
 - quiz: 2025-10-01 ~ 2026-04-06 (현재 확보된 원문 중 해당 기간)
 - taste: 2025-10-01 ~ 2026-10-28 (현재 확보된 원문 중 해당 기간)
 - today: 2025-10-01 ~ 2026-10-30 (현재 확보된 원문 중 해당 기간)
-- current-terms: 2026-04-15 ~ 2026-10-15
+- current-terms: 2026-04-15 ~ 2026-11-04
 
-보존한 원문 전체 186편·837문항 중, 2025-10-01 이후 109편에서 풀이 조건을 확인한 368문항을 학습 대상으로 등록했습니다. 현재 문제은행은 368문항이며, 기간 내 반복 문항은 0건입니다. 검토 대기 1문항은 출제하지 않습니다. 시사용어 4편, 용어 266개.
+보존한 원문 전체 186편·837문항 중, 2025-10-01 이후 109편에서 풀이 조건을 확인한 368문항을 학습 대상으로 등록했습니다. 현재 문제은행은 368문항이며, 기간 내 반복 문항은 0건입니다. 검토 대기 1문항은 출제하지 않습니다. 시사용어 5편, 용어 281개.
 
 검토 대기 목록 (원문·정답·해설은 imports/review-required.json에 보존):
 - 2026-10-21 [부채 경제학, 펀드 투자 등](https://sgsg.hankyung.com/article/202610202549m) 1번: 제공된 내용과 공식 회원 원문에 참조 지문이 없어 풀이 조건을 확인할 수 없습니다.
@@ -46,8 +46,8 @@
 | quiz | 2025-11-10 | [11월 10일 (915)](https://sgsg.hankyung.com/article/2025110796711) | 8 | 13 | 제공 원문 등록 |
 | quiz | 2025-11-10 | [스도쿠 여행 (918)](https://sgsg.hankyung.com/article/2025110796761) | 0 | 0 | 제외 · 목록에 섞인 스도쿠 게시물: 경제 퀴즈 대상에서 제외. |
 | quiz | 2025-11-03 | [11월 3일 (914)](https://sgsg.hankyung.com/article/2025103150781) | 8 | 13 | 제공 원문 등록 |
-| quiz | 2025-10-27 | [10월 27일 (913)](https://sgsg.hankyung.com/article/2025102497011) | 8 | 16 | 제공 원문 등록 |
-| quiz | 2025-10-20 | [10월 20일 (912)](https://sgsg.hankyung.com/article/2025101751271) | 8 | 9 | 제공 원문 등록 |
+| quiz | 2025-10-27 | [10월 27일 (913)](https://sgsg.hankyung.com/article/2025102497011) | 8 | 18 | 제공 원문 등록 |
+| quiz | 2025-10-20 | [10월 20일 (912)](https://sgsg.hankyung.com/article/2025101751271) | 8 | 10 | 제공 원문 등록 |
 | quiz | 2025-10-13 | [10월 13일 (911)](https://sgsg.hankyung.com/article/2025101005471) | 8 | 11 | 제공 원문 등록 |
 | quiz | 2025-09-29 | [9월 29일 (910)](https://sgsg.hankyung.com/article/2025092696001) | 8 | 14 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2025-09-22 | [9월 22일 (909)](https://sgsg.hankyung.com/article/2025091945801) | 8 | 8 | 기간 제외 · 이전 오답 복습용 보존 |
@@ -61,7 +61,7 @@
 | quiz | 2025-07-14 | [7월 14일 (901)](https://sgsg.hankyung.com/article/2025071120701) | 8 | 11 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2025-07-07 | [7월 7일 (900)](https://sgsg.hankyung.com/article/2025070481171) | 8 | 9 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2025-06-30 | [6월 30일 (899)](https://sgsg.hankyung.com/article/2025062735191) | 8 | 12 | 기간 제외 · 이전 오답 복습용 보존 |
-| quiz | 2025-06-23 | [6월 23일 (898)](https://sgsg.hankyung.com/article/2025062078541) | 8 | 5 | 기간 제외 · 이전 오답 복습용 보존 |
+| quiz | 2025-06-23 | [6월 23일 (898)](https://sgsg.hankyung.com/article/2025062078541) | 8 | 6 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2025-06-16 | [6월 16일 (897)](https://sgsg.hankyung.com/article/2025061328601) | 8 | 6 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2025-06-09 | [6월 9일 (896)](https://sgsg.hankyung.com/article/2025060687711) | 8 | 14 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2025-06-02 | [6월 2일 (895)](https://sgsg.hankyung.com/article/2025053054931) | 8 | 18 | 기간 제외 · 이전 오답 복습용 보존 |
@@ -78,7 +78,7 @@
 | quiz | 2025-03-24 | [경제·금융 상식 퀴즈](https://sgsg.hankyung.com/article/2025032193321) | 8 | 3 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2025-03-17 | [3월 17일 (884)](https://sgsg.hankyung.com/article/2025031438171) | 8 | 7 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2025-03-10 | [3월 10일 (883)](https://sgsg.hankyung.com/article/2025030787751) | 8 | 4 | 기간 제외 · 이전 오답 복습용 보존 |
-| quiz | 2025-03-03 | [3월 3일 (882)](https://sgsg.hankyung.com/article/2025022855621) | 8 | 4 | 기간 제외 · 이전 오답 복습용 보존 |
+| quiz | 2025-03-03 | [3월 3일 (882)](https://sgsg.hankyung.com/article/2025022855621) | 8 | 5 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2025-02-24 | [2월 24일 (881)](https://sgsg.hankyung.com/article/2025022101641) | 8 | 3 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2025-02-17 | [2월 17일 (880)](https://sgsg.hankyung.com/article/2025021457421) | 8 | 7 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2025-02-10 | [2월 10일 (879)](https://sgsg.hankyung.com/article/2025020703181) | 8 | 4 | 기간 제외 · 이전 오답 복습용 보존 |
@@ -87,11 +87,11 @@
 | quiz | 2025-01-13 | [1월 13일 (876)](https://sgsg.hankyung.com/article/2025011082711) | 8 | 3 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2025-01-06 | [1월 6일 (875)](https://sgsg.hankyung.com/article/2025010337511) | 8 | 2 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2024-12-23 | [12월 23일 (874)](https://sgsg.hankyung.com/article/2024122095601) | 8 | 2 | 기간 제외 · 이전 오답 복습용 보존 |
-| quiz | 2024-12-16 | [12월 16일 (873)](https://sgsg.hankyung.com/article/2024121345491) | 8 | 4 | 기간 제외 · 이전 오답 복습용 보존 |
+| quiz | 2024-12-16 | [12월 16일 (873)](https://sgsg.hankyung.com/article/2024121345491) | 8 | 5 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2024-12-09 | [12월 9일 (872)](https://sgsg.hankyung.com/article/2024120683521) | 8 | 7 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2024-12-02 | [12월 2일 (871)](https://sgsg.hankyung.com/article/2024112933891) | 8 | 4 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2024-11-25 | [11월 25일 (870)](https://sgsg.hankyung.com/article/2024112278131) | 8 | 4 | 기간 제외 · 이전 오답 복습용 보존 |
-| quiz | 2024-11-18 | [11월 18일 (869)](https://sgsg.hankyung.com/article/2024111538601) | 8 | 4 | 기간 제외 · 이전 오답 복습용 보존 |
+| quiz | 2024-11-18 | [11월 18일 (869)](https://sgsg.hankyung.com/article/2024111538601) | 8 | 5 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2024-11-11 | [11월 11일 (868)](https://sgsg.hankyung.com/article/2024110892921) | 8 | 5 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2024-11-04 | [11월 4일 (867)](https://sgsg.hankyung.com/article/2024110138971) | 8 | 6 | 기간 제외 · 이전 오답 복습용 보존 |
 | quiz | 2024-10-28 | [10월 28일 (866)](https://sgsg.hankyung.com/article/2024102585461) | 8 | 4 | 기간 제외 · 이전 오답 복습용 보존 |
@@ -105,7 +105,7 @@
 | taste | 2026-09-30 | [외환보유액, 국제수지, 총수요...](https://sgsg.hankyung.com/article/202609289303m) | 3 | 10 | 제공 원문 등록 |
 | taste | 2026-09-09 | [합리적 선택, 가격탄력성, 그리고 소비 관련 지수](https://sgsg.hankyung.com/article/202609081730m) | 3 | 9 | 제공 원문 등록 |
 | taste | 2026-08-26 | [화폐수량설, 피셔효과, 그리고 인플레이션](https://sgsg.hankyung.com/article/202608249443m) | 3 | 5 | 제공 원문 등록 |
-| taste | 2026-07-20 | [중고거래만 하면 망하는 이유, 경제학으로 증명해 드립니다 (feat. 테샛 맛보기)](https://sgsg.hankyung.com/article/2026071685761) | 3 | 14 | 제공 원문 등록 |
+| taste | 2026-07-20 | [중고거래만 하면 망하는 이유, 경제학으로 증명해 드립니다 (feat. 테샛 맛보기)](https://sgsg.hankyung.com/article/2026071685761) | 3 | 15 | 제공 원문 등록 |
 | taste | 2026-07-13 | [통화스와프](https://sgsg.hankyung.com/article/2026071072651) | 3 | 7 | 제공 원문 등록 |
 | taste | 2026-07-06 | [가격하한제](https://sgsg.hankyung.com/article/2026070337611) | 3 | 5 | 제공 원문 등록 |
 | taste | 2026-06-29 | [탈퇴버튼 숨겨둔 사이트에 낚여봄?🤬 이거 다 '공식 용어'가 있다! [테샛 맛보기]](https://sgsg.hankyung.com/article/2026062696051) | 3 | 8 | 제공 원문 등록 |
@@ -125,7 +125,7 @@
 | taste | 2026-03-23 | [구조적 실업](https://sgsg.hankyung.com/article/2026032047631) | 3 | 5 | 제공 원문 등록 |
 | taste | 2026-03-16 | [직접세·간접세](https://sgsg.hankyung.com/article/2026031386601) | 3 | 8 | 제공 원문 등록 |
 | taste | 2026-03-09 | [통화정책](https://sgsg.hankyung.com/article/2026030632131) | 3 | 8 | 제공 원문 등록 |
-| taste | 2026-03-02 | [국채 발행](https://sgsg.hankyung.com/article/2026022791561) | 3 | 10 | 제공 원문 등록 |
+| taste | 2026-03-02 | [국채 발행](https://sgsg.hankyung.com/article/2026022791561) | 3 | 11 | 제공 원문 등록 |
 | taste | 2026-02-23 | [국내총생산](https://sgsg.hankyung.com/article/2026022032591) | 3 | 7 | 제공 원문 등록 |
 | taste | 2026-02-09 | [시장의 종류](https://sgsg.hankyung.com/article/2026020684061) | 3 | 11 | 제공 원문 등록 |
 | taste | 2026-02-02 | [세금](https://sgsg.hankyung.com/article/2026013030881) | 3 | 8 | 제공 원문 등록 |
@@ -133,7 +133,7 @@
 | taste | 2026-01-19 | [중앙은행](https://sgsg.hankyung.com/article/2026011646181) | 3 | 12 | 제공 원문 등록 |
 | taste | 2026-01-12 | [재정정책과 통화정책](https://sgsg.hankyung.com/article/2026010907921) | 3 | 9 | 제공 원문 등록 |
 | taste | 2026-01-05 | [경제성장](https://sgsg.hankyung.com/article/2026010163471) | 3 | 7 | 제공 원문 등록 |
-| taste | 2025-12-22 | [총수요-총공급곡선](https://sgsg.hankyung.com/article/2025121934261) | 3 | 10 | 제공 원문 등록 |
+| taste | 2025-12-22 | [총수요-총공급곡선](https://sgsg.hankyung.com/article/2025121934261) | 3 | 11 | 제공 원문 등록 |
 | taste | 2025-12-15 | [가격차별](https://sgsg.hankyung.com/article/2025121298301) | 3 | 16 | 제공 원문 등록 |
 | taste | 2025-12-08 | [국내총생산(GDP)](https://sgsg.hankyung.com/article/2025120556951) | 3 | 13 | 제공 원문 등록 |
 | taste | 2025-12-01 | [밈 주식](https://sgsg.hankyung.com/article/2025112812261) | 3 | 3 | 제공 원문 등록 |
@@ -151,12 +151,12 @@
 | taste | 2025-09-01 | [밴드왜건 효과](https://sgsg.hankyung.com/article/2025082994941) | 3 | 8 | 기간 제외 · 이전 오답 복습용 보존 |
 | taste | 2025-08-25 | [액면분할](https://sgsg.hankyung.com/article/2025082252571) | 3 | 6 | 기간 제외 · 이전 오답 복습용 보존 |
 | taste | 2025-08-18 | [가계부채](https://sgsg.hankyung.com/article/2025081524861) | 3 | 2 | 기간 제외 · 이전 오답 복습용 보존 |
-| taste | 2025-08-11 | [총공급곡선](https://sgsg.hankyung.com/article/2025080889101) | 3 | 10 | 기간 제외 · 이전 오답 복습용 보존 |
-| taste | 2025-07-21 | [애그플레이션](https://sgsg.hankyung.com/article/2025071864991) | 3 | 8 | 기간 제외 · 이전 오답 복습용 보존 |
+| taste | 2025-08-11 | [총공급곡선](https://sgsg.hankyung.com/article/2025080889101) | 3 | 11 | 기간 제외 · 이전 오답 복습용 보존 |
+| taste | 2025-07-21 | [애그플레이션](https://sgsg.hankyung.com/article/2025071864991) | 3 | 9 | 기간 제외 · 이전 오답 복습용 보존 |
 | taste | 2025-07-14 | [디플레이션](https://sgsg.hankyung.com/article/2025071120621) | 3 | 7 | 기간 제외 · 이전 오답 복습용 보존 |
 | taste | 2025-07-07 | [풍선효과](https://sgsg.hankyung.com/article/2025070481281) | 3 | 8 | 기간 제외 · 이전 오답 복습용 보존 |
 | taste | 2025-06-30 | [정치행태](https://sgsg.hankyung.com/article/2025062735281) | 3 | 6 | 기간 제외 · 이전 오답 복습용 보존 |
-| taste | 2025-06-23 | [CDS 프리미엄](https://sgsg.hankyung.com/article/2025062078651) | 3 | 7 | 기간 제외 · 이전 오답 복습용 보존 |
+| taste | 2025-06-23 | [CDS 프리미엄](https://sgsg.hankyung.com/article/2025062078651) | 3 | 8 | 기간 제외 · 이전 오답 복습용 보존 |
 | taste | 2025-06-16 | [시장의 종류](https://sgsg.hankyung.com/article/2025061326051) | 3 | 7 | 기간 제외 · 이전 오답 복습용 보존 |
 | taste | 2025-06-09 | [직접세](https://sgsg.hankyung.com/article/2025060687621) | 3 | 6 | 기간 제외 · 이전 오답 복습용 보존 |
 | taste | 2025-06-02 | [국내총생산(GDP)](https://sgsg.hankyung.com/article/2025053055241) | 3 | 6 | 기간 제외 · 이전 오답 복습용 보존 |
@@ -172,11 +172,12 @@
 | taste | 2025-03-24 | [독감 예방주사](https://sgsg.hankyung.com/article/2025032193021) | 3 | 5 | 기간 제외 · 이전 오답 복습용 보존 |
 | taste | 2025-03-17 | [무역정책](https://sgsg.hankyung.com/article/2025031438261) | 3 | 1 | 기간 제외 · 이전 오답 복습용 보존 |
 | taste | 2025-03-10 | [비용인상 인플레이션](https://sgsg.hankyung.com/article/2025030787511) | 3 | 10 | 기간 제외 · 이전 오답 복습용 보존 |
+| today | 2026-11-04 | [시사 경제용어 따라잡기](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25610&s_cateno=1) | 0 | 18 | public-accessible · 사용자 제공 본문의 용어 18개를 모두 반영했습니다. |
 | today | 2026-10-30 | [주니어-소득 불평등](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25599&s_cateno=1) | 1 | 5 | 제공 원문 등록 |
 | today | 2026-10-27 | [혐오시설 유치 반대](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25592&s_cateno=1) | 1 | 0 | 제공 원문 등록 · 제공 HTML에 정답 번호가 없어 공식 게시글과 대조했습니다. |
 | today | 2026-10-15 | [주거비와 식료품비](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25585&s_cateno=1) | 1 | 3 | 제공 원문 등록 |
 | today | 2026-09-22 | [세이의 법칙](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25559&s_cateno=1) | 1 | 3 | 제공 원문 등록 |
-| today | 2026-09-16 | [시사 경제용어 따라잡기](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25542&s_cateno=1) | 0 | 6 | public-accessible |
+| today | 2026-09-16 | [시사 경제용어 따라잡기](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25542&s_cateno=1) | 0 | 18 | public-accessible · 사용자 제공 본문의 용어 18개를 모두 반영했습니다. |
 | today | 2026-09-15 | [수요곡선 이동](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25533&s_cateno=1) | 1 | 4 | 제공 원문 등록 |
 | today | 2026-09-09 | [재정정책과 통화정책](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25520&s_cateno=1) | 1 | 7 | 제공 원문 등록 |
 | today | 2026-09-03 | [당백전](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25513&s_cateno=1) | 1 | 2 | 제공 원문 등록 |
@@ -187,7 +188,7 @@
 | today | 2026-07-28 | [개인 신용 평가 제도](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25459&s_cateno=1) | 1 | 2 | 제공 원문 등록 |
 | today | 2026-07-22 | [탄력성](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25451&s_cateno=1) | 1 | 4 | 제공 원문 등록 |
 | today | 2026-07-20 | [공공선택론](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25449&s_cateno=1) | 1 | 1 | 제공 원문 등록 |
-| today | 2026-07-06 | [경제 예측 방향](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25435&s_cateno=1) | 1 | 5 | 제공 원문 등록 |
+| today | 2026-07-06 | [경제 예측 방향](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25435&s_cateno=1) | 1 | 6 | 제공 원문 등록 |
 | today | 2026-06-30 | [CBDC와 스테이블 코인](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25422&s_cateno=1) | 1 | 4 | 제공 원문 등록 |
 | today | 2026-06-24 | [시사 경제용어 따라잡기](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25416&s_cateno=1) | 0 | 18 | public-accessible |
 | today | 2026-06-16 | [중앙은행 책무](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25400&s_cateno=1) | 1 | 5 | 제공 원문 등록 |
@@ -217,7 +218,7 @@
 | today | 2025-12-09 | [로베스 피에르](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25093&s_cateno=1) | 1 | 3 | 제공 원문 등록 |
 | today | 2025-12-08 | [기회비용](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25090&s_cateno=1) | 1 | 2 | 제공 원문 등록 |
 | today | 2025-11-25 | [임직원 성과 보상 제도](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25079&s_cateno=1) | 1 | 3 | 제공 원문 등록 |
-| today | 2025-11-21 | [국가 경제 평가 지표](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25075&s_cateno=1) | 1 | 3 | 제공 원문 등록 |
+| today | 2025-11-21 | [국가 경제 평가 지표](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25075&s_cateno=1) | 1 | 4 | 제공 원문 등록 |
 | today | 2025-11-12 | [시사 경제용어 따라잡기](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25048&s_cateno=1) | 0 | 0 | 제외 |
 | today | 2025-11-04 | [경기 상황과 정책](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25027&s_cateno=1) | 1 | 4 | public-accessible |
 | today | 2025-10-31 | [국제 유가 하락](https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25026&s_cateno=1) | 1 | 1 | public-accessible |

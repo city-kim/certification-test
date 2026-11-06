@@ -9,7 +9,7 @@ const data=resolve(root,'src/data/tesat');
 const read=name=>JSON.parse(readFileSync(resolve(data,name),'utf8'));
 const save=(name,value)=>writeFileSync(resolve(data,name),JSON.stringify(value,null,2)+'\n');
 const manifest=read('sources.json'), overrides=read('editorial.json'), mapping=read('article-concepts.json');
-const explanationEntries=readFileSync(resolve(data,'term-explanations.psv'),'utf8').split('\n')
+const explanationEntries=readFileSync(resolve(data,'term-explanations.psv'),'utf8').split(/\r?\n/)
   .filter(line=>line.trim()&&!line.startsWith('#')).map(line=>{
     const fields=line.split('|');
     if(fields.length!==2||fields.some(field=>!field.trim()))throw Error('Invalid term explanation: '+line);
@@ -32,7 +32,7 @@ const ranges=manifest.ranges.map(r=>{
 const included=articles.filter(a=>a.included);
 // Keep existing glossary material and historical practice records stable.
 const referenceArticles=articles.filter(a=>a.included||a.provided&&a.kind==='questions');
-const concepts=readFileSync(resolve(data,'concepts.psv'),'utf8').split('\n').filter(l=>l.trim()&&!l.startsWith('#')).map(line=>{
+const concepts=readFileSync(resolve(data,'concepts.psv'),'utf8').split(/\r?\n/).filter(l=>l.trim()&&!l.startsWith('#')).map(line=>{
   const fields=line.split('|');if(fields.length!==7)throw Error('Invalid concept: '+line);
   const [id,subject,name,definition,example,contrast,aliases]=fields;
   return {id,subject,name,definition,example,contrast,aliases:aliases.split(';'),articleIds:referenceArticles.filter(a=>mapping[a.id]?.includes(id)).map(a=>a.id)};

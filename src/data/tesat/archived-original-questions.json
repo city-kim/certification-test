@@ -4186,7 +4186,7 @@
     "exam": "original-taste",
     "number": 2,
     "type": "mcq",
-    "subject": "current",
+    "subject": "macro",
     "title": "아래 나열한 제도들의 궁극적 목적은?",
     "question": "아래 나열한 제도들의 궁극적 목적은?\n 예비타당성 조사\n 비용·편익 분석",
     "content": [
@@ -4221,7 +4221,9 @@
     "explanation": "예비타당성 조사란 정부의 대규모 재정 투입(총사업비가 500억원 이상이면서 국가 재정지원 규모가 300억원 이상)이 예상되는 신규 사업에 대해 경제성, 재원 조달 방법 등을 검토해 사업성을 판단하는 절차다. 이는 선심성 사업으로 인한 세금 낭비를 막기 위해서다. 비용·편익 분석이란 어떤 사업으로 발생하는 편익과 비용을 따져 사업 시행 여부를 평가하는 방법이다. 총편익을 총비용으로 나눈 비율이 1 이상이면 경제적으로 타당성이 있다고 판단한다. 예비타당성 조사와 비용·편익 분석은 대규모 재정이 투입되는 공공사업에 대해 예산이 투입되는 것이 적절한지를 평가해 예산 낭비를 방지하는 수단이다. 정답 ④",
     "explanationKind": "original",
     "keyPoints": [],
-    "termIds": [],
+    "termIds": [
+      "feasibility-cost-benefit"
+    ],
     "optionExplanations": [],
     "publishedAt": "2025-08-11",
     "sourceRefs": [
@@ -4750,7 +4752,8 @@
     "keyPoints": [],
     "termIds": [
       "inflation",
-      "treasury"
+      "treasury",
+      "gentrification"
     ],
     "optionExplanations": [],
     "publishedAt": "2025-07-21",
@@ -7071,7 +7074,8 @@
     "keyPoints": [],
     "termIds": [
       "crowding-out",
-      "credit-rating"
+      "credit-rating",
+      "cds-premium"
     ],
     "optionExplanations": [],
     "publishedAt": "2025-06-23",
@@ -7350,7 +7354,7 @@
     "exam": "original-quiz",
     "number": 5,
     "type": "mcq",
-    "subject": "current",
+    "subject": "macro",
     "title": "세금은 아니지만 실질적으로 세금과 비슷한 성격을 지닌 각종 부담금, 기부금, 성금 등을 통칭하는 말은?",
     "question": "세금은 아니지만 실질적으로 세금과 비슷한 성격을 지닌 각종 부담금, 기부금, 성금 등을 통칭하는 말은?",
     "content": [
@@ -7374,10 +7378,15 @@
       "준조세"
     ],
     "answerIndex": 3,
-    "explanation": "제공 원문 정답표: ④ 준조세\n\n원문에는 별도 해설이 없습니다. 이 문항은 2025-06-23 게시 당시의 조건과 정답표를 기준으로 채점합니다.",
-    "explanationKind": "answer-key",
-    "keyPoints": [],
-    "termIds": [],
+    "explanation": "제공 원문 정답표: ④ 준조세\n\n관련 개념: 준조세\n조세는 아니지만 국민이나 기업에 사실상 세금과 유사한 경제적 부담을 주는 각종 부담금 등을 말한다.\n조세는 아니지만, 국민이나 기업에 사실상 조세와 유사한 경제적 부담을 주는 각종 부담금이나 기부금·성금 등을 말한다. 준조세가 과도할 경우 기업의 비용 부담을 높이고 제품 가격 상승 등의 요인이 될 수 있다.",
+    "explanationKind": "concept",
+    "keyPoints": [
+      "조세는 아니지만 국민이나 기업에 사실상 세금과 유사한 경제적 부담을 주는 각종 부담금 등을 말한다.",
+      "법률상 조세와 동일한 개념이 아니며 명칭보다 부담의 성격을 살펴야 한다."
+    ],
+    "termIds": [
+      "quasi-tax"
+    ],
     "optionExplanations": [],
     "publishedAt": "2025-06-23",
     "sourceRefs": [
@@ -16301,7 +16310,7 @@
     "exam": "original-quiz",
     "number": 5,
     "type": "mcq",
-    "subject": "current",
+    "subject": "macro",
     "title": "예비타당성조사제도를 운용하는 핵심 취지에 가장 부합하는 것은?",
     "question": "예비타당성조사제도를 운용하는 핵심 취지에 가장 부합하는 것은?",
     "content": [
@@ -16328,7 +16337,9 @@
     "explanation": "제공 원문 정답표: ④ 재정 건전성 강화\n\n원문에는 별도 해설이 없습니다. 이 문항은 2025-03-03 게시 당시의 조건과 정답표를 기준으로 채점합니다.",
     "explanationKind": "answer-key",
     "keyPoints": [],
-    "termIds": [],
+    "termIds": [
+      "feasibility-cost-benefit"
+    ],
     "optionExplanations": [],
     "publishedAt": "2025-03-03",
     "sourceRefs": [
@@ -19651,7 +19662,7 @@
     "exam": "original-quiz",
     "number": 2,
     "type": "mcq",
-    "subject": "finance",
+    "subject": "business",
     "title": "주식시장 변동성이 확대되는 것을 막기 위한 장치와 거리가 먼 것은?",
     "question": "주식시장 변동성이 확대되는 것을 막기 위한 장치와 거리가 먼 것은?",
     "content": [
@@ -19675,10 +19686,15 @@
       "조회공시"
     ],
     "answerIndex": 3,
-    "explanation": "제공 원문 정답표: ④ 조회공시\n\n원문에는 별도 해설이 없습니다. 이 문항은 2024-12-16 게시 당시의 조건과 정답표를 기준으로 채점합니다.",
-    "explanationKind": "answer-key",
-    "keyPoints": [],
-    "termIds": [],
+    "explanation": "제공 원문 정답표: ④ 조회공시\n\n관련 개념: 조회공시\n한국거래소가 상장법인에 주요 풍문·보도의 사실 여부나 중요 정보의 유무를 확인해 공시하도록 요구하는 제도다.\n한국거래소가 투자자 보호를 위해 상장법인에 주요 풍문이나 보도 내용의 사실 여부 등을 확인해 공시하도록 요구하는 제도이다. 주가나 거래량이 급변한 경우에는 투자 판단에 중대한 영향을 미칠 수 있는 미공개 중요 정보가 있는지에 대해서도 조회공시를 요구할 수 있다.",
+    "explanationKind": "concept",
+    "keyPoints": [
+      "한국거래소가 상장법인에 주요 풍문·보도의 사실 여부나 중요 정보의 유무를 확인해 공시하도록 요구하는 제도다.",
+      "조회공시 요구 자체가 풍문이 사실이라는 확인은 아니다."
+    ],
+    "termIds": [
+      "inquiry-disclosure"
+    ],
     "optionExplanations": [],
     "publishedAt": "2024-12-16",
     "sourceRefs": [
@@ -21390,7 +21406,7 @@
     "exam": "original-quiz",
     "number": 6,
     "type": "mcq",
-    "subject": "current",
+    "subject": "macro",
     "title": "다음 중 제도 시행의 가장 주된 목적이 ‘예산 낭비 방지’에 있는 것은?",
     "question": "다음 중 제도 시행의 가장 주된 목적이 ‘예산 낭비 방지’에 있는 것은?",
     "content": [
@@ -21414,10 +21430,15 @@
       "추가경정예산"
     ],
     "answerIndex": 1,
-    "explanation": "제공 원문 정답표: ② 예비타당성조사\n\n원문에는 별도 해설이 없습니다. 이 문항은 2024-11-18 게시 당시의 조건과 정답표를 기준으로 채점합니다.",
-    "explanationKind": "answer-key",
-    "keyPoints": [],
-    "termIds": [],
+    "explanation": "제공 원문 정답표: ② 예비타당성조사\n\n관련 개념: 예비타당성조사와 비용·편익 분석\n대규모 신규 재정사업의 타당성을 검토하고, 편익과 비용을 현재가치로 비교하는 절차와 분석 방법이다.\n예비타당성조사란 사회간접자본(SOC) 같은 대규모 재정 투입이 예상되는 신규 사업에 대해 경제성, 재원 조달 방법 등을 검토해 사업 시행의 타당성을 판단하는 절차다. 비용·편익 분석이란 특정 사업으로 발생하는 편익과 비용을 현재가치로 환산하여 비교하는 경제성 평가 방법이다. 총편익을 총비용으로 나눈 비율이 1 이상이면 경제성이 있다고 판단한다.",
+    "explanationKind": "concept",
+    "keyPoints": [
+      "대규모 신규 재정사업의 타당성을 검토하고, 편익과 비용을 현재가치로 비교하는 절차와 분석 방법이다.",
+      "비용·편익 비율이 1 이상이라는 경제성 판단만으로 사업 시행이 자동 확정되는 것은 아니다."
+    ],
+    "termIds": [
+      "feasibility-cost-benefit"
+    ],
     "optionExplanations": [],
     "publishedAt": "2024-11-18",
     "sourceRefs": [

@@ -1,5 +1,5 @@
 {
-  "collectedAt": "2026-10-27",
+  "collectedAt": "2026-11-06",
   "ranges": [
     {
       "source": "quiz",
@@ -22,7 +22,7 @@
     {
       "source": "current-terms",
       "start": "2026-04-15",
-      "end": "2026-10-15",
+      "end": "2026-11-04",
       "basis": "today-latest-published"
     }
   ],
@@ -1169,6 +1169,19 @@
     },
     {
       "source": "today",
+      "url": "https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25610&s_cateno=1",
+      "title": "시사 경제용어 따라잡기",
+      "publishedAt": "2026-11-04",
+      "id": "today-25610",
+      "kind": "terms",
+      "status": "public-accessible",
+      "questionCount": 0,
+      "imageCount": 0,
+      "included": true,
+      "note": "사용자 제공 본문의 용어 18개를 모두 반영했습니다."
+    },
+    {
+      "source": "today",
       "url": "https://www.tesat.or.kr/bbs.frm.view/tesat_study?no=25585&s_cateno=1",
       "title": "주거비와 식료품비",
       "publishedAt": "2026-10-15",
@@ -1201,7 +1214,8 @@
       "status": "public-accessible",
       "questionCount": 0,
       "imageCount": 1,
-      "included": true
+      "included": true,
+      "note": "사용자 제공 본문의 용어 18개를 모두 반영했습니다."
     },
     {
       "source": "today",

@@ -270,7 +270,7 @@ test('전체 문항·출처·기간·용어·그림 연결 무결성',()=>{
   }
   for(const a of manifest.articles.filter(a=>a.included&&a.kind==='terms'))assert.ok(a.termIds.length,a.id);
   const current=manifest.articles.filter(a=>a.kind==='terms'&&a.included);
-  assert.equal(current.length,4);
+  assert.equal(current.length,5);
   const range=manifest.ranges.find(r=>r.source==='current-terms');
   current.forEach(a=>assert.ok(range.start<=a.publishedAt&&a.publishedAt<=range.end));
   assert.ok(manifest.articles.filter(a=>a.title.includes('스도쿠')).every(a=>!a.included));
@@ -366,8 +366,8 @@ test('10월 신규 6문항은 출제하고 지문이 누락된 1문항은 검토
   assert.equal(pending[0].options[pending[0].answerIndex],'민스키 모멘트');
   assert.ok(pending[0].reviewReason.includes('참조 지문'));
   assert.ok(![...bank,...archive].some(q=>q.id===pending[0].id));
-  assert.equal(manifest.collectedAt,'2026-11-02');
-  assert.equal(terms.length,266);
+  assert.equal(manifest.collectedAt,'2026-11-06');
+  assert.equal(terms.length,281);
 });
 test('기간에서 제외한 원문의 오답은 유지하고 다시 채점할 수 있다',()=>{
   const q=archivedOriginals[0];
